@@ -26,22 +26,24 @@
 | [18-夜晚外出区域与探索扩展规范](18-夜晚外出区域与探索扩展规范.md) | 要新增打烊后外出地点、做博士式夜晚商店、视觉小说/打工 CG 场景、夜晚地图事件或卡片扩展 |
 | [19-工坊模组逆向与蒸馏](19-工坊模组逆向与蒸馏.md) | 要读别人的工坊模组：怎么筛、怎么订阅下载、怎么批量反编译、怎么读、怎么归档；工具链踩坑 |
 | [20-各类模组制作规范](20-各类模组制作规范.md) | **开工前必读**：按模组类型（内容/QoL/性能/事件剧情/框架/工具/美术/存档/联机）给必守项、禁忌、验收清单；跨模组十条铁律与冲突红线 |
+| [21-跨模组冲突案例库](21-跨模组冲突案例库.md) | **排障必查**：15 条真实跨模组故障症状（整块失效/过不了夜/主菜单崩）与软修法 |
+| [待办-代码改进项](待办-代码改进项.md) | 从 16 批蒸馏实证筛出的我方双模组 P0~P3 代码改进与兼容加固清单 |
 
-`workshop-distill\` 下是逐个工坊模组的蒸馏档案（`<工坊id>-<短名>.md`，持续随批次增量扩充），索引见 [19](19-工坊模组逆向与蒸馏.md) 第 9~15 节。
+`workshop-distill\` 下是逐个工坊模组的蒸馏档案（`<工坊id>-<短名>.md`，当前 99 份 / 170 模组 / ~193 万行，持续增量扩充），索引见 [19](19-工坊模组逆向与蒸馏.md)。
 
-## 结构化打标、压缩速查与秒级检索（新）
+## 低 Token 极速检索、二次提纯速查与并发增量打标
 
-- **高密度压缩速查卡（推荐首选）**：[DISTILL_DIGEST.md](DISTILL_DIGEST.md)（将 42 份 / 1.3 MB 工坊蒸馏档案无损压成 ~100 行核心结论 + ⚠️ 禁抄红线，压缩比 >115:1）。
-- **压缩版全库打标总索引**：[CATALOG.md](CATALOG.md) / `CATALOG.json`（零重复总表 + 按域一行路由；涵盖经验规范、全部 `workshop-distill` 档案、13 个实测零能力 C# 模板、工具与技能）。
-- **并发增量刷新**（另一边每新增一批蒸馏档案后跑一次即可，零侵入原文）：
+- **最省 Token 查法（强烈推荐，单次 ~500 tok，免整篇读 100 KB 大手册）**：
+  ```powershell
+  python 工具库\kb-tools\kb_pipeline.py lookup "ResolveSpriteByName 图标自愈" --read
+  python 工具库\kb-tools\kb_pipeline.py query --domain machines --trust L1,L2
+  ```
+- **二次提纯压缩速查卡**：[DISTILL_DIGEST.md](DISTILL_DIGEST.md)（顶部 12 条跨 170 模组黄金定论约 1.9k tok + 99 份全量极简增量招式，相对 3.17 MB 原文压缩 **137:1**）。
+- **瘦身版全库打标总路由**：[CATALOG.md](CATALOG.md) / `CATALOG.json`（含 422 个大型手册精确行号小节索引、16 个实测零能力 C# 模板、工具与技能）。
+- **并发增量刷新**（新批次落盘后重跑即可，零侵入原文）：
   ```powershell
   python 工具库\kb-tools\kb_pipeline.py build
   python 工具库\kb-tools\kb_pipeline.py audit
-  ```
-- **按标签/原版类秒查**：
-  ```powershell
-  python 工具库\kb-tools\kb_pipeline.py query --domain machines --trust L1,L2
-  python 工具库\kb-tools\kb_pipeline.py query --api StoreEventManager
   ```
 
 ## 两个高频入口

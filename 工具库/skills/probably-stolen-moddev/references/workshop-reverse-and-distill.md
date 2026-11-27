@@ -7,17 +7,20 @@
 ## 1. 六步闭环 + 零侵入自动打标（适配持续并发蒸馏）
 
 ```text
-① 扫列表   python 工具库\workshop-tools\fetch_workshop.py list --pages 10
-           → 缓存文件夹\workshop-scan\items.md（含订阅/体积/本地状态）
+⓪ 体检    python 工具库\workshop-tools\distill_queue.py status --top 20  /  pend
+           → 台账 `共享开发/模组制作经验库/蒸馏台账.json` 是唯一事实源；pend 非空先清退订欠账
+① 选批    python 工具库\workshop-tools\distill_queue.py next --n 10
+           打分 = 订阅量 × 体积档 × 扩展关键词；纯美术重绘自动沉底；已蒸馏的绝不重做
 ② 读简介   python fetch_workshop.py brief --ids-file 候选.txt --chars 620
-           → 先读名称与简介再决定订阅
-③ 订阅下载 工具库\build\WorkshopUploader\bin\Release\net10.0\WorkshopUploader.exe --fetch "@候选.txt"
-           （同目录须有 steam_api64.dll + steam_appid.txt=4348910）
+③ 订阅下载 缓存文件夹\workshop-uploader\bin\WorkshopUploader.exe --fetch "@候选.txt"
+           （同目录须有 steam_api64.dll；工具若被移动，dir /s /b WorkshopUploader.exe 定位）
 ④ 反编译   python 工具库\workshop-tools\distill_prep.py --ids-file 候选.txt
-           → 反编译到 缓存文件夹\decomp_ws\<id>\，透视报告到 _reports\<id>.txt
+           → 缓存文件夹\decomp_ws\<id>\，透视报告 _reports\<id>.txt
 ⑤ 精读归档 按 §3 六问写 共享开发\模组制作经验库\workshop-distill\<id>-<短名>.md
-⑥ 打标收尾 python 工具库\kb-tools\kb_pipeline.py build && audit   ← 自动打标/更新 CATALOG/核验原版 API
-           WorkshopUploader.exe --unsub "@候选.txt"              ← 退订避免堆积，清 缓存文件夹\decomp_ws\
+⑥ 记账    python 工具库\workshop-tools\distill_queue.py mark --batch N --ids ... --archive-map ...
+⑦ 退订    WorkshopUploader.exe --unsub "..." && python distill_queue.py unsubbed "..."  ← 为蒸馏订的必须退
+⑧ 打标收尾 python 工具库\kb-tools\kb_pipeline.py build && audit
+           清 缓存文件夹\decomp_ws\（只留 _reports）
 ```
 
 **并发蒸馏安全设计**：打标系统完全外置（规则自动分类 + `工具库/kb-tools/tags-override.json` 侧车覆写），**绝不修改 `workshop-distill/*.md` 原文头部**。无论同时有几个会话往 `workshop-distill/` 写新档案，完成后跑一次 `kb_pipeline.py build` 即可自动收录、打上 6 维标签（含 `L1~L4` 可信度与反面教材预警）并刷新 `CATALOG.json` / `CATALOG.md`。
@@ -27,7 +30,9 @@
 1. **优先看技术信号**：简介带 `API / 框架 / 兼容 / 让位 / 协议 / 脚本 / 缓存 / 归因` 的优先；**Patch 为 0 但功能复杂**（Zoh、StorageControlTerminal、Hatch Ranching）说明走通了纯公开 API，价值最高；几 KB 的小模组（SpriteHeal、Locale Error Fix）往往对应最深的原版 bug。
 2. **行数会骗人，先看分布再精读**：全工坊最热门的 Smart Inventory Arrange（8.9 万行）里有 3.27 万行是冻结的旧引擎副本；Claims（8.9 万行）里 25 个巨兽文件占了 49% 行数，中位数仅 54 行。先看目录结构与文件规模分布，只定点精读骨架和核心缝。
 3. **补丁多 ≠ 结构差**：Claims 233 Patch 但纯补丁代码仅占 1.4%，关键在把判断与状态收敛到少数基础设施里。
-4. **强断言必须核对包内 `manifest.xml` 原文**：只看程序集名或 `<ID>` 容易误判（作者改名不改 ID，如 Claims & Uprisings 内部 ID 仍为 `yexiaoyang.InteriorExpansion`）。
+4. **强断言必须核对包内 `manifest.xml` 原文**：只看程序集名或 `<ID>` 容易误判（作者改名不改 ID，如 Claims & Uprisings 内部 ID 仍为 `yexiaoyang.InteriorExpansion`）；根节点可能是 `<Manifest>` 也可能是 `<Mod>`（两者都合法）；`Vanilla Food Expansion` 的 manifest 甚至留着调试脚手架 `visual_probe_20261031_three` + 空 Author/Description。
+5. **"行数"在巨型内容扩展里又换了一种骗法**：`PC expansion` 12.3 万行里**真创意逻辑只占 6%**，60%+ 是"每个操作包成一笔可回滚事务"的脚手架，而且 **94% 的行平铺在一个 namespace 里**——按目录看结构完全失效，要按**功能簇**和**责任层**（UI / 运行时 / Harmony / 编解码 / 数据表）切。
+6. **零 Patch 的能力比想象强**：batch-8 里自学习机 0 个 Harmony、全自动制药机 0 个 Harmony、黑市材料单 0 Harmony 0 ModHook 0 能力。共同抓手是"原版工厂重建 + 原版静态库 + 原版 uGUI 子节点"——**能不动 Harmony 就别动**。
 
 ## 3. 精读六问与验真纪律
 
@@ -53,4 +58,6 @@
 | pwsh 跑 Python 中文乱码 | `[Console]::OutputEncoding=[Text.Encoding]::UTF8; $env:PYTHONIOENCODING='utf-8'` 或写 UTF-8 文件 |
 | `WorkshopUploader` 缺 `steam_api64.dll` | 从 `Managed\..\Plugins\x86_64\` 复制到 exe 同目录并放 `steam_appid.txt`（`4348910`） |
 | `ilspycmd` 特性参数解码失败 | 结合 `inspect_mod.py` 报告与上下文源码推断，不凭猜写结论 |
-| 已有积累规模（截至 batch-7） | **7 批 74 个模组 / 42 份档案 / ~60 万行源码**（高密度压缩速查见 `DISTILL_DIGEST.md`，总账见 `19-工坊模组逆向与蒸馏.md`，后续新批次由 `kb_pipeline.py build` 自动增量打标并刷新压缩卡） |
+| 合并档（如"某四例"）被漏记成"未蒸馏" | 台账 `init` 同时扫**档案头部 60 行的 id**（文件名里没 id 的合并档靠这个）；只扫头部是为了避免把"正文引用了别的模组"误判成已蒸馏 |
+| 工具目录被别的会话移动 | 先 `dir /s /b WorkshopUploader.exe` 定位，再同步改 `DISTILL_SOP.md` 与 README 的路径；文档路径过时比命令报错更坑 |
+| 已有积累规模（截至 batch-8） | **8 批 87 个模组 / 52 份档案 / ~103 万行源码**（高密度压缩速查见 `DISTILL_DIGEST.md`，总账见 `19-工坊模组逆向与蒸馏.md`，后续新批次由 `kb_pipeline.py build` 自动增量打标并刷新压缩卡） |

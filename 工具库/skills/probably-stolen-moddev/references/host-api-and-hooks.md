@@ -46,3 +46,11 @@
   1. **原版托管**：向 `StoreEventManager.normalEventBlueprints` / `threatEventBlueprints` 追加 `StoreEventBlueprint`；
   2. **自持蓝图（推荐，可控密度且不污染原版池）**：蓝图放私有 List，仅在 `StoreEventActionDict.actions` 注册 `:start`/`:update`/`:end`/`:clients`，在 `OnDayStart` Postfix 用原版 `RNG.GetOdd`（吃存档种子）抽取后调 `manager.ActivateEvent(ev, false, false)`；价格效果直接写入 `ev.negociationDatas`（零价格 Patch；注意双口径差异：`GameItem.GetCurrentValue()` 走 `IsTag` 可命中自定义标签，但 `NegociationData.IsNegociationDataAffectItem` 走 `GetGameItemType()` 只认原版 `itemTypes`）；保存时用 `Es3SafePersistence.cs` 浅克隆剥离防坏档。
 - **调试面板分类坑（真机实测）**：`CustomUIDebugPanel.Add(category, ...)` **只认 14 个原版固定分类**（模组统一放 `"Modding"`），自造分类名会被回退到 `"Special"` 并刷 warning。
+
+## 5. batch-8~16 源码核真增补（高频踩坑正门）
+
+- **贴图解析完整链（互不交叉）**：`GameItemElement.ResolveSpriteByName` 中 `useSpriteFromMod=true` 走 `LoadedMod.Sprites`（不进 `SpriteDict`），`false` 走 `RenderHandler.LoadFromAtlas`。故**物品图标自愈挂 `ResolveSpriteByName` Prefix（声明 `HarmonyBefore`）**，切回原版必清 `useSpriteFromMod`；**立绘仍挂 `SpriteDict.GetSprite`**；角标首选 0-Patch `GameItemFunc.getItemSpriteModifierForItemFunc`。
+- **机器永久加成 & 窗口插面板**：永久加成严禁直改 `TOTAL_PERCENTAGE_*`（拔模块会被 `ModuleHelper.ComputeModuleEffect` 冲零），须存私有 tag + `ModuleHelper.ComputeModuleEffect` Postfix 重算；给原版机器窗口加面板 Postfix `MachineHelper.CreateMachineryWindow`（或机器类的 `CreateMachineInventoryWindow`），用 `MachineryPanelRow.GetPanel` 判重后调 `MachineryPanelRow.Add`（零反射）。
+- **补货 / 造成品 / 营收 / 堆叠正门**：商人补货与重掷调 `StoreClientList.AddScavGeneralStock` / `PlaceInventorInventory` / `PlaceInventorSpecialStock` / `PlaceSupplierInventory`（不自建 `Random`）；造成品机器/工具走 `PreBuiltItemHelper`；营收统计挂 `RunStats.OnItemSold` Postfix；**`GameItem.GetSplitItem` 不复制私有 `state`**，带状态物品禁开 `mayStackItemFunc` 堆叠；原位换件走 `GraphUtils.SwapItemsInPlace`。
+- **液体成分与模态防点穿**：液体即物品 `TagSystem` 的整型微升 tag `CURRENT_PART_<LIQUID>`（键查 `Liquid.GetCurrentPartFromId`），精准分摊搬运用 `WaterHelper.SplitProportionally` / `WaterHelper.TransferLiquid`；模态窗挡背后物品拖拽只需置 `hoveringStoreUI = true`。
+- **委托扩展与夜出取消防扣次**：扩展原版委托挂 `StoreRequest.FillRequest` / `StoreRequest.ActivateRequest`；取消夜出行程走 `EmporiumEntry.OnArriveStore(true)`（传 `false` 会扣一次 `visitLeftTonight`）；幸运值总闸在 `HealthData.GetLuck`；枪械订单扩展挂 `StoreClientListGun.GetRandomBasicOrder` / `GetRandomMidOrder` / `GetRandomHighOrder` 与 `GunModHelper.EnableStockSlot` 系列。

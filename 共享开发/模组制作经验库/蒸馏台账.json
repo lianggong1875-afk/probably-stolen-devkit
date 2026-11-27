@@ -1,0 +1,1552 @@
+{
+ "batches": {
+  "1": [
+   "3832823827",
+   "3840533881",
+   "3841912659",
+   "3842773239",
+   "3843892181",
+   "3844123767",
+   "3844377158",
+   "3845197390",
+   "3845554726",
+   "3845556624",
+   "3845671416",
+   "3845751834",
+   "3845895085",
+   "3845965318",
+   "3846086230"
+  ],
+  "10": [
+   "3828878417",
+   "3828902221",
+   "3829353625",
+   "3830874694",
+   "3831464547",
+   "3831472187",
+   "3832013611",
+   "3833421581",
+   "3837619429"
+  ],
+  "11": [
+   "3828963396",
+   "3829298269",
+   "3830031787",
+   "3831627217",
+   "3832140957",
+   "3833083602",
+   "3834135415",
+   "3834226532",
+   "3837976033"
+  ],
+  "12": [
+   "3828870935",
+   "3829360387",
+   "3829409725",
+   "3829415336",
+   "3829963738",
+   "3829976090",
+   "3830844233",
+   "3831445822",
+   "3832819040",
+   "3833537477",
+   "3833978053",
+   "3835887557"
+  ],
+  "13": [
+   "3832941698",
+   "3841532994",
+   "3843132012",
+   "3845140070"
+  ],
+  "14": [
+   "3828927781",
+   "3828934641",
+   "3828935728",
+   "3829028450",
+   "3830627859",
+   "3830995342",
+   "3831174434",
+   "3832181449",
+   "3832805089",
+   "3836168312"
+  ],
+  "15": [
+   "3828924760",
+   "3828962908",
+   "3829058693",
+   "3829223778",
+   "3829267478",
+   "3829418556",
+   "3830180473",
+   "3830557056",
+   "3830643693",
+   "3830661318",
+   "3831773702",
+   "3831834469",
+   "3832595288",
+   "3834556946",
+   "3834557397",
+   "3834796100",
+   "3835141019",
+   "3835147893",
+   "3837224174",
+   "3838216859"
+  ],
+  "16": [
+   "3828909380",
+   "3831174816",
+   "3831771576",
+   "3832184465",
+   "3834364038",
+   "3834467130",
+   "3834776998",
+   "3838830653",
+   "3841914295",
+   "3845133693"
+  ],
+  "2": [
+   "3828868413",
+   "3828893950",
+   "3828909239",
+   "3828910575",
+   "3828938065",
+   "3829012791",
+   "3829019153",
+   "3829432366",
+   "3829942816",
+   "3829961729",
+   "3834649530",
+   "3838828332",
+   "3841350358",
+   "3842333957",
+   "3842791640",
+   "3842891745",
+   "3844117944",
+   "3844491258",
+   "3844978771",
+   "3844993390",
+   "3845160523",
+   "3845199370",
+   "3845287659",
+   "3845322500",
+   "3845680734",
+   "3845718219",
+   "3845720714",
+   "3845754309",
+   "3845780921",
+   "3846097337"
+  ],
+  "3": [
+   "3833966506",
+   "3836549936",
+   "3841909877",
+   "3844144965"
+  ],
+  "4": [
+   "3829696854",
+   "3832333084",
+   "3838776570",
+   "3844162371",
+   "3846193221"
+  ],
+  "5": [
+   "3828921912",
+   "3829206666",
+   "3829957165",
+   "3833164503",
+   "3834799226",
+   "3839534065",
+   "3839773708",
+   "3840289739"
+  ],
+  "6": [
+   "3828913695",
+   "3829429358",
+   "3829559307",
+   "3829946713",
+   "3833407098",
+   "3838944803",
+   "3841509159"
+  ],
+  "7": [
+   "3828902092",
+   "3829730904",
+   "3832077837",
+   "3834024821",
+   "3838443003"
+  ],
+  "8": [
+   "3828925546",
+   "3828971731",
+   "3829413447",
+   "3830523891",
+   "3830572817",
+   "3830798369",
+   "3831439549",
+   "3832249311",
+   "3832460122",
+   "3832840208",
+   "3834619049",
+   "3835546442"
+  ],
+  "9": [
+   "3828949943",
+   "3829053332",
+   "3829069448",
+   "3829110153",
+   "3832768562",
+   "3834588749",
+   "3836661256",
+   "3836727677",
+   "3837983447"
+  ]
+ },
+ "items": {
+  "3828868413": {
+   "archive": "UI深度扩展八例.md",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3828870935": {
+   "archive": "超小功能四例",
+   "batch": 12,
+   "done": "2026-11-28",
+   "mb": 0.0,
+   "source": "distill",
+   "subs": 121612,
+   "title": "自由初始特性 / Free Starting Perks"
+  },
+  "3828878417": {
+   "archive": "液体系统三例",
+   "batch": 10,
+   "done": "2026-11-28",
+   "mb": 2.5,
+   "source": "distill",
+   "subs": 116078,
+   "title": "更好的水商操作体验 | Better Water Trading"
+  },
+  "3828893950": {
+   "archive": "3828893950-DangpuPlus.md",
+   "batch": 2,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3828902092": {
+   "archive": "3828902092-ElectronicsExpansion.md",
+   "batch": 7,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3828902221": {
+   "archive": "UpperDistrictHeist",
+   "batch": 10,
+   "done": "2026-11-28",
+   "mb": 10.9,
+   "source": "distill",
+   "subs": 30433,
+   "title": "上层区拾荒其实是偷窃"
+  },
+  "3828909239": {
+   "archive": "3828909239-ProbablyMultiplayer.md",
+   "batch": 2,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3828909380": {
+   "archive": "TraditionalChinese",
+   "batch": 16,
+   "done": "2026-11-28",
+   "mb": 9.3,
+   "source": "distill",
+   "subs": 13923,
+   "title": "Traditional Chinese Translation"
+  },
+  "3828910575": {
+   "archive": "事件与内容扩展四例.md",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3828913695": {
+   "archive": "",
+   "batch": 6,
+   "done": null,
+   "source": "index-table"
+  },
+  "3828921912": {
+   "archive": "3828921912-AppraisalAssistant.md",
+   "batch": 5,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3828924760": {
+   "archive": "UI布局四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.2,
+   "source": "distill",
+   "subs": 39750,
+   "title": "更好的交易显示 EnhancedTradeDisplay"
+  },
+  "3828925546": {
+   "archive": "机器自动化三例",
+   "batch": 8,
+   "done": "2026-11-28",
+   "mb": 0.3,
+   "source": "distill",
+   "subs": 121878,
+   "title": "Pen’s Self-Learning Machine"
+  },
+  "3828927781": {
+   "archive": "MaiLeJi",
+   "batch": 14,
+   "done": "2026-11-28",
+   "mb": 3.4,
+   "source": "distill",
+   "subs": 9090,
+   "title": "麦乐基 MaiLeJi —— 太空快餐连锁"
+  },
+  "3828934641": {
+   "archive": "交易系统四例",
+   "batch": 14,
+   "done": "2026-11-28",
+   "mb": 0.2,
+   "source": "distill",
+   "subs": 9098,
+   "title": "Stock Reroll"
+  },
+  "3828935728": {
+   "archive": "交易系统四例",
+   "batch": 14,
+   "done": "2026-11-28",
+   "mb": 0.1,
+   "source": "distill",
+   "subs": 9284,
+   "title": "天赋商店 PerkShop — 交易额换天赋点 / 遗忘天赋"
+  },
+  "3828938065": {
+   "archive": "UI深度扩展八例.md",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3828949943": {
+   "archive": "XiaowoTradePerks",
+   "batch": 9,
+   "done": "2026-11-28",
+   "mb": 0.6,
+   "source": "distill",
+   "subs": 83956,
+   "title": "小窝特性扩展 / XIAOWO-TradePerks"
+  },
+  "3828962908": {
+   "archive": "交互与设置四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.1,
+   "source": "distill",
+   "subs": 64941,
+   "title": "F5 存档 / F5 Quick Save"
+  },
+  "3828963396": {
+   "archive": "立绘核心库与两个小工具",
+   "batch": 11,
+   "done": "2026-11-28",
+   "mb": 0.1,
+   "source": "distill",
+   "subs": 75141,
+   "title": "自动换电池 / AutoBatterySwap"
+  },
+  "3828971731": {
+   "archive": "FactionReputation",
+   "batch": 8,
+   "done": "2026-11-28",
+   "mb": 3.4,
+   "source": "distill",
+   "subs": 31167,
+   "title": "势力声望扩展 / Faction Reputation Expansion"
+  },
+  "3829012791": {
+   "archive": "3829012791-ItemSpawner.md",
+   "batch": 2,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3829019153": {
+   "archive": "事件与内容扩展四例.md",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3829028450": {
+   "archive": "交易系统四例",
+   "batch": 14,
+   "done": "2026-11-28",
+   "mb": 0.1,
+   "source": "distill",
+   "subs": 7999,
+   "title": "Exchange Preview"
+  },
+  "3829053332": {
+   "archive": "超小功能三例-声望弹字·框选·到账语音",
+   "batch": 9,
+   "done": "2026-11-28",
+   "mb": 0.0,
+   "note": "用户原有订阅，不退订",
+   "source": "distill",
+   "subs": 474816,
+   "title": "声望增加显示(Reputation Pop)"
+  },
+  "3829058693": {
+   "archive": "小玩法四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.1,
+   "source": "distill",
+   "subs": 38714,
+   "title": "刮刮乐彩票一键刮开 QuickScratch"
+  },
+  "3829069448": {
+   "archive": "BetterBottlePrinter",
+   "batch": 9,
+   "done": "2026-11-28",
+   "mb": 0.1,
+   "source": "distill",
+   "subs": 49580,
+   "title": "水瓶打印机增强 · 标准版 Better Bottle Printer"
+  },
+  "3829110153": {
+   "archive": "GoFishing",
+   "batch": 9,
+   "done": "2026-11-28",
+   "mb": 12.9,
+   "source": "distill",
+   "subs": 20386,
+   "title": "GoFishing! (Fish Expansion)"
+  },
+  "3829206666": {
+   "archive": "3829206666-SmartInventoryArrange.md",
+   "batch": 5,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3829223778": {
+   "archive": "信息显示四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.0,
+   "source": "distill",
+   "subs": 75962,
+   "title": "幸运特性增强 / Lucky Perk Plus"
+  },
+  "3829267478": {
+   "archive": "UI布局四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.0,
+   "source": "distill",
+   "subs": 174284,
+   "title": "议价面板移动到左侧 / Bargain Panel On The Left"
+  },
+  "3829298269": {
+   "archive": "DeepSpaceIceCity",
+   "batch": 11,
+   "done": "2026-11-28",
+   "mb": 2.2,
+   "source": "distill",
+   "subs": 15551,
+   "title": "奶茶拓展：深空冰城｜三十三款现调饮品，摆上柜台卖钱｜中文 / English"
+  },
+  "3829353625": {
+   "archive": "超小功能三例之二",
+   "batch": 10,
+   "done": "2026-11-28",
+   "mb": 0.0,
+   "source": "distill",
+   "subs": 267054,
+   "title": "鉴定单自动丢弃 Appraisal Slip to Trash"
+  },
+  "3829360387": {
+   "archive": "柜台与容器三例",
+   "batch": 12,
+   "done": "2026-11-28",
+   "mb": 0.1,
+   "source": "distill",
+   "subs": 60877,
+   "title": "挂钩 / WallHook"
+  },
+  "3829409725": {
+   "archive": "PensPipette",
+   "batch": 12,
+   "done": "2026-11-28",
+   "mb": 0.3,
+   "source": "distill",
+   "subs": 105205,
+   "title": "Pen's Pipette"
+  },
+  "3829413447": {
+   "archive": "PCExpansion",
+   "batch": 8,
+   "done": "2026-11-28",
+   "mb": 22.4,
+   "source": "distill",
+   "subs": 33107,
+   "title": "PC expansion"
+  },
+  "3829415336": {
+   "archive": "ShowItemNames",
+   "batch": 12,
+   "done": "2026-11-28",
+   "mb": 0.1,
+   "source": "distill",
+   "subs": 107884,
+   "title": "物品名称常显 / Show Item Names"
+  },
+  "3829418556": {
+   "archive": "内容四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.6,
+   "source": "distill",
+   "subs": 48108,
+   "title": "WaterTower 水塔（集中供水·可购买机器）"
+  },
+  "3829429358": {
+   "archive": "",
+   "batch": 6,
+   "done": null,
+   "source": "index-table"
+  },
+  "3829432366": {
+   "archive": "",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3829559307": {
+   "archive": "",
+   "batch": 6,
+   "done": null,
+   "source": "index-table"
+  },
+  "3829696854": {
+   "archive": "",
+   "batch": 4,
+   "done": null,
+   "source": "index-table"
+  },
+  "3829730904": {
+   "archive": "生产链与自动化四例.md",
+   "batch": 7,
+   "done": null,
+   "note": "batch-8 补遗 +136 行（物品注册 11 张 Definition 并集 / 4 张证书准入 4 处拦截 / 86 种酒两条路线）",
+   "source": "archive-head"
+  },
+  "3829942816": {
+   "archive": "",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3829946713": {
+   "archive": "",
+   "batch": 6,
+   "done": null,
+   "source": "index-table"
+  },
+  "3829957165": {
+   "archive": "3829957165-PenQoL补丁表.md",
+   "batch": 5,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3829961729": {
+   "archive": "事件与内容扩展四例.md",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3829963738": {
+   "archive": "超小功能四例-开局特性·保箱子·名额·对话框",
+   "batch": 12,
+   "done": "2026-11-28",
+   "mb": 0.1,
+   "note": "用户原有订阅，不退订",
+   "source": "distill",
+   "subs": 109914,
+   "title": "对话框下移 / Lower Dialogue Box"
+  },
+  "3829976090": {
+   "archive": "超小功能四例",
+   "batch": 12,
+   "done": "2026-11-28",
+   "mb": 0.4,
+   "source": "distill",
+   "subs": 15955,
+   "title": "更多开局特质 / More Starting Perks"
+  },
+  "3830031787": {
+   "archive": "FishingCuisine",
+   "batch": 11,
+   "done": "2026-11-28",
+   "mb": 1.4,
+   "source": "distill",
+   "subs": 15574,
+   "title": "钓鱼料理扩展Fishing Cuisine Expansion"
+  },
+  "3830180473": {
+   "archive": "信息显示四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.7,
+   "source": "distill",
+   "subs": 52275,
+   "title": "物品详情美化 | Better Item Tooltips"
+  },
+  "3830523891": {
+   "archive": "KitchenBusiness",
+   "batch": 8,
+   "done": "2026-11-28",
+   "mb": 82.3,
+   "source": "distill",
+   "subs": 36547,
+   "title": "小窝后厨经营 / XIAOWO-KitchenBusiness"
+  },
+  "3830557056": {
+   "archive": "信息显示四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.4,
+   "source": "distill",
+   "subs": 49903,
+   "title": "荧光莓鉴定角标 / Wine Berry Quality Badges"
+  },
+  "3830572817": {
+   "archive": "机器自动化三例",
+   "batch": 8,
+   "done": "2026-11-28",
+   "mb": 1.0,
+   "source": "distill",
+   "subs": 44495,
+   "title": "🧪 全自动化制药机 | Fully Automatic Drug Lab"
+  },
+  "3830627859": {
+   "archive": "交易系统四例",
+   "batch": 14,
+   "done": "2026-11-28",
+   "mb": 1.0,
+   "source": "distill",
+   "subs": 11372,
+   "title": "杰克逊博士·全物品电话商店 / Dr. Jackson All-Items Phone Shop (8888)"
+  },
+  "3830643693": {
+   "archive": "小玩法四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.3,
+   "source": "distill",
+   "subs": 66328,
+   "title": "Unbox Moment"
+  },
+  "3830661318": {
+   "archive": "交互与设置四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.1,
+   "source": "distill",
+   "subs": 32397,
+   "title": "Batch Labeler"
+  },
+  "3830798369": {
+   "archive": "VanillaFoodExpansion",
+   "batch": 8,
+   "done": "2026-11-28",
+   "mb": 5.8,
+   "source": "distill",
+   "subs": 28113,
+   "title": "Vanilla Food Expansion"
+  },
+  "3830844233": {
+   "archive": "MachineStatusBadges",
+   "batch": 12,
+   "done": "2026-11-28",
+   "mb": 0.4,
+   "source": "distill",
+   "subs": 59841,
+   "title": "机器状态角标 / Machine Status Badges"
+  },
+  "3830874694": {
+   "archive": "超小功能三例之二",
+   "batch": 10,
+   "done": "2026-11-28",
+   "mb": 0.1,
+   "source": "distill",
+   "subs": 218613,
+   "title": "更合理的广告牌/灯牌 / Proper Signboards"
+  },
+  "3830995342": {
+   "archive": "RhodesPharma",
+   "batch": 14,
+   "done": "2026-11-28",
+   "mb": 9.1,
+   "source": "distill",
+   "subs": 10063,
+   "title": "深空罗德岛-可能是制药公司"
+  },
+  "3831174434": {
+   "archive": "AppraisalRules",
+   "batch": 14,
+   "done": "2026-11-28",
+   "mb": 0.8,
+   "source": "distill",
+   "subs": 11126,
+   "title": "鉴定规则 Appraisal Rules"
+  },
+  "3831174816": {
+   "archive": "内容三例",
+   "batch": 16,
+   "done": "2026-11-28",
+   "mb": 0.1,
+   "source": "distill",
+   "subs": 12621,
+   "title": "空白卡压制机 V0.4.11"
+  },
+  "3831439549": {
+   "archive": "MoreDeviceUpgrades",
+   "batch": 8,
+   "done": "2026-11-28",
+   "mb": 1.8,
+   "source": "distill",
+   "subs": 32362,
+   "title": "More Device Upgrades 机器升级（非官方更新）"
+  },
+  "3831445822": {
+   "archive": "柜台与容器三例",
+   "batch": 12,
+   "done": "2026-11-28",
+   "mb": 1.5,
+   "source": "distill",
+   "subs": 27350,
+   "title": "鼠鼠变猪猪 2.2｜怕🐀玩家友好｜标记更新｜Rats to Piggies"
+  },
+  "3831464547": {
+   "archive": "超小功能三例之二",
+   "batch": 10,
+   "done": "2026-11-28",
+   "note": "19.9 万订阅，用户原有订阅不退订",
+   "source": "distill",
+   "title": "Visible Item Durability"
+  },
+  "3831472187": {
+   "archive": "液体系统三例",
+   "batch": 10,
+   "done": "2026-11-28",
+   "note": "25 万订阅，用户原有订阅不退订",
+   "source": "distill",
+   "title": "更好的液体扫描仪"
+  },
+  "3831627217": {
+   "archive": "立绘核心库与两个小工具",
+   "batch": 11,
+   "done": "2026-11-28",
+   "mb": 0.7,
+   "source": "distill",
+   "subs": 18167,
+   "title": "PortraitRuntime · 深空核心库"
+  },
+  "3831771576": {
+   "archive": "NeteaseMusic",
+   "batch": 16,
+   "done": "2026-11-28",
+   "mb": 13.4,
+   "source": "distill",
+   "subs": 2677,
+   "title": "VA-11 Hall-A 附属磁带MOD / Music Cassette"
+  },
+  "3831773702": {
+   "archive": "交互与设置四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.0,
+   "source": "distill",
+   "subs": 37747,
+   "title": "直接替换 / Quick Replace"
+  },
+  "3831834469": {
+   "archive": "内容四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.0,
+   "source": "distill",
+   "subs": 75698,
+   "title": "酵母今晚留下来 / YeastStayBox"
+  },
+  "3832013611": {
+   "archive": "StoreQoLSuite",
+   "batch": 10,
+   "done": "2026-11-28",
+   "mb": 0.7,
+   "source": "distill",
+   "subs": 73815,
+   "title": "店铺便捷升级：背包挂钩 · 桌面工具箱 · 罪犯与改造人识别"
+  },
+  "3832077837": {
+   "archive": "",
+   "batch": 7,
+   "done": null,
+   "source": "index-table"
+  },
+  "3832140957": {
+   "archive": "HogwartsFacilityReskin",
+   "batch": 11,
+   "done": "2026-11-28",
+   "mb": 5.2,
+   "source": "distill",
+   "subs": 19222,
+   "title": "霍格沃茨当铺·固定设施美化"
+  },
+  "3832181449": {
+   "archive": "VisitorCalendar",
+   "batch": 14,
+   "done": "2026-11-28",
+   "mb": 0.1,
+   "source": "distill",
+   "subs": 9727,
+   "title": "NPC访客日历｜NPC Visitor Calendar"
+  },
+  "3832184465": {
+   "archive": "NeteaseMusic",
+   "batch": 16,
+   "done": "2026-11-28",
+   "mb": 1.2,
+   "source": "distill",
+   "subs": 30289,
+   "title": "深空音乐：可能是抑云（磁带播放器打开音乐平台）"
+  },
+  "3832249311": {
+   "archive": "FarmStory",
+   "batch": 8,
+   "done": "2026-11-28",
+   "mb": 23.0,
+   "source": "distill",
+   "subs": 24470,
+   "title": "深空当铺／可能是牧场物语 / Probably a Farm Story"
+  },
+  "3832333084": {
+   "archive": "",
+   "batch": 4,
+   "done": null,
+   "source": "index-table"
+  },
+  "3832460122": {
+   "archive": "BlackMarketMaterials",
+   "batch": 8,
+   "done": "2026-11-28",
+   "mb": 3.1,
+   "source": "distill",
+   "subs": 91303,
+   "title": "地下 (黑市)  交易料单 | Black Market Materials"
+  },
+  "3832595288": {
+   "archive": "小玩法四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.8,
+   "source": "distill",
+   "subs": 47293,
+   "title": "卢：可能是结婚？|lou：Probably Wedding"
+  },
+  "3832768562": {
+   "archive": "ScavengingExpansion",
+   "batch": 9,
+   "done": "2026-11-28",
+   "mb": 13.2,
+   "source": "distill",
+   "subs": 10077,
+   "title": "拾荒拓展：背包、技能与焚化炉 / Scavenging Expansion: Backpacks, Skills & More"
+  },
+  "3832805089": {
+   "archive": "ElectronicsCompatPatch",
+   "batch": 14,
+   "done": "2026-11-28",
+   "mb": 2.4,
+   "source": "distill",
+   "subs": 11906,
+   "title": "电子产品mod冲突兼容补丁 / Electronics Mod Compatibility Patch 1.1.15"
+  },
+  "3832819040": {
+   "archive": "DeepSpaceClinic",
+   "batch": 12,
+   "done": "2026-11-28",
+   "mb": 37.7,
+   "source": "distill",
+   "subs": 13680,
+   "title": "深空诊所2077 | Deep Space Clinic 2077"
+  },
+  "3832823827": {
+   "archive": "3832823827-ModConflictScanner.md",
+   "batch": 1,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3832840208": {
+   "archive": "TobaccoExpansion",
+   "batch": 8,
+   "done": "2026-11-28",
+   "mb": 10.2,
+   "source": "distill",
+   "subs": 58584,
+   "title": "香烟拓展 | Tobacco Expansion"
+  },
+  "3832941698": {
+   "archive": "AIEmporium",
+   "batch": 13,
+   "done": "2026-11-28",
+   "mb": 169.9,
+   "note": "用户原有订阅，不退订",
+   "source": "distill",
+   "subs": 20431,
+   "title": "Probably Regulars - AI Emporium"
+  },
+  "3833083602": {
+   "archive": "立绘核心库与两个小工具",
+   "batch": 11,
+   "done": "2026-11-28",
+   "mb": 0.1,
+   "note": "用户原有订阅，不退订",
+   "source": "distill",
+   "subs": 156610,
+   "title": "Real Time Clock｜現實時鐘｜现实时钟"
+  },
+  "3833164503": {
+   "archive": "桥接器与开发框架两例.md",
+   "batch": 5,
+   "done": null,
+   "source": "index-table"
+  },
+  "3833407098": {
+   "archive": "",
+   "batch": 6,
+   "done": null,
+   "source": "index-table"
+  },
+  "3833421581": {
+   "archive": "液体系统三例",
+   "batch": 10,
+   "done": "2026-11-28",
+   "mb": 0.2,
+   "source": "distill",
+   "subs": 61020,
+   "title": "更好的水龙头 / Faucet Filter"
+  },
+  "3833537477": {
+   "archive": "超小功能四例",
+   "batch": 12,
+   "done": "2026-11-28",
+   "mb": 0.0,
+   "source": "distill",
+   "subs": 101083,
+   "title": "防止小偷箱子被挤掉"
+  },
+  "3833966506": {
+   "archive": "3833966506-StationEvents.md",
+   "batch": 3,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3833978053": {
+   "archive": "BetterCashier",
+   "batch": 12,
+   "done": "2026-11-28",
+   "mb": 0.7,
+   "source": "distill",
+   "subs": 121435,
+   "title": "更好的收银台 Better Cashier"
+  },
+  "3834024821": {
+   "archive": "生产链与自动化四例.md",
+   "batch": 7,
+   "done": null,
+   "source": "archive-head"
+  },
+  "3834135415": {
+   "archive": "VanillaGunExpansion",
+   "batch": 11,
+   "done": "2026-11-28",
+   "mb": 7.0,
+   "source": "distill",
+   "subs": 9389,
+   "title": "Vanilla Gun Expansion"
+  },
+  "3834226532": {
+   "archive": "PerksProbablyFun",
+   "batch": 11,
+   "done": "2026-11-28",
+   "mb": 1.7,
+   "source": "distill",
+   "subs": 46096,
+   "title": "Perks: Probably Fun"
+  },
+  "3834364038": {
+   "archive": "CombatContracts",
+   "batch": 16,
+   "done": "2026-11-28",
+   "mb": 21.6,
+   "source": "distill",
+   "subs": 5582,
+   "title": "深空当铺：战斗委托 / Combat Contracts"
+  },
+  "3834467130": {
+   "archive": "委托系统三例",
+   "batch": 16,
+   "done": "2026-11-28",
+   "mb": 0.2,
+   "source": "distill",
+   "subs": 1208,
+   "title": "傭兵派遣：可能是委託贊助人 Merc Dispatch: Probably the Contract Sponsor"
+  },
+  "3834556946": {
+   "archive": "交互与设置四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.0,
+   "source": "distill",
+   "subs": 69417,
+   "title": "In-Game Mod Settings"
+  },
+  "3834557397": {
+   "archive": "内容四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.2,
+   "source": "distill",
+   "subs": 72007,
+   "title": "智能存储仓分页 Smart Storage Tabs"
+  },
+  "3834588749": {
+   "archive": "EleanorStory",
+   "batch": 9,
+   "done": "2026-11-28",
+   "mb": 31.4,
+   "source": "distill",
+   "subs": 9531,
+   "title": "Eleanor Story Expand"
+  },
+  "3834619049": {
+   "archive": "Gunsmith",
+   "batch": 8,
+   "done": "2026-11-28",
+   "mb": 2.4,
+   "source": "distill",
+   "subs": 79090,
+   "title": "Vanilla Overhaul - Gunsmith"
+  },
+  "3834649530": {
+   "archive": "3834649530-SmartArrangement.md",
+   "batch": 2,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3834776998": {
+   "archive": "内容三例",
+   "batch": 16,
+   "done": "2026-11-28",
+   "mb": 0.2,
+   "source": "distill",
+   "subs": 19084,
+   "title": "王尔德人脉拓展 Wilde Network Expansion"
+  },
+  "3834796100": {
+   "archive": "信息显示四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.0,
+   "source": "distill",
+   "subs": 88366,
+   "title": "显示顾客阵营"
+  },
+  "3834799226": {
+   "archive": "桥接器与开发框架两例.md",
+   "batch": 5,
+   "done": null,
+   "source": "index-table"
+  },
+  "3835141019": {
+   "archive": "UI布局四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.1,
+   "source": "distill",
+   "subs": 63195,
+   "title": "储物窗口拖动缩放 | Container Window Scale"
+  },
+  "3835147893": {
+   "archive": "UI布局四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.0,
+   "source": "distill",
+   "subs": 98041,
+   "title": "商人货物翻页 | Merchant Stock Pager"
+  },
+  "3835546442": {
+   "archive": "机器自动化三例",
+   "batch": 8,
+   "done": "2026-11-28",
+   "mb": 6.6,
+   "source": "distill",
+   "subs": 48945,
+   "title": "全自动养鼠工厂"
+  },
+  "3835887557": {
+   "archive": "柜台与容器三例",
+   "batch": 12,
+   "done": "2026-11-28",
+   "mb": 0.0,
+   "source": "distill",
+   "subs": 30327,
+   "title": "更大的柜台 Bigger Counter"
+  },
+  "3836168312": {
+   "archive": "RimworldSmuggle",
+   "batch": 14,
+   "done": "2026-11-28",
+   "mb": 6.6,
+   "source": "distill",
+   "subs": 10560,
+   "title": "边缘当铺：可能是偷渡 | Probably Rimworld"
+  },
+  "3836549936": {
+   "archive": "",
+   "batch": 3,
+   "done": null,
+   "source": "index-table"
+  },
+  "3836661256": {
+   "archive": "超小功能三例",
+   "batch": 9,
+   "done": "2026-11-28",
+   "mb": 6.7,
+   "source": "distill",
+   "subs": 53378,
+   "title": "支付宝/微信到账语音"
+  },
+  "3836727677": {
+   "archive": "超小功能三例",
+   "batch": 9,
+   "done": "2026-11-28",
+   "mb": 0.0,
+   "source": "distill",
+   "subs": 110115,
+   "title": "更好的框选 / Better Box Selection"
+  },
+  "3837224174": {
+   "archive": "小玩法四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.0,
+   "source": "distill",
+   "subs": 157787,
+   "title": "Stackable Keycards"
+  },
+  "3837619429": {
+   "archive": "FenceAndCaseExpansion",
+   "batch": 10,
+   "done": "2026-11-28",
+   "note": "用户原有订阅不退订",
+   "source": "distill",
+   "title": "Fence and Case Expansion"
+  },
+  "3837976033": {
+   "archive": "HenchmanReputation",
+   "batch": 11,
+   "done": "2026-11-28",
+   "mb": 1.1,
+   "source": "distill",
+   "subs": 8861,
+   "title": "声望拓展：帮派与投资   Reputation Expansion"
+  },
+  "3837983447": {
+   "archive": "StorageBayAppearance",
+   "batch": 9,
+   "done": "2026-11-28",
+   "mb": 1.4,
+   "source": "distill",
+   "subs": 188057,
+   "title": "储藏区美化 | Storage Bay Appearance"
+  },
+  "3838216859": {
+   "archive": "内容四例",
+   "batch": 15,
+   "done": "2026-11-28",
+   "mb": 0.2,
+   "source": "distill",
+   "subs": 37456,
+   "title": "Pen's Integrated Chip"
+  },
+  "3838443003": {
+   "archive": "",
+   "batch": 7,
+   "done": null,
+   "source": "index-table"
+  },
+  "3838776570": {
+   "archive": "",
+   "batch": 4,
+   "done": null,
+   "source": "index-table"
+  },
+  "3838828332": {
+   "archive": "UI深度扩展八例.md",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3838830653": {
+   "archive": "内容三例",
+   "batch": 16,
+   "done": "2026-11-28",
+   "mb": 0.3,
+   "source": "distill",
+   "subs": 16408,
+   "title": "更好的储物 · Better Storage"
+  },
+  "3838944803": {
+   "archive": "3838944803-UpperLevels.md",
+   "batch": 6,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3839534065": {
+   "archive": "报纸配图与机器动画两标杆.md",
+   "batch": 5,
+   "done": null,
+   "source": "index-table"
+  },
+  "3839773708": {
+   "archive": "报纸配图与机器动画两标杆.md",
+   "batch": 5,
+   "done": null,
+   "source": "index-table"
+  },
+  "3840289739": {
+   "archive": "",
+   "batch": 5,
+   "done": null,
+   "source": "index-table"
+  },
+  "3840533881": {
+   "archive": "3840533881-LagInspector.md",
+   "batch": 1,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3841350358": {
+   "archive": "UI深度扩展八例.md",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3841509159": {
+   "archive": "3841509159-ClaimsAndUprisings.md",
+   "batch": 6,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3841532994": {
+   "archive": "TradeCity",
+   "batch": 13,
+   "done": "2026-11-28",
+   "mb": 187.4,
+   "source": "distill",
+   "subs": 148,
+   "title": "深空当铺；可能是大型商贸城（水星先锋版）"
+  },
+  "3841909877": {
+   "archive": "3841909877-ProbablyExtendFramework.md",
+   "batch": 3,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3841912659": {
+   "archive": "3841912659-ExtendFrameworkFiles.md",
+   "batch": 1,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3841914295": {
+   "archive": "委托系统三例",
+   "batch": 16,
+   "done": "2026-11-28",
+   "mb": 0.7,
+   "source": "distill",
+   "subs": 456,
+   "title": "化学品委托"
+  },
+  "3842333957": {
+   "archive": "",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3842773239": {
+   "archive": "3842773239-WildNetAPI.md",
+   "batch": 1,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3842791640": {
+   "archive": "UI深度扩展八例.md",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3842891745": {
+   "archive": "UI深度扩展八例.md",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3843132012": {
+   "archive": "ShadowverseCardShop",
+   "batch": 13,
+   "done": "2026-11-28",
+   "mb": 167.9,
+   "source": "distill",
+   "subs": 677,
+   "title": "影之诗卡店 Shadowverse Card Shop"
+  },
+  "3843892181": {
+   "archive": "3843892181-ValueCache.md",
+   "batch": 1,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3844117944": {
+   "archive": "",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3844123767": {
+   "archive": "3844123767-ContainerLink.md",
+   "batch": 1,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3844144965": {
+   "archive": "",
+   "batch": 3,
+   "done": null,
+   "source": "index-table"
+  },
+  "3844162371": {
+   "archive": "3844162371-Sakurazaki角色模组.md",
+   "batch": 4,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3844377158": {
+   "archive": "3844377158-SleepLagOptimizer.md",
+   "batch": 1,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3844491258": {
+   "archive": "",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3844978771": {
+   "archive": "",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3844993390": {
+   "archive": "事件与内容扩展四例.md",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3845133693": {
+   "archive": "委托系统三例",
+   "batch": 16,
+   "done": "2026-11-28",
+   "mb": 6.6,
+   "source": "distill",
+   "subs": 374,
+   "title": "委托扩展 | Commission Expansion v1.0.4"
+  },
+  "3845140070": {
+   "archive": "VivianPureStory",
+   "batch": 13,
+   "done": "2026-11-28",
+   "mb": 122.2,
+   "source": "distill",
+   "subs": 353,
+   "title": "Vivian - Pure Story"
+  },
+  "3845160523": {
+   "archive": "UI深度扩展八例.md",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3845197390": {
+   "archive": "3845197390-NightRegulars立绘框架.md",
+   "batch": 1,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3845199370": {
+   "archive": "3845199370-PipelineController.md",
+   "batch": 2,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3845287659": {
+   "archive": "",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3845322500": {
+   "archive": "",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3845554726": {
+   "archive": "3845554726-DigitalVault.md",
+   "batch": 1,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3845556624": {
+   "archive": "3845556624+3845895085-文字层逆向.md",
+   "batch": 1,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3845671416": {
+   "archive": "3845671416-StorageControlTerminal.md",
+   "batch": 1,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3845680734": {
+   "archive": "3845680734-QiluoItemEditor.md",
+   "batch": 2,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3845718219": {
+   "archive": "",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3845720714": {
+   "archive": "",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3845751834": {
+   "archive": "3845751834-SpriteHeal.md",
+   "batch": 1,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3845754309": {
+   "archive": "3845754309-AIStoreManager.md",
+   "batch": 2,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3845780921": {
+   "archive": "补充两例-调试面板与双人联机.md",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3845895085": {
+   "archive": "3845556624+3845895085-文字层逆向.md",
+   "batch": 1,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3845965318": {
+   "archive": "3845965318-ZohFramework.md",
+   "batch": 1,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3846086230": {
+   "archive": "3846086230-ProgressBar.md",
+   "batch": 1,
+   "done": null,
+   "source": "archive-name"
+  },
+  "3846097337": {
+   "archive": "",
+   "batch": 2,
+   "done": null,
+   "source": "index-table"
+  },
+  "3846193221": {
+   "archive": "",
+   "batch": 4,
+   "done": null,
+   "source": "index-table"
+  }
+ },
+ "pending_unsub": [],
+ "skip": {
+  "3828971372": "1587MB 深空娘化全量立绘包——纯美术重绘",
+  "3829060860": "114.7MB 白蛇全角色娘化立绘包——纯美术重绘",
+  "3829248318": "37.8MB 繁体中文在地化精校——纯文本翻译包，无代码",
+  "3829360413": "Purchase Stay Counter：作者自述“该功能已在游戏 1.0.0.12 由原版实现，可在设置里关闭”——已被原版吸收，无蒸馏价值",
+  "3830589099": "78.7MB 电台模组，体积以音频资源为主；音频注入手法已由 3836661256（到账语音）覆盖",
+  "3830758908": "45.4MB 角色工坊包，先做同类的 PortraitRuntime 与 Perks，大包留后",
+  "3830812694": "2.4MB 轻松熊店铺装修——纯美术贴图包",
+  "3830844708": "45MB 同人联动内容包，订阅 3.6千，机制为常规新访客+商店，优先级低于同批候选",
+  "3831227725": "误判：仅在某档案正文的 JSON 示例里被引用，未蒸馏",
+  "3831421056": "98.1MB 中文配音包——纯音频资源，无代码可学；音频注入手法已由 3836661256 到账语音覆盖",
+  "3831597004": "20.9MB 纯女性立绘重绘包——按“重新绘制的美术模组不蒸馏”跳过",
+  "3832229198": "230MB 复古风格重绘——纯美术重绘",
+  "3832826331": "24.1MB 夜间小店，机制与已蒸馏的夜间地点类重叠",
+  "3832941698": "169.9MB（Probably Regulars - AI Emporium）——用户已订阅但体积过大，留到专门批次单独读",
+  "3834110482": "纯美术资源为主（111MB 枪皮贴图/开箱皮肤），按“美术重绘不蒸馏”跳过；开箱机制见档案 3834619049 的武器打印对照即可",
+  "3834658621": "23.8MB 全人物美化立绘包——同上跳过",
+  "3834722597": "501MB 角色娘化和语音——纯美术+语音",
+  "3835406040": "236MB More Music 音乐合集——纯音频",
+  "3835848068": "25.8MB 墮欲修女商店美化——纯美术",
+  "3835910970": "4.5千订阅，裁缝类内容扩展，优先级低于本批候选",
+  "3835921739": "625MB 剧情拓展包，体积以立绘/语音为主，订阅仅 5千；义体经营/夜晚场景/开局剧本机制可等后续按需补",
+  "3839407878": "24.5MB Deepin 的海克斯工坊——留待后续大包专批",
+  "3839990414": "430MB 纯立绘替换（221 个 NPC 全换新绘制插画）——按“重新绘制的美术模组不蒸馏”跳过；运行时替换与按需加载手法已由 batch-4 美术档覆盖",
+  "3841908335": "误判：仅作为 Extend Framework 主框架 id 的注释出现，未蒸馏",
+  "3842328387": "8.1MB 鸣潮星炬学院当铺美化——纯美术",
+  "3842430578": "203MB 少女当铺高清原画立绘包——纯美术（美术规格已由 batch-4 美术档覆盖）",
+  "3842478205": "83.2MB 姬绍月·通用娘化——纯美术重绘",
+  "3843189271": "741MB 可能是东方美术包——纯美术重绘",
+  "3843526326": "1394MB 娘化人物美化包 Plus——纯美术重绘",
+  "3844066056": "507MB PROBABLY MTG（含开源规则引擎 MODUTATE / Forge 移植，价值高但体积过大，留待专批）",
+  "3844437308": "318MB 影之诗卡店增强补丁——以上游卡店模组为基础的美术重做+展柜扩容；机制部分（堆叠/拆分/8 倍展柜）待上游蒸馏后按需补",
+  "3844620005": "37.8MB 奇怪动静语音包——纯音频",
+  "3845142669": "25.5MB 黑猫唱片 RPG 音乐——纯音频",
+  "3845197567": "161MB Immortal Night Bazaar 立绘集——纯美术",
+  "3845304709": "680MB 角色娘化和语音（厚涂版）——纯美术+语音",
+  "3845346486": "41.2MB 路人 NPC 立绘拓展美化——纯美术",
+  "3845776265": "2025MB 助理语音包——纯音频",
+  "3846057163": "275MB 甜品店铺美化合集——纯美术",
+  "3846301563": "132MB 深空荡铺：可能有你的熟人——纯立绘替换包"
+ },
+ "updated": "2026-11-28 05:39",
+ "version": 1
+}

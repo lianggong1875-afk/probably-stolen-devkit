@@ -1,582 +1,2080 @@
 {
   "description": "外置侧车全量精标与避坑账本（覆盖全部主题规范 + 全部 42 份工坊蒸馏档案 + 13 个 C# 模板，零侵入原文，适配持续并发蒸馏）",
   "entries": {
-    "共享开发/模组制作经验库/01-环境与工具链.md": {
-      "domains": ["workflow"],
-      "trust": "L1-verified-runtime",
-      "capability": "n/a",
-      "intent": ["must-read-before-coding", "tooling"],
-      "best_for": "查本机目录分工、构建/回归命令、PS5.1 编码规则"
-    },
-    "共享开发/模组制作经验库/02-加载器与权限.md": {
-      "domains": ["interop", "workflow"],
-      "trust": "L1-verified-runtime",
-      "capability": "zero-cap",
-      "intent": ["must-read-before-coding", "troubleshoot"],
-      "best_for": "查 ModScanner IL 扫描规则、零能力 <Capabilities/> 与哈希核验"
-    },
-    "共享开发/模组制作经验库/03-原版接口速查.md": {
-      "domains": ["items", "machines", "appraisal", "customers", "ui", "persistence", "interop"],
-      "trust": "L2-verified-host",
-      "capability": "zero-cap",
-      "intent": ["api-lookup"],
-      "best_for": "写代码前查原版 ModHelper(145)/ModHook(44)/GameItemFunc(51) 及物品/机器/顾客/液体权威签名"
-    },
-    "共享开发/模组制作经验库/04-真机测试与探针.md": {
-      "domains": ["workflow"],
-      "trust": "L1-verified-runtime",
-      "capability": "n/a",
-      "intent": ["must-read-before-coding", "tooling"],
-      "best_for": "Slot 1 真机测试流程、防碰 Slot 0、桥接与键鼠拖拽实操"
-    },
-    "共享开发/模组制作经验库/05-测试与回归.md": {
-      "domains": ["workflow"],
-      "trust": "L1-verified-runtime",
-      "capability": "n/a",
-      "intent": ["must-read-before-coding"],
-      "best_for": "跑 Run-Regression.ps1 与写防假绿的真实行为断言"
-    },
-    "共享开发/模组制作经验库/06-玩法与文案规范.md": {
-      "domains": ["appraisal", "media", "workflow"],
-      "trust": "L1-verified-runtime",
-      "capability": "n/a",
-      "intent": ["must-read-before-coding"],
-      "best_for": "西方深空科幻文案红线、realCondition 判定铁律、立绘绿边消除"
-    },
-    "共享开发/模组制作经验库/07-踩坑台账.md": {
-      "domains": ["items", "machines", "ui", "events", "afterhour", "interop", "workflow"],
-      "trust": "L1-verified-runtime",
-      "capability": "n/a",
-      "intent": ["troubleshoot"],
-      "best_for": "遇到异常症状（紫问号、穿模、假绿、热重载失效、桥接报错）第一时间按现象反查"
-    },
-    "共享开发/模组制作经验库/08-立绘接入与PortraitStudio.md": {
-      "domains": ["media", "customers", "interop"],
-      "trust": "L2-verified-host",
-      "capability": "zero-cap",
-      "intent": ["pattern-reuse", "api-lookup"],
-      "best_for": "让 NPC 立绘被 Portrait Studio 识别且零能力不交控制权、1728x1266 硬规格"
-    },
-    "共享开发/模组制作经验库/09-模组架构与物品调用规范.md": {
-      "domains": ["items", "architecture", "interop"],
-      "trust": "L2-verified-host",
-      "capability": "zero-cap",
-      "intent": ["must-read-before-coding", "pattern-reuse"],
-      "best_for": "物品发现/三入口发放语义/精确投放/就绪检查链与异常边界策略"
-    },
-    "共享开发/模组制作经验库/10-开发桥接器能力速查.md": {
-      "domains": ["workflow", "interop"],
-      "trust": "L1-verified-runtime",
-      "capability": "cap-network",
-      "intent": ["api-lookup", "tooling"],
-      "best_for": "查 ModDevBridgeNext MCP 工具契约、热重载与 C# 探针编写"
-    },
-    "共享开发/模组制作经验库/11-事件系统接入规范.md": {
-      "domains": ["events", "customers", "persistence"],
-      "trust": "L2-verified-host",
-      "capability": "zero-cap",
-      "intent": ["pattern-reuse", "api-lookup"],
-      "best_for": "做空间站事件（原版池与自持蓝图双路线）、涨跌价 negociationDatas、日历与报纸"
-    },
-    "共享开发/模组制作经验库/12-立绘引擎与音画资源架构.md": {
-      "domains": ["media", "interop"],
-      "trust": "L2-verified-host",
-      "capability": "zero-cap",
-      "intent": ["pattern-reuse"],
-      "best_for": "高清去像素化租约、高清道具图标 PPU 公式与防脏边、零依赖 WAV 配音挂载"
-    },
-    "共享开发/模组制作经验库/13-鉴定扩展与交互纸张规范.md": {
-      "domains": ["appraisal", "ui"],
-      "trust": "L2-verified-host",
-      "capability": "zero-cap",
-      "intent": ["pattern-reuse", "api-lookup"],
-      "best_for": "自定义鉴定品类/扩级、放大镜双树 LensFollow、JSON 交互纸张、关系网科技树"
-    },
-    "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md": {
-      "domains": ["architecture", "persistence", "ui", "perf", "interop"],
-      "trust": "L2-verified-host",
-      "capability": "zero-cap",
-      "intent": ["pattern-reuse"],
-      "best_for": "ES3 防坏档投影、模态窗口防穿透、分帧索引、回滚队列、大合集三种组织模式"
-    },
-    "共享开发/模组制作经验库/15-机器运行动画与雪碧图规范.md": {
-      "domains": ["machines", "media"],
-      "trust": "L2-verified-host",
-      "capability": "zero-cap",
-      "intent": ["pattern-reuse"],
-      "best_for": "机器 8 列雪碧图运行动画、零存档污染 Image.sprite 替换、供电与状态判定"
-    },
-    "共享开发/模组制作经验库/16-报纸事件配图与BetterNewspapers规范.md": {
-      "domains": ["events", "media", "interop"],
-      "trust": "L2-verified-host",
-      "capability": "zero-cap",
-      "intent": ["pattern-reuse"],
-      "best_for": "9 色新闻纸半色调配图、HarmonyAfter(mod.<id>) 与 Better Newspapers 共存避让"
-    },
-    "共享开发/模组制作经验库/17-工坊发布与SteamUGC上传.md": {
-      "domains": ["workflow"],
-      "trust": "L1-verified-runtime",
-      "capability": "n/a",
-      "intent": ["must-read-before-coding", "tooling"],
-      "best_for": "独立进程 SteamUGC 上传、封面规格、白名单洁净度与发布核对"
-    },
-    "共享开发/模组制作经验库/18-夜晚外出区域与探索扩展规范.md": {
-      "domains": ["afterhour", "media", "customers"],
-      "trust": "L2-verified-host",
-      "capability": "zero-cap",
-      "intent": ["pattern-reuse", "api-lookup"],
-      "best_for": "新增打烊夜出地点、博士式摊位防丢货 Leave 铁律、全屏 CG 舞台与地图事件"
-    },
-    "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md": {
-      "domains": ["workflow", "architecture"],
-      "trust": "L1-verified-runtime",
-      "capability": "n/a",
-      "intent": ["tooling", "case-study"],
-      "best_for": "工坊抓取/筛选/反编译/精读六问与各批次蒸馏总账"
-    },
-    "共享开发/模组制作经验库/20-各类模组制作规范.md": {
-      "domains": ["architecture", "items", "ui", "perf", "events", "interop", "media", "persistence", "workflow"],
-      "trust": "L2-verified-host",
-      "capability": "zero-cap",
-      "intent": ["must-read-before-coding"],
-      "best_for": "开工前按模组类型对号入座查十二条总规、禁忌、验收清单与冲突红线"
-    },
     "共享开发/GLOSSARY.md": {
-      "domains": ["appraisal", "items", "workflow"],
+      "domains": [
+        "appraisal",
+        "items",
+        "workflow"
+      ],
       "trust": "L2-verified-host",
       "capability": "n/a",
-      "intent": ["must-read-before-coding"],
+      "intent": [
+        "must-read-before-coding"
+      ],
       "best_for": "全工作区唯一术语表（成色/真伪/品类/标签/零能力/Slot 0与1 唯一叫法）"
     },
-    "共享开发/开发流程与经验.md": {
-      "domains": ["workflow", "items", "interop"],
-      "trust": "L1-verified-runtime",
-      "capability": "zero-cap",
-      "intent": ["must-read-before-coding"],
-      "best_for": "六条模组编程硬规范（拒套娃/异常暴露/Harmony重载/物品铁律/零能力/真测试）"
-    },
-    "共享开发/分支与备份规范.md": {
-      "domains": ["workflow"],
-      "trust": "L1-verified-runtime",
-      "capability": "n/a",
-      "intent": ["must-read-before-coding", "tooling"],
-      "best_for": "开工建分支、五道合并门禁、四路多盘备份、恢复演练与回滚纪律"
-    },
     "共享开发/SKILL.md": {
-      "domains": ["workflow"],
+      "domains": [
+        "workflow"
+      ],
       "trust": "L2-verified-host",
       "capability": "n/a",
-      "intent": ["must-read-before-coding"],
+      "intent": [
+        "must-read-before-coding"
+      ],
       "status": "superseded",
       "best_for": "工作区快捷指针，已统一收束至主技能 probably-stolen-moddev 与 CATALOG.md"
     },
-
+    "共享开发/分支与备份规范.md": {
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "must-read-before-coding",
+        "tooling"
+      ],
+      "best_for": "开工建分支、五道合并门禁、四路多盘备份、恢复演练与回滚纪律"
+    },
+    "共享开发/开发流程与经验.md": {
+      "domains": [
+        "workflow",
+        "items",
+        "interop"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "must-read-before-coding"
+      ],
+      "best_for": "六条模组编程硬规范（拒套娃/异常暴露/Harmony重载/物品铁律/零能力/真测试）"
+    },
+    "共享开发/模组制作经验库/01-环境与工具链.md": {
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "must-read-before-coding",
+        "tooling"
+      ],
+      "best_for": "查本机目录分工、构建/回归命令、PS5.1 编码规则"
+    },
+    "共享开发/模组制作经验库/02-加载器与权限.md": {
+      "domains": [
+        "interop",
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "must-read-before-coding",
+        "troubleshoot"
+      ],
+      "best_for": "查 ModScanner IL 扫描规则、零能力 <Capabilities/> 与哈希核验"
+    },
+    "共享开发/模组制作经验库/03-原版接口速查.md": {
+      "domains": [
+        "items",
+        "machines",
+        "appraisal",
+        "customers",
+        "ui",
+        "persistence",
+        "interop"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "api-lookup"
+      ],
+      "best_for": "写代码前查原版 ModHelper(145)/ModHook(44)/GameItemFunc(51) 及物品/机器/顾客/液体权威签名"
+    },
+    "共享开发/模组制作经验库/04-真机测试与探针.md": {
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "must-read-before-coding",
+        "tooling"
+      ],
+      "best_for": "Slot 1 真机测试流程、防碰 Slot 0、桥接与键鼠拖拽实操"
+    },
+    "共享开发/模组制作经验库/05-测试与回归.md": {
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "must-read-before-coding"
+      ],
+      "best_for": "跑 Run-Regression.ps1 与写防假绿的真实行为断言"
+    },
+    "共享开发/模组制作经验库/06-玩法与文案规范.md": {
+      "domains": [
+        "appraisal",
+        "media",
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "must-read-before-coding"
+      ],
+      "best_for": "西方深空科幻文案红线、realCondition 判定铁律、立绘绿边消除"
+    },
+    "共享开发/模组制作经验库/07-踩坑台账.md": {
+      "domains": [
+        "items",
+        "machines",
+        "ui",
+        "events",
+        "afterhour",
+        "interop",
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "troubleshoot"
+      ],
+      "best_for": "遇到异常症状（紫问号、穿模、假绿、热重载失效、桥接报错）第一时间按现象反查"
+    },
+    "共享开发/模组制作经验库/08-立绘接入与PortraitStudio.md": {
+      "domains": [
+        "media",
+        "customers",
+        "interop"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse",
+        "api-lookup"
+      ],
+      "best_for": "让 NPC 立绘被 Portrait Studio 识别且零能力不交控制权、1728x1266 硬规格"
+    },
+    "共享开发/模组制作经验库/09-模组架构与物品调用规范.md": {
+      "domains": [
+        "items",
+        "architecture",
+        "interop"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "must-read-before-coding",
+        "pattern-reuse"
+      ],
+      "best_for": "物品发现/三入口发放语义/精确投放/就绪检查链与异常边界策略"
+    },
+    "共享开发/模组制作经验库/10-开发桥接器能力速查.md": {
+      "domains": [
+        "workflow",
+        "interop"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "cap-network",
+      "intent": [
+        "api-lookup",
+        "tooling"
+      ],
+      "best_for": "查 ModDevBridgeNext MCP 工具契约、热重载与 C# 探针编写"
+    },
+    "共享开发/模组制作经验库/11-事件系统接入规范.md": {
+      "domains": [
+        "events",
+        "customers",
+        "persistence"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse",
+        "api-lookup"
+      ],
+      "best_for": "做空间站事件（原版池与自持蓝图双路线）、涨跌价 negociationDatas、日历与报纸"
+    },
+    "共享开发/模组制作经验库/12-立绘引擎与音画资源架构.md": {
+      "domains": [
+        "media",
+        "interop"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "best_for": "高清去像素化租约、高清道具图标 PPU 公式与防脏边、零依赖 WAV 配音挂载"
+    },
+    "共享开发/模组制作经验库/13-鉴定扩展与交互纸张规范.md": {
+      "domains": [
+        "appraisal",
+        "ui"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse",
+        "api-lookup"
+      ],
+      "best_for": "自定义鉴定品类/扩级、放大镜双树 LensFollow、JSON 交互纸张、关系网科技树"
+    },
+    "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md": {
+      "domains": [
+        "architecture",
+        "persistence",
+        "ui",
+        "perf",
+        "interop"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "best_for": "ES3 防坏档投影、模态窗口防穿透、分帧索引、回滚队列、大合集三种组织模式"
+    },
+    "共享开发/模组制作经验库/15-机器运行动画与雪碧图规范.md": {
+      "domains": [
+        "machines",
+        "media"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "best_for": "机器 8 列雪碧图运行动画、零存档污染 Image.sprite 替换、供电与状态判定"
+    },
+    "共享开发/模组制作经验库/16-报纸事件配图与BetterNewspapers规范.md": {
+      "domains": [
+        "events",
+        "media",
+        "interop"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "best_for": "9 色新闻纸半色调配图、HarmonyAfter(mod.<id>) 与 Better Newspapers 共存避让"
+    },
+    "共享开发/模组制作经验库/17-工坊发布与SteamUGC上传.md": {
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "must-read-before-coding",
+        "tooling"
+      ],
+      "best_for": "独立进程 SteamUGC 上传、封面规格、白名单洁净度与发布核对"
+    },
+    "共享开发/模组制作经验库/18-夜晚外出区域与探索扩展规范.md": {
+      "domains": [
+        "afterhour",
+        "media",
+        "customers"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse",
+        "api-lookup"
+      ],
+      "best_for": "新增打烊夜出地点、博士式摊位防丢货 Leave 铁律、全屏 CG 舞台与地图事件"
+    },
+    "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md": {
+      "domains": [
+        "workflow",
+        "architecture"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling",
+        "case-study"
+      ],
+      "best_for": "工坊抓取/筛选/反编译/精读六问与各批次蒸馏总账"
+    },
+    "共享开发/模组制作经验库/20-各类模组制作规范.md": {
+      "domains": [
+        "architecture",
+        "items",
+        "ui",
+        "perf",
+        "events",
+        "interop",
+        "media",
+        "persistence",
+        "workflow"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "must-read-before-coding"
+      ],
+      "best_for": "开工前按模组类型对号入座查十二条总规、禁忌、验收清单与冲突红线"
+    },
+    "共享开发/模组制作经验库/21-跨模组冲突案例库.md": {
+      "domains": [
+        "interop",
+        "persistence",
+        "architecture"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "n/a",
+      "intent": [
+        "troubleshoot",
+        "must-read-before-coding"
+      ],
+      "best_for": "按玩家可见故障症状反查 15 例真实跨模组冲突（整块失效/过不了夜/主菜单崩）与软修法",
+      "must_avoid": "切勿在热点入口 Prefix return false 截胡或遗漏 PlayerStore.HasInstance 判定"
+    },
+    "共享开发/模组制作经验库/README.md": {
+      "domains": [
+        "workflow",
+        "architecture"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "n/a",
+      "intent": [
+        "must-read-before-coding"
+      ],
+      "best_for": "经验库总入口与 01~21 专题手册按任务路由表",
+      "must_avoid": ""
+    },
     "共享开发/模组制作经验库/workshop-distill/3828893950-DangpuPlus.md": {
-      "domains": ["architecture", "ui"],
+      "domains": [
+        "architecture",
+        "ui"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "巨无霸多功能合集组织范本(a)：静态委托表 FeaturePack(103项)+熔断+配置门面",
       "digest": "常驻逻辑合集用 FeaturePack 静态委托表 + 异常熔断；渲染层只做进出上下文成对包裹，不整段替换绘制",
-      "must_avoid": "不支持热摘除单个功能补丁；不要在简单模组里硬套 103 项框架"
+      "must_avoid": "不支持热摘除单个功能补丁；不要在简单模组里硬套 103 项框架",
+      "micro_tip": "50+常驻合集用FeaturePack静态委托表+熔断；渲染只成对包裹"
     },
     "共享开发/模组制作经验库/workshop-distill/3828902092-ElectronicsExpansion.md": {
-      "domains": ["architecture", "items", "machines", "ui", "perf"],
+      "domains": [
+        "architecture",
+        "items",
+        "machines",
+        "ui",
+        "perf"
+      ],
       "trust": "L3-distilled-source",
       "capability": "mixed",
       "best_for": "全工坊最大(18.7万行/389 Patch)超巨型模组：JSON内容表+有序阶段注册+补丁分相(800/0/-50)+依赖键缓存",
       "digest": "200+实体先钉死 JSON Schema+加载期不变量证伪；同钩子多补丁用优先级分相(800准备/0常规/-50裁决)；ModuleLifecycle.Seal()禁重复序号；critical失败自卸保原版存档",
-      "must_avoid": "严禁抄其 2.1 万行全量反射契约表、1.2 万行单文件 OnGUI、漏装主程序集与空 critical 集"
+      "must_avoid": "严禁抄其 2.1 万行全量反射契约表、1.2 万行单文件 OnGUI、漏装主程序集与空 critical 集",
+      "micro_tip": "389补丁分相(800/0/-50)+JSON Schema证伪+Seal()禁重序号"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3828902221-UpperDistrictHeist.md": {
+      "domains": [
+        "afterhour",
+        "economy",
+        "architecture"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "分级夜间外出地点、入场门禁、警戒声望扣款、百万票概率池及纯C#规则层设计",
+      "digest": "AddAfterhourLocation无场景注册，OnArriveStore复用次数；百万票二分池；20%+80%声望账本；纯C#核",
+      "micro_tip": "取消出发必调OnArriveStore(true)，false扣一次外出",
+      "must_avoid": "勿抄6217行神类；isDiscovered恒false需硬编码坐标；声望不冻结会被换装砍价"
     },
     "共享开发/模组制作经验库/workshop-distill/3828909239-ProbablyMultiplayer.md": {
-      "domains": ["multiplayer", "customers", "persistence"],
+      "domains": [
+        "multiplayer",
+        "customers",
+        "persistence"
+      ],
       "trust": "L3-distilled-source",
       "capability": "cap-network",
       "best_for": "自写 WebSocket + 服务器权威联机架构；真人借壳进原版顾客流程与物品树序列化隔离",
-      "digest": "联机绝不直接写对方 PlayerStore，只传物品树存档片段并在对端重建；注意 EncodeItem 往 savedItemFeatureList 塞残留的坑"
+      "digest": "联机绝不直接写对方 PlayerStore，只传物品树存档片段并在对端重建；注意 EncodeItem 往 savedItemFeatureList 塞残留的坑",
+      "micro_tip": "联机传物品树片段对端重建；防EncodeItem残留savedItemFeatureList"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3828909380-TraditionalChinese.md": {
+      "domains": [
+        "ui",
+        "media",
+        "interop"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "显示层文本拦截翻译、SDF手写体替换、纸条行距微调且不碰存档与SetLocale",
+      "digest": "不碰SetLocale，拦TMP_Text读写配回读表；LocHelper.Get补缺翻；换FontLoader手写体，零存档写入",
+      "micro_tip": "建TMP_FontAsset抄原材质后必还原_MainTex，否则白块",
+      "must_avoid": "get_text还原须比对当前显示值防吞他模组文本；勿Prefix拦LocHelper.Get"
     },
     "共享开发/模组制作经验库/workshop-distill/3828921912-AppraisalAssistant.md": {
-      "domains": ["appraisal", "interop"],
+      "domains": [
+        "appraisal",
+        "interop"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "45万订阅鉴定助手：IL指纹+GetPatchInfo递归+IL解释器，以及 5 个共存红线方法",
       "digest": "不暴露外部服务，靠 PriceSnapshot 克隆执行 getCorrectValue；自家注册鉴定品类改读 modifiedState.dict 可绕开其 IsTag 解释器拒识",
-      "must_avoid": "严禁对其 5 个红线方法（GameItem.IsTag、AppraisalHelper.GetCorrectBaseValue、AppHand/Ribwich/PlasmaHelper.GetCorrectValue、AppraisalItemType.Matches、AppraisalItemRegistry.Find）做破坏性 Prefix"
+      "must_avoid": "严禁对其 5 个红线方法（GameItem.IsTag、AppraisalHelper.GetCorrectBaseValue、AppHand/Ribwich/PlasmaHelper.GetCorrectValue、AppraisalItemType.Matches、AppraisalItemRegistry.Find）做破坏性 Prefix",
+      "micro_tip": "PriceSnapshot克隆估价；自注册鉴定读modifiedState.dict避拒识"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3828927781-MaiLeJi.md": {
+      "domains": [
+        "machines",
+        "customers",
+        "persistence"
+      ],
+      "trust": "L4-caution-antipattern",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "antipattern-warning",
+        "pattern-reuse"
+      ],
+      "best_for": "排查存档摘除/空catch反模式，或借鉴atlasCache、nightLogs与4位热线",
+      "digest": "注入atlasCache避SpriteDict；nightLogs按marker挂行；12格箱充当分店+9个modData键+4位热线",
+      "micro_tip": "向atlasCache写合成图集可零补丁绕开SpriteDict",
+      "must_avoid": "禁799处空catch吞错；禁WriteSlotFile摘活对象防异常丢数据；缺UnpatchAll禁热更"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3828949943-XiaowoTradePerks.md": {
+      "domains": [
+        "economy",
+        "ui",
+        "persistence"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "用原版天赋池做特性商店、事务对账回滚、结算页滚动视口及零能力读玩家皮肤",
+      "digest": "AddStartingPerk托管43特性；位掩码+纯函数算价；交易Prefix/Finalizer差值回滚；ModDataFile换肤",
+      "micro_tip": "IsPerkActive是O(n)线性扫表，热路径必按读档代次缓存",
+      "must_avoid": "问价勿重扫IsPerkActive；勿写死+<>c编译器名；ThreadStatic须Finalizer还原"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3828971731-FactionReputation.md": {
+      "domains": [
+        "economy",
+        "persistence",
+        "architecture"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "表+门声望解锁、防刷软硬日上限、三段式原子写盘回滚及原生物品深度剥离",
+      "digest": "44效果表+门与软硬日上限；WriteSlotFile三段回滚+六态读档+RuntimeBlocked闸；DecodeSaveItem剥离",
+      "micro_tip": "声望增量对齐用Exact+(原生-Projection)，防跨模组覆盖",
+      "must_avoid": "勿Prefix替换CheckReputation；勿改共享ItemCondition.display；缺热重载"
     },
     "共享开发/模组制作经验库/workshop-distill/3829012791-ItemSpawner.md": {
-      "domains": ["items", "ui", "architecture"],
+      "domains": [
+        "items",
+        "ui",
+        "architecture"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "物品目录三级索引、字段增量编辑状态模型与 Lib/App 两层拆分架构",
-      "digest": "遍历目录做只读探测后必须 Destroy；Lib/App 两层拆分便于复用物品查询与编辑核心"
+      "digest": "遍历目录做只读探测后必须 Destroy；Lib/App 两层拆分便于复用物品查询与编辑核心",
+      "micro_tip": "只读遍历目录探测用完必Destroy；Lib/App双层解耦"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3829069448-BetterBottlePrinter.md": {
+      "domains": [
+        "machines",
+        "ui",
+        "interop"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "原版机器窗口加按钮、链式槽位白名单、延迟打补丁与设置即时显隐同步",
+      "digest": "BottlePrinter按role寻MachineryStack.Add加键；链式槽门禁；延迟Arm补丁；Plan/Execute扣电",
+      "micro_tip": "扩槽白名单先调oldGate再追加，防吞他模组规则",
+      "must_avoid": "改输出格行数致切版坏档；勿false翻true破禁止；IsNormalUnlocked外溢全局；禁空catch"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3829110153-GoFishing.md": {
+      "domains": [
+        "afterhour",
+        "items",
+        "persistence"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "对比三档新玩法接入、声明式JSON物品+附件、幂等补货位掩码与坏档写保护",
+      "digest": "三档接入：ScavHelper拾荒/蹭dr_jackson/伪造AfterhourLocation；JSON+附件建116物；读败拉黑键",
+      "micro_tip": "modData反序列化失败即拉黑该键拒写入，宁停玩法不覆存档",
+      "must_avoid": "勿写28k行神类与双UI；勿多同权Prefix抢CreateStoreClient；忌序号补丁名"
     },
     "共享开发/模组制作经验库/workshop-distill/3829206666-SmartInventoryArrange.md": {
-      "domains": ["items", "ui", "perf", "architecture"],
+      "domains": [
+        "items",
+        "ui",
+        "perf",
+        "architecture"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "61万订阅标杆：20项字典序目标、防剧透 real-state-appraisal-ignored、modifiedShape原地重排与回滚",
       "digest": "自动整理严守 real-state-appraisal-ignored 只读玩家可见信息；modifiedShape 原地重排失败即整体回滚并协同接管撤销栈",
-      "must_avoid": "整理/排序功能严禁读取 ItemFeature.realCondition（会直接剧透真假货）"
+      "must_avoid": "整理/排序功能严禁读取 ItemFeature.realCondition（会直接剧透真假货）",
+      "micro_tip": "排序只读可见态禁碰realCondition；原地重排失败整体回滚"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3829298269-DeepSpaceIceCity.md": {
+      "domains": [
+        "items",
+        "machines",
+        "ui"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "往原版液体塞自定义溶质、追踪倒水搬运、治递归算价/取名卡顿及挡穿透",
+      "digest": "借CURRENT_PART_*存溶质，1.5s配对搬元数据；FOOD+BREVAGE通售；静默3s+250ms缓存治算价卡顿",
+      "micro_tip": "原版倒水不搬自造溶质，1.5s内体积增减配对按比例搬元数据",
+      "must_avoid": "Use/Activate Prefix禁拦他物；禁改原版图点击阈值；慎挂GetDisplayName"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3829409725-PensPipette.md": {
+      "domains": [
+        "items",
+        "ui",
+        "architecture"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "做手持液体精确分装工具、无浮点误差整数搬运、物品委托读档自愈及零存档设计",
+      "digest": "换onThisTargetItemFunc接管移液；SplitProportionally微升分摊绝对写回；Tooltip钩子自愈委托",
+      "micro_tip": "物品委托不存盘，在OnCreateTooltipLate引用对比可自愈",
+      "must_avoid": "TransferLiquid仅拦自家；反应后必RemoveExcessLiquid；不搬非原版溶质"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3829413447-PCExpansion.md": {
+      "domains": [
+        "items",
+        "customers",
+        "persistence"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "做多品类物品表、招牌插RandomClientPool抄权重、离线寄存物品及单键存档",
+      "digest": "原版骨架建219物；招牌插RandomClientPool抄权重；EncodeNodes离线快照；单键JSON配Epoch",
+      "micro_tip": "隔离itemHeap借EncodeNodes可无损序列化离线物品",
+      "must_avoid": "勿全拦PixelWindow.Show或藏店吃输入；12处CreateStoreClient易冲突；缺热更"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3829415336-ShowItemNames.md": {
+      "domains": [
+        "ui",
+        "perf",
+        "interop"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "物品常显自定义名、TMP缺字形自愈、自绘浮窗与Esc抢占排雷",
+      "digest": "TreeNodeRender.InstantiateText读GetCustomName；ValidateSelect+10帧错峰",
+      "micro_tip": "挂InstantiateText读GetCustomName避改名冲突",
+      "must_avoid": "勿用PlayerPrefs/空catch；勿反射补他模组ticker；克隆字体未销毁且全等匹配会误关同名标签"
     },
     "共享开发/模组制作经验库/workshop-distill/3829957165-PenQoL补丁表.md": {
-      "domains": ["architecture", "ui", "interop"],
+      "domains": [
+        "architecture",
+        "ui",
+        "interop"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "多功能合集组织范本(c)：特性化补丁对象表 + 方法级热摘挂 Unpatch(target, method)",
       "digest": "支持运行中热开关单功能且 N 开关合并 1 补丁；每处 AccessTools.Method 显式传 Type[] 参数表",
-      "must_avoid": "每条补丁的目标解析+安装必须独立 try/catch（勿写循环外实参求值导致单条 AmbiguousMatch 拖垮全表）；Applied 标记须对照 Harmony.GetPatchInfo 真实状态"
+      "must_avoid": "每条补丁的目标解析+安装必须独立 try/catch（勿写循环外实参求值导致单条 AmbiguousMatch 拖垮全表）；Applied 标记须对照 Harmony.GetPatchInfo 真实状态",
+      "micro_tip": "N开关合并1补丁且逐条try/catch；Applied对照GetPatchInfo验真"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3830031787-FishingCuisine.md": {
+      "domains": [
+        "items",
+        "machines",
+        "interop"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "26条表驱动配方、借原版机器窗重排料理台与跨模组零引用门面",
+      "digest": "借MachineFurnace造窗+SetupBatterySlot+AllowOnlyTaggedItemsOr；先判电再造再扣料",
+      "micro_tip": "先判电量→再判成品可造→再进事务扣料；双ModHook延迟激活失败双清零",
+      "must_avoid": "禁双向<Prerequisites>成环；已有Newtonsoft勿自造JSON解析器；补丁类名勿用序号"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3830523891-KitchenBusiness.md": {
+      "domains": [
+        "economy",
+        "ui",
+        "perf"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "零能力完整经营循环、天数门控、3ms分帧批量制作与原生遮挡浮窗",
+      "digest": "GetDayCounter纯函数门控；OnGoingSleepEarly结账；3ms分帧+ReadScope；插windowUICanvas",
+      "micro_tip": "按卷帘门插windowUICanvas层序；批量每帧2件+3ms熔断",
+      "must_avoid": "勿四连Patch定价链；SaveGame拒存须配退出降级；勿漏ReadScope致O(n²)与空catch反射"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3830798369-VanillaFoodExpansion.md": {
+      "domains": [
+        "items",
+        "customers",
+        "persistence"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "百件纯数据表物品工厂、电话簿原生冷却邀约与顾客队列防压底插位",
+      "digest": "CreateEmptyItem单工厂；GenerateClient差集插位TrackClient；CD写PhoneClientDict",
+      "micro_tip": "CD写StorePhoneClient原生字段；1:1轮换不挤没原版货",
+      "must_avoid": "严禁用临时测试名作<ID>/物品前缀(改名废档)；清理未引用的包内死图；对话回调须验当前访客防幽灵掉落"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3830844233-MachineStatusBadges.md": {
+      "domains": [
+        "machines",
+        "ui",
+        "perf"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "不改item.name给机器/物品叠状态角标、2ms分帧泵与零Harmony徽记方案",
+      "digest": "HandleInnateModSprite叠middle/fakeMiddle角标+UpdatePinOverlay，2ms分帧+脏缓存",
+      "micro_tip": "静态徽记走原生SpriteModifier零Patch；动态用2ms分帧泵",
+      "must_avoid": "禁补GetTagReadonly热点；须Destroy运行时Texture2D；漏fakeMiddle拖动失标"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3830995342-RhodesPharma.md": {
+      "domains": [
+        "machines",
+        "persistence",
+        "workflow"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "不改化学主循环加反应表、多物品委托交付、内存派系剥离与游戏内验收台",
+      "digest": "HandleTemperatureReaction加反应表；WriteSlotFile摘派系；CraftingRecipe交委托；副本槽验收",
+      "micro_tip": "WriteSlotFile前后摘挂派系防脏档；副本槽+文件IPC自动验收",
+      "must_avoid": "360次/夜Postfix禁频繁new容器；交付勿先扣后结无回滚；禁按本地化文本反射按钮；补热重载清理"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3831174434-AppraisalRules.md": {
+      "domains": [
+        "appraisal",
+        "ui",
+        "interop"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "零Harmony加鉴定辅助面板、完全避开鉴定助手指纹红线与防点穿浮窗",
+      "digest": "零Patch调AppraisalItemRegistry.Find与GetCorrectBaseValue，BuildInto+防点穿",
+      "micro_tip": "调用≠Patch免触鉴定助手红线；PointerSwallow吃事件防点穿",
+      "must_avoid": "upgradeId常量勿与字面量分叉；自动估价须校验鉴定意图；附属浮窗禁省PointerSwallow防点穿"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3831439549-MoreDeviceUpgrades.md": {
+      "domains": [
+        "machines",
+        "items",
+        "interop"
+      ],
+      "trust": "L4-caution-antipattern",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "troubleshoot"
+      ],
+      "best_for": "机器多路线升级与坏机修复原理参考，及181空catch/拖拽hack反面教材",
+      "digest": "私有tag+ComputeModuleEffect重算防丢加成；SwapItemsInPlace原位修坏机；AddHeaderButton",
+      "micro_tip": "永久加成存私有tag+ComputeModuleEffect重算不丢不叠",
+      "must_avoid": "禁抄181空catch、25跳过Prefix、TryAcceptOnce=0拖拽hack及lambda补丁"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3832013611-StoreQoLSuite.md": {
+      "domains": [
+        "architecture",
+        "items",
+        "persistence"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "多设施三态开关(常驻早退)、容器子类化防丢件与贴墙NPC鉴别仪实现",
+      "digest": "三态常驻早退；GameSlotInventory子类+onUnloadChildItemFunc；IsInnateWindow；读isAug",
+      "micro_tip": "子类化GameSlotInventory免全局Patch；撤离失败封存档",
+      "must_avoid": "禁抄ReadPixels手绘、卸载删键、LoadFromAtlasRaw拦截、漏HasInstance"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3832140957-HogwartsFacilityReskin.md": {
+      "domains": [
+        "media",
+        "ui",
+        "interop"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "零Patch整店场景换皮、像素级几何闸门、ColorGrading调色滑轨与贴图规格表",
+      "digest": "0补丁路径+原名双白名单与像素等大闸门换Sprite，实例可逆；layer31 ColorGrading默认零override",
+      "micro_tip": "31层ColorGrading非零才override；换皮须等像素",
+      "must_avoid": "勿夹带隐藏玩法与RaycastElement IL改写；根Textures须Point；须加开关防每帧互刷"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3832181449-VisitorCalendar.md": {
+      "domains": [
+        "events",
+        "customers",
+        "ui"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "把预约访客与日程塞进原版日历、日历改滚动布局及零存档访客预测",
+      "digest": "读futurStoreClientDayQueue，补GetActiveEventOnDay拷表注伪事件，日历抬ScrollRect",
+      "micro_tip": "倒计时在OPEN须减1；伪StoreEvent必设IsKnown=true",
+      "must_avoid": "禁原地改__result；改日历先查ScrollRect且Restore全还原；显示名勿留name_前缀"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3832184465-NeteaseMusic.md": {
+      "domains": [
+        "media",
+        "ui",
+        "machines"
+      ],
+      "trust": "L4-caution-antipattern",
+      "capability": "mixed",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "原版机器窗无反射插按钮、IMGUI与流媒体边界及files/network禁区排雷",
+      "digest": "补MachineCassettePlayer经MachineryPanelRow.Add插钮；流播AudioClip配代际销毁",
+      "micro_tip": "MachineryPanelRow.GetPanel判重再Add零反射插钮",
+      "must_avoid": "禁6连Prefix短路毁磁带状态机与音量；禁空catch吞网错；正式包禁System.IO/联网/放.ps1"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3832249311-FarmStory.md": {
+      "domains": [
+        "machines",
+        "persistence",
+        "items"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "大型表驱动扩展、原生畜牧/液体复用、总机托管原版机器与五套幂等存档迁移",
+      "digest": "注AnimalSpecies.All与Liquid；补GetAssociatedHydroponic与Deliver托管水培并回滚",
+      "micro_tip": "改存档id须在DecodeNodes前；IsDecoding期间禁写迁移",
+      "must_avoid": "TagSystem.Clone仅浅拷贝须逐项深拷；塞原版机须补齐失窃保险补丁；切勿改<ID>与物品前缀"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3832460122-BlackMarketMaterials.md": {
+      "domains": [
+        "ui",
+        "economy",
+        "architecture"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "零Harmony往原版容器贴交互入口、只读原版交易单、纯函数预演与一键安全投料",
+      "digest": "零Patch贴纸挂物品rectTransform；读ExchangeManager预演，TryAcceptAll投料+复核回滚",
+      "micro_tip": "物品贴纸须拦IBeginDrag+alphaHitTest防拖走与点穿",
+      "must_avoid": "只搬运禁替HandleJanitorial结算；吞暗格物资须二次确认；运行时Texture2D必Destroy"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3832768562-ScavengingExpansion.md": {
+      "domains": [
+        "afterhour",
+        "items",
+        "ui"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "拾荒扩地防冲突让位、物品自带可扩容容器、自绘可缩放树UI与内嵌图零能力加载",
+      "digest": "DecodeNodes预读背包形状；五检扩afterhourInventory；LoadFromAtlas载内嵌图+手写缩放视口",
+      "micro_tip": "LoadFromAtlas按自家atlas短路，避SpriteDict热点",
+      "must_avoid": "缺HotReload；禁内部吞错；EndDrag短路易冲突，改用mayThisTargetItemFunc"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3832805089-ElectronicsCompatPatch.md": {
+      "domains": [
+        "interop",
+        "architecture",
+        "persistence"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "cap-files",
+      "intent": [
+        "case-study",
+        "pattern-reuse",
+        "troubleshoot"
+      ],
+      "best_for": "查跨模组冲突修复、软依赖探测、能力位协商与Priority.Last修指令流",
+      "digest": "ModLoader.Mods滤LoadError软探；能力位让路；Priority.Last修EndNight；失败即Unpatch",
+      "micro_tip": "软探测滤IsEnabled与LoadError空；暴露能力位供补丁礼让",
+      "must_avoid": "禁裸Harmony id致排序失配；忌改他家ModData与files备份；禁丢原谓词及空catch"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3832819040-DeepSpaceClinic.md": {
+      "domains": [
+        "ui",
+        "customers",
+        "architecture"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "mixed",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "做纯C#确定性内嵌小游戏、自由笔画覆盖判定、三数值容量模型与患者侧车病历",
+      "digest": "纯C#六小游戏与288格笔画；storeClientDict注客+ModData病历；mayInventoryAddItemFunc专槽",
+      "micro_tip": "小游戏纯C#零Unity确定性判定；2格STORAGE+过滤委托即成专槽",
+      "must_avoid": "禁2万行巨类与每帧21个Tick；禁反射IL标签破零能力；忌弃用ModHelper与按客拼键膨胀"
     },
     "共享开发/模组制作经验库/workshop-distill/3832823827-ModConflictScanner.md": {
-      "domains": ["interop", "workflow"],
+      "domains": [
+        "interop",
+        "workflow"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "工坊冲突检测器实证：三类冲突模型与全局显示层/本地化层两类红色硬靶点",
-      "digest": "工坊检测器只查 Declared/Assembly/25 条固定 IL 靶表，不查 identifier/语言 key/atlas 重复；红色硬冲突集中在全局物品名与本地化字体层"
+      "digest": "工坊检测器只查 Declared/Assembly/25 条固定 IL 靶表，不查 identifier/语言 key/atlas 重复；红色硬冲突集中在全局物品名与本地化字体层",
+      "micro_tip": "工坊扫描器只查25固定IL靶；红冲突集中在物品名与字体层"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3832840208-TobaccoExpansion.md": {
+      "domains": [
+        "appraisal",
+        "items",
+        "interop"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "做克隆原版物、三层鉴定与可剥贴牌、水培注册、操作期存档闸门及跨模组降级",
+      "digest": "克隆原版物；CigaretteUI.OnInit换图；CategoryNames扩标签；GetCurrentValueMod作用域真估",
+      "micro_tip": "ThreadStatic配GetCurrentValueMod真估不改物",
+      "must_avoid": "禁两模组共用SaveKey致schema冲突；忌手抄上游配方与Safe吞错；注意包装缺陷键错位"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3832941698-AIEmporium.md": {
+      "domains": [
+        "customers",
+        "persistence",
+        "perf"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "做规则型常客调度与预约队列、存档摘挂防污染、3ms分帧预算、死线降级与流式音频",
+      "digest": "规则常客非LLM；WriteSlotFile摘挂PhoneClientDict；3ms分帧+20s死线+RegisterModClip流播",
+      "micro_tip": "WriteSlotFile摘电话簿并用Finalizer还原防脏档",
+      "must_avoid": "禁改ModConfigWindow加载器UI；禁巨类、空catch、漏判HasInstance与无热重载重置"
     },
     "共享开发/模组制作经验库/workshop-distill/3833966506-StationEvents.md": {
-      "domains": ["events", "persistence", "customers", "ui"],
+      "domains": [
+        "events",
+        "persistence",
+        "customers",
+        "ui"
+      ],
       "trust": "L2-verified-host",
       "capability": "zero-cap",
       "best_for": "事件模组标杆：私有蓝图表+ActivateEvent+negociationDatas零改价+ES3投影+天数回放",
       "digest": "不写原版蓝图表而自持列表+ActivateEvent；涨跌价直接填 negociationDatas 零价格 Patch；ES3 浅克隆剥离+天数回放；展示层只换容器不重写逻辑",
-      "must_avoid": "非海量事件勿抄其 2 处 HandleNewEvent* IL Transpiler（双改冲突点且未声明优先级）"
+      "must_avoid": "非海量事件勿抄其 2 处 HandleNewEvent* IL Transpiler（双改冲突点且未声明优先级）",
+      "micro_tip": "自持蓝图+ActivateEvent+negociationDatas零价格补丁；ES3浅克隆剥离"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3833978053-BetterCashier.md": {
+      "domains": [
+        "ui",
+        "economy",
+        "perf"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "重画交易平板卡片、折叠不销毁行、改原版三档缩放、分上下文记窗位与跨模组读图标",
+      "digest": "零IL改TabletUI.ListRow为卡+ignoreLayout折叠；ApplyZoom缩放；LoadedMod.Sprites取图",
+      "micro_tip": "折叠行只关Visuals与ignoreLayout不销毁，保留原版行句柄",
+      "must_avoid": "禁硬拦AutoSelectLoneItem；补TabletUI须收窄；忌放大问价/取名；须补读档重置"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3834135415-VanillaGunExpansion.md": {
+      "domains": [
+        "items",
+        "afterhour",
+        "persistence"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "查表驱动枪械打印链、物品tag记履历、落盘刷状态、旧档清洗与跨模组让路",
+      "digest": "GunHelper.InitGun表驱动造枪；WriteSlotFile落盘刷态；DecodeNodes洗旧档；tag载履历与跨模组让路",
+      "micro_tip": "WriteSlotFile Prefix落盘瞬间刷内存态入ModData",
+      "must_avoid": "禁DecodeNodes多类无序补丁、Item工厂挂列表、写错HarmonyAfter大小写及硬编码别家id"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3834226532-PerksProbablyFun.md": {
+      "domains": [
+        "architecture",
+        "ui",
+        "persistence"
+      ],
+      "trust": "L4-caution-antipattern",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "troubleshoot"
+      ],
+      "best_for": "查StartingScenario解锁、IndexSave跨档预设与高密度补丁反模式排雷",
+      "digest": "AddStartingPerk与NetworkUpgrade.Unlock解锁专精；IndexSave跨档预设；高密吞错反模式",
+      "micro_tip": "用SaveFiles.IndexSave存跨档预设，零IO合规导出",
+      "must_avoid": "禁大量catch吞错、GetNegociatedValue递归Prefix双算、掐脏标及Update无门跑"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3834364038-CombatContracts.md": {
+      "domains": [
+        "afterhour",
+        "architecture",
+        "ui"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "查零Unity纯规则内核、官方夜出真子类、Blocking总闸、人脉板插卡与自卫战接管",
+      "digest": "AddAfterhourLocation真子类+GetDiscovered置首页；零Unity内核与总闸；IsPerkUnlocked转自卫",
+      "micro_tip": "IsPerkUnlocked在拉闸期拦截原版处决perk，无痛改接自卫战",
+      "must_avoid": "禁关RotateIntoHistory历史轮转；慎用ExecuteGameOver毁档；勿硬Insert(4)"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3834588749-EleanorStory.md": {
+      "domains": [
+        "customers",
+        "economy",
+        "persistence"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "查零价格补丁靠StoreClient委托判交易公道度、剧本外置CSV与布尔事实驱动剧情",
+      "digest": "借StoreClient委托与confrontSucessDiscount等ItemFeature判公道，零价格补丁；布尔事实驱动剧情",
+      "micro_tip": "读confrontSucessDiscount等原版特征判识货，零价格补丁",
+      "must_avoid": "禁Prefix置全局锁(改Postfix判__runOriginal)；忌裸catch、双剧本、好感整数门槛"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3834619049-Gunsmith.md": {
+      "domains": [
+        "items",
+        "machines",
+        "afterhour"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "查零自定义类扩枪械配件、打印机卡带、寄生原版订单面板、夜间黑市与电话线",
+      "digest": "InitGun+叠加图层寄生枪配；InitProgressSourceItem做卡带；反射扩SERVICE_GUNS并插订单行",
+      "micro_tip": "只做PRINTER_CHIP_TAG卡带即可打印，零新UI与清单",
+      "must_avoid": "禁吞异常仅打Warning；SERVICE_GUNS追加须可复原；换单前必验IsMet；禁改unitValue"
     },
     "共享开发/模组制作经验库/workshop-distill/3834649530-SmartArrangement.md": {
-      "domains": ["items", "machines", "perf"],
+      "domains": [
+        "items",
+        "machines",
+        "perf"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "机器模块舱位图棋盘 + 模拟退火搜索 + 四卡方案对比 + 事务式装机与留空算法",
-      "digest": "模块舱优化用位图棋盘做离线退火求解，给出多目标对比后事务式装入，支持 reserveRoom 预留指定空位"
+      "digest": "模块舱优化用位图棋盘做离线退火求解，给出多目标对比后事务式装入，支持 reserveRoom 预留指定空位",
+      "micro_tip": "模块舱位图退火求解+多目标预览+事务装入支持reserveRoom"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3836168312-RimworldSmuggle.md": {
+      "domains": [
+        "media",
+        "interop",
+        "architecture"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "查SpriteDict原地换立绘、防多模组覆盖的记账回滚、比例pivot换图与PNG头校验",
+      "digest": "纯换立绘无玩法：接管SpriteDict.spriteDictionary与ResolveImage；记账让位+PngGuard",
+      "micro_tip": "Sprite.Create按原rect归一化pivot+沿用ppu防立绘偏移",
+      "must_avoid": "禁硬锁gameAssemblyMvid致更新炸、DLL写死白名单与死尺寸；与PortraitRuntime互斥"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3837619429-FenceAndCaseExpansion.md": {
+      "domains": [
+        "economy",
+        "items",
+        "persistence"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "查预算制开箱掉落引擎、跨箱pity保底、绕锁塞货与ModConfig预设只读预览",
+      "digest": "双峰预算剪枝+跨箱pity掉落引擎；SlotMarker.TryAcceptOnce绕锁塞货；GetTypeDisplayName防蓝字",
+      "micro_tip": "预算剪枝剔超价候选再归一权重，ModData存跨箱pity保底",
+      "must_avoid": "撞名DeepSpacePawn.dll；禁贴图路径或中文名认物；静态填充格无重入保护；防CSV与代码分叉"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3837976033-HenchmanReputation.md": {
+      "domains": [
+        "economy",
+        "perf",
+        "persistence"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "查StoreRequest寄生周单、双维配额、到货卡顿优化与EncodeItem私仓快照",
+      "digest": "HandleStoreRequests发周单；GetBarHeight插星；EncodeItem做私仓快照；HashSet消卡顿",
+      "micro_tip": "StoreRequest.ActivateRequest寄生市场电脑，零UI",
+      "must_avoid": "禁循环内调FindAllItem(同版漏修一处)；禁裸改playerCash；5个问价补丁无序"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3837983447-StorageBayAppearance.md": {
+      "domains": [
+        "media",
+        "items",
+        "ui"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "查家具逐件换装、tag零存档持久化、复用右键Toggle、F7开窗闸门与跨美化模组共存",
+      "digest": "ResolveItemSprite+ValidatePartialSprite换装；state tag随档；BlocksClicks让位",
+      "micro_tip": "外观存state tag随档；OnDisable先重绘还原再Unpatch",
+      "must_avoid": "私有ResolveItemSprite须自检；OnDisable勿先Unpatch留幽灵皮；禁Tight切片"
     },
     "共享开发/模组制作经验库/workshop-distill/3838944803-UpperLevels.md": {
-      "domains": ["architecture", "afterhour", "customers", "media"],
+      "domains": [
+        "architecture",
+        "afterhour",
+        "customers",
+        "media"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "DLC 级新区域：用 Difficulty.Current.source 单点总闸压成开关且零入侵存档",
       "digest": "不建 Unity 新场景，把整片上层区压成 Difficulty.Current.source 单点布尔开关，店面原地换皮+AddClient改客群，零入侵存档",
-      "must_avoid": "267 Patch 仅靠首行早退有效，小模组切勿照搬大规模 Patch 面"
+      "must_avoid": "267 Patch 仅靠首行早退有效，小模组切勿照搬大规模 Patch 面",
+      "micro_tip": "不建新场景，Difficulty.Current.source单点总闸+原地换皮换客"
     },
     "共享开发/模组制作经验库/workshop-distill/3840533881-LagInspector.md": {
-      "domains": ["perf", "interop", "workflow"],
+      "domains": [
+        "perf",
+        "interop",
+        "workflow"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "Harmony.GetPatchInfo(method).Owners 做补丁归属归因与 Stopwatch 帧栈耗时统计",
-      "digest": "性能定位用 Stopwatch 分阶段计时 + Harmony.GetPatchInfo(m).Owners 精确归因到具体模组；归因缓存不缓存空结果以看见晚加载补丁"
+      "digest": "性能定位用 Stopwatch 分阶段计时 + Harmony.GetPatchInfo(m).Owners 精确归因到具体模组；归因缓存不缓存空结果以看见晚加载补丁",
+      "micro_tip": "Stopwatch分阶段计时+GetPatchInfo.Owners归因(不缓存空结果)"
     },
     "共享开发/模组制作经验库/workshop-distill/3841509159-ClaimsAndUprisings.md": {
-      "domains": ["architecture", "ui", "persistence", "interop"],
+      "domains": [
+        "architecture",
+        "ui",
+        "persistence",
+        "interop"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "233 Patch 巨型模组降维三件套：作用域租约令牌 + 单点模态仲裁器 + 原子代际构建",
       "digest": "用 IDisposable 查询作用域令牌 + 单点模态仲裁器 + Fork/校验/原子提交三件基础设施，把 233 个 Patch 压成 30 行早退薄片",
-      "must_avoid": "不要把 395 个文件平铺在单目录；不要靠 119 个分散早退门替代统一门面"
+      "must_avoid": "不要把 395 个文件平铺在单目录；不要靠 119 个分散早退门替代统一门面",
+      "micro_tip": "IDisposable作用域+单点模态仲裁+Fork/原子提交压薄233补丁"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3841532994-TradeCity.md": {
+      "domains": [
+        "afterhour",
+        "economy",
+        "architecture"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "查零Harmony以AfterhourLocation.Register真子类开多店",
+      "digest": "零补丁AfterhourLocation.Register真子类；伪StoreClient占backInvinvElement加黄牛价",
+      "micro_tip": "AfterhourLocation.Register直注真子类，免反射0补丁",
+      "must_avoid": "禁放宽原版容器品类；勿将PermitHelper挂willAcceptItem短路；禁裸改cash"
     },
     "共享开发/模组制作经验库/workshop-distill/3841909877-ProbablyExtendFramework.md": {
-      "domains": ["media", "architecture", "interop"],
+      "domains": [
+        "media",
+        "architecture",
+        "interop"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "多功能组织范本(b)与贴图引擎：自描述 Patch 注册表(延迟解析+Report)+sig注入使主体零能力",
-      "digest": "自描述 Patch 注册表用 Func<MethodBase> 延迟解析+逐条 catch+Report() 秒定位失效补丁；JSON 声明式接贴图，靠伴生模组把文件权限剥离出主体"
+      "digest": "自描述 Patch 注册表用 Func<MethodBase> 延迟解析+逐条 catch+Report() 秒定位失效补丁；JSON 声明式接贴图，靠伴生模组把文件权限剥离出主体",
+      "micro_tip": "自描述Patch注册表Func<MethodBase>延迟解析+Report()秒排错"
     },
     "共享开发/模组制作经验库/workshop-distill/3841912659-ExtendFrameworkFiles.md": {
-      "domains": ["media", "interop", "architecture"],
+      "domains": [
+        "media",
+        "interop",
+        "architecture"
+      ],
       "trust": "L3-distilled-source",
       "capability": "cap-files",
       "best_for": "框架本体(零能力) + 文件伴生模组(files能力) 拆分范式与约定式本地素材目录",
-      "digest": "主体保持零能力，把必须直读硬盘的外部素材目录剥进独立伴生模组，支持丢图即生效"
+      "digest": "主体保持零能力，把必须直读硬盘的外部素材目录剥进独立伴生模组，支持丢图即生效",
+      "micro_tip": "主体保持零能力，磁盘直读素材剥入独立伴生模组"
     },
     "共享开发/模组制作经验库/workshop-distill/3842773239-WildNetAPI.md": {
-      "domains": ["interop", "ui", "afterhour"],
+      "domains": [
+        "interop",
+        "ui",
+        "afterhour"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "跨模组零硬依赖消息总线（约定 GameObject + BroadcastMessage + 版本化字典）与 SelfCheck 环检测",
-      "digest": "不引用对方 DLL，用原版 ModHelper.Expose/SendMessage 或约定 GameObject+带版本号字典互操作；读档后跑 DFS 三色环检测与缺失前置自检"
+      "digest": "不引用对方 DLL，用原版 ModHelper.Expose/SendMessage 或约定 GameObject+带版本号字典互操作；读档后跑 DFS 三色环检测与缺失前置自检",
+      "micro_tip": "ModHelper.Expose/SendMessage零引用互操作+读档DFS环检测"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3843132012-ShadowverseCardShop.md": {
+      "domains": [
+        "items",
+        "ui",
+        "customers"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "做抽卡盲盒、手写uGUI开包演出、图鉴剪影页、收藏家点单与非侵入溢价",
+      "digest": "RegisterLootTable分池；uGUI补间开包；OnPaperOpened图鉴；SetPreExposedValueMod溢价",
+      "micro_tip": "uGUI补间零依赖开包；溢价挂ItemFeature不改unitValue",
+      "must_avoid": "禁存967个dex_*布尔键(改位图单键)；禁500次重摇保底(直抽子池)；发布前清2527张无引用废图"
     },
     "共享开发/模组制作经验库/workshop-distill/3843892181-ValueCache.md": {
-      "domains": ["perf", "economy"],
+      "domains": [
+        "perf",
+        "economy"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "弱表 ConditionalWeakTable + 全局 epoch 代际失效缓存（EpochCache.cs 来源）",
       "digest": "缓存用 ConditionalWeakTable 防 GameItem 内存泄漏，全局 epoch++ 实现 O(1) 全量失效，键必须包含事件/加价/纯度/日期",
-      "must_avoid": "不要抄其 44 个无 HarmonyPriority 的密集 Patch，必须显式声明优先级"
+      "must_avoid": "不要抄其 44 个无 HarmonyPriority 的密集 Patch，必须显式声明优先级",
+      "micro_tip": "ConditionalWeakTable防泄漏+全局epoch++ O(1)失效"
     },
     "共享开发/模组制作经验库/workshop-distill/3844123767-ContainerLink.md": {
-      "domains": ["items", "machines", "interop"],
+      "domains": [
+        "items",
+        "machines",
+        "interop"
+      ],
       "trust": "L4-caution-antipattern",
       "capability": "zero-cap",
       "best_for": "不新增容器类型的跨柜连接（版本化 Tag 存图 + 事务式物品搬运）",
       "digest": "不造新容器类型，把链接拓扑存在版本化 Tag 里并用事务式搬运同步，避免破坏原版容器序列化",
-      "must_avoid": "严禁抄其大量空 catch {} 静默吞异常"
+      "must_avoid": "严禁抄其大量空 catch {} 静默吞异常",
+      "micro_tip": "容器链接拓扑存版本化Tag+事务搬运，不造新容器类"
     },
     "共享开发/模组制作经验库/workshop-distill/3844162371-Sakurazaki角色模组.md": {
-      "domains": ["afterhour", "customers", "media"],
+      "domains": [
+        "afterhour",
+        "customers",
+        "media"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "完整 L3 角色模组范本：全屏 CG 打工舞台、外置多语言台词、回店幂等发奖与原版 NPC 选项插入",
-      "digest": "夜出全屏 CG 舞台用 StageObject+Aspect Fill/Fit；奖励不在 Leave() 塞库而是落账回店校验 IN_STORE 后幂等发；插原版 NPC 选项沿 nextDialogue 找首个 choices>=2 节点"
+      "digest": "夜出全屏 CG 舞台用 StageObject+Aspect Fill/Fit；奖励不在 Leave() 塞库而是落账回店校验 IN_STORE 后幂等发；插原版 NPC 选项沿 nextDialogue 找首个 choices>=2 节点",
+      "micro_tip": "夜出CG用StageObject；奖励落账回店验IN_STORE幂等发"
     },
     "共享开发/模组制作经验库/workshop-distill/3844377158-SleepLagOptimizer.md": {
-      "domains": ["perf", "machines"],
+      "domains": [
+        "perf",
+        "machines"
+      ],
       "trust": "L4-caution-antipattern",
       "capability": "zero-cap",
       "best_for": "原版过夜 360 tick 化学模拟真相与 Prefix 开标志 / Finalizer 关标志延迟校验范式",
       "digest": "原版过夜每晚跑 360 次化学模拟；批处理延迟校验必须用 Prefix 开标志 + Finalizer 关标志防异常路径泄漏",
-      "must_avoid": "严禁抄其整段替换 RunNightlyChemicalSimulation（与所有同类优化模组互斥）"
+      "must_avoid": "严禁抄其整段替换 RunNightlyChemicalSimulation（与所有同类优化模组互斥）",
+      "micro_tip": "过夜360次化学模拟；批处理标志须Prefix开+Finalizer关"
+    },
+    "共享开发/模组制作经验库/workshop-distill/3845140070-VivianPureStory.md": {
+      "domains": [
+        "customers",
+        "media",
+        "events"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "做纯剧情零经济模组、多语WAV配音防打断、角色多表情立绘与多结局幕表",
+      "digest": "Dialogue.AddChoice分幕；手解WAV拦ContinueConversation防打断；SpriteDict注8表情",
+      "micro_tip": "手解WAV取length控配音不打断；StoreClient字段代补丁",
+      "must_avoid": "勿拿原句作译/音表键(改字静默失音)；DismissCurrentClient重入须验id；翻译与表情序勿反"
     },
     "共享开发/模组制作经验库/workshop-distill/3845197390-NightRegulars立绘框架.md": {
-      "domains": ["media", "customers"],
+      "domains": [
+        "media",
+        "customers"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "程序/美术分离的立绘框架：按需加载 + extreme→adult→serene 永不空白回退链",
-      "digest": "立绘按需加载并设三层回退链确保永不空白；程序框架与独立美术包解耦"
+      "digest": "立绘按需加载并设三层回退链确保永不空白；程序框架与独立美术包解耦",
+      "micro_tip": "立绘按需加载三层回退永不空白；框架与纯图包解耦"
     },
     "共享开发/模组制作经验库/workshop-distill/3845199370-PipelineController.md": {
-      "domains": ["machines", "items", "architecture"],
+      "domains": [
+        "machines",
+        "items",
+        "architecture"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "图结构存物品 Tag + 拓扑 Tick + 靠 GameItemFunc 委托接管交互（仅 5 个外围 Patch）",
-      "digest": "靠 GameItemFunc 委托（target/activate/tick）替代大规模 Harmony Patch，管网图序列化在物品 Tag 上按拓扑序结算"
+      "digest": "靠 GameItemFunc 委托（target/activate/tick）替代大规模 Harmony Patch，管网图序列化在物品 Tag 上按拓扑序结算",
+      "micro_tip": "GameItemFunc三委托代Patch，管网图存物品Tag按拓扑结算"
     },
     "共享开发/模组制作经验库/workshop-distill/3845554726-DigitalVault.md": {
-      "domains": ["items", "persistence"],
+      "domains": [
+        "items",
+        "persistence"
+      ],
       "trust": "L4-caution-antipattern",
       "capability": "zero-cap",
       "best_for": "物品数据化（将物品状态编码进 Tag 字符串存储）思路参考",
       "digest": "把多件物品压成编码串存进容器物品 Tag 实现数字仓储，零新增 ES3 顶层键",
-      "must_avoid": "严禁抄其 96 处空 catch {} 静默吞异常"
+      "must_avoid": "严禁抄其 96 处空 catch {} 静默吞异常",
+      "micro_tip": "多件物品编码存容器Tag做数字仓，零新增ES3顶层键"
     },
     "共享开发/模组制作经验库/workshop-distill/3845556624+3845895085-文字层逆向.md": {
-      "domains": ["ui", "interop"],
+      "domains": [
+        "ui",
+        "interop"
+      ],
       "trust": "L4-caution-antipattern",
       "capability": "mixed",
       "best_for": "本地化表初始化时序（早期读 LocHelper.Get 报 invalid operation handle）与 TMP 全局 CJK 回退字体",
       "digest": "不要在 Init/OnEnable 缓存 LocHelper.Get（表未就绪会抛 invalid operation handle）；CJK 显示靠挂 TMP_Settings.fallbackFontAssets + ForceMeshUpdate",
-      "must_avoid": "严禁抄 Locale Error Fix 吞掉原版 fallback 链导致缺词退化为裸 key"
+      "must_avoid": "严禁抄 Locale Error Fix 吞掉原版 fallback 链导致缺词退化为裸 key",
+      "micro_tip": "禁Init缓存LocHelper.Get；CJK挂TMP_Settings.fallbackFontAssets"
     },
     "共享开发/模组制作经验库/workshop-distill/3845671416-StorageControlTerminal.md": {
-      "domains": ["items", "ui", "architecture"],
+      "domains": [
+        "items",
+        "ui",
+        "architecture"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "零 Harmony Patch 做出带 CustomUI 界面的跨容器聚合存储终端标杆",
-      "digest": "0 Patch 也能造复杂机器：SetGameItemType(MACHINE) + onActivateSlotItemFunc 开 CustomUIManager.CreateWindow + 跨容器聚合索引"
+      "digest": "0 Patch 也能造复杂机器：SetGameItemType(MACHINE) + onActivateSlotItemFunc 开 CustomUIManager.CreateWindow + 跨容器聚合索引",
+      "micro_tip": "0 Patch机器：MACHINE+onActivateSlotItemFunc开CustomUI聚合仓"
     },
     "共享开发/模组制作经验库/workshop-distill/3845680734-QiluoItemEditor.md": {
-      "domains": ["items", "appraisal", "interop"],
+      "domains": [
+        "items",
+        "appraisal",
+        "interop"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "GameItem 全字段可编辑权威字典与受保护字段黑名单",
-      "digest": "完整盘点 GameItem 运行期可安全修改字段 vs 受保护内部字段，适合物品编辑/克隆/贴图修复查表"
+      "digest": "完整盘点 GameItem 运行期可安全修改字段 vs 受保护内部字段，适合物品编辑/克隆/贴图修复查表",
+      "micro_tip": "GameItem运行期可安全改字段 vs 受保护内部字段全量查表"
     },
     "共享开发/模组制作经验库/workshop-distill/3845751834-SpriteHeal.md": {
-      "domains": ["items", "media", "interop"],
+      "domains": [
+        "items",
+        "media",
+        "interop"
+      ],
       "trust": "L4-caution-antipattern",
       "capability": "zero-cap",
       "best_for": "原版 useSpriteFromMod 粘滞 bug 逆向（切回原版图集未清标志→白底问号）",
       "digest": "从模组贴图切换回原版图集时必须同步清 useSpriteFromMod 标志，否则 ResolveSpriteByName 继续查模组表返回白底问号",
-      "must_avoid": "不要抄其内部空 catch {}"
+      "must_avoid": "不要抄其内部空 catch {}",
+      "micro_tip": "切回原版图集必清useSpriteFromMod，否则ResolveSpriteByName变问号"
     },
     "共享开发/模组制作经验库/workshop-distill/3845754309-AIStoreManager.md": {
-      "domains": ["multiplayer", "persistence", "workflow"],
+      "domains": [
+        "multiplayer",
+        "persistence",
+        "workflow"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "用原版白名单 ModData JSON 文件收件箱实现零端口外部进程/AI 通信（ModDataInbox.cs 来源）",
-      "digest": "不开 HTTP 端口也能连外部脚本/AI：用 ModHelper.*ModDataFile* 做消费即删+代号命名+坏命令丢弃的文件收件箱（实测零能力）"
+      "digest": "不开 HTTP 端口也能连外部脚本/AI：用 ModHelper.*ModDataFile* 做消费即删+代号命名+坏命令丢弃的文件收件箱（实测零能力）",
+      "micro_tip": "ModHelper.*ModDataFile*消费即删文件收件箱，零能力连外部AI"
     },
     "共享开发/模组制作经验库/workshop-distill/3845965318-ZohFramework.md": {
-      "domains": ["architecture", "customers", "events"],
+      "domains": [
+        "architecture",
+        "customers",
+        "events"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "零 Patch 自研脚本 DSL 引擎（词法/语法/三 Pass 执行）、安全闲聊注入与坏脚本降级",
-      "digest": "0 Patch 建剧本 DSL 引擎，文本外置方便非程序员编辑；坏脚本降级成普通顾客不崩档；安全注入闲聊用 allDoneDialogue + ConditionalWeakTable"
+      "digest": "0 Patch 建剧本 DSL 引擎，文本外置方便非程序员编辑；坏脚本降级成普通顾客不崩档；安全注入闲聊用 allDoneDialogue + ConditionalWeakTable",
+      "micro_tip": "0 Patch外置剧本DSL+坏脚本降级普通客；allDoneDialogue插闲聊"
     },
     "共享开发/模组制作经验库/workshop-distill/3846086230-ProgressBar.md": {
-      "domains": ["persistence", "perf", "ui"],
+      "domains": [
+        "persistence",
+        "perf",
+        "ui"
+      ],
       "trust": "L4-caution-antipattern",
       "capability": "zero-cap",
       "best_for": "原版读档管线四阶段逆向（SaveState→Decode→Link→挂载）与分帧重建 + 模态 InputGate",
       "digest": "读档管线拆成 Decode/Link/Build 分帧执行可消卡顿，容器编号 Link 对齐最易出错；出错必须能回退原版读档",
-      "must_avoid": "严禁在不具备完整出错回退的前提下整段替换 DecodeSaveItem"
+      "must_avoid": "严禁在不具备完整出错回退的前提下整段替换 DecodeSaveItem",
+      "micro_tip": "读档拆Decode/Link/Build分帧消卡顿；须保原版回退路径"
+    },
+    "共享开发/模组制作经验库/workshop-distill/UI布局四例-议价面板·储物缩放·货物翻页·交易显示.md": {
+      "domains": [
+        "ui",
+        "economy",
+        "perf"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "移动原版面板防复位、容器整体缩放记忆、柜台货物防销毁翻页与议价行加利润",
+      "digest": "①DockToTablet翻偏移②FixBounds缩窗③TryAcceptAllOrDestroy翻页④BuildItemRow加利润",
+      "micro_tip": "移窗翻基准；缩窗补边界；扣溢出货翻页；议价行改right须缓存",
+      "must_avoid": "只改坐标不翻基准必复位；高频禁裸调GetNegociatedValue或空catch；禁解析原版UI文本反推数"
     },
     "共享开发/模组制作经验库/workshop-distill/UI深度扩展八例.md": {
-      "domains": ["ui", "items", "appraisal"],
+      "domains": [
+        "ui",
+        "items",
+        "appraisal"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "八种 UI 扩展改法与代价对照（Tooltip 钩子、窗口缩放接管 getter、轮盘防输入锁死）",
-      "digest": "Tooltip 优先 ModHook.OnCreateTooltipLate；改窗口尺寸必须接管 getter 链并声明优先级；Update 轮询节流 0.12~0.25s；屏蔽输入必须配 Clear() 兜底防永久失输入"
+      "digest": "Tooltip 优先 ModHook.OnCreateTooltipLate；改窗口尺寸必须接管 getter 链并声明优先级；Update 轮询节流 0.12~0.25s；屏蔽输入必须配 Clear() 兜底防永久失输入",
+      "micro_tip": "Tooltip走OnCreateTooltipLate；改窗接管getter链；Update节流0.15s"
     },
     "共享开发/模组制作经验库/workshop-distill/两类内容扩展-鉴定服务与零Patch养殖.md": {
-      "domains": ["appraisal", "items", "architecture"],
+      "domains": [
+        "appraisal",
+        "items",
+        "architecture"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "鉴定/盘查/保险/服务费 20 个靶点表 + 零 Patch 做整套养殖玩法（32文件/5792行）骨架",
       "digest": "Extended Appraisals 绘出鉴定服务 20 个接入靶点；Hatch Ranching 实证 0 Harmony Patch 仅靠 ModHelper+GameItemFunc 可做完整养殖系统",
-      "must_avoid": "同一靶点（如 OnEstimate）挂多个补丁时必须显式声明 HarmonyPriority"
+      "must_avoid": "同一靶点（如 OnEstimate）挂多个补丁时必须显式声明 HarmonyPriority",
+      "micro_tip": "Extended Appraisals 20鉴定靶点；Hatch Ranching实证0 Patch养殖"
     },
     "共享开发/模组制作经验库/workshop-distill/事件与内容扩展四例.md": {
-      "domains": ["events", "customers", "items"],
+      "domains": [
+        "events",
+        "customers",
+        "items"
+      ],
       "trust": "L2-verified-host",
       "capability": "zero-cap",
       "best_for": "卷帘门事件展示、拾荒事件注入、外置新闻数据、熟练度等级挂原版数值四例对照",
       "digest": "事件与掉落表原版均有公开扩展口（StoreEventBlueprint/LootRegistry/OnLootRolled），优先走官方钩子不整段替换",
-      "must_avoid": "勿抄 Scavenging Events 放弃官方口子去整段替换拾荒方法"
+      "must_avoid": "勿抄 Scavenging Events 放弃官方口子去整段替换拾荒方法",
+      "micro_tip": "事件/掉落优先走StoreEventBlueprint/LootRegistry/OnLootRolled官口"
+    },
+    "共享开发/模组制作经验库/workshop-distill/交互与设置四例-快速存档·直接替换·批量贴标·模组设置.md": {
+      "domains": [
+        "persistence",
+        "ui",
+        "items"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "mixed",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "快捷键即时存档、拖放替换物品、框选批量贴假标与游戏内打开各模组设置页",
+      "digest": "①SaveGame+WriteSlotFile②EndDrag换物③fakeCondition贴标④ModConfig.Find开设置",
+      "micro_tip": "验写盘存；EndDrag换物；写fake贴标；Find筛开设置",
+      "must_avoid": "SaveFiles要files权；写modOrder拒装；父窗禁Close；先fake后SetExposed"
+    },
+    "共享开发/模组制作经验库/workshop-distill/交易系统四例-电话商店·交易预览·天赋商店·库存重摇.md": {
+      "domains": [
+        "economy",
+        "afterhour",
+        "interop"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "mixed",
+      "intent": [
+        "case-study",
+        "pattern-reuse",
+        "anti-pattern"
+      ],
+      "best_for": "做电话直连商店、地下交易所过夜预览、营业额换天赋与安全回滚库存重摇",
+      "digest": "①DrJacksonLocation货架②ExchangeManager对账③OnItemSold换天赋④PlaceInventor*重摇",
+      "micro_tip": "装箱代列表；镜像+事后对账；OnItemSold累额；摘货重跑回滚",
+      "must_avoid": "禁lambda名指纹与空catch；禁换startingPerks/invElement；电话典存盘须摘"
+    },
+    "共享开发/模组制作经验库/workshop-distill/信息显示四例-阵营·物品详情·鉴定角标·幸运特性.md": {
+      "domains": [
+        "ui",
+        "appraisal",
+        "interop"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "重排物品Tooltip与跨模通信、追加顾客阵营、画物品角标与改全局幸运总闸",
+      "digest": "①GetTooltipBasic②RefreshClientHeader阵营③ItemSpriteModifier角标④GetLuck",
+      "micro_tip": "隐原窗画卡；后置追阵营；Prefix挂角标；GetLuck总闸夹取",
+      "must_avoid": "真伪勿只放tooltip；禁译文认按钮与无闸公式；角标必Prefix挂；GetLuck判HasInstance"
+    },
+    "共享开发/模组制作经验库/workshop-distill/内容三例-人脉拓展·更好储物·空白卡压制.md": {
+      "domains": [
+        "machines",
+        "items",
+        "customers"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "扩关系网与电话下单、做专用收纳箱吃原版扩容套件、零Harmony造电池机器",
+      "digest": "①AddNetworkUpgrade加电话②CreateGridWindow吃扩容③零补丁CreateMachineryWindow",
+      "micro_tip": "关系网存进度免造NPC；过滤委托吃扩容套件；单int tag零补丁造机",
+      "must_avoid": "IsUnlocked不判空；storeClientDict成对删；禁按名修原版；扩容败禁毁套件；库存防卖蒸发"
+    },
+    "共享开发/模组制作经验库/workshop-distill/内容四例-水塔·集成芯片·酵母·存储分页.md": {
+      "domains": [
+        "machines",
+        "items",
+        "perf"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "mixed",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "做集中供水大容器机器、多配方集成芯片、改发酵归仓落点与大仓智能分拣落页",
+      "digest": "①WaterHelper+LockInv水塔②TagDiff多档芯片③EmporiumTryAdd留酵母④MachineryTabs落页",
+      "micro_tip": "LockInv焊水箱；TagDiff抢槽；单帧改道归仓；Postfix换落页",
+      "must_avoid": "禁字符串反射招高权；禁混协议tag或改TOTAL_PERCENTAGE_*；改道写重载表且满还原版"
+    },
+    "共享开发/模组制作经验库/workshop-distill/委托系统三例-委托扩展·化学品委托·佣兵派遣.md": {
+      "domains": [
+        "events",
+        "economy",
+        "customers"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "扩展原版市场委托、做化学指标多件验收委托与零Harmony异步佣兵派遣",
+      "digest": "①FillRequest三刀扩板②BuildGunOrder化学验收③OnGoingSleepLate+EncodeItem零补丁派遣",
+      "micro_tip": "三刀扩板不造单；验收先记账后销毁；EncodeItem+过夜钩子零补丁派遣",
+      "must_avoid": "禁按title判重/暗扣Delay；真伪勿判品类；归还禁EmporiumTryAdd；电话典存盘须摘出"
+    },
+    "共享开发/模组制作经验库/workshop-distill/小玩法四例-结婚·开箱·刮刮乐·堆叠卡.md": {
+      "domains": [
+        "items",
+        "customers",
+        "ui"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "做线性恋爱剧情、开箱演出、手势UI一键化或无/有私有数据物品堆叠时查",
+      "digest": "AddNextClient回读;UnlockContainer后读箱;RevealAll+tag队列;GetSplitItem单耗",
+      "micro_tip": "插队回读;解锁后置防重摇;手势调RevealAll;无态单拆有态用队列",
+      "must_avoid": "禁关他Canvas致HUD黑屏;GetSplitItem丢state勿堆有态货;勿前拦开箱;禁空catch"
     },
     "共享开发/模组制作经验库/workshop-distill/报纸配图与机器动画两标杆.md": {
-      "domains": ["events", "machines", "media", "interop"],
+      "domains": [
+        "events",
+        "machines",
+        "media",
+        "interop"
+      ],
       "trust": "L2-verified-host",
       "capability": "zero-cap",
       "best_for": "Better Newspapers 与 Vanilla Machine Animations 源码对账（修正 15/16 号文档 10 处误差）",
-      "digest": "VMA 用 OwnedFrames/HasForeignSprite 做让位式 Image.sprite 替换且缺图不占位；BN 自己不写 HarmonyAfter，我方必须写 HarmonyAfter(mod.local.newspaper.illustrations)"
+      "digest": "VMA 用 OwnedFrames/HasForeignSprite 做让位式 Image.sprite 替换且缺图不占位；BN 自己不写 HarmonyAfter，我方必须写 HarmonyAfter(mod.local.newspaper.illustrations)",
+      "micro_tip": "VMA用OwnedFrames让位换图；我方必写HarmonyAfter(BN)"
     },
     "共享开发/模组制作经验库/workshop-distill/机器改造与流体操作四例.md": {
-      "domains": ["machines", "items", "interop"],
+      "domains": [
+        "machines",
+        "items",
+        "interop"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "原版机器槽位全景、TransientTagBoost 临时改数值范式、实时触发时机与液体原子定量搬运",
-      "digest": "改机器加速用 Prefix 暂存+Postfix/Finalizer 还原（TransientTagBoost）；实时化只改触发时机不重写加工；液体按 part 分开存，定量搬运先取 min(Free,Vol) 再双端 SetChemContentUL"
+      "digest": "改机器加速用 Prefix 暂存+Postfix/Finalizer 还原（TransientTagBoost）；实时化只改触发时机不重写加工；液体按 part 分开存，定量搬运先取 min(Free,Vol) 再双端 SetChemContentUL",
+      "micro_tip": "机器加速Prefix暂存+Finalizer还原；流体先min(Free,Vol)双端设"
+    },
+    "共享开发/模组制作经验库/workshop-distill/机器自动化三例-自学习增强·全自动制药·养鼠工厂.md": {
+      "domains": [
+        "machines",
+        "architecture",
+        "persistence"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "做零Patch新机器、重算原版配方工艺、规则引擎自动化或对比三条机台架构路线时查",
+      "digest": "Projector()零补丁;SimulationItem调ChemicalHelper摘核委托;纯函数Plan+TryFeed",
+      "micro_tip": "Projector壳零补丁;假Item重算原工艺;规则存tag决策纯函数",
+      "must_avoid": "工厂副作用必判IsDecoding;用后清电池污染tag;勿改他机耗电与空catch;慎改存档布局"
+    },
+    "共享开发/模组制作经验库/workshop-distill/柜台与容器三例-扩容·挂钩·鼠鼠.md": {
+      "domains": [
+        "items",
+        "ui",
+        "interop"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "做动态扩缩网格、物品自带真槽位容器、跨模组让路协议或纯外观换皮不动占格时查",
+      "digest": "SetShape+minY平移扩柜;CreateMachineryWindow真槽+借调;BuildShapeFromSprite守卫",
+      "micro_tip": "扩柜平移minY;借调走SaveGame收口;换皮守占格填alpha=1",
+      "must_avoid": "SetShape先验形状租约防抹平;挂钩勿用硬id白名单且README超前;换皮忌alpha=0点不到"
     },
     "共享开发/模组制作经验库/workshop-distill/桥接器与开发框架两例.md": {
-      "domains": ["workflow", "interop", "architecture"],
+      "domains": [
+        "workflow",
+        "interop",
+        "architecture"
+      ],
       "trust": "L3-distilled-source",
       "capability": "cap-network",
       "best_for": "MCP Bridge vs 深空桥接器安全边界对照 + SDJYBN 轻量框架结构",
       "digest": "内嵌 HTTP 桥必须守死 IsLoopback + Host==127.0.0.1 + Origin==null 三重边界；轻量库用 _isHost 区分宿主与被引用态",
-      "must_avoid": "严禁抄 MCP Bridge 零鉴权 + CORS *（本机任意网页可驱动游戏）"
+      "must_avoid": "严禁抄 MCP Bridge 零鉴权 + CORS *（本机任意网页可驱动游戏）",
+      "micro_tip": "HTTP桥守IsLoopback+Host+Origin三重边界；_isHost区分宿主"
     },
     "共享开发/模组制作经验库/workshop-distill/模组列表管理五例.md": {
-      "domains": ["interop", "persistence"],
+      "domains": [
+        "interop",
+        "persistence"
+      ],
       "trust": "L4-caution-antipattern",
       "capability": "mixed",
       "best_for": "SaveFile.es3 modOrder/modTrust HMAC 结构与 ModLoader 只读公开面实证",
       "digest": "模组启用态存在 SaveFile.es3 的 modOrder/modTrust（带 HMAC）；我们只读 ModLoader.Mods/IsModEnabled/TrustState",
-      "must_avoid": "严禁调用 [ModRestricted(loader-target)]、严禁 ES3.Save(modOrder/modTrust)、严禁像 Mod Preloader 拼 char[] 绕过 ModScanner"
+      "must_avoid": "严禁调用 [ModRestricted(loader-target)]、严禁 ES3.Save(modOrder/modTrust)、严禁像 Mod Preloader 拼 char[] 绕过 ModScanner",
+      "micro_tip": "只读ModLoader.Mods/IsModEnabled/TrustState；禁碰modOrder/Trust"
+    },
+    "共享开发/模组制作经验库/workshop-distill/液体系统三例-扫描仪·水商·水龙头.md": {
+      "domains": [
+        "machines",
+        "ui",
+        "items"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "做液体成分只读重排、Tooltip嵌条形图、自动换滤芯或重做机器操作面板时查",
+      "digest": "RefreshUI零写;TMP link贴条+HandleFilter换芯;SetContentWindow+HandleChlorine",
+      "micro_tip": "改原UI记账还原;TMP用link画条;分段闸门控次数不改公式+三段归还",
+      "must_avoid": "落点槽与操作槽须分离防丢容器;勿重操作GenerateTextMesh与空catch;勿按显示名判物"
     },
     "共享开发/模组制作经验库/workshop-distill/玩法模块三例-职业拍卖灾难.md": {
-      "domains": ["architecture", "events", "afterhour", "customers", "economy"],
+      "domains": [
+        "architecture",
+        "events",
+        "afterhour",
+        "customers",
+        "economy"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "新玩法接原版三时段选型（营业日开关门 / 打烊夜出地图 / 跨日 StoreEvent 链）",
       "digest": "按玩法节奏选挂点：营业日用 OnShutterOpened/Closed、夜出用 AddAfterhourLocation+回店发奖、跨日连环用 StoreEvent+老档补前置纸条",
-      "must_avoid": "勿抄单文件 6000 行巨石与 297 个分散 ModData 散键（应结构化收纳）"
+      "must_avoid": "勿抄单文件 6000 行巨石与 297 个分散 ModData 散键（应结构化收纳）",
+      "micro_tip": "营业用OnShutter、夜出回店发奖、连环用StoreEvent+老档补纸条"
     },
     "共享开发/模组制作经验库/workshop-distill/生产链与自动化四例.md": {
-      "domains": ["machines", "items", "persistence", "architecture"],
+      "domains": [
+        "machines",
+        "items",
+        "persistence",
+        "architecture"
+      ],
       "trust": "L2-verified-host",
       "capability": "zero-cap",
       "best_for": "酿酒/化学/水培塔/Station 四例：标准机器四件套、零整段替换、DecodeNodes 存档迁移与 19 文件总控自动化",
-      "digest": "新机器走 SetupBatterySlot+SetupModuleBay+SetupManualSlot+InitMachinery+STANDARD/TURBO 标签+断电退款；0 处自建加工 tick；存档改名走 SaveManager.DecodeNodes Prefix；小体量自动化靠工作区容器+FindAllChildrenType+EndNight Postfix"
+      "digest": "新机器走 SetupBatterySlot+SetupModuleBay+SetupManualSlot+InitMachinery+STANDARD/TURBO 标签+断电退款；0 处自建加工 tick；存档改名走 SaveManager.DecodeNodes Prefix；小体量自动化靠工作区容器+FindAllChildrenType+EndNight Postfix",
+      "micro_tip": "标准机器四件套+DecodeNodes改名迁移+工作区容器EndNight自动化"
+    },
+    "共享开发/模组制作经验库/workshop-distill/立绘核心库与两个小工具.md": {
+      "domains": [
+        "media",
+        "architecture",
+        "machines"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "mixed",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "对比三大立绘框架契约、做零Patch场景贴图挂件或带守恒校验的过夜自动换电时查",
+      "digest": "立绘契约+tag换图+幂等;零补丁搬场景;OnHandlingNightlyServicesLate+SwapItemsInPlace",
+      "micro_tip": "_pending幂等;零补丁搬场景;SwapItemsInPlace验守恒",
+      "must_avoid": "PortraitRuntime非零能力且Unity缺源码;禁每帧Find;勿换unitCount!=1电池"
     },
     "共享开发/模组制作经验库/workshop-distill/美术与角色模组三级形态与立绘包规格.md": {
-      "domains": ["media", "customers"],
+      "domains": [
+        "media",
+        "customers"
+      ],
       "trust": "L2-verified-host",
       "capability": "zero-cap",
       "best_for": "美术模组三级形态（L1 3文件/L2 15文件/L3 58文件）、1728×1266 立绘硬规格与空壳资源包",
-      "digest": "立绘硬规格 1728×1266/PPU 600/pivot(0.5,0.4976)/Point/无mipmap；换脸只换 SpriteRenderer.sprite 且条件还原，不改 SpriteDict；纯图包可用空壳 DLL + provider JSON"
+      "digest": "立绘硬规格 1728×1266/PPU 600/pivot(0.5,0.4976)/Point/无mipmap；换脸只换 SpriteRenderer.sprite 且条件还原，不改 SpriteDict；纯图包可用空壳 DLL + provider JSON",
+      "micro_tip": "立绘1728x1266/PPU600/Point；换脸改SpriteRenderer不污染SpriteDict"
     },
     "共享开发/模组制作经验库/workshop-distill/补充两例-调试面板与双人联机.md": {
-      "domains": ["ui", "multiplayer", "workflow"],
+      "domains": [
+        "ui",
+        "multiplayer",
+        "workflow"
+      ],
       "trust": "L3-distilled-source",
       "capability": "mixed",
       "best_for": "调试面板（改 getter 不改字段）与 TCP+镜像视图双人联机路线对照",
-      "digest": "调试注入优先改 getter 不改原版字段；双人联机另辟 TCP 镜像视图路线；慎 Patch 全局 InputActionManager（多模组高频冲突区）"
+      "digest": "调试注入优先改 getter 不改原版字段；双人联机另辟 TCP 镜像视图路线；慎 Patch 全局 InputActionManager（多模组高频冲突区）",
+      "micro_tip": "调试改getter不改字段；慎Patch全局InputActionManager高频冲突区"
+    },
+    "共享开发/模组制作经验库/workshop-distill/超小功能三例-声望弹字·框选·到账语音.md": {
+      "domains": [
+        "ui",
+        "media",
+        "customers"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "做交易飘字差分、接管原版UI框选/拖动命中或零代码表Sounds/串行语音播报时查",
+      "digest": "OnItemTraded差分飘字;翻IsPointerOverDragSurface吞OnBeginDrag;Sounds/串行语音",
+      "micro_tip": "读终值用前后差分;判定位翻bool动作吞掉;语音自建源串行播",
+      "must_avoid": "禁空catch;翻bool必吞OnBeginDrag;窗表须Forget;挂OnModAssetsLoaded"
+    },
+    "共享开发/模组制作经验库/workshop-distill/超小功能三例之二-鉴定单·耐久显示·招牌.md": {
+      "domains": [
+        "items",
+        "ui",
+        "appraisal"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse"
+      ],
+      "best_for": "学百行最小模组差分搬运、图标像素级磨损防剧透或Transpiler换展示柜输入时查",
+      "digest": "GiveAppraisalFee引用差分;IsFeatureDiscovered防剧透像素换图;藏容器+换ShowcaseHelper读点",
+      "micro_tip": "无回调靠HashSet差分;磨损换Sprite不叠层;改展示换输入不抄公式",
+      "must_avoid": "SLIP_TITLE靠时间窗勿单用;未验禁露真值;19处Transpiler与EncodeNodes强耦合"
+    },
+    "共享开发/模组制作经验库/workshop-distill/超小功能四例-开局特性·保箱子·名额·对话框.md": {
+      "domains": [
+        "items",
+        "ui",
+        "customers"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study",
+        "pattern-reuse",
+        "troubleshoot"
+      ],
+      "best_for": "排查柜台满静默销毁、改开局特质校验或增新特质、以及修原版绝对坐标UI偏移时查",
+      "digest": "缓冲避DestroyIfUnplaced;封CanStart;AddStartingPerk六落点;四挂SetNormalMode幂等",
+      "micro_tip": "延迟上货须补空台欺骗;真值/显示分开不改cost;绝对YUI全赋值点幂等挂",
+      "must_avoid": "禁直上满柜防DestroyIfUnplaced;勿谎报true与改cost;禁夹带点名他Mod弹窗"
     },
     "共享开发/模组制作经验库/workshop-distill/金融与公司两个经济系统.md": {
-      "domains": ["economy", "architecture", "persistence", "customers"],
+      "domains": [
+        "economy",
+        "architecture",
+        "persistence",
+        "customers"
+      ],
       "trust": "L3-distilled-source",
       "capability": "zero-cap",
       "best_for": "影子账本（Exchange：不改原版价格+日种子回放 K 线）vs 内容经济（CorpPresence：九企档位）路线选型",
       "digest": "复杂经济首选 Exchange 影子账本（零改 GetCurrentValue、只存日种子按需回放历史 K 线、ModHelper.AddCredit 闭环）",
-      "must_avoid": "慎抄 CorpPresence 重度改写存档链"
+      "must_avoid": "慎抄 CorpPresence 重度改写存档链",
+      "micro_tip": "复杂经济走Exchange影子账本+日种子回放K线，零改GetCurrentValue"
     },
-
-    "工具库/templates/mod-patterns/ReadyChain.cs": {
-      "domains": ["items", "architecture"],
+    "共享开发/模组制作经验库/待办-代码改进项.md": {
+      "domains": [
+        "workflow",
+        "interop",
+        "architecture"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "n/a",
+      "intent": [
+        "troubleshoot",
+        "case-study"
+      ],
+      "best_for": "从 16 批蒸馏实证中筛出的我方双模组 P0~P3 代码重构与兼容加固清单",
+      "must_avoid": ""
+    },
+    "工具库/templates/mod-patterns/CrispPortraitCatalog.cs": {
+      "domains": [
+        "media",
+        "perf"
+      ],
       "trust": "L1-verified-runtime",
       "capability": "zero-cap",
-      "intent": ["pattern-reuse"],
-      "best_for": "店内就绪检查链（先判 PlayerStore.HasInstance）与 Unity 假 null 检测"
-    },
-    "工具库/templates/mod-patterns/HdCameraLease.cs": {
-      "domains": ["media", "interop"],
-      "trust": "L1-verified-runtime",
-      "capability": "zero-cap",
-      "intent": ["pattern-reuse"],
-      "best_for": "零反射跨模组 PixelPerfectCamera 高清去像素化共享租约"
+      "intent": [
+        "pattern-reuse"
+      ],
+      "best_for": "像素立绘无 Mipmap+Point 零显存泄漏重建、O(1)缓存与跨天/读档 SpriteDict 自愈",
+      "must_avoid": "Invalidate 时必须显式 Destroy 重建的 Texture2D/Sprite 防止显存泄漏"
     },
     "工具库/templates/mod-patterns/CustomInspectLens.cs": {
-      "domains": ["appraisal", "ui"],
+      "domains": [
+        "appraisal",
+        "ui"
+      ],
       "trust": "L1-verified-runtime",
       "capability": "zero-cap",
-      "intent": ["pattern-reuse"],
+      "intent": [
+        "pattern-reuse"
+      ],
       "best_for": "自定义物品接入原版放大镜双视图 + LensFollow 同步"
     },
-    "工具库/templates/mod-patterns/Es3SafePersistence.cs": {
-      "domains": ["persistence", "events"],
-      "trust": "L1-verified-runtime",
-      "capability": "zero-cap",
-      "intent": ["pattern-reuse"],
-      "best_for": "ES3Type.WriteProperties 浅克隆投影剥离（卸载不坏档），编译需引 Assembly-CSharp-firstpass.dll"
-    },
-    "工具库/templates/mod-patterns/ModalInputGate.cs": {
-      "domains": ["ui"],
-      "trust": "L1-verified-runtime",
-      "capability": "zero-cap",
-      "intent": ["pattern-reuse"],
-      "best_for": "游戏内大型模态面板防关窗点击穿透状态机与焦点清理"
-    },
-    "工具库/templates/mod-patterns/WavPcmDecoder.cs": {
-      "domains": ["media"],
-      "trust": "L1-verified-runtime",
-      "capability": "zero-cap",
-      "intent": ["pattern-reuse"],
-      "best_for": "纯 C# 解析 RIFF PCM16 WAV 转 AudioClip（零第三方依赖）"
-    },
-    "工具库/templates/mod-patterns/SafeSpriteHelper.cs": {
-      "domains": ["media", "items"],
-      "trust": "L1-verified-runtime",
-      "capability": "zero-cap",
-      "intent": ["pattern-reuse"],
-      "best_for": "像素贴图 Point 锐化、高清道具 PPU 计算、不可读纹理 GPU 导出 PNG"
-    },
-    "工具库/templates/mod-patterns/SpriteSheetMachineAnim.cs": {
-      "domains": ["machines", "media"],
-      "trust": "L1-verified-runtime",
-      "capability": "zero-cap",
-      "intent": ["pattern-reuse"],
-      "best_for": "8 列网格雪碧图机器运行动画（零存档污染、150ms 节流、供电与让位保护）"
-    },
-    "工具库/templates/mod-patterns/NewspaperArtHelper.cs": {
-      "domains": ["events", "media", "interop"],
-      "trust": "L1-verified-runtime",
-      "capability": "zero-cap",
-      "intent": ["pattern-reuse"],
-      "best_for": "报纸事件配图 9 色复古相框、CenterCrop 与 Better Newspapers 避让排版"
-    },
-    "工具库/templates/mod-patterns/TransientTagBoost.cs": {
-      "domains": ["machines", "interop"],
-      "trust": "L1-verified-runtime",
-      "capability": "zero-cap",
-      "intent": ["pattern-reuse"],
-      "best_for": "临时改数值→调原版→Postfix+Finalizer 还原（不整段替换原版机器入口）"
-    },
     "工具库/templates/mod-patterns/EpochCache.cs": {
-      "domains": ["perf", "economy"],
+      "domains": [
+        "perf",
+        "economy"
+      ],
       "trust": "L1-verified-runtime",
       "capability": "zero-cap",
-      "intent": ["pattern-reuse"],
+      "intent": [
+        "pattern-reuse"
+      ],
       "best_for": "ConditionalWeakTable + 全局 epoch 代际失效缓存（O(1) 清空、防内存泄漏）"
     },
-    "工具库/templates/mod-patterns/MachineManualSlot.cs": {
-      "domains": ["machines", "ui"],
+    "工具库/templates/mod-patterns/Es3SafePersistence.cs": {
+      "domains": [
+        "persistence",
+        "events"
+      ],
       "trust": "L1-verified-runtime",
       "capability": "zero-cap",
-      "intent": ["pattern-reuse"],
+      "intent": [
+        "pattern-reuse"
+      ],
+      "best_for": "ES3Type.WriteProperties 浅克隆投影剥离（卸载不坏档），编译需引 Assembly-CSharp-firstpass.dll"
+    },
+    "工具库/templates/mod-patterns/HdCameraLease.cs": {
+      "domains": [
+        "media",
+        "interop"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "best_for": "零反射跨模组 PixelPerfectCamera 高清去像素化共享租约"
+    },
+    "工具库/templates/mod-patterns/MachineManualSlot.cs": {
+      "domains": [
+        "machines",
+        "ui"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
       "best_for": "把说明文档直接放进原版机器自带说明书槽（免做额外 UI）"
     },
     "工具库/templates/mod-patterns/ModDataInbox.cs": {
-      "domains": ["multiplayer", "persistence", "workflow"],
+      "domains": [
+        "multiplayer",
+        "persistence",
+        "workflow"
+      ],
       "trust": "L1-verified-runtime",
       "capability": "zero-cap",
-      "intent": ["pattern-reuse"],
+      "intent": [
+        "pattern-reuse"
+      ],
       "best_for": "用原版白名单 ModData 文件收件箱与外部脚本/AI 通信（不开端口且实测零能力）"
+    },
+    "工具库/templates/mod-patterns/ModInteropApi.cs": {
+      "domains": [
+        "interop",
+        "architecture"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "best_for": "用 ModHelper.Expose/OnMessage/SendMessage 暴露版本化跨模组 API（零外部引用零反射）",
+      "must_avoid": "切勿靠反射搜第三方程序集替代 Expose/SendMessage（触发 reflection-external）"
+    },
+    "工具库/templates/mod-patterns/ModalInputGate.cs": {
+      "domains": [
+        "ui"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "best_for": "游戏内大型模态面板防关窗点击穿透状态机与焦点清理"
+    },
+    "工具库/templates/mod-patterns/NewspaperArtHelper.cs": {
+      "domains": [
+        "events",
+        "media",
+        "interop"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "best_for": "报纸事件配图 9 色复古相框、CenterCrop 与 Better Newspapers 避让排版"
+    },
+    "工具库/templates/mod-patterns/ReadyChain.cs": {
+      "domains": [
+        "items",
+        "architecture"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "best_for": "店内就绪检查链（先判 PlayerStore.HasInstance）与 Unity 假 null 检测"
+    },
+    "工具库/templates/mod-patterns/SafeSpriteHelper.cs": {
+      "domains": [
+        "media",
+        "items"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "best_for": "像素贴图 Point 锐化、高清道具 PPU 计算、不可读纹理 GPU 导出 PNG"
+    },
+    "工具库/templates/mod-patterns/SaveSafeStripPatch.cs": {
+      "domains": [
+        "persistence",
+        "customers",
+        "events"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "best_for": "SaveGame/InitialSave Prefix 摘除自定义 StoreService 与 StorePhoneClient、Finalizer 还原（卸载零污染）",
+      "must_avoid": "切勿把还原逻辑写在 Postfix 而不放 Finalizer（异常中断会丢内存态）"
+    },
+    "工具库/templates/mod-patterns/SpriteSheetMachineAnim.cs": {
+      "domains": [
+        "machines",
+        "media"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "best_for": "8 列网格雪碧图机器运行动画（零存档污染、150ms 节流、供电与让位保护）"
+    },
+    "工具库/templates/mod-patterns/TransientTagBoost.cs": {
+      "domains": [
+        "machines",
+        "interop"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "best_for": "临时改数值→调原版→Postfix+Finalizer 还原（不整段替换原版机器入口）"
+    },
+    "工具库/templates/mod-patterns/WavPcmDecoder.cs": {
+      "domains": [
+        "media"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "best_for": "纯 C# 解析 RIFF PCM16 WAV 转 AudioClip（零第三方依赖）"
+    },
+    "工具库/workshop-tools/DISTILL_SOP.md": {
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling",
+        "must-read-before-coding"
+      ],
+      "best_for": "工坊模组长期自动蒸馏作业书：选批纪律、9 步流水线、档案骨架与防漏提交红线",
+      "must_avoid": "反编译产物禁入 Git；退订欠账未清禁开新批"
     }
-  }
+  },
+  "version": "2.0.0"
 }

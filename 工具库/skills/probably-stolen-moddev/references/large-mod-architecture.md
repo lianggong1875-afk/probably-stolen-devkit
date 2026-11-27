@@ -60,6 +60,7 @@ bool inRegion = current != null && current.source == "my_region_id";
 | **(a) 静态委托表** | `DangpuPlus`（103 项 + 熔断） | 大量常驻每帧/GUI 逻辑 | 无法热摘除单功能补丁 |
 | **(b) 自描述 Patch 注册表** | `Probably Extend Framework`（`Func<MethodBase>` 延迟解析 + `Report()`） | 大量小补丁、需更新后秒定位失效点 | 排障最强，但 `UnpatchAll` 粒度偏粗 |
 | **(c) 特性化补丁对象表** | `Pen's QoL`（方法级 `Unpatch(target, method)`） | 玩家运行中热开关单项功能 | 支持 N 个开关合并 1 条补丁 |
+| **(d) 常驻全量 + 门卫早退** | `StoreQoLSuite`（71 Patch / 0 Unpatch） | 3~5 个彼此独立的设施 | 零摘挂时序风险，但首行必须早退 |
 
 **避坑铁律**：做动态表安装时，**每条补丁的 `AccessTools.Method` 解析与安装必须各自包 `try/catch`（记录 `LogError`）**——绝不可把解析放在大循环外的实参求值里导致一条 `AmbiguousMatchException` 拖垮后续全部补丁；且 `Applied` 标记要对照 `Harmony.GetPatchInfo(target)` 真实状态核实。
 
@@ -94,3 +95,14 @@ bool inRegion = current != null && current.source == "my_region_id";
 2. **四挂点铁律（零自建加工 tick）**：过夜批处理挂 `onCycleEndSlotItemFunc`；实时状态/贴图刷新挂 `onOneSecondItemFunc`（注意过夜化学模拟跑 360 次）；即时操作挂 `MachineryButton`；扩展原版机器走**克隆原版机器再改**或**链式包装原委托**，0 处整段替换。
 3. **安全存档 ID 迁移**：物品改名/换贴图/改键优先在 `SaveManager.DecodeNodes` Prefix 改 `SaveItemNode`（须先过三重归属校验防误伤他模组），比逐个 `onLoaded` 修补更干净。
 4. **事务防半截存档与 19 文件极简自动化**：多件原子增减用 `Busy` 集在事务期拦截 `CanSave`（回滚确认失败即锁定本局禁存）；小体量自动化不用重写原版机器，用一个工作区容器 + `GraphUtils.FindAllChildrenType<GameItem>` 扫内嵌原版机 + 自身 Tag 存开关 + `EndNight`/收获 Postfix 调度即可。
+
+## 11. batch-8~16 跨模组通用范式与 15 例冲突硬规律
+
+1. **读最终值用 Prefix 存档 + Postfix 差分**：声望/现金/进度受难度/perk/±200 封顶影响，绝不手工复算公式；前置存旧值、后置做差分即可拿到精确终值。
+2. **新玩法/夜出五档阶梯（先选最便宜的）**：①特性改随机源 → ②蹭原版地点换背景 → ②′`ModHelper.AddAfterhourLocation`（11 参）+ 自建全屏舞台 → ③′`AfterhourLocation.Register` 零反射真子类 → ③反射伪造出门（最重慎用）。
+3. **委托异步五态 + 先扣钱后发货防差评**：扣钱成功即落 `pending_delivery` 保持“已购买”态，发货失败不回滚购买显示而是在每日开卷帘重试；异步资源/音频必带三件套（`_loadGen++` 丢弃并 `Destroy` 旧资源 + `ConcurrentQueue` 主线程泵 + 让位前缀）。
+4. **跨模组冲突 4 大真实故障根因（见 `21-跨模组冲突案例库.md` 15 例）**：
+   - **功能整块不可用**：两个 Prefix 抢入口 `return false` 或 Transpiler 互相拆散指令 → 热点只用 Postfix 追加，闸门挂动作位不挂判定位；
+   - **卡在过夜/存档**：过夜链非事务写入 → 备份→改→复核→失败回滚；
+   - **主菜单崩 / 顺序静默失效**：漏判 `PlayerStore.HasInstance`、`HarmonyAfter("mod.<ID>")` 大小写与对方 `manifest.xml` `<ID>` 不符；
+   - **旁路状态机变半残**：Prefix 全 `return false` 导致动画/存档/音量/暂停全脱钩 → 必须照写原版状态 tag、走原版暂停与 `EmporiumOption` 音量。

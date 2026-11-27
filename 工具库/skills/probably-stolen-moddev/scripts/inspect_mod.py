@@ -62,6 +62,51 @@ def find_ilspycmd() -> Path | None:
     return None
 
 
+def extract_harmony_attrs(text: str) -> list:
+    """提取每个 [HarmonyPatch(...)] 的完整参数串。
+
+    不能用 `\\[HarmonyPatch\\(([^\\]]+)\\]` 这种正则：遇到
+    `[HarmonyPatch(typeof(X), "M", new Type[]{ typeof(string) })]`
+    会在 `Type[]` 的那个 `]` 上提前截断，导致这类补丁**被漏计**
+    （2026-11-28 实测：3828902221 实际 28 处只数到 10 处）。
+    这里改成括号平衡扫描，能正确处理嵌套的 [] 与 ()。
+    """
+    out = []
+    needle = "[HarmonyPatch"
+    i = 0
+    n = len(text)
+    while True:
+        s = text.find(needle, i)
+        if s < 0:
+            break
+        k = s + len(needle)
+        while k < n and text[k] in " \t\r\n":
+            k += 1
+        if k >= n or text[k] != "(":
+            i = s + len(needle)
+            continue
+        depth = 0
+        j = k
+        while j < n:
+            c = text[j]
+            if c == "(":
+                depth += 1
+            elif c == ")":
+                depth -= 1
+                if depth == 0:
+                    break
+            j += 1
+        args = text[k + 1:j] if j < n else ""
+        m = j + 1
+        while m < n and text[m] in " \t\r\n":
+            m += 1
+        if m < n and text[m] == "]":
+            m += 1
+        out.append(" ".join(args.split()))
+        i = m
+    return out
+
+
 def analyze_dir(src_dir: Path) -> dict:
     cs_files = sorted(p for p in src_dir.rglob("*.cs"))
     imods = []
@@ -87,8 +132,8 @@ def analyze_dir(src_dir: Path) -> dict:
         if PATTERNS["hot_activate"].search(text):
             has_hot_activate = True
 
-        for m in PATTERNS["harmony_attr_full"].finditer(text):
-            harmony_attrs.append(f"{rel}: [{m.group(1).strip()}]")
+        for args in extract_harmony_attrs(text):
+            harmony_attrs.append(f"{rel}: [{args}]")
         for m in PATTERNS["manual_patch"].finditer(text):
             manual_patches.append(f"{rel}: .Patch({m.group(1).strip()[:120]})")
 

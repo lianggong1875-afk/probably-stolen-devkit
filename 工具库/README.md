@@ -16,7 +16,7 @@
 | `New-ReleasePackage.ps1` | 统一零能力工坊封装脚本（支持 `-Mod Arcade|Freya|All`：公开版构建 + 封面 1280×720/<1MB 校验 + 扩展名白名单 + `ModScanner` 零能力校验） | `.\工具库\build\New-ReleasePackage.ps1 -Mod All` |
 | `New-ArcadeReleasePackage.ps1` | 兼容入口（转发至 `New-ReleasePackage.ps1 -Mod Arcade`） | `.\工具库\build\New-ArcadeReleasePackage.ps1` |
 | `Publish-Workshop.ps1` | 一键打包并上传 Steam 创意工坊（先跑 `New-ReleasePackage.ps1`，再编译并调用 `WorkshopUploader`；身份取自本机已登录 Steam 会话，不读密码/API key）。**默认不改线上简介**，要覆盖须显式加 `-SetDescription` | `.\工具库\build\Publish-Workshop.ps1 -Mod Arcade`<br>`... -Mod Freya -Id 3846263756 -Visibility 0 -Note "v0.7.1 ..."`<br>`... -Mod Arcade -VerifyOnly -Id 3846263529` |
-| `WorkshopUploader\` | 工坊工具（Steamworks.NET 驱动 `SteamUGC`）。**上传**：CreateItem / StartItemUpdate / SubmitItemUpdate（`--dry-run` 验连通、`--verify` 查服务端物品详情）；**研读别人模组**：`--list-subs` 列已订阅+本地安装路径、`--sub/--unsub` 订阅与取消、`--download` 触发下载、`--fetch` 订阅+下载一条龙（id 列表支持 `@清单文件`） | 由 `Publish-Workshop.ps1` 自动编译调用；研读用 `.\工具库\build\WorkshopUploader\bin\Release\net10.0\WorkshopUploader.exe --fetch "@清单.txt"`（需同目录有 `steam_api64.dll` + `steam_appid.txt`） |
+| `WorkshopUploader\` | 工坊工具（Steamworks.NET 驱动 `SteamUGC`）。**上传**：CreateItem / StartItemUpdate / SubmitItemUpdate（`--dry-run` 验连通、`--verify` 查服务端物品详情）；**研读别人模组**：`--list-subs` 列已订阅+本地安装路径、`--sub/--unsub` 订阅与取消、`--download` 触发下载、`--fetch` 订阅+下载一条龙（id 列表支持 `@清单文件`） | 由 `Publish-Workshop.ps1` 自动编译调用；研读用 `.\缓存文件夹\workshop-uploader\bin\WorkshopUploader.exe --fetch "@清单.txt"`（需同目录有 `steam_api64.dll` + `steam_appid.txt`） |
 | `ilspycmd\` | 反编译游戏宿主或第三方模组 DLL | `.\工具库\build\ilspycmd\ilspycmd.cmd -p -o <out> <dll>` |
 | `New-FeatureBranch.ps1` | **开工第一步**：校验分支命名与工作区洁净 → 建本地分支 → 用子进程把同名分支推云端（云端那份是本地硬盘故障时的唯一异地副本） | `.\工具库\build\New-FeatureBranch.ps1 -Name feat/arcade-burner-animation` |
 | `Invoke-PreMergeGate.ps1` | **合并前门禁**：①开发版编译 ②正式候选+零能力扫描 ③离线回归 ④跨模组冲突（ERROR 必须 0）⑤工作区洁净。任何一道红即停并打印原始输出，退出码可给 CI 用 | `.\工具库\build\Invoke-PreMergeGate.ps1 -Mod All`<br>`... -Mod Arcade -KeepGoing` |
@@ -28,15 +28,19 @@
 | --- | --- | --- |
 | `fetch_workshop.py` | 抓创意工坊列表（trend/mostrecent/toprated 多页）→ Steam 公开接口取名称/简介/订阅数/体积 → 落 `缓存文件夹\workshop-scan\items.md`；`brief` 子命令批量导出简介摘要用于筛选；`local` 对比本机已下载 | `python .\工具库\workshop-tools\fetch_workshop.py list --pages 10`<br>`... brief --ids-file 清单.txt --chars 620`<br>`... local` |
 | `distill_prep.py` | 对工坊物品目录批量反编译（自动挑主 DLL，排除 Unity/Harmony 等运行时库）+ 调 `inspect_mod.py` 生成架构透视报告到 `缓存文件夹\decomp_ws\_reports\` | `python .\工具库\workshop-tools\distill_prep.py --ids-file 清单.txt` |
+| `distill_queue.py` | **蒸馏队列与台账**（长期任务的唯一事实源）：`init` 从现有档案反推台账、`refresh` 刷新工坊池、`next` 按「订阅量×体积×扩展关键词」选下一批（纯美术重绘自动沉底）、`mark` 记账并登记待退订、`pend/unsubbed` 管理退订欠账、`status` 打印进度。台账落 `共享开发\模组制作经验库\蒸馏台账.json` | `python .\工具库\workshop-tools\distill_queue.py status --top 20`<br>`... next --n 10`<br>`... mark --batch 8 --ids a,b,c` |
+| `DISTILL_SOP.md` | **蒸馏作业书（自足）**：选批纪律、一条命令的九步流水线、档案骨架、每批收尾五件事、红线。新建会话/定时任务先读它 | 直接读 |
+
 | `conflict_scan.py` | **跨模组静态冲突扫描**：把我们自己的源码目录和一批工坊模组的反编译目录放一起扫，报「同一原版方法被谁和谁同时 Patch」「同一注册 id 被重复注册」「同名 DLL 不同哈希」「各自声明的能力」。内置原版热点分级（全局显示层/存档链/过夜链 = ERROR/WARN）。退出码 2=ERROR、3=WARN，可当提交门禁 | `python .\工具库\workshop-tools\conflict_scan.py --dir 深空电玩\src --dir "深空当铺：可能是群友\src" --dir 缓存文件夹\decomp_ws --out 缓存文件夹\conflict-report.md` |
 
 ## kb-tools\ —— 知识库打标、原版源码验真与技能同步
 
 | 文件 | 用途 | 跑法 |
 | --- | --- | --- |
-| `kb_pipeline.py` | 零侵入全库自动打标 + 生成压缩版 `CATALOG.json/CATALOG.md` 与 91:1 高密度速查卡 `DISTILL_DIGEST.md`（`build`）、按域/可信度/原版类秒查（`query`）、原版 `Assembly-CSharp` 符号验真与精标覆盖率质检（`audit`）、13 个 C# 模板真实编译 + `ModScanner` 零能力实测（`verify-templates`） | `python .\工具库\kb-tools\kb_pipeline.py build`<br>`... query --domain machines --trust L1,L2`<br>`... audit`<br>`... verify-templates` |
+| `kb_pipeline.py` | 零侵入全库自动打标 + 422 节级行号索引 + 生成瘦身 `CATALOG.md` 与 137:1 二次提纯卡 `DISTILL_DIGEST.md`（`build`）、极速低 Token 按节定位与内联截读（`lookup`）、紧凑单行标签查询（`query`）、原版 `Assembly-CSharp` 符号验真与 Token 预算体检（`audit`）、16 个 C# 模板真实编译 + `ModScanner` 零能力实测（`verify-templates`） | `python .\工具库\kb-tools\kb_pipeline.py lookup "ResolveSpriteByName" --read`<br>`... query --domain machines --trust L1,L2`<br>`... build`<br>`... audit`<br>`... verify-templates` |
+| `distilled-principles.md` | 跨 16 批 170 模组二次蒸馏提纯的 12 条黄金定论，自动注入 `DISTILL_DIGEST.md` 顶部 | `build` 自动合并 |
 | `taxonomy.json` | 六维受控标签词表（`layer`/`domain`/`trust`/`capability`/`intent`/`status`） | 自动读取 |
-| `tags-override.json` | 外置侧车覆写与反面教材红线（`must_avoid`）账本，不修改 `workshop-distill/*.md` 原文 | 按需维护 |
+| `tags-override.json` | 外置侧车精标与反面教材红线（`must_avoid`/`micro_tip`）账本（99/99 蒸馏全覆盖，零侵入原文） | 按需维护 |
 | `Sync-ModdevSkill.ps1` | 对齐 `conflict_scan.py`/`inspect_mod.py` 双副本，并将 `probably-stolen-moddev` 同步到 `$env:DSH_HOME\skills` + 逐文件 SHA-256 核验 | `powershell -NoProfile -ExecutionPolicy Bypass -File .\工具库\kb-tools\Sync-ModdevSkill.ps1` |
 
 ## regression\ —— 离线真测试
@@ -69,11 +73,11 @@
 
 ## templates\ —— 通用 C# 模组架构模板
 
-- `templates\mod-patterns\`：从工坊标杆模组蒸馏出的 13 个即插即用零依赖 C# 模式模板（全部通过真实编译 + 游戏 `ModScanner` 零能力实测，含 `ReadyChain.cs`、`HdCameraLease.cs`、`CustomInspectLens.cs`、`Es3SafePersistence.cs`、`ModalInputGate.cs`、`WavPcmDecoder.cs`、`SafeSpriteHelper.cs`、`SpriteSheetMachineAnim.cs`、`NewspaperArtHelper.cs`、`TransientTagBoost.cs`、`EpochCache.cs`、`MachineManualSlot.cs`、`ModDataInbox.cs`，详见 `templates\mod-patterns\README.md`）。
+- `templates\mod-patterns\`：从工坊标杆模组蒸馏出的 16 个即插即用零依赖 C# 模式模板（全部通过真实编译 + 游戏 `ModScanner` 零能力实测，含 `ReadyChain.cs`、`HdCameraLease.cs`、`CustomInspectLens.cs`、`Es3SafePersistence.cs`、`SaveSafeStripPatch.cs`、`ModalInputGate.cs`、`WavPcmDecoder.cs`、`SafeSpriteHelper.cs`、`CrispPortraitCatalog.cs`、`SpriteSheetMachineAnim.cs`、`NewspaperArtHelper.cs`、`TransientTagBoost.cs`、`EpochCache.cs`、`MachineManualSlot.cs`、`ModDataInbox.cs`、`ModInteropApi.cs`，详见 `templates\mod-patterns\README.md`）。
 
 ## skills\ —— 实用外部工具包与开发技能
 
-- `skills\probably-stolen-moddev\`：《深空当铺》全流程模组开发技能（整合 6 批 69 模组蒸馏精华，含 `SKILL.md`、`references/` 9 份专题手册（含新增 `large-mod-architecture.md`）、`assets/` 清单与入口骨架、`scripts/inspect_mod.py` + `scripts/conflict_scan.py`；同步与哈希核验走 `工具库\kb-tools\Sync-ModdevSkill.ps1`）。
+- `skills\probably-stolen-moddev\`：《深空当铺》全流程模组开发技能（整合 16 批 170 模组蒸馏精华与低 Token `lookup` 路由，含 `SKILL.md`、`references/` 9 份专题手册、`assets/` 清单与入口骨架、`scripts/inspect_mod.py` + `scripts/conflict_scan.py`；同步与哈希核验走 `工具库\kb-tools\Sync-ModdevSkill.ps1`）。
 - `skills\portrait-studio\`：Portrait Studio 立绘工具包与 SDK（详见 `skills\portrait-studio\README.md`）。
 - `skills\decomp-api\`：
   - `extract_api.py`：从反编译的 `.cs` 里秒级提取公开 API 清单（`python extract_api.py <file.cs> --summary`）。

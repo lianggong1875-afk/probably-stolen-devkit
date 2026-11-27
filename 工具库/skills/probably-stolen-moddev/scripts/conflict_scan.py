@@ -57,6 +57,27 @@ HOTSPOTS = {
     "AppraisalHelper.GetCorrectBaseValue": ("WARN", "Appraisal Assistant 指纹红线方法；严禁破坏性 Prefix 替换"),
     "InputActionManager.Update": ("WARN", "全局输入热点；多模组重叠须做模态门控并保证 Clear 兜底"),
     "PlayerStore.GetNextClient": ("WARN", "访客队列高频争夺点；多模组共存须显式声明优先级分相（准备/常规/裁决）"),
+    # —— 2026-11-28 蒸馏 batch-8~11 新增（每一条都有具体模组实证）——
+    "SpriteDict.GetSprite": ("WARN", "工坊最大热点（最多 5 方：Extended Appraisals / 原版风格立绘 / Extend Framework / 群友 / 电玩）；"
+                                     "必须只认自己的 key + Priority.Low 兜底 Postfix"),
+    "StoreUIManager.Update": ("WARN", "每帧方法；已知 5 方共用（ContainerLink / Machine Link / Liquid Pipe Hub / 群友 / 电玩），"
+                                     "新增前先按已有预算算，且只做自己的事"),
+    "StoreUIManager.Shoot": ("WARN", "射击模式进出；群友 + 电玩已重叠，须显式定序"),
+    "StoreUIManager.EnterShootingMode": ("WARN", "射击模式进入"),
+    "StoreUIManager.ExitShootingMode": ("WARN", "射击模式退出"),
+    "StoreClientListDict.CreateStoreClient": ("ERROR", "来客工厂；PC expansion 一家就 Patch 12 次且全靠 Prefix return false 抢结果，"
+                                                       "第三方先 return false 会静默废掉它的全部来客工厂。我们这侧永不返回 false"),
+    "StoreClientListDict.TryAddClient": ("WARN", "来客入队；与 CreateStoreClient 配套，须走 Postfix 或改引用参数"),
+    "ShowcaseHelper.GetDisplayCaseType": ("ERROR", "展柜类型；Proper Signboards 用 Transpiler 改写，"
+                                                   "Prefix 替换 __result 会让它失效 —— 只能 Postfix 追加"),
+    "ShowcaseHelper.GetTypeTotalValue": ("ERROR", "展柜估值；同上，被 Proper Signboards Transpiler 覆盖"),
+    "ShowcaseHelper.HasMerchandise": ("WARN", "展柜是否有货；被 Proper Signboards 换成 DisplayItems"),
+    "ShowcaseHelper.GetDisplayCasePrediction": ("WARN", "展柜客流预测；它在这里只换调用操作数（IsShowcaseContainItemById）"),
+    "GameItem.GetNegociatedValue": ("WARN", "问价；有人（Perks: Probably Fun Trait34）用 Prefix return false 递归调用，"
+                                            "会让所有挂 Postfix 的模组再跑一遍"),
+    "TypeHelper.GetTypeDisplayName": ("WARN", "品类显示名；用了非原版品类类型就必须同时接管它与 GetTypeColor，否则刷 Translation Error"),
+    "TypeHelper.GetTypeColor": ("WARN", "品类颜色；与 GetTypeDisplayName 成对"),
+    "StoreStation.HandleStoreRequests": ("INFO", "市场委托刷新；最便宜的'周单'入口（Postfix 造 StoreRequest 即可）"),
 }
 
 # 能注册出"全局标识"的方法名 → 注册的是什么

@@ -10,8 +10,8 @@
 
 用法：
   python 工具库/kb-tools/kb_pipeline.py build
-  python 工具库/kb-tools/kb_pipeline.py query --domain machines --trust L1,L2
-  python 工具库/kb-tools/kb_pipeline.py query --api StoreEventManager
+  python 工具库/kb-tools/kb_pipeline.py lookup "ResolveSpriteByName 图标自愈" [--read]
+  python 工具库/kb-tools/kb_pipeline.py query --domain machines --trust L1,L2 [--verbose]
   python 工具库/kb-tools/kb_pipeline.py audit
   python 工具库/kb-tools/kb_pipeline.py verify-templates
 """
@@ -35,6 +35,7 @@ TEMPLATES_DIR = os.path.join(WORKSPACE, "工具库", "templates", "mod-patterns"
 SKILL_LOCAL = os.path.join(WORKSPACE, "工具库", "skills", "probably-stolen-moddev")
 TAXONOMY_PATH = os.path.join(HERE, "taxonomy.json")
 OVERRIDE_PATH = os.path.join(HERE, "tags-override.json")
+PRINCIPLES_MD = os.path.join(HERE, "distilled-principles.md")
 CATALOG_JSON = os.path.join(KB_DIR, "CATALOG.json")
 CATALOG_MD = os.path.join(KB_DIR, "CATALOG.md")
 DIGEST_MD = os.path.join(KB_DIR, "DISTILL_DIGEST.md")
@@ -205,6 +206,71 @@ def summarize_best_for(text, title):
     return title
 
 
+def est_tokens(text):
+    """粗估中英混合 Markdown 的 Token 消耗（CJK~1.15 tok/字，ASCII~0.32 tok/字符）。"""
+    cjk = sum(1 for c in text if "\u4e00" <= c <= "\u9fff")
+    return int(cjk * 1.15 + (len(text) - cjk) * 0.32)
+
+
+def extract_sections(rel, text, ref_types):
+    """为大型经验文档按 ## / ### 提取精确行号小节索引，支撑低 Token 按节切读。"""
+    lines = text.splitlines()
+    if len(lines) < 70:
+        return []
+    headings = []
+    in_code = False
+    cur_h2 = ""
+    for idx, raw in enumerate(lines, 1):
+        s = raw.strip()
+        if s.startswith("```"):
+            in_code = not in_code
+            continue
+        if in_code:
+            continue
+        m = re.match(r"^(#{2,3})\s+(.+)$", s)
+        if m:
+            level = len(m.group(1))
+            title = re.sub(r"\s*#+$", "", m.group(2)).strip()
+            if level == 2:
+                cur_h2 = title
+                full_h = title
+            else:
+                full_h = f"{cur_h2} > {title}" if cur_h2 else title
+            headings.append((idx, full_h))
+    if not headings:
+        return []
+
+    sections = []
+    for i, (start_ln, full_h) in enumerate(headings):
+        end_ln = (headings[i + 1][0] - 1) if i + 1 < len(headings) else len(lines)
+        while end_ln > start_ln and not lines[end_ln - 1].strip():
+            end_ln -= 1
+        sec_lines = lines[start_ln - 1 : end_ln]
+        sec_text = "\n".join(sec_lines)
+        # 取首条非标题、非分隔线、非表格线的实质内容做摘要
+        snippet = ""
+        for sl in sec_lines[1:]:
+            st = sl.strip()
+            if not st or st.startswith(("#", "```", "---", "| ---", "|---")):
+                continue
+            st = re.sub(r"^[>\-\*\d\.\s]+", "", st)
+            st = re.sub(r"\*\*|`", "", st)
+            if len(st) >= 8:
+                snippet = st[:68]
+                break
+        sections.append({
+            "doc": rel,
+            "heading": full_h,
+            "start_line": start_ln,
+            "end_line": end_ln,
+            "lines": end_ln - start_ln + 1,
+            "est_tokens": est_tokens(sec_text),
+            "api_symbols": extract_api_symbols(sec_text, ref_types, limit=8),
+            "snippet": snippet,
+        })
+    return sections
+
+
 def build_catalog(out_dir=None):
     taxonomy = json.loads(read_text(TAXONOMY_PATH))
     overrides = json.loads(read_text(OVERRIDE_PATH)).get("entries", {})
@@ -216,14 +282,18 @@ def build_catalog(out_dir=None):
         os.makedirs(out_dir, exist_ok=True)
 
     entries = []
+    sections = []
 
-    # 1. 经验库主文档（01..20）+ 核心协作文档
+    # 1. 经验库主文档（01..21+）+ 核心协作文档
     guide_paths = sorted(glob.glob(os.path.join(KB_DIR, "[0-9][0-9]-*.md")))
     extra_guides = [
+        os.path.join(KB_DIR, "README.md"),
+        os.path.join(KB_DIR, "待办-代码改进项.md"),
         os.path.join(WORKSPACE, "共享开发", "开发流程与经验.md"),
         os.path.join(WORKSPACE, "共享开发", "GLOSSARY.md"),
         os.path.join(WORKSPACE, "共享开发", "分支与备份规范.md"),
         os.path.join(WORKSPACE, "共享开发", "SKILL.md"),
+        os.path.join(WORKSPACE, "工具库", "workshop-tools", "DISTILL_SOP.md"),
     ]
     for p in guide_paths + [g for g in extra_guides if os.path.isfile(g)]:
         rel = rel_posix(p)
@@ -242,12 +312,15 @@ def build_catalog(out_dir=None):
             "intent": ov.get("intent", ["api-lookup"]),
             "status": ov.get("status", "active"),
             "lines": len(txt.splitlines()),
+            "est_tokens": est_tokens(txt),
             "workshop_ids": extract_workshop_ids(os.path.basename(p), txt),
             "api_symbols": extract_api_symbols(txt, ref_types, limit=18),
             "best_for": ov.get("best_for", summarize_best_for(txt, title)),
             "must_avoid": ov.get("must_avoid", ""),
         }
         entries.append(entry)
+        if layer == "doc-guide":
+            sections.extend(extract_sections(rel, txt, ref_types))
 
     # 2. 工坊蒸馏档案（自动扫描全部 .md，天然兼容另一边持续增量写入）
     for p in sorted(glob.glob(os.path.join(DISTILL_DIR, "*.md"))):
@@ -268,17 +341,20 @@ def build_catalog(out_dir=None):
             "intent": ov.get("intent", ["case-study"]),
             "status": ov.get("status", "active"),
             "lines": len(txt.splitlines()),
+            "est_tokens": est_tokens(txt),
             "workshop_ids": extract_workshop_ids(os.path.basename(p), txt),
             "api_symbols": extract_api_symbols(txt, ref_types, limit=14),
             "best_for": ov.get("best_for", summarize_best_for(txt, title)),
             "digest": ov.get("digest", ""),
+            "micro_tip": ov.get("micro_tip", ""),
             "must_avoid": ov.get("must_avoid", "") if rel in overrides else ("；".join(anti[:2]) if anti else ""),
             "curated": rel in overrides,
         }
         entries.append(entry)
 
-    # 3. C# 架构模板（13 个）
-    for p in sorted(glob.glob(os.path.join(TEMPLATES_DIR, "*.cs"))):
+    # 3. C# 架构模板（自动扫描全部 .cs）
+    tpl_files = sorted(glob.glob(os.path.join(TEMPLATES_DIR, "*.cs")))
+    for p in tpl_files:
         rel = rel_posix(p)
         txt = read_text(p)
         ov = overrides.get(rel, {})
@@ -293,6 +369,7 @@ def build_catalog(out_dir=None):
             "intent": ov.get("intent", ["pattern-reuse"]),
             "status": ov.get("status", "active"),
             "lines": len(txt.splitlines()),
+            "est_tokens": est_tokens(txt),
             "workshop_ids": extract_workshop_ids(os.path.basename(p), txt),
             "api_symbols": extract_api_symbols(txt, ref_types, limit=12),
             "best_for": ov.get("best_for", os.path.basename(p)),
@@ -301,6 +378,7 @@ def build_catalog(out_dir=None):
         entries.append(entry)
 
     # 4. 核心工具脚本与主技能
+    tpl_cnt = len(tpl_files)
     tool_catalog = [
         ("工具库/build/Build-Mod.ps1", ["workflow"], "L1-verified-runtime", "n/a", ["tooling"], "统一编译开发版/-PublicRelease零能力版并支持-Scan/-Install"),
         ("工具库/build/Test-ArcadeLoaderScan.ps1", ["workflow", "interop"], "L1-verified-runtime", "n/a", ["tooling"], "调用游戏真实 ModScanner 离线扫描候选 DLL 权限"),
@@ -311,15 +389,16 @@ def build_catalog(out_dir=None):
         ("工具库/build/Backup-All.ps1", ["workflow"], "L1-verified-runtime", "n/a", ["tooling"], "本地裸仓镜像 + bundle + 美术文案资产包一键多路备份"),
         ("工具库/regression/Run-Regression.ps1", ["workflow"], "L1-verified-runtime", "n/a", ["tooling"], "运行离线真行为与核心不变量回归套件"),
         ("工具库/workshop-tools/fetch_workshop.py", ["workflow"], "L1-verified-runtime", "n/a", ["tooling"], "抓取 Steam 创意工坊列表/简介摘要/本地订阅对比"),
+        ("工具库/workshop-tools/distill_queue.py", ["workflow"], "L1-verified-runtime", "n/a", ["tooling"], "工坊蒸馏队列与唯一事实源台账（选批打分/记账/退订欠账体检）"),
         ("工具库/workshop-tools/distill_prep.py", ["workflow"], "L1-verified-runtime", "n/a", ["tooling"], "批量挑主 DLL 反编译并生成透视报告"),
-        ("工具库/workshop-tools/conflict_scan.py", ["interop", "workflow"], "L1-verified-runtime", "n/a", ["tooling"], "跨模组静态冲突扫描（支持 --gate 与 HarmonyBefore/After 识别）"),
+        ("工具库/workshop-tools/conflict_scan.py", ["interop", "workflow"], "L1-verified-runtime", "n/a", ["tooling"], "跨模组静态冲突扫描（41热点/--gate/HarmonyBefore/After识别）"),
         ("工具库/skills/decomp-api/inspect_mod.py", ["workflow", "interop"], "L1-verified-runtime", "n/a", ["tooling"], "秒级透视源码目录或 DLL 的 IMod/HarmonyPatch/Hook/权限信号"),
         ("工具库/skills/decomp-api/extract_api.py", ["workflow"], "L1-verified-runtime", "n/a", ["tooling"], "从反编译 .cs 秒级提取公开 API 清单"),
-        ("工具库/kb-tools/kb_pipeline.py", ["workflow", "architecture"], "L1-verified-runtime", "n/a", ["tooling"], "知识库自动打标、原版源码验真、按标签秒检、13模板零能力实测"),
+        ("工具库/kb-tools/kb_pipeline.py", ["workflow", "architecture"], "L1-verified-runtime", "n/a", ["tooling"], f"知识库打标/节级索引/极速低Token定位(lookup)/源码验真/{tpl_cnt}模板零能力实测"),
         ("工具库/kb-tools/Sync-ModdevSkill.ps1", ["workflow"], "L1-verified-runtime", "n/a", ["tooling"], "对齐双副本脚本并同步 probably-stolen-moddev 到 DSH_HOME（SHA-256 核验）"),
         ("工具库/img/pack-spritesheet.py", ["machines", "media"], "L1-verified-runtime", "n/a", ["tooling"], "机器 8 列雪碧图打包/校验/拆解"),
         ("工具库/img/newsprint-tone.py", ["events", "media"], "L1-verified-runtime", "n/a", ["tooling"], "9 色泛黄新闻纸 + 2x2 半色调网点图片转换"),
-        ("工具库/skills/probably-stolen-moddev/SKILL.md", ["architecture", "items", "machines", "appraisal", "events", "afterhour", "media", "interop", "workflow"], "L1-verified-runtime", "zero-cap", ["must-read-before-coding", "pattern-reuse"], "《深空当铺》全流程核心领域开发技能（路由总入口）"),
+        ("工具库/skills/probably-stolen-moddev/SKILL.md", ["architecture", "items", "machines", "appraisal", "events", "afterhour", "media", "interop", "workflow"], "L1-verified-runtime", "zero-cap", ["must-read-before-coding", "pattern-reuse"], "《深空当铺》全流程核心领域开发技能（低Token渐进路由总入口）"),
         ("共享开发/AI技能库/README.md", ["workflow"], "L1-verified-runtime", "n/a", ["tooling"], "流程层 AI 技能库（mattpocock/skills 27 个中文化方法论与工作区落地）"),
     ]
     for rel, doms, trust, cap, intent, desc in tool_catalog:
@@ -339,6 +418,7 @@ def build_catalog(out_dir=None):
             "intent": intent,
             "status": "active",
             "lines": len(txt.splitlines()),
+            "est_tokens": est_tokens(txt),
             "workshop_ids": [],
             "api_symbols": [],
             "best_for": desc,
@@ -348,6 +428,7 @@ def build_catalog(out_dir=None):
     # 汇总统计与原版符号反向索引
     stats = {
         "total": len(entries),
+        "sections_total": len(sections),
         "by_layer": {},
         "by_trust": {},
         "by_domain": {},
@@ -363,22 +444,23 @@ def build_catalog(out_dir=None):
             api_index.setdefault(sym, []).append(e["path"])
 
     catalog = {
-        "schema_version": "1.0",
+        "schema_version": "2.0",
         "generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "taxonomy_ref": "工具库/kb-tools/taxonomy.json",
         "stats": stats,
         "entries": entries,
+        "sections": sections,
         "api_index": {k: v for k, v in sorted(api_index.items()) if len(v) >= 2},
     }
 
     with open(target_json, "w", encoding="utf-8", newline="\n") as f:
-        json.dump(catalog, f, ensure_ascii=False, indent=2)
+        json.dump(catalog, f, ensure_ascii=False, separators=(",", ":"))
 
     write_catalog_md(catalog, taxonomy, target_md)
     write_digest_md(catalog, target_digest)
     distill_total = stats["by_layer"].get("workshop-distill", 0)
     curated_cnt = sum(1 for e in entries if e["layer"] == "workshop-distill" and e.get("curated"))
-    print(f"[OK] CATALOG.json / CATALOG.md / DISTILL_DIGEST.md 已生成（目录：{os.path.dirname(target_json)}）：共 {stats['total']} 项 "
+    print(f"[OK] CATALOG.json / CATALOG.md / DISTILL_DIGEST.md 已生成（目录：{os.path.dirname(target_json)}）：共 {stats['total']} 项 + {len(sections)} 个手册小节 "
           f"(doc-guide={stats['by_layer'].get('doc-guide',0)}, "
           f"workshop-distill={distill_total}[精标{curated_cnt}/{distill_total}], "
           f"template-cs={stats['by_layer'].get('template-cs',0)}, "
@@ -397,78 +479,88 @@ def trust_badge(trust):
 
 
 def write_catalog_md(catalog, taxonomy, target_md=CATALOG_MD):
-    """极致压缩版总索引：每项仅出现一次，按域一行速查，彻底消除跨域重复膨胀。"""
+    """低 Token 瘦身版总路由索引：消除与 DISTILL_DIGEST.md 的 99 条蒸馏重复表，标出大手册 Token 预算与 lookup 入口。"""
     dom_desc = taxonomy["dimensions"]["domain"]
     entries = [e for e in catalog["entries"] if e.get("status") != "superseded"]
     st = catalog["stats"]
+    tpl_cnt = st["by_layer"].get("template-cs", 0)
 
     lines = [
-        "# 深空当铺工作区｜压缩版打标总索引（CATALOG）",
+        "# 深空当铺工作区｜低 Token 打标总路由（CATALOG）",
         "",
         f"> **自动生成**（`python 工具库\\kb-tools\\kb_pipeline.py build`）｜更新时间：`{catalog['generated_at']}`",
-        "> **零侵入并发设计**：不改 `workshop-distill/*.md` 正文；新批次落盘后重跑 `build` 即可刷新本索引与 [蒸馏压缩速查卡](<DISTILL_DIGEST.md>)。",
-        "> **秒级检索**：`python 工具库\\kb-tools\\kb_pipeline.py query --domain <域> [--trust L1,L2] [--api <原版类>] [--keyword <词>]`",
+        "> **省 Token 铁律**：不要整篇硬读 50~100 KB 大手册！查接口/踩坑先跑：",
+        "> `python 工具库\\kb-tools\\kb_pipeline.py lookup \"<关键词或类名>\" [--read]`（直给精确行号小节 + 模板 + 红线，单次 ~400 tok）",
+        "> 速扫全部工坊结论 → [DISTILL_DIGEST.md](<DISTILL_DIGEST.md>) ｜ 按域筛选 → `kb_pipeline.py query --domain <域>`",
         "",
-        f"- **总计**：**{st['total']}** 项（规范 `{st['by_layer'].get('doc-guide',0)}` ｜ 蒸馏档案 `{st['by_layer'].get('workshop-distill',0)}` ｜ 零能力 C# 模板 `{st['by_layer'].get('template-cs',0)}` ｜ 工具 `{st['by_layer'].get('tool-script',0)}` ｜ 技能 `{st['by_layer'].get('skill',0)}`），覆盖 **{st['unique_workshop_ids']}** 个独立工坊 ID。",
-        "- **可信度**：`L1实测`（编译/ModScanner/真机验过）＞ `L2源码核对`（核对 `Assembly-CSharp`）＞ `L3反编译` ＞ `L4⚠️含禁抄`（仅学原理，严禁照抄）。",
+        f"- **总计**：**{st['total']}** 项 + **{st.get('sections_total', 0)}** 个手册小节索引（规范 `{st['by_layer'].get('doc-guide',0)}` ｜ 蒸馏 `{st['by_layer'].get('workshop-distill',0)}` ｜ 零能力模板 `{tpl_cnt}` ｜ 工具 `{st['by_layer'].get('tool-script',0)}` ｜ 技能 `{st['by_layer'].get('skill',0)}`），覆盖 **{st['unique_workshop_ids']}** 个独立工坊 ID。",
+        "- **可信度**：`L1实测`（编译/ModScanner/真机）＞ `L2源码核对`（`Assembly-CSharp`）＞ `L3反编译` ＞ `L4⚠️含禁抄`（仅学原理，严禁照抄）。",
         "",
-        "## 1. 按系统域一行路由（零重复）",
+        "## 1. 按系统域一行路由",
         "",
         "| 域 | 适用场景 | 核心规范 / 模板 / 关键工具与代表蒸馏 |",
         "| --- | --- | --- |",
     ]
 
-    layer_order = {"skill": 0, "doc-guide": 1, "template-cs": 2, "tool-script": 3, "workshop-distill": 4}
+    layer_order = {"doc-guide": 0, "template-cs": 1, "tool-script": 2, "workshop-distill": 3, "skill": 4}
     for dom, desc in dom_desc.items():
-        matched = [e for e in entries if dom in e["domains"]]
+        matched = [e for e in entries if dom in e["domains"] and e["layer"] != "skill"]
         if not matched:
             continue
         matched.sort(key=lambda e: (layer_order.get(e["layer"], 9), e["trust"], e["path"]))
         picks = []
-        for e in matched:
-            if e["layer"] == "skill" and len(matched) > 5:
-                continue
+        for e in matched[:5]:
             rel_from_kb = os.path.relpath(os.path.join(WORKSPACE, e["path"].replace("/", os.sep)), KB_DIR).replace("\\", "/")
-            short = os.path.splitext(os.path.basename(e["path"]))[0]
+            short = re.sub(r"^38\d{8}-", "", os.path.splitext(os.path.basename(e["path"]))[0])
             if e["layer"] == "template-cs":
                 short = os.path.basename(e["path"])
             prefix = "⚠️" if e["trust"].startswith("L4") else ""
             picks.append(f"{prefix}[{short}](<{rel_from_kb}>)")
-        lines.append(f"| `{dom}` | {desc} | {' · '.join(picks[:12])}{' …' if len(picks) > 12 else ''} |")
+        more = f" (+{len(matched)-5})" if len(matched) > 5 else ""
+        lines.append(f"| `{dom}` | {desc} | {' · '.join(picks)}{more} |")
 
-    lines.extend(["", "## 2. 全量资产唯一总表（每项只写 1 次）", ""])
-    sections = [
-        ("核心经验规范与工程手册", "doc-guide"),
-        ("零能力 C# 架构模板（13 个全通过真实编译 + ModScanner）", "template-cs"),
-        ("工坊反编译蒸馏档案（压缩要点见 DISTILL_DIGEST.md）", "workshop-distill"),
+    lines.extend(["", "## 2. 核心资产总表（99 份蒸馏明细已压缩至 DISTILL_DIGEST.md，此处不重复）", ""])
+    sections_cfg = [
+        ("核心经验规范与工程手册（>5k tok 标注 ⚡ 请用 lookup 按节切读）", "doc-guide"),
+        (f"零能力 C# 架构模板（{tpl_cnt} 个全通过真实编译 + ModScanner）", "template-cs"),
         ("工具脚本与 AI 技能", "tool-script"),
     ]
-    for sec_title, target_layer in sections:
+    for sec_title, target_layer in sections_cfg:
         group = [e for e in entries if e["layer"] == target_layer or (target_layer == "tool-script" and e["layer"] == "skill")]
         group.sort(key=lambda e: (e["trust"], e["path"]))
         lines.append(f"### {sec_title}（{len(group)} 项）")
         lines.append("")
-        lines.append("| 可信度 | 能力 | 域 | 文件 | 一句话用途 / ⚠️ 别抄 |")
-        lines.append("| --- | --- | --- | --- | --- |")
-        for e in group:
-            rel_from_kb = os.path.relpath(os.path.join(WORKSPACE, e["path"].replace("/", os.sep)), KB_DIR).replace("\\", "/")
-            label = os.path.basename(e["path"])
-            doms = ",".join(e["domains"][:3])
-            note = e["best_for"].replace("|", "\\|")
-            if e["must_avoid"]:
-                note += f" **⚠️ {e['must_avoid'].replace('|', '\\|')}**"
-            lines.append(f"| {trust_badge(e['trust'])} | `{e['capability']}` | `{doms}` | [{label}](<{rel_from_kb}>) | {note} |")
+        if target_layer == "doc-guide":
+            lines.append("| 可信度 | 体量 | 域 | 文件 | 一句话用途 |")
+            lines.append("| --- | --- | --- | --- | --- |")
+            for e in group:
+                rel_from_kb = os.path.relpath(os.path.join(WORKSPACE, e["path"].replace("/", os.sep)), KB_DIR).replace("\\", "/")
+                label = os.path.basename(e["path"])
+                doms = ",".join(e["domains"][:2])
+                tok = e.get("est_tokens", 0)
+                size_tag = f"⚡~{tok/1000:.1f}k" if tok >= 5000 else f"~{tok}"
+                note = e["best_for"].replace("|", "\\|")
+                lines.append(f"| {trust_badge(e['trust'])} | `{size_tag}` | `{doms}` | [{label}](<{rel_from_kb}>) | {note} |")
+        else:
+            lines.append("| 可信度 | 能力 | 域 | 文件 | 一句话用途 |")
+            lines.append("| --- | --- | --- | --- | --- |")
+            for e in group:
+                rel_from_kb = os.path.relpath(os.path.join(WORKSPACE, e["path"].replace("/", os.sep)), KB_DIR).replace("\\", "/")
+                label = os.path.basename(e["path"])
+                doms = ",".join(e["domains"][:2])
+                note = e["best_for"].replace("|", "\\|")
+                lines.append(f"| {trust_badge(e['trust'])} | `{e['capability']}` | `{doms}` | [{label}](<{rel_from_kb}>) | {note} |")
         lines.append("")
 
-    cautions = [e for e in entries if e["must_avoid"]]
+    cautions = [e for e in entries if e["trust"].startswith("L4") and e.get("must_avoid")]
     if cautions:
-        lines.append("## 3. ⚠️ 全库反面教材与禁抄红线汇总")
+        lines.append(f"## 3. ⚠️ L4 级反面教材与严禁照抄红线（{len(cautions)} 项）")
         lines.append("")
-        lines.append("| 资料 | 可信度 | 绝对不要抄什么 |")
-        lines.append("| --- | --- | --- |")
-        for e in cautions:
+        lines.append("| 资料 | 绝对不要抄什么 |")
+        lines.append("| --- | --- |")
+        for e in sorted(cautions, key=lambda x: x["path"]):
             rel_from_kb = os.path.relpath(os.path.join(WORKSPACE, e["path"].replace("/", os.sep)), KB_DIR).replace("\\", "/")
-            lines.append(f"| [{os.path.basename(e['path'])}](<{rel_from_kb}>) | {trust_badge(e['trust'])} | {e['must_avoid'].replace('|', '\\|')} |")
+            lines.append(f"| [{os.path.basename(e['path'])}](<{rel_from_kb}>) | {e['must_avoid'].replace('|', '\\|')} |")
         lines.append("")
 
     with open(target_md, "w", encoding="utf-8", newline="\n") as f:
@@ -476,29 +568,36 @@ def write_catalog_md(catalog, taxonomy, target_md=CATALOG_MD):
 
 
 def write_digest_md(catalog, target_digest=DIGEST_MD):
-    """生成超紧凑蒸馏速查压缩卡：把 1.3MB+ 原始蒸馏档案压缩为 ~110 行高密度决策卡片。"""
+    """二次蒸馏金字塔速查卡：头部 12 条跨 170 模组黄金定论 + 主体 99 份极简增量招式（压控 Token 防止随批次线性爆炸）。"""
     distills = [e for e in catalog["entries"] if e["layer"] == "workshop-distill"]
     total_lines = sum(e.get("lines", 0) for e in distills)
 
     clusters = [
-        ("一、大型 / DLC / 巨型架构与合集组织", {"architecture"}),
+        ("一、大型 / DLC / 巨型架构与合集", {"architecture"}),
         ("二、机器、生产链、自动化与流体", {"machines"}),
         ("三、物品、容器、整理排序与编辑", {"items"}),
-        ("四、事件、经济、拍卖与跨日玩法", {"events", "economy"}),
-        ("五、鉴定、放大镜、顾客与夜出", {"appraisal", "afterhour", "customers"}),
-        ("六、UI、字体本地化与交互隔离", {"ui"}),
-        ("七、立绘、美术规格与贴图框架", {"media"}),
-        ("八、性能优化、缓存与读档管线", {"perf", "persistence"}),
-        ("九、跨模组互操作、冲突、联机与外部通道", {"interop", "multiplayer", "workflow"}),
+        ("四、事件、经济、交易与跨日玩法", {"events", "economy"}),
+        ("五、鉴定、顾客、委托与夜出", {"appraisal", "afterhour", "customers"}),
+        ("六、UI、布局交互与本地化", {"ui"}),
+        ("七、立绘、美术、贴图与音频", {"media"}),
+        ("八、性能优化、缓存与存档读档", {"perf", "persistence"}),
+        ("九、跨模组冲突、互操作与外部通道", {"interop", "multiplayer", "workflow"}),
     ]
 
     lines = [
-        "# 工坊蒸馏知识｜高密度压缩速查卡（DISTILL_DIGEST）",
+        "# 工坊蒸馏知识｜二次提纯高密度速查卡（DISTILL_DIGEST）",
         "",
-        f"> **压缩源**：{len(distills)} 份工坊蒸馏档案（原始 {total_lines:,} 行 / 涵盖 {catalog['stats']['unique_workshop_ids']} 个独立工坊 ID）→ 无损提纯为一张紧凑速查卡。更新时间：`{catalog['generated_at']}`。",
-        "> **用法**：写方案/排雷前先扫这张卡（每条 1 行直给结论 + ⚠️ 禁抄红线），需要原样 C# 行号证据时再点开对应档案。",
+        f"> **压缩源**：{len(distills)} 份工坊蒸馏档案（原始 {total_lines:,} 行 / 涵盖 {catalog['stats']['unique_workshop_ids']} 个独立工坊 ID）→ **金字塔两级提纯**（更新时间：`{catalog['generated_at']}`）。",
+        "> **省 Token 用法**：先扫「零、12 条黄金定论」解决 90% 决策；需查独门案例再扫下方 1 行增量招式；需原版签名/行号直接跑 `python 工具库/kb-tools/kb_pipeline.py lookup \"<词>\" --read`。",
         "",
     ]
+
+    if os.path.isfile(PRINCIPLES_MD):
+        lines.append(read_text(PRINCIPLES_MD).strip())
+        lines.append("")
+
+    lines.append("---")
+    lines.append("")
 
     placed = set()
     for heading, dom_set in clusters:
@@ -506,7 +605,6 @@ def write_digest_md(catalog, target_digest=DIGEST_MD):
         for e in distills:
             if e["path"] in placed:
                 continue
-            # 按主域（第一个 domain）优先归桶，避免同一份档案被印两遍
             primary = e["domains"][0] if e["domains"] else "architecture"
             if primary in dom_set:
                 bucket.append(e)
@@ -514,31 +612,176 @@ def write_digest_md(catalog, target_digest=DIGEST_MD):
         if not bucket:
             continue
         bucket.sort(key=lambda x: (x["trust"], x["path"]))
-        lines.append(f"## {heading}（{len(bucket)} 份）")
+        lines.append(f"## {heading}（{len(bucket)}）")
         lines.append("")
         for e in bucket:
             rel_from_kb = os.path.relpath(os.path.join(WORKSPACE, e["path"].replace("/", os.sep)), KB_DIR).replace("\\", "/")
-            short = os.path.splitext(os.path.basename(e["path"]))[0]
-            body = (e.get("digest") or e["best_for"]).strip()
-            avoid = f" ｜ **⚠️ 别抄**：{e['must_avoid']}" if e.get("must_avoid") else ""
-            lines.append(f"- {trust_badge(e['trust'])} [{short}](<{rel_from_kb}>)：{body}{avoid}")
+            raw_short = os.path.splitext(os.path.basename(e["path"]))[0]
+            short = re.sub(r"^38\d{8}-", "", raw_short)
+            body = (e.get("micro_tip") or e.get("digest") or e["best_for"]).strip()
+            if e["trust"].startswith("L4"):
+                avoid = f" ｜ **⚠️禁**：{e['must_avoid']}" if e.get("must_avoid") else ""
+                lines.append(f"- ⚠️[{short}](<{rel_from_kb}>)：{body}{avoid}")
+            else:
+                star = "★" if e["trust"].startswith("L2") else ""
+                lines.append(f"- {star}[{short}](<{rel_from_kb}>)：{body}")
         lines.append("")
 
-    # 兜底未归桶项
     rem = [e for e in distills if e["path"] not in placed]
     if rem:
-        lines.append(f"## 十、其他新增蒸馏档案（{len(rem)} 份）")
+        lines.append(f"## 十、其他新增（{len(rem)}）")
         lines.append("")
         for e in rem:
             rel_from_kb = os.path.relpath(os.path.join(WORKSPACE, e["path"].replace("/", os.sep)), KB_DIR).replace("\\", "/")
             short = os.path.splitext(os.path.basename(e["path"]))[0]
-            body = (e.get("digest") or e["best_for"]).strip()
-            avoid = f" ｜ **⚠️ 别抄**：{e['must_avoid']}" if e.get("must_avoid") else ""
-            lines.append(f"- {trust_badge(e['trust'])} [{short}](<{rel_from_kb}>)：{body}{avoid}")
+            body = (e.get("micro_tip") or e.get("digest") or e["best_for"]).strip()
+            avoid = f" ｜ **禁**：{e['must_avoid'][:42]}" if e.get("must_avoid") else ""
+            lines.append(f"- [{short}](<{rel_from_kb}>)：{body}{avoid}")
         lines.append("")
 
     with open(target_digest, "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(lines))
+
+
+def tokenize_query(q):
+    """中英混合分词：保留英文标识符整体与中文词块。"""
+    parts = [p.strip().lower() for p in re.split(r"[\s,，、/|;；]+", q.strip()) if p.strip()]
+    return parts or [q.strip().lower()]
+
+
+def cmd_lookup(args):
+    """极速低 Token 联合定位：一次返回手册精确行号小节 + 零能力模板 + 蒸馏结论/红线 + 可选截段正文。"""
+    if not os.path.isfile(CATALOG_JSON):
+        print("[ERROR] 尚未生成 CATALOG.json，请先运行 build", file=sys.stderr)
+        sys.exit(2)
+    catalog = json.loads(read_text(CATALOG_JSON))
+    terms = tokenize_query(args.query)
+    dom_filter = args.domain.lower() if args.domain else None
+
+    # 1. 打分手册节级索引
+    sec_hits = []
+    for s in catalog.get("sections", []):
+        h_low = s["heading"].lower()
+        snip_low = s["snippet"].lower()
+        doc_low = s["doc"].lower()
+        apis_low = [a.lower() for a in s.get("api_symbols", [])]
+        score = 0
+        matched_terms = 0
+        for t in terms:
+            hit = False
+            if any(t == a or t in a for a in apis_low):
+                score += 10
+                hit = True
+            if t in h_low:
+                score += 8
+                hit = True
+            if t in snip_low:
+                score += 4
+                hit = True
+            if t in doc_low:
+                score += 2
+                hit = True
+            if hit:
+                matched_terms += 1
+        if score > 0:
+            score += matched_terms * 5
+            sec_hits.append((score, matched_terms, s))
+    sec_hits.sort(key=lambda x: (-x[1], -x[0], x[2]["est_tokens"]))
+
+    # 2. 打分所有条目（按模板 / 蒸馏 / 工具分组）
+    tpl_hits, distill_hits, tool_hits = [], [], []
+    trust_bonus = {"L1-verified-runtime": 3, "L2-verified-host": 2, "L3-distilled-source": 1, "L4-caution-antipattern": 0}
+    for e in catalog["entries"]:
+        if e.get("status") == "superseded":
+            continue
+        if dom_filter and dom_filter not in e["domains"]:
+            continue
+        blob_hi = " ".join([e["title"], e["path"], " ".join(e.get("api_symbols", []))]).lower()
+        blob_lo = " ".join([e.get("best_for", ""), e.get("digest", ""), e.get("micro_tip", ""), e.get("must_avoid", ""), " ".join(e.get("workshop_ids", []))]).lower()
+        score = 0
+        matched_terms = 0
+        for t in terms:
+            hit = False
+            if t in blob_hi:
+                score += 8
+                hit = True
+            if t in blob_lo:
+                score += 5
+                hit = True
+            if hit:
+                matched_terms += 1
+        if score == 0:
+            continue
+        score += matched_terms * 5 + trust_bonus.get(e["trust"], 0)
+        item = (score, matched_terms, e)
+        if e["layer"] == "template-cs":
+            tpl_hits.append(item)
+        elif e["layer"] == "workshop-distill":
+            distill_hits.append(item)
+        elif e["layer"] in ("tool-script", "skill"):
+            tool_hits.append(item)
+
+    for grp in (tpl_hits, distill_hits, tool_hits):
+        grp.sort(key=lambda x: (-x[1], -x[0], x[2]["path"]))
+
+    top_secs = [x[2] for x in sec_hits[: args.max]]
+    top_tpls = [x[2] for x in tpl_hits[:2]]
+    top_dist = [x[2] for x in distill_hits[: args.max]]
+    top_tools = [x[2] for x in tool_hits[:2]]
+
+    if args.json:
+        print(json.dumps({
+            "query": args.query,
+            "sections": top_secs,
+            "templates": top_tpls,
+            "distills": top_dist,
+            "tools": top_tools,
+        }, ensure_ascii=False, indent=2))
+        return
+
+    print(f"# lookup: {args.query}")
+    if top_secs:
+        print("## [手册精确小节]（用 offset/limit 切片读，勿整篇读）")
+        for s in top_secs:
+            print(f"- {s['doc']}:{s['start_line']}-{s['end_line']} (~{s['est_tokens']} tok) | {s['heading']}")
+            if s["snippet"]:
+                print(f"  摘要：{s['snippet']}")
+    if top_tpls:
+        print("## [零能力 C# 模板]")
+        for e in top_tpls:
+            print(f"- {e['path']} | {e['best_for']}")
+    if top_dist:
+        print("## [工坊蒸馏精标 & 红线]")
+        for e in top_dist:
+            tag = "L4⚠️" if e["trust"].startswith("L4") else e["trust"][:2]
+            body = e.get("digest") or e.get("micro_tip") or e["best_for"]
+            avoid = f" | ⚠️禁：{e['must_avoid']}" if e.get("must_avoid") else ""
+            print(f"- [{tag}] {e['path']} | {body}{avoid}")
+    if top_tools:
+        print("## [工具/技能]")
+        for e in top_tools:
+            print(f"- {e['path']} | {e['best_for']}")
+    if not (top_secs or top_tpls or top_dist or top_tools):
+        print("（无直接命中，建议放宽关键词或拆成单个类名/中文词）")
+        return
+
+    if args.read and top_secs:
+        print(f"\n## [按预算内联阅读]（上限 {args.budget} 字符）")
+        used = 0
+        for s in top_secs[:2]:
+            full_p = os.path.join(WORKSPACE, s["doc"].replace("/", os.sep))
+            if not os.path.isfile(full_p):
+                continue
+            doc_lines = read_text(full_p).splitlines()
+            chunk = "\n".join(doc_lines[s["start_line"] - 1 : s["end_line"]])
+            rem_b = args.budget - used
+            if rem_b < 120:
+                break
+            header = f"\n--- {s['doc']}:{s['start_line']}-{s['end_line']} ({s['heading']}) ---\n"
+            if len(chunk) > rem_b:
+                chunk = chunk[:rem_b] + "\n... [已按 budget 截断，完整阅读请按上方行号切片]"
+            print(header + chunk)
+            used += len(chunk)
 
 
 def cmd_query(args):
@@ -565,26 +808,33 @@ def cmd_query(args):
                 continue
         if args.keyword:
             kw = args.keyword.lower()
-            blob = " ".join([e["title"], e["path"], e["best_for"], e["must_avoid"], " ".join(e["api_symbols"]), " ".join(e["workshop_ids"])]).lower()
+            blob = " ".join([e["title"], e["path"], e["best_for"], e.get("digest", ""), e.get("micro_tip", ""), e["must_avoid"], " ".join(e["api_symbols"]), " ".join(e["workshop_ids"])]).lower()
             if kw not in blob:
                 continue
         results.append(e)
 
     layer_order = {"doc-guide": 0, "template-cs": 1, "skill": 2, "tool-script": 3, "workshop-distill": 4}
     results.sort(key=lambda e: (layer_order.get(e["layer"], 9), e["trust"], e["path"]))
+    total_hits = len(results)
     results = results[: args.limit]
 
     if args.json:
         print(json.dumps(results, ensure_ascii=False, indent=2))
         return
 
-    print(f"# 命中 {len(results)} 项（总库 {catalog['stats']['total']} 项）")
+    print(f"# 命中 {len(results)}/{total_hits} 项（总库 {catalog['stats']['total']} 项；加 --verbose 看全量字段）")
     for e in results:
-        avoid = f"\n  ⚠️ 别抄：{e['must_avoid']}" if e["must_avoid"] else ""
-        dig = f"\n  压缩结论：{e['digest']}" if e.get("digest") else ""
-        apis = ", ".join(e["api_symbols"][:8])
-        api_line = f"\n  原版类：{apis}" if apis else ""
-        print(f"- [{e['trust']}] [{e['layer']}] [{e['capability']}] {e['path']}\n  用途：{e['best_for']}{dig}{api_line}{avoid}")
+        if args.verbose:
+            avoid = f"\n  ⚠️ 别抄：{e['must_avoid']}" if e["must_avoid"] else ""
+            dig = f"\n  压缩结论：{e['digest']}" if e.get("digest") else ""
+            apis = ", ".join(e["api_symbols"][:8])
+            api_line = f"\n  原版类：{apis}" if apis else ""
+            print(f"- [{e['trust']}] [{e['layer']}] [{e['capability']}] {e['path']}\n  用途：{e['best_for']}{dig}{api_line}{avoid}")
+        else:
+            tag = "L4⚠️" if e["trust"].startswith("L4") else e["trust"][:2]
+            summary = e.get("micro_tip") or e.get("digest") or e["best_for"]
+            avoid = f" | ⚠️{e['must_avoid'][:45]}" if e.get("must_avoid") else ""
+            print(f"- [{tag}|{e['layer']}|{e['capability']}] {e['path']} — {summary}{avoid}")
 
 
 def check_member_in_cs(cs_text, member):
@@ -706,6 +956,17 @@ def cmd_audit(_args):
     else:
         errors.append("缺少 CATALOG.json，请先运行 build")
 
+    # 7. Token 预算与压缩比体检
+    if os.path.isfile(DIGEST_MD) and os.path.isfile(CATALOG_MD):
+        raw_files = glob.glob(os.path.join(DISTILL_DIR, "*.md"))
+        raw_b = sum(os.path.getsize(f) for f in raw_files)
+        dig_txt = read_text(DIGEST_MD)
+        cat_txt = read_text(CATALOG_MD)
+        dig_b = os.path.getsize(DIGEST_MD)
+        cat_b = os.path.getsize(CATALOG_MD)
+        ratio = raw_b / max(1, dig_b)
+        print(f"[INFO] Token 预算体检：DISTILL_DIGEST={dig_b/1024:.1f}KB(~{est_tokens(dig_txt)} tok, 压缩比 {ratio:.1f}:1) | CATALOG={cat_b/1024:.1f}KB(~{est_tokens(cat_txt)} tok)")
+
     print(f"=== AUDIT SUMMARY: ERROR={len(errors)}, WARN={len(warns)} ===")
     for e in errors:
         print(f"  [ERROR] {e}")
@@ -796,27 +1057,38 @@ def main():
     ap = argparse.ArgumentParser(description="深空当铺知识库打标/查询/质检/模板实测流水线")
     sub = ap.add_subparsers(dest="cmd", required=True)
 
-    pb = sub.add_parser("build", help="重新扫描全工作区并生成 CATALOG.json + CATALOG.md")
+    pb = sub.add_parser("build", help="重新扫描全工作区并生成 CATALOG.json（含节级索引）+ 瘦身 CATALOG.md + 二次提纯 DISTILL_DIGEST.md")
     pb.add_argument("--out-dir", default=None, help="可选输出目录（默认 共享开发/模组制作经验库）")
 
-    pq = sub.add_parser("query", help="按标签/API/关键词秒查知识卡片")
+    pl = sub.add_parser("lookup", help="极速低 Token 联合定位：直出手册精确行号小节 + 模板 + 蒸馏红线")
+    pl.add_argument("query", help="关键词、原版类名或症状（空格分隔多词）")
+    pl.add_argument("--domain", help="可选限定系统域")
+    pl.add_argument("--max", type=int, default=4, help="每类最多返回条数（默认 4）")
+    pl.add_argument("--read", action="store_true", help="按 budget 内联打印 Top 1~2 命中手册小节原文")
+    pl.add_argument("--budget", type=int, default=1800, help="--read 模式最大字符预算（默认 1800）")
+    pl.add_argument("--json", action="store_true")
+
+    pq = sub.add_parser("query", help="按标签/API/关键词秒查知识卡片（默认紧凑单行省 Token）")
     pq.add_argument("--domain", help="系统域（如 machines / events / appraisal / ui / persistence）")
     pq.add_argument("--layer", help="资产层（doc-guide / workshop-distill / template-cs / tool-script / skill）")
     pq.add_argument("--trust", help="可信度前缀逗号分隔（如 L1,L2）")
     pq.add_argument("--capability", help="权限档位（zero-cap / cap-files / cap-network / mixed / n/a）")
     pq.add_argument("--api", help="原版类名（如 StoreEventManager / GameItem / ModHelper）")
     pq.add_argument("--keyword", help="全文元信息关键词")
-    pq.add_argument("--limit", type=int, default=15)
+    pq.add_argument("--limit", type=int, default=8)
+    pq.add_argument("--verbose", action="store_true", help="展开多行完整卡片")
     pq.add_argument("--json", action="store_true")
 
-    sub.add_parser("audit", help="执行全库 API 验真、双副本哈希与一致性门禁")
+    sub.add_parser("audit", help="执行全库 API 验真、双副本哈希、精标覆盖率与 Token 预算体检")
 
-    pv = sub.add_parser("verify-templates", help="真实编译 13 个 C# 模板并用 ModScanner 验零能力")
+    pv = sub.add_parser("verify-templates", help="真实编译全部 C# 模板并用 ModScanner 验零能力")
     pv.add_argument("--managed", default=DEFAULT_MANAGED)
 
     args = ap.parse_args()
     if args.cmd == "build":
         build_catalog(args.out_dir)
+    elif args.cmd == "lookup":
+        cmd_lookup(args)
     elif args.cmd == "query":
         cmd_query(args)
     elif args.cmd == "audit":
