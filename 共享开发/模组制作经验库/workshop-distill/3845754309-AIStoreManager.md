@@ -70,8 +70,7 @@
 
 ### 2.1 结构：一个发射口 + 五个信箱 + 若干子分派
 
-`ActAtCounter`（`:2721-3082`）是店内主分派；`ActOnJourney`（`:6613-6807`）管跨场景与出门；`ActInShop`（`:10800-10859`）管门/装备/开枪/关日历这类"店门口动作"。
-子分派：`ItemPanelAction:6528`、`ItemMenuAction:6077`、`WorkstationAction:14013`、`WaterUseAction:12983`、`WaterPanelAction:12754`、`BargainAction:1185`、`ActOnBarter:1519`、`ActOnBill:7980`、`ActOnPhone:8440`、`HeatAction:5067`、`NetworkAction:13468`、`PayInformationReceipt:5254`、`TogglePosterAction:10678`、`ActOnReception:8966`、`ActOutside:4286`、`ReportAction:9104`、`SubmitDecision:3321`、`SubmitSleep:11419`、`SortInventory:5301`、`RequestSupplierQuote:2020`。
+`ActAtCounter`（`:2721-3082`）是店内主分派；`ActOnJourney`（`:6613-6807`）管跨场景与出门；`ActInShop`（`:10800-10859`）管门/装备/开枪/关日历这类店门口动作。子分派：`ItemPanelAction:6528`、`ItemMenuAction:6077`、`WorkstationAction:14013`、`WaterUseAction:12983`、`WaterPanelAction:12754`、`BargainAction:1185`、`ActOnBarter:1519`、`ActOnBill:7980`、`ActOnPhone:8440`、`HeatAction:5067`、`NetworkAction:13468`、`PayInformationReceipt:5254`、`TogglePosterAction:10678`、`ActOnReception:8966`、`ActOutside:4286`、`ReportAction:9104`、`SubmitDecision:3321`、`SubmitSleep:11419`、`SortInventory:5301`、`RequestSupplierQuote:2020`。
 
 ### 2.2 动作清单（从 `case` 标签实测抓出）
 
@@ -107,7 +106,7 @@
 
 ### 2.5 顺带一条：让原版 UI 自己当渲染器
 
-`NativeItemPanels.cs`（24 KB）+ `ItemPanelView.cs` 的做法是——不重画任何面板，而是**打开原版物品面板**，把它的控件树扫成 `ItemPanelView{ Key, Controls, Text, Actions, Scan }`（`ItemPanelView.cs:8-68`），把面板上的动作映射成 `Dictionary<string, Func<JToken,string>>`，再由 `PublishItemPanel`（`:6423`）增量发布。这样 AI 看到的"面板"就是玩家看到的那个面板，不会出现"AI 以为的 UI"和"真实的 UI"两套。
+`NativeItemPanels.cs` + `ItemPanelView.cs` 不重画任何面板，而是**打开原版物品面板**，把控件树扫成 `ItemPanelView{ Key, Controls, Text, Actions, Scan }`（`ItemPanelView.cs:8-68`），面板动作映射成 `Dictionary<string, Func<JToken,string>>`，由 `PublishItemPanel`（`:6423`）增量发布——AI 看到的"面板"就是玩家看到的那个，不会出现两套 UI。
 
 ---
 
