@@ -1,0 +1,164 @@
+{
+  "type": "object",
+  "properties": {
+    "format": {
+      "const": "portrait-studio-dynamic/1"
+    },
+    "contract": {
+      "const": "dynamic-display-control/1"
+    },
+    "providerId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "pattern": "^(?!\\s*$)[^\\x00-\\x1f\\x7f]+$"
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "pattern": "^(?!\\s*$)[^\\x00-\\x1f\\x7f]+$"
+    },
+    "renderMode": {
+      "const": "dynamic"
+    },
+    "targets": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 512,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160,
+            "pattern": "^(?!\\s*$)[^\\x00-\\x1f\\x7f]+$"
+          },
+          "kind": {
+            "enum": [
+              "character",
+              "wanted",
+              "scene"
+            ]
+          },
+          "subject": {
+            "type": "object",
+            "properties": {
+              "owner": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "^(?!\\s*$)[^\\x00-\\x1f\\x7f]+$"
+              },
+              "key": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "^(?!\\s*$)[^\\x00-\\x1f\\x7f]+$"
+              }
+            },
+            "required": [
+              "owner",
+              "key"
+            ],
+            "additionalProperties": false
+          },
+          "slot": {
+            "enum": [
+              "main",
+              "photo",
+              "background"
+            ]
+          },
+          "renderMode": {
+            "const": "dynamic"
+          },
+          "binding": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "enum": [
+                  "sprite-key",
+                  "client-role",
+                  "wanted-key",
+                  "scene-key",
+                  "custom"
+                ]
+              },
+              "key": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160,
+                "pattern": "^(?!\\s*$)[^\\x00-\\x1f\\x7f]+$"
+              }
+            },
+            "required": [
+              "type",
+              "key"
+            ],
+            "additionalProperties": false
+          },
+          "layoutOwner": {
+            "const": "provider"
+          },
+          "defaultCandidate": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160,
+            "pattern": "^(?!\\s*$)[^\\x00-\\x1f\\x7f]+$"
+          },
+          "candidates": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 256,
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160,
+                  "pattern": "^(?!\\s*$)[^\\x00-\\x1f\\x7f]+$"
+                },
+                "label": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160,
+                  "pattern": "^(?!\\s*$)[^\\x00-\\x1f\\x7f]+$"
+                }
+              },
+              "required": [
+                "id",
+                "label"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "subject",
+          "slot",
+          "renderMode",
+          "binding",
+          "layoutOwner",
+          "defaultCandidate",
+          "candidates"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "format",
+    "contract",
+    "providerId",
+    "revision",
+    "renderMode",
+    "targets"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

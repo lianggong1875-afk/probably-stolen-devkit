@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod>
+  <ID>example.portraitpack</ID>
+  <Name>静态立绘包范例 / Static Portrait Example</Name>
+  <Author>Portrait pack author</Author>
+  <ModVersion>1.0</ModVersion>
+  <Description>独立静态换图；提供 static-v1 接口，需支持该协议的管理器才能协作。</Description>
+  <GameVersions><Version>0.46D</Version></GameVersions>
+  <Assemblies><Assembly>PortraitPack.dll</Assembly></Assemblies>
+  <Capabilities><Capability>files</Capability></Capabilities>
+</Mod>

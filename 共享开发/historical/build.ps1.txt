@@ -1,0 +1,124 @@
+#Requires -Version 5.1
+<#
+    build.ps1 - compile a Probably Stolen MOD against the installed game's Managed assemblies.
+
+    Design notes (learned the hard way, see the modding knowledge base docs/01):
+      * csc must be invoked with an ARGUMENT ARRAY + splatting. Building one big
+        string with quoted paths containing spaces gets shredded (CS1504/CS2001).
+      * /nostdlib+ plus an explicit reference list targeted at Unity Mono's
+        mscorlib is the supported shape; the compiler is a modern Roslyn from
+        the .NET SDK, the runtime is the game's Mono.
+      * /codepage:65001 so UTF-8 source with Chinese literals is decoded correctly.
+      * This file is deliberately pure ASCII: Windows PowerShell 5.1 decodes
+        BOM-less files as ANSI/GBK, which corrupts non-ASCII script text.
+
+    The script verifies the produced artifact at the byte level: the game's
+    loader requires the literal "IMod\0" marker to consider a DLL a MOD.
+#>
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory = $true)][string]$Name,
+    [Parameter(Mandatory = $true)][string]$Source,
+    [string]$OutDir = "D:\0TavernWeave\probably-stolen\build",
+    [string[]]$ExtraRefs = @(),
+    [string]$ManagedDir = "D:\steam\steamapps\common\Probably Stolen\Probably Stolen_Data\Managed",
+    [string]$SdkRoot = "C:\Program Files\dotnet\sdk",
+    [switch]$AllowMissingModMarker
+)
+
+$ErrorActionPreference = "Stop"
+
+function Fail($msg) { Write-Host "FAIL: $msg" -ForegroundColor Red; exit 1 }
+
+# --- locate csc.dll (newest SDK) ---------------------------------------------
+if (-not (Test-Path $SdkRoot)) { Fail "SDK root not found: $SdkRoot (install a .NET SDK)" }
+$sdk = Get-ChildItem $SdkRoot -Directory -ErrorAction SilentlyContinue |
+    Sort-Object { [version]($_.Name -replace '[^0-9.]', '') } -Descending |
+    Select-Object -First 1
+if (-not $sdk) { Fail "no SDK under $SdkRoot" }
+$csc = Join-Path $sdk.FullName "Roslyn\bincore\csc.dll"
+if (-not (Test-Path $csc)) { Fail "csc.dll not found: $csc" }
+
+# --- collect sources ---------------------------------------------------------
+if (Test-Path $Source -PathType Container) {
+    $sources = @(Get-ChildItem $Source -Filter *.cs -Recurse -File | Select-Object -ExpandProperty FullName)
+}
+else {
+    $sources = @((Resolve-Path $Source).Path)
+}
+if ($sources.Count -eq 0) { Fail "no .cs files found under $Source" }
+
+# --- base reference set ------------------------------------------------------
+$baseRefs = @(
+    "mscorlib.dll", "System.dll", "System.Core.dll", "System.Xml.dll", "System.Xml.Linq.dll",
+    "netstandard.dll", "Newtonsoft.Json.dll",
+    "UnityEngine.CoreModule.dll", "UnityEngine.InputLegacyModule.dll",
+    "UnityEngine.TextRenderingModule.dll", "UnityEngine.AudioModule.dll",
+    "UnityEngine.UIModule.dll", "UnityEngine.UI.dll", "Unity.TextMeshPro.dll",
+    "UnityEngine.JSONSerializeModule.dll", "UnityEngine.Physics2DModule.dll",
+    "Assembly-CSharp.dll", "Assembly-CSharp-firstpass.dll", "0Harmony.dll"
+)
+$refs = @($baseRefs + $ExtraRefs) | Select-Object -Unique
+
+$missing = @()
+foreach ($r in $refs) {
+    if (-not (Test-Path (Join-Path $ManagedDir $r))) { $missing += $r }
+}
+if ($missing.Count -gt 0) { Fail ("missing referenced assembly/assemblies in Managed: " + ($missing -join ", ")) }
+
+# --- compile -----------------------------------------------------------------
+New-Item -ItemType Directory -Force -Path $OutDir | Out-Null
+$outFile = Join-Path $OutDir "$Name.dll"
+if (Test-Path $outFile) { Remove-Item $outFile -Force }
+
+$cscArgs = @(
+    "/nologo", "/target:library", "/nostdlib+", "/langversion:9.0", "/optimize+",
+    "/nowarn:1701,1702,1591", "/codepage:65001", "/deterministic",
+    "/out:$outFile"
+)
+foreach ($r in $refs) { $cscArgs += "/reference:" + (Join-Path $ManagedDir $r) }
+$cscArgs += $sources
+
+Write-Host ("compiling {0} source file(s) -> {1}" -f $sources.Count, $outFile)
+& dotnet $csc @cscArgs
+$code = $LASTEXITCODE
+if ($code -ne 0) { Fail "csc exited with $code" }
+if (-not (Test-Path $outFile)) { Fail "csc reported success but produced no DLL" }
+
+# --- artifact verification (never trust the exit code alone) -----------------
+$bytes = [IO.File]::ReadAllBytes($outFile)
+$needle = [Text.Encoding]::UTF8.GetBytes("IMod" + [char]0)
+$hasMarker = $false
+for ($i = 0; $i -le ($bytes.Length - $needle.Length); $i++) {
+    if ($bytes[$i] -eq $needle[0] -and $bytes[$i + 1] -eq $needle[1] -and
+        $bytes[$i + 2] -eq $needle[2] -and $bytes[$i + 3] -eq $needle[3]) {
+        $hasMarker = $true; break
+    }
+}
+
+$utf8 = [Text.Encoding]::UTF8.GetString($bytes)
+$utf16 = [Text.Encoding]::Unicode.GetString($bytes)
+$risky = @()
+foreach ($k in @("System.Diagnostics.Process", "ProcessStartInfo", "Steamworks", "SteamUGC",
+        "System.Net.Http", "UnityWebRequest", "Reflection.Emit", "Assembly.Load",
+        "Marshal.", "NativeLibrary", "System.IO.File", "FileStream")) {
+    if ($utf8.Contains($k) -or $utf16.Contains($k)) { $risky += $k }
+}
+
+Write-Host ""
+Write-Host ("DLL      : {0} ({1} bytes)" -f $outFile, $bytes.Length)
+if ($hasMarker) {
+    Write-Host "IMod mark: FOUND (loader will accept this DLL)"
+}
+else {
+    Write-Host "IMod mark: NOT FOUND - the game loader will treat this DLL as 'not a MOD'" -ForegroundColor Yellow
+    if (-not $AllowMissingModMarker) { Fail "artifact has no IMod marker; pass -AllowMissingModMarker for non-IMod helper assemblies" }
+}
+if ($risky.Count -gt 0) {
+    Write-Host ("risk scan: {0} - scanner may record capabilities; declare them or remove the call" -f ($risky -join ", ")) -ForegroundColor Yellow
+}
+else {
+    Write-Host "risk scan: clean (no process/network/steam/raw-file symbols)"
+}
+Write-Host ("references: {0}" -f $refs.Count)
+exit 0

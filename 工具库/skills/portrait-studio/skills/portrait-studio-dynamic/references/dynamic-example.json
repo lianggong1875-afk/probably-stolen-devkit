@@ -1,0 +1,35 @@
+{
+  "format": "portrait-studio-dynamic/1",
+  "contract": "dynamic-display-control/1",
+  "providerId": "example.dynamicportraits",
+  "revision": "1",
+  "renderMode": "dynamic",
+  "targets": [
+    {
+      "id": "mentor-main",
+      "kind": "character",
+      "subject": {
+        "owner": "game",
+        "key": "mentor"
+      },
+      "slot": "main",
+      "renderMode": "dynamic",
+      "binding": {
+        "type": "sprite-key",
+        "key": "mentor"
+      },
+      "layoutOwner": "provider",
+      "defaultCandidate": "normal",
+      "candidates": [
+        {
+          "id": "normal",
+          "label": "默认"
+        },
+        {
+          "id": "quick",
+          "label": "快速表情"
+        }
+      ]
+    }
+  ]
+}

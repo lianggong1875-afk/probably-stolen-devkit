@@ -1,0 +1,822 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "resource": {
+      "type": "object",
+      "properties": {
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "setId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "required": [
+        "providerId",
+        "setId",
+        "id",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "layout": {
+      "type": "object",
+      "properties": {
+        "scale": {
+          "type": "number",
+          "minimum": 0.25,
+          "maximum": 3
+        },
+        "x": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "y": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "scale",
+        "x",
+        "y"
+      ],
+      "additionalProperties": false
+    },
+    "subject": {
+      "type": "object",
+      "properties": {
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "key": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "required": [
+        "owner",
+        "key"
+      ],
+      "additionalProperties": false
+    },
+    "memory": {
+      "type": "object",
+      "properties": {
+        "residentBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "pinnedBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "warmBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "pendingDestroyBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "borrowedBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "decodeReservedBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "residentBytes",
+        "pinnedBytes",
+        "warmBytes",
+        "pendingDestroyBytes",
+        "borrowedBytes",
+        "decodeReservedBytes"
+      ],
+      "additionalProperties": false
+    },
+    "grant": {
+      "type": "object",
+      "properties": {
+        "residentDeltaBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "peakAdditionalBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "residentDeltaBytes",
+        "peakAdditionalBytes"
+      ],
+      "additionalProperties": false
+    },
+    "textureCost": {
+      "type": "object",
+      "properties": {
+        "textureKey": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "residentBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "alreadyResident": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "textureKey",
+        "residentBytes",
+        "alreadyResident"
+      ],
+      "additionalProperties": false
+    },
+    "held": {
+      "type": "object",
+      "properties": {
+        "resource": {
+          "$ref": "#/$defs/resource"
+        },
+        "refCount": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "resource",
+        "refCount"
+      ],
+      "additionalProperties": false
+    },
+    "binding": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "sprite-key",
+            "wanted-photo",
+            "scene-key",
+            "custom"
+          ]
+        },
+        "key": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "budget": {
+      "type": "object",
+      "properties": {
+        "residentDeltaBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "peakAdditionalBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "textures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/textureCost"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "residentDeltaBytes",
+        "peakAdditionalBytes",
+        "textures"
+      ],
+      "additionalProperties": false
+    },
+    "level": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "^(?!/)(?!.*(?:\\\\|:))(?!.*(?:^|/)(?:\\.|\\.\\.|)(?:/|$)).+\\.png$"
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "level",
+        "path",
+        "width",
+        "height",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "texture": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8192
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8192
+        },
+        "contentHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "filter": {
+          "enum": [
+            "Point",
+            "Bilinear",
+            "Trilinear"
+          ]
+        },
+        "wrapU": {
+          "enum": [
+            "Clamp",
+            "Repeat",
+            "Mirror",
+            "MirrorOnce"
+          ]
+        },
+        "wrapV": {
+          "enum": [
+            "Clamp",
+            "Repeat",
+            "Mirror",
+            "MirrorOnce"
+          ]
+        },
+        "wrapW": {
+          "enum": [
+            "Clamp",
+            "Repeat",
+            "Mirror",
+            "MirrorOnce"
+          ]
+        },
+        "anisoLevel": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16
+        },
+        "mipMapBias": {
+          "type": "number"
+        },
+        "colorSpace": {
+          "enum": [
+            "sRGB",
+            "linear"
+          ]
+        },
+        "mipmaps": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "mode": {
+                  "enum": [
+                    "none",
+                    "generate"
+                  ]
+                }
+              },
+              "required": [
+                "mode"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "mode": {
+                  "enum": [
+                    "provided"
+                  ]
+                },
+                "levels": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/level"
+                  },
+                  "minItems": 1,
+                  "maxItems": 13
+                }
+              },
+              "required": [
+                "mode",
+                "levels"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": [
+        "width",
+        "height",
+        "contentHash",
+        "filter",
+        "wrapU",
+        "wrapV",
+        "wrapW",
+        "anisoLevel",
+        "mipMapBias",
+        "colorSpace",
+        "mipmaps"
+      ],
+      "additionalProperties": false
+    },
+    "geometry": {
+      "type": "object",
+      "properties": {
+        "rect": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "y": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "width": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "height": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "x",
+            "y",
+            "width",
+            "height"
+          ],
+          "additionalProperties": false
+        },
+        "pixelsPerUnit": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "pivotX": {
+          "type": "number"
+        },
+        "pivotY": {
+          "type": "number"
+        },
+        "border": {
+          "type": "object",
+          "properties": {
+            "left": {
+              "type": "number",
+              "minimum": 0
+            },
+            "bottom": {
+              "type": "number",
+              "minimum": 0
+            },
+            "right": {
+              "type": "number",
+              "minimum": 0
+            },
+            "top": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "left",
+            "bottom",
+            "right",
+            "top"
+          ],
+          "additionalProperties": false
+        },
+        "meshType": {
+          "enum": [
+            "FullRect"
+          ]
+        }
+      },
+      "required": [
+        "rect",
+        "pixelsPerUnit",
+        "pivotX",
+        "pivotY",
+        "border",
+        "meshType"
+      ],
+      "additionalProperties": false
+    },
+    "asset": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "resourceRevision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "renderMode": {
+          "enum": [
+            "static"
+          ]
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "^(?!/)(?!.*(?:\\\\|:))(?!.*(?:^|/)(?:\\.|\\.\\.|)(?:/|$)).+\\.png$"
+        },
+        "texture": {
+          "$ref": "#/$defs/texture"
+        },
+        "geometry": {
+          "$ref": "#/$defs/geometry"
+        }
+      },
+      "required": [
+        "id",
+        "resourceRevision",
+        "renderMode",
+        "path",
+        "texture",
+        "geometry"
+      ],
+      "additionalProperties": false
+    },
+    "set": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "kind": {
+          "enum": [
+            "character",
+            "wanted",
+            "scene"
+          ]
+        },
+        "subject": {
+          "$ref": "#/$defs/subject"
+        },
+        "slot": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "renderMode": {
+          "enum": [
+            "static"
+          ]
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/asset"
+          },
+          "minItems": 1,
+          "maxItems": 4096
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "subject",
+        "slot",
+        "renderMode",
+        "resources"
+      ],
+      "additionalProperties": false
+    },
+    "target": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "kind": {
+          "enum": [
+            "character",
+            "wanted",
+            "scene"
+          ]
+        },
+        "subject": {
+          "$ref": "#/$defs/subject"
+        },
+        "slot": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "renderMode": {
+          "enum": [
+            "static"
+          ]
+        },
+        "binding": {
+          "$ref": "#/$defs/binding"
+        },
+        "defaultMode": {
+          "enum": [
+            "source",
+            "resource"
+          ]
+        },
+        "defaultResource": {
+          "$ref": "#/$defs/resource"
+        },
+        "candidateResources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/resource"
+          },
+          "minItems": 0,
+          "maxItems": 4096
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "subject",
+        "slot",
+        "renderMode",
+        "binding",
+        "defaultMode",
+        "candidateResources"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "defaultMode": {
+                "const": "resource"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "defaultResource"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "defaultResource"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "portraitSet": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "renderMode": {
+          "enum": [
+            "static"
+          ]
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/resource"
+          },
+          "minItems": 1,
+          "maxItems": 4096
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "renderMode",
+        "entries"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "catalogRevision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "resourceSets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/set"
+          },
+          "minItems": 0,
+          "maxItems": 4096
+        },
+        "role": {
+          "enum": [
+            "resources"
+          ]
+        },
+        "portraitSets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/portraitSet"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        }
+      },
+      "required": [
+        "format",
+        "contract",
+        "providerId",
+        "renderMode",
+        "catalogRevision",
+        "resourceSets",
+        "role"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "format": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "catalogRevision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "resourceSets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/set"
+          },
+          "minItems": 0,
+          "maxItems": 4096
+        },
+        "role": {
+          "enum": [
+            "writer",
+            "both"
+          ]
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/target"
+          },
+          "minItems": 1,
+          "maxItems": 4096
+        },
+        "portraitSets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/portraitSet"
+          },
+          "minItems": 1,
+          "maxItems": 128
+        }
+      },
+      "required": [
+        "format",
+        "contract",
+        "providerId",
+        "renderMode",
+        "catalogRevision",
+        "resourceSets",
+        "role",
+        "revision",
+        "targets"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

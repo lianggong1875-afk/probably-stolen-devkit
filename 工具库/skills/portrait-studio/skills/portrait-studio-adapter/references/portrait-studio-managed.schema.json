@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "subject": {
+      "type": "object",
+      "properties": {
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "key": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "required": [
+        "owner",
+        "key"
+      ],
+      "additionalProperties": false
+    },
+    "resource": {
+      "type": "object",
+      "properties": {
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "setId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "required": [
+        "providerId",
+        "setId",
+        "id",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "binding": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "sprite-key",
+            "wanted-photo",
+            "scene-key",
+            "custom"
+          ]
+        },
+        "key": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "target": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "kind": {
+          "enum": [
+            "character",
+            "wanted",
+            "scene"
+          ]
+        },
+        "subject": {
+          "$ref": "#/$defs/subject"
+        },
+        "slot": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "renderMode": {
+          "enum": [
+            "static"
+          ]
+        },
+        "binding": {
+          "$ref": "#/$defs/binding"
+        },
+        "defaultResource": {
+          "$ref": "#/$defs/resource"
+        },
+        "candidateResources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/resource"
+          },
+          "minItems": 1,
+          "maxItems": 4096
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "subject",
+        "slot",
+        "renderMode",
+        "binding",
+        "candidateResources",
+        "defaultResource"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "type": "object",
+  "properties": {
+    "format": {
+      "const": "portrait-studio-managed/1"
+    },
+    "contract": {
+      "const": "static-manager-rendering/1"
+    },
+    "providerId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "renderMode": {
+      "const": "static"
+    },
+    "renderOwner": {
+      "const": "PortraitStudio"
+    },
+    "targets": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4096,
+      "items": {
+        "$ref": "#/$defs/target"
+      }
+    }
+  },
+  "required": [
+    "format",
+    "contract",
+    "providerId",
+    "revision",
+    "renderMode",
+    "renderOwner",
+    "targets"
+  ],
+  "additionalProperties": false
+}

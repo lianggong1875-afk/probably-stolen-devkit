@@ -1,0 +1,424 @@
+{
+  "format": "portrait-studio-static/1",
+  "contract": "static-display-transaction/1",
+  "providerId": "example.portraitpack",
+  "revision": "1",
+  "catalogRevision": "1",
+  "role": "both",
+  "renderMode": "static",
+  "targets": [
+    {
+      "id": "mentor-main",
+      "kind": "character",
+      "renderMode": "static",
+      "subject": {
+        "owner": "game",
+        "key": "mentor"
+      },
+      "slot": "main",
+      "binding": {
+        "type": "sprite-key",
+        "key": "mentor"
+      },
+      "defaultMode": "resource",
+      "defaultResource": {
+        "providerId": "example.portraitpack",
+        "setId": "mentor-main",
+        "id": "example",
+        "revision": "1"
+      },
+      "candidateResources": [
+        {
+          "providerId": "example.portraitpack",
+          "setId": "mentor-main",
+          "id": "example",
+          "revision": "1"
+        },
+        {
+          "providerId": "example.portraitpack",
+          "setId": "mentor-main",
+          "id": "alternative",
+          "revision": "1"
+        }
+      ]
+    },
+    {
+      "id": "landlord-main",
+      "kind": "character",
+      "renderMode": "static",
+      "subject": {
+        "owner": "game",
+        "key": "landlord"
+      },
+      "slot": "main",
+      "binding": {
+        "type": "sprite-key",
+        "key": "landlord"
+      },
+      "defaultMode": "resource",
+      "defaultResource": {
+        "providerId": "example.portraitpack",
+        "setId": "landlord-main",
+        "id": "example",
+        "revision": "1"
+      },
+      "candidateResources": [
+        {
+          "providerId": "example.portraitpack",
+          "setId": "landlord-main",
+          "id": "example",
+          "revision": "1"
+        }
+      ]
+    },
+    {
+      "id": "wanted4-photo",
+      "kind": "wanted",
+      "renderMode": "static",
+      "subject": {
+        "owner": "game",
+        "key": "wanted4"
+      },
+      "slot": "photo",
+      "binding": {
+        "type": "wanted-photo",
+        "key": "wanted4"
+      },
+      "defaultMode": "resource",
+      "defaultResource": {
+        "providerId": "example.portraitpack",
+        "setId": "wanted4-photo",
+        "id": "example",
+        "revision": "1"
+      },
+      "candidateResources": [
+        {
+          "providerId": "example.portraitpack",
+          "setId": "wanted4-photo",
+          "id": "example",
+          "revision": "1"
+        }
+      ]
+    },
+    {
+      "id": "dumping-ground-background",
+      "kind": "scene",
+      "renderMode": "static",
+      "subject": {
+        "owner": "game",
+        "key": "dumping_ground"
+      },
+      "slot": "background",
+      "binding": {
+        "type": "scene-key",
+        "key": "dumping_ground"
+      },
+      "defaultMode": "resource",
+      "defaultResource": {
+        "providerId": "example.portraitpack",
+        "setId": "dumping-ground-background",
+        "id": "example",
+        "revision": "1"
+      },
+      "candidateResources": [
+        {
+          "providerId": "example.portraitpack",
+          "setId": "dumping-ground-background",
+          "id": "example",
+          "revision": "1"
+        }
+      ]
+    }
+  ],
+  "resourceSets": [
+    {
+      "id": "mentor-main",
+      "kind": "character",
+      "renderMode": "static",
+      "subject": {
+        "owner": "game",
+        "key": "mentor"
+      },
+      "slot": "main",
+      "resources": [
+        {
+          "id": "example",
+          "resourceRevision": "1",
+          "renderMode": "static",
+          "path": "Portraits/mentor/example.png",
+          "texture": {
+            "width": 576,
+            "height": 422,
+            "contentHash": "f00ba95d66cee17c05a08ca3a3f06b14c03348e9da14a9b935b2b1a1c261b397",
+            "filter": "Point",
+            "wrapU": "Clamp",
+            "wrapV": "Clamp",
+            "wrapW": "Clamp",
+            "anisoLevel": 0,
+            "mipMapBias": 0,
+            "colorSpace": "sRGB",
+            "mipmaps": {
+              "mode": "none"
+            }
+          },
+          "geometry": {
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 576,
+              "height": 422
+            },
+            "pixelsPerUnit": 200,
+            "pivotX": 0.5,
+            "pivotY": 0.5,
+            "border": {
+              "left": 0,
+              "bottom": 0,
+              "right": 0,
+              "top": 0
+            },
+            "meshType": "FullRect"
+          }
+        },
+        {
+          "id": "alternative",
+          "resourceRevision": "1",
+          "renderMode": "static",
+          "path": "Portraits/mentor/alternative.png",
+          "texture": {
+            "width": 576,
+            "height": 422,
+            "contentHash": "f00ba95d66cee17c05a08ca3a3f06b14c03348e9da14a9b935b2b1a1c261b397",
+            "filter": "Point",
+            "wrapU": "Clamp",
+            "wrapV": "Clamp",
+            "wrapW": "Clamp",
+            "anisoLevel": 0,
+            "mipMapBias": 0,
+            "colorSpace": "sRGB",
+            "mipmaps": {
+              "mode": "none"
+            }
+          },
+          "geometry": {
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 576,
+              "height": 422
+            },
+            "pixelsPerUnit": 200,
+            "pivotX": 0.5,
+            "pivotY": 0.5,
+            "border": {
+              "left": 0,
+              "bottom": 0,
+              "right": 0,
+              "top": 0
+            },
+            "meshType": "FullRect"
+          }
+        }
+      ]
+    },
+    {
+      "id": "landlord-main",
+      "kind": "character",
+      "renderMode": "static",
+      "subject": {
+        "owner": "game",
+        "key": "landlord"
+      },
+      "slot": "main",
+      "resources": [
+        {
+          "id": "example",
+          "resourceRevision": "1",
+          "renderMode": "static",
+          "path": "Portraits/landlord/example.png",
+          "texture": {
+            "width": 576,
+            "height": 422,
+            "contentHash": "f00ba95d66cee17c05a08ca3a3f06b14c03348e9da14a9b935b2b1a1c261b397",
+            "filter": "Point",
+            "wrapU": "Clamp",
+            "wrapV": "Clamp",
+            "wrapW": "Clamp",
+            "anisoLevel": 0,
+            "mipMapBias": 0,
+            "colorSpace": "sRGB",
+            "mipmaps": {
+              "mode": "none"
+            }
+          },
+          "geometry": {
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 576,
+              "height": 422
+            },
+            "pixelsPerUnit": 200,
+            "pivotX": 0.5,
+            "pivotY": 0.5,
+            "border": {
+              "left": 0,
+              "bottom": 0,
+              "right": 0,
+              "top": 0
+            },
+            "meshType": "FullRect"
+          }
+        }
+      ]
+    },
+    {
+      "id": "wanted4-photo",
+      "kind": "wanted",
+      "renderMode": "static",
+      "subject": {
+        "owner": "game",
+        "key": "wanted4"
+      },
+      "slot": "photo",
+      "resources": [
+        {
+          "id": "example",
+          "resourceRevision": "1",
+          "renderMode": "static",
+          "path": "WantedPortraits/wanted4/example.png",
+          "texture": {
+            "width": 300,
+            "height": 332,
+            "contentHash": "6226aa55ac44d4d5760557de1f915191c9627f302b3bf782070991a94cb71899",
+            "filter": "Point",
+            "wrapU": "Clamp",
+            "wrapV": "Clamp",
+            "wrapW": "Clamp",
+            "anisoLevel": 0,
+            "mipMapBias": 0,
+            "colorSpace": "sRGB",
+            "mipmaps": {
+              "mode": "none"
+            }
+          },
+          "geometry": {
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 300,
+              "height": 332
+            },
+            "pixelsPerUnit": 200,
+            "pivotX": 0.5,
+            "pivotY": 0.5,
+            "border": {
+              "left": 0,
+              "bottom": 0,
+              "right": 0,
+              "top": 0
+            },
+            "meshType": "FullRect"
+          }
+        }
+      ]
+    },
+    {
+      "id": "dumping-ground-background",
+      "kind": "scene",
+      "renderMode": "static",
+      "subject": {
+        "owner": "game",
+        "key": "dumping_ground"
+      },
+      "slot": "background",
+      "resources": [
+        {
+          "id": "example",
+          "resourceRevision": "1",
+          "renderMode": "static",
+          "path": "SceneBackgrounds/dumping_ground/example.png",
+          "texture": {
+            "width": 320,
+            "height": 180,
+            "contentHash": "2e0c2ca19fd60e80dc9886d35ae4a56dc2fac7dd8dac29501dd54c81f3806ab6",
+            "filter": "Point",
+            "wrapU": "Clamp",
+            "wrapV": "Clamp",
+            "wrapW": "Clamp",
+            "anisoLevel": 0,
+            "mipMapBias": 0,
+            "colorSpace": "sRGB",
+            "mipmaps": {
+              "mode": "none"
+            }
+          },
+          "geometry": {
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 320,
+              "height": 180
+            },
+            "pixelsPerUnit": 20,
+            "pivotX": 0.5,
+            "pivotY": 0.5,
+            "border": {
+              "left": 0,
+              "bottom": 0,
+              "right": 0,
+              "top": 0
+            },
+            "meshType": "FullRect"
+          }
+        }
+      ]
+    }
+  ],
+  "portraitSets": [
+    {
+      "id": "set-one",
+      "name": "立绘1",
+      "renderMode": "static",
+      "entries": [
+        {
+          "providerId": "example.portraitpack",
+          "setId": "mentor-main",
+          "id": "example",
+          "revision": "1"
+        },
+        {
+          "providerId": "example.portraitpack",
+          "setId": "landlord-main",
+          "id": "example",
+          "revision": "1"
+        },
+        {
+          "providerId": "example.portraitpack",
+          "setId": "wanted4-photo",
+          "id": "example",
+          "revision": "1"
+        },
+        {
+          "providerId": "example.portraitpack",
+          "setId": "dumping-ground-background",
+          "id": "example",
+          "revision": "1"
+        }
+      ]
+    },
+    {
+      "id": "set-two",
+      "name": "立绘2",
+      "renderMode": "static",
+      "entries": [
+        {
+          "providerId": "example.portraitpack",
+          "setId": "mentor-main",
+          "id": "alternative",
+          "revision": "1"
+        }
+      ]
+    }
+  ]
+}

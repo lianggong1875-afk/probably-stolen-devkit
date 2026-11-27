@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <DebugType>none</DebugType>
+    <OutputPath>$(MSBuildProjectDirectory)/artifacts/build/</OutputPath>
+    <DynamicSdk Condition="'$(DynamicSdk)' == ''">../SDK</DynamicSdk>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="DynamicPortraitExample.cs" />
+    <Compile Include="$(DynamicSdk)/*.cs" />
+    <Reference Include="Assembly-CSharp"><HintPath>$(GameRoot)/Probably Stolen_Data/Managed/Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(GameRoot)/Probably Stolen_Data/Managed/UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UI"><HintPath>$(GameRoot)/Probably Stolen_Data/Managed/UnityEngine.UI.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UIModule"><HintPath>$(GameRoot)/Probably Stolen_Data/Managed/UnityEngine.UIModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Newtonsoft.Json"><HintPath>$(GameRoot)/Probably Stolen_Data/Managed/Newtonsoft.Json.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

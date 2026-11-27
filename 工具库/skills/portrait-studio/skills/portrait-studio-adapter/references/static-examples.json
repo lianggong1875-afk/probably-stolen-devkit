@@ -1,0 +1,868 @@
+{
+  "note": "Illustrative metadata only; hashes, sizes and PNG paths are fixtures, not measured assets.",
+  "resourceCatalog": {
+    "format": "portrait-studio-static/1",
+    "contract": "static-display-transaction/1",
+    "renderMode": "static",
+    "providerId": "PortraitStudio",
+    "role": "resources",
+    "catalogRevision": "catalog-42",
+    "resourceSets": [
+      {
+        "id": "character-game-mentor-main",
+        "kind": "character",
+        "subject": {
+          "owner": "game",
+          "key": "mentor"
+        },
+        "slot": "main",
+        "renderMode": "static",
+        "resources": [
+          {
+            "id": "registered-7f63",
+            "resourceRevision": "r-7f63-pixels-geometry",
+            "renderMode": "static",
+            "path": "static-export/7f63/base.png",
+            "texture": {
+              "width": 256,
+              "height": 256,
+              "contentHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "filter": "Bilinear",
+              "wrapU": "Clamp",
+              "wrapV": "Repeat",
+              "wrapW": "Clamp",
+              "anisoLevel": 1,
+              "mipMapBias": 0,
+              "colorSpace": "sRGB",
+              "mipmaps": {
+                "mode": "none"
+              }
+            },
+            "geometry": {
+              "rect": {
+                "x": 32,
+                "y": 48,
+                "width": 128,
+                "height": 160
+              },
+              "pixelsPerUnit": 100,
+              "pivotX": 0.5,
+              "pivotY": 0,
+              "border": {
+                "left": 2,
+                "bottom": 3,
+                "right": 4,
+                "top": 5
+              },
+              "meshType": "FullRect"
+            }
+          }
+        ]
+      }
+    ],
+    "portraitSets": [
+      {
+        "id": "set-one",
+        "name": "立绘1",
+        "renderMode": "static",
+        "entries": [
+          {
+            "providerId": "PortraitStudio",
+            "setId": "character-game-mentor-main",
+            "id": "registered-7f63",
+            "revision": "r-7f63-pixels-geometry"
+          }
+        ]
+      }
+    ]
+  },
+  "writerCatalog": {
+    "format": "portrait-studio-static/1",
+    "contract": "static-display-transaction/1",
+    "renderMode": "static",
+    "providerId": "author.staticpack",
+    "role": "writer",
+    "catalogRevision": "catalog-a",
+    "revision": "writer-geometry-1",
+    "resourceSets": [],
+    "targets": [
+      {
+        "id": "mentor-main",
+        "kind": "character",
+        "subject": {
+          "owner": "game",
+          "key": "mentor"
+        },
+        "slot": "main",
+        "renderMode": "static",
+        "binding": {
+          "type": "sprite-key",
+          "key": "mentor"
+        },
+        "defaultMode": "source",
+        "candidateResources": []
+      }
+    ]
+  },
+  "exchange": [
+    {
+      "from": "PortraitStudio",
+      "to": "broadcast",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "op": "discover"
+      }
+    },
+    {
+      "from": "author.staticpack",
+      "to": "PortraitStudio",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "op": "hello",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "seq": 0,
+        "eventSeq": 1,
+        "targets": [
+          "mentor-main"
+        ],
+        "memory": {
+          "residentBytes": 0,
+          "pinnedBytes": 0,
+          "warmBytes": 0,
+          "pendingDestroyBytes": 0,
+          "borrowedBytes": 262144,
+          "decodeReservedBytes": 0
+        },
+        "snapshotId": "hello-1",
+        "page": 0,
+        "last": true
+      }
+    },
+    {
+      "from": "PortraitStudio",
+      "to": "author.staticpack",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "acquire",
+        "seq": 1,
+        "targets": [
+          "mentor-main"
+        ]
+      }
+    },
+    {
+      "from": "author.staticpack",
+      "to": "PortraitStudio",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "ready",
+        "seq": 1,
+        "targets": [
+          "mentor-main"
+        ],
+        "memory": {
+          "residentBytes": 0,
+          "pinnedBytes": 0,
+          "warmBytes": 0,
+          "pendingDestroyBytes": 0,
+          "borrowedBytes": 262144,
+          "decodeReservedBytes": 0
+        },
+        "requestOp": "acquire"
+      }
+    },
+    {
+      "from": "PortraitStudio",
+      "to": "author.staticpack",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "select",
+        "seq": 2,
+        "targetId": "mentor-main",
+        "choiceId": "choice-9",
+        "mode": "selected",
+        "setDefault": true,
+        "layout": {
+          "scale": 1.25,
+          "x": 0.1,
+          "y": -0.05
+        },
+        "resource": {
+          "providerId": "PortraitStudio",
+          "setId": "character-game-mentor-main",
+          "id": "registered-7f63",
+          "revision": "r-7f63-pixels-geometry"
+        }
+      }
+    },
+    {
+      "from": "author.staticpack",
+      "to": "PortraitStudio",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "stored",
+        "seq": 2,
+        "targetId": "mentor-main",
+        "choiceId": "choice-9",
+        "setDefault": true,
+        "requestOp": "select"
+      }
+    },
+    {
+      "from": "author.staticpack",
+      "to": "PortraitStudio",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "show",
+        "seq": 0,
+        "eventSeq": 2,
+        "surfaceId": "game:SpriteRenderer:8421",
+        "targetId": "mentor-main",
+        "displayId": "display-3",
+        "visitId": "visit-18",
+        "displayEpoch": 1
+      }
+    },
+    {
+      "from": "PortraitStudio",
+      "to": "author.staticpack",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "plan",
+        "seq": 3,
+        "targetId": "mentor-main",
+        "displayId": "display-3",
+        "visitId": "visit-18",
+        "displayEpoch": 1,
+        "choiceId": "choice-9",
+        "transactionId": "transaction-77",
+        "surfaceId": "game:SpriteRenderer:8421",
+        "encounterId": "encounter-18",
+        "groupId": "group-77",
+        "presentationRole": "presenter",
+        "presenterProviderId": "author.staticpack"
+      }
+    },
+    {
+      "from": "author.staticpack",
+      "to": "PortraitStudio",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "planned",
+        "seq": 3,
+        "targetId": "mentor-main",
+        "displayId": "display-3",
+        "visitId": "visit-18",
+        "displayEpoch": 1,
+        "choiceId": "choice-9",
+        "transactionId": "transaction-77",
+        "surfaceId": "game:SpriteRenderer:8421",
+        "encounterId": "encounter-18",
+        "groupId": "group-77",
+        "presentationRole": "presenter",
+        "presenterProviderId": "author.staticpack",
+        "planId": "plan-77",
+        "budget": {
+          "residentDeltaBytes": 262144,
+          "peakAdditionalBytes": 600000,
+          "textures": [
+            {
+              "textureKey": "texture-7f63",
+              "residentBytes": 262144,
+              "alreadyResident": false
+            }
+          ]
+        },
+        "memory": {
+          "residentBytes": 0,
+          "pinnedBytes": 0,
+          "warmBytes": 0,
+          "pendingDestroyBytes": 0,
+          "borrowedBytes": 262144,
+          "decodeReservedBytes": 0
+        },
+        "requestOp": "plan"
+      }
+    },
+    {
+      "from": "PortraitStudio",
+      "to": "author.staticpack",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "prepare",
+        "seq": 4,
+        "targetId": "mentor-main",
+        "displayId": "display-3",
+        "visitId": "visit-18",
+        "displayEpoch": 1,
+        "choiceId": "choice-9",
+        "transactionId": "transaction-77",
+        "surfaceId": "game:SpriteRenderer:8421",
+        "encounterId": "encounter-18",
+        "groupId": "group-77",
+        "presentationRole": "presenter",
+        "presenterProviderId": "author.staticpack",
+        "planId": "plan-77",
+        "reservationId": "reservation-77",
+        "grant": {
+          "residentDeltaBytes": 262144,
+          "peakAdditionalBytes": 600000
+        }
+      }
+    },
+    {
+      "from": "author.staticpack",
+      "to": "PortraitStudio",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "prepared",
+        "seq": 4,
+        "targetId": "mentor-main",
+        "displayId": "display-3",
+        "visitId": "visit-18",
+        "displayEpoch": 1,
+        "choiceId": "choice-9",
+        "transactionId": "transaction-77",
+        "surfaceId": "game:SpriteRenderer:8421",
+        "encounterId": "encounter-18",
+        "groupId": "group-77",
+        "presentationRole": "presenter",
+        "presenterProviderId": "author.staticpack",
+        "planId": "plan-77",
+        "reservationId": "reservation-77",
+        "memory": {
+          "residentBytes": 262144,
+          "pinnedBytes": 262144,
+          "warmBytes": 0,
+          "pendingDestroyBytes": 0,
+          "borrowedBytes": 262144,
+          "decodeReservedBytes": 0
+        },
+        "heldResources": [
+          {
+            "resource": {
+              "providerId": "PortraitStudio",
+              "setId": "character-game-mentor-main",
+              "id": "registered-7f63",
+              "revision": "r-7f63-pixels-geometry"
+            },
+            "refCount": 1
+          }
+        ],
+        "requestOp": "prepare",
+        "snapshotId": "memory-10",
+        "page": 0,
+        "last": true
+      }
+    },
+    {
+      "from": "PortraitStudio",
+      "to": "author.staticpack",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "commit",
+        "seq": 5,
+        "targetId": "mentor-main",
+        "displayId": "display-3",
+        "visitId": "visit-18",
+        "displayEpoch": 1,
+        "choiceId": "choice-9",
+        "transactionId": "transaction-77",
+        "surfaceId": "game:SpriteRenderer:8421",
+        "encounterId": "encounter-18",
+        "groupId": "group-77",
+        "presentationRole": "presenter",
+        "presenterProviderId": "author.staticpack",
+        "planId": "plan-77",
+        "reservationId": "reservation-77"
+      }
+    },
+    {
+      "from": "author.staticpack",
+      "to": "PortraitStudio",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "applied",
+        "seq": 5,
+        "targetId": "mentor-main",
+        "displayId": "display-3",
+        "visitId": "visit-18",
+        "displayEpoch": 1,
+        "choiceId": "choice-9",
+        "transactionId": "transaction-77",
+        "surfaceId": "game:SpriteRenderer:8421",
+        "encounterId": "encounter-18",
+        "groupId": "group-77",
+        "presentationRole": "presenter",
+        "presenterProviderId": "author.staticpack",
+        "planId": "plan-77",
+        "reservationId": "reservation-77",
+        "memory": {
+          "residentBytes": 262144,
+          "pinnedBytes": 262144,
+          "warmBytes": 0,
+          "pendingDestroyBytes": 0,
+          "borrowedBytes": 262144,
+          "decodeReservedBytes": 0
+        },
+        "heldResources": [
+          {
+            "resource": {
+              "providerId": "PortraitStudio",
+              "setId": "character-game-mentor-main",
+              "id": "registered-7f63",
+              "revision": "r-7f63-pixels-geometry"
+            },
+            "refCount": 1
+          }
+        ],
+        "requestOp": "commit",
+        "snapshotId": "memory-12",
+        "page": 0,
+        "last": true
+      }
+    },
+    {
+      "from": "PortraitStudio",
+      "to": "author.staticpack",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "finish",
+        "seq": 6,
+        "targetId": "mentor-main",
+        "displayId": "display-3",
+        "visitId": "visit-18",
+        "displayEpoch": 1,
+        "choiceId": "choice-9",
+        "transactionId": "transaction-77",
+        "surfaceId": "game:SpriteRenderer:8421",
+        "encounterId": "encounter-18",
+        "groupId": "group-77",
+        "presentationRole": "presenter",
+        "presenterProviderId": "author.staticpack",
+        "planId": "plan-77",
+        "reservationId": "reservation-77"
+      }
+    },
+    {
+      "from": "author.staticpack",
+      "to": "PortraitStudio",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "finished",
+        "seq": 6,
+        "targetId": "mentor-main",
+        "displayId": "display-3",
+        "visitId": "visit-18",
+        "displayEpoch": 1,
+        "choiceId": "choice-9",
+        "transactionId": "transaction-77",
+        "surfaceId": "game:SpriteRenderer:8421",
+        "encounterId": "encounter-18",
+        "groupId": "group-77",
+        "presentationRole": "presenter",
+        "presenterProviderId": "author.staticpack",
+        "planId": "plan-77",
+        "reservationId": "reservation-77",
+        "memory": {
+          "residentBytes": 262144,
+          "pinnedBytes": 262144,
+          "warmBytes": 0,
+          "pendingDestroyBytes": 0,
+          "borrowedBytes": 262144,
+          "decodeReservedBytes": 0
+        },
+        "heldResources": [
+          {
+            "resource": {
+              "providerId": "PortraitStudio",
+              "setId": "character-game-mentor-main",
+              "id": "registered-7f63",
+              "revision": "r-7f63-pixels-geometry"
+            },
+            "refCount": 1
+          }
+        ],
+        "requestOp": "finish",
+        "snapshotId": "memory-14",
+        "page": 0,
+        "last": true
+      }
+    },
+    {
+      "from": "author.staticpack",
+      "to": "PortraitStudio",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "hide",
+        "seq": 0,
+        "eventSeq": 3,
+        "targetId": "mentor-main",
+        "displayId": "display-3",
+        "visitId": "visit-18",
+        "displayEpoch": 1,
+        "reason": "hidden"
+      }
+    },
+    {
+      "from": "author.staticpack",
+      "to": "PortraitStudio",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "display-released",
+        "seq": 0,
+        "eventSeq": 4,
+        "targetId": "mentor-main",
+        "displayId": "display-3",
+        "visitId": "visit-18",
+        "displayEpoch": 1,
+        "memory": {
+          "residentBytes": 262144,
+          "pinnedBytes": 0,
+          "warmBytes": 262144,
+          "pendingDestroyBytes": 0,
+          "borrowedBytes": 262144,
+          "decodeReservedBytes": 0
+        },
+        "heldResources": [
+          {
+            "resource": {
+              "providerId": "PortraitStudio",
+              "setId": "character-game-mentor-main",
+              "id": "registered-7f63",
+              "revision": "r-7f63-pixels-geometry"
+            },
+            "refCount": 1
+          }
+        ],
+        "snapshotId": "memory-16",
+        "page": 0,
+        "last": true
+      }
+    },
+    {
+      "from": "PortraitStudio",
+      "to": "author.staticpack",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "trim",
+        "seq": 7,
+        "warmLimitBytes": 0
+      }
+    },
+    {
+      "from": "author.staticpack",
+      "to": "PortraitStudio",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "trimmed",
+        "seq": 7,
+        "memory": {
+          "residentBytes": 262144,
+          "pinnedBytes": 0,
+          "warmBytes": 0,
+          "pendingDestroyBytes": 262144,
+          "borrowedBytes": 262144,
+          "decodeReservedBytes": 0
+        },
+        "heldResources": [
+          {
+            "resource": {
+              "providerId": "PortraitStudio",
+              "setId": "character-game-mentor-main",
+              "id": "registered-7f63",
+              "revision": "r-7f63-pixels-geometry"
+            },
+            "refCount": 1
+          }
+        ],
+        "requestOp": "trim",
+        "snapshotId": "memory-18",
+        "page": 0,
+        "last": true
+      }
+    },
+    {
+      "from": "author.staticpack",
+      "to": "PortraitStudio",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "memory-changed",
+        "seq": 0,
+        "eventSeq": 5,
+        "memory": {
+          "residentBytes": 0,
+          "pinnedBytes": 0,
+          "warmBytes": 0,
+          "pendingDestroyBytes": 0,
+          "borrowedBytes": 262144,
+          "decodeReservedBytes": 0
+        },
+        "heldResources": [],
+        "snapshotId": "memory-19",
+        "page": 0,
+        "last": true
+      }
+    },
+    {
+      "from": "PortraitStudio",
+      "to": "author.staticpack",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "heartbeat",
+        "seq": 8
+      }
+    },
+    {
+      "from": "author.staticpack",
+      "to": "PortraitStudio",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "ack",
+        "seq": 8,
+        "requestOp": "heartbeat"
+      }
+    },
+    {
+      "from": "PortraitStudio",
+      "to": "author.staticpack",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "release",
+        "seq": 9
+      }
+    },
+    {
+      "from": "author.staticpack",
+      "to": "PortraitStudio",
+      "payload": {
+        "protocol": "portrait-studio-static/1",
+        "contract": "static-display-transaction/1",
+        "renderMode": "static",
+        "providerId": "author.staticpack",
+        "revision": "writer-geometry-1",
+        "instance": "instance-a",
+        "session": "session-43",
+        "op": "released",
+        "seq": 9,
+        "memory": {
+          "residentBytes": 0,
+          "pinnedBytes": 0,
+          "warmBytes": 0,
+          "pendingDestroyBytes": 0,
+          "borrowedBytes": 262144,
+          "decodeReservedBytes": 0
+        },
+        "heldResources": [],
+        "requestOp": "release",
+        "snapshotId": "memory-23",
+        "page": 0,
+        "last": true
+      }
+    }
+  ],
+  "independentRequestExamples": [
+    {
+      "protocol": "portrait-studio-static/1",
+      "contract": "static-display-transaction/1",
+      "renderMode": "static",
+      "providerId": "author.staticpack",
+      "revision": "writer-geometry-1",
+      "instance": "instance-a",
+      "session": "session-43",
+      "op": "select",
+      "seq": 10,
+      "targetId": "mentor-main",
+      "choiceId": "choice-follow",
+      "mode": "follow",
+      "setDefault": true,
+      "layout": {
+        "scale": 1.1,
+        "x": 0.05,
+        "y": 0
+      }
+    },
+    {
+      "protocol": "portrait-studio-static/1",
+      "contract": "static-display-transaction/1",
+      "renderMode": "static",
+      "providerId": "author.staticpack",
+      "revision": "writer-geometry-1",
+      "instance": "instance-a",
+      "session": "session-43",
+      "op": "select",
+      "seq": 11,
+      "targetId": "mentor-main",
+      "choiceId": "choice-original",
+      "mode": "original",
+      "setDefault": false,
+      "layout": {
+        "scale": 1,
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "protocol": "portrait-studio-static/1",
+      "contract": "static-display-transaction/1",
+      "renderMode": "static",
+      "providerId": "author.secondpack",
+      "revision": "writer-geometry-1",
+      "instance": "instance-b",
+      "session": "session-b",
+      "op": "plan",
+      "seq": 12,
+      "targetId": "mentor-main",
+      "displayId": "display-b",
+      "visitId": "visit-b",
+      "displayEpoch": 1,
+      "choiceId": "choice-9",
+      "transactionId": "transaction-77",
+      "surfaceId": "game:SpriteRenderer:8421",
+      "encounterId": "encounter-18",
+      "groupId": "group-77",
+      "presentationRole": "silent",
+      "presenterProviderId": "author.staticpack"
+    }
+  ],
+  "expectedLayout": {
+    "pixelsPerUnit": 80,
+    "pivotX": 0.42,
+    "pivotY": 0.04,
+    "textureUnchanged": true,
+    "rectUnchanged": true,
+    "borderUnchanged": true
+  }
+}

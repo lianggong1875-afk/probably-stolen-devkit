@@ -1,0 +1,484 @@
+{
+  "ok": true,
+  "result": {
+    "table": "Item",
+    "selectedLocale": "zh",
+    "requestedLocale": "zh",
+    "selectedLocaleAfter": "zh",
+    "entries": [
+      {
+        "key": "item_card_mining_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "名片（GP采矿合作社）",
+        "rawValue": "名片（GP采矿合作社）"
+      },
+      {
+        "key": "item_card_pharma_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "名片（药商）",
+        "rawValue": "名片（药商）"
+      },
+      {
+        "key": "item_card_rev_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "名片（绿）",
+        "rawValue": "名片（绿）"
+      },
+      {
+        "key": "item_cassette_player_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "磁带播放器",
+        "rawValue": "磁带播放器"
+      },
+      {
+        "key": "item_cat_bar_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "猫咪巧克力棒",
+        "rawValue": "猫咪巧克力棒"
+      },
+      {
+        "key": "item_caviar_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "鱼子酱",
+        "rawValue": "鱼子酱"
+      },
+      {
+        "key": "item_cert1_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "鉴定委员会初级证书",
+        "rawValue": "鉴定委员会初级证书"
+      },
+      {
+        "key": "item_cert2_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "鉴定委员会认证证书",
+        "rawValue": "鉴定委员会认证证书"
+      },
+      {
+        "key": "item_cert3_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "鉴定委员会高级认证证书",
+        "rawValue": "鉴定委员会高级认证证书"
+      },
+      {
+        "key": "item_cert4_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "鉴定委员会大师认证证书",
+        "rawValue": "鉴定委员会大师认证证书"
+      },
+      {
+        "key": "item_chem_finisher_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "化学制剂成型机",
+        "rawValue": "化学制剂成型机"
+      },
+      {
+        "key": "item_chem_module_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "化学设备模组",
+        "rawValue": "化学设备模组"
+      },
+      {
+        "key": "item_chem_scanner_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "成分光谱仪",
+        "rawValue": "成分光谱仪"
+      },
+      {
+        "key": "item_chemistry_guide_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "化学手册",
+        "rawValue": "化学手册"
+      },
+      {
+        "key": "item_cigarette_color_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "海明威色卡",
+        "rawValue": "海明威色卡"
+      },
+      {
+        "key": "item_cigarette_guide_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "海明威鉴定指南",
+        "rawValue": "海明威鉴定指南"
+      },
+      {
+        "key": "item_cmd_keycard_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一次性钥匙卡（指挥）",
+        "rawValue": "一次性钥匙卡（指挥）"
+      },
+      {
+        "key": "item_coffee_bean_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "咖啡豆",
+        "rawValue": "咖啡豆"
+      },
+      {
+        "key": "item_combat_knife_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "战斗匕首",
+        "rawValue": "战斗匕首"
+      },
+      {
+        "key": "item_combat_machete_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "战斗砍刀",
+        "rawValue": "战斗砍刀"
+      },
+      {
+        "key": "item_common_chemical_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "化学用品（普通）",
+        "rawValue": "化学用品（普通）"
+      },
+      {
+        "key": "item_common_electronic_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "电子元件（普通）",
+        "rawValue": "电子元件（普通）"
+      },
+      {
+        "key": "item_common_medical_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "医疗用品（普通）",
+        "rawValue": "医疗用品（普通）"
+      },
+      {
+        "key": "item_common_ore_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "金属矿石",
+        "rawValue": "金属矿石"
+      },
+      {
+        "key": "item_compensator_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "补偿器",
+        "rawValue": "补偿器"
+      },
+      {
+        "key": "item_crowbar_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "撬棍",
+        "rawValue": "撬棍"
+      },
+      {
+        "key": "item_crypto_module_cmd_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "密码解序器芯片（指挥）",
+        "rawValue": "密码解序器芯片（指挥）"
+      },
+      {
+        "key": "item_crypto_module_eng_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "密码解序器芯片（工程）",
+        "rawValue": "密码解序器芯片（工程）"
+      },
+      {
+        "key": "item_crypto_module_med_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "密码解序器芯片（医疗）",
+        "rawValue": "密码解序器芯片（医疗）"
+      },
+      {
+        "key": "item_crypto_module_sec_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "密码解序器芯片（治安）",
+        "rawValue": "密码解序器芯片（治安）"
+      },
+      {
+        "key": "item_crypto_module_ser_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "密码解序器芯片（服务）",
+        "rawValue": "密码解序器芯片（服务）"
+      },
+      {
+        "key": "item_crypto_module_sup_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "密码解序器芯片（补给）",
+        "rawValue": "密码解序器芯片（补给）"
+      },
+      {
+        "key": "item_cup_noodle_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "速食拉面",
+        "rawValue": "速食拉面"
+      },
+      {
+        "key": "item_current_converter_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "电流转换器",
+        "rawValue": "电流转换器"
+      },
+      {
+        "key": "item_debris_pile_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "杂物堆",
+        "rawValue": "杂物堆"
+      },
+      {
+        "key": "item_deed_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "房契",
+        "rawValue": "房契"
+      },
+      {
+        "key": "item_dehydrated_water_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "100%脱水纯水",
+        "rawValue": "100%脱水纯水"
+      },
+      {
+        "key": "item_desequencer_instruction_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "使用说明：解序器",
+        "rawValue": "使用说明：解序器"
+      },
+      {
+        "key": "item_desequencer_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "密码解序器",
+        "rawValue": "密码解序器"
+      },
+      {
+        "key": "item_dna_disk_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "DNA数据盘",
+        "rawValue": "DNA数据盘"
+      },
+      {
+        "key": "item_dna_manipulator_instruction_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "DNA编辑器说明",
+        "rawValue": "DNA编辑器说明"
+      },
+      {
+        "key": "item_dna_manipulator_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "DNA编辑器",
+        "rawValue": "DNA编辑器"
+      },
+      {
+        "key": "item_dna_module_negative_filter_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "负面特性筛选模组",
+        "rawValue": "负面特性筛选模组"
+      },
+      {
+        "key": "item_dna_module_positive_filter_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "正面特性筛选模组",
+        "rawValue": "正面特性筛选模组"
+      },
+      {
+        "key": "item_dna_module_precision_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "精准提取模组",
+        "rawValue": "精准提取模组"
+      },
+      {
+        "key": "item_dna_module_stabilizer_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "基因稳定模组",
+        "rawValue": "基因稳定模组"
+      },
+      {
+        "key": "item_dossier_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "档案箱",
+        "rawValue": "档案箱"
+      },
+      {
+        "key": "item_drain_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "排水口",
+        "rawValue": "排水口"
+      },
+      {
+        "key": "item_dream_cap_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "梦帽菇",
+        "rawValue": "梦帽菇"
+      },
+      {
+        "key": "item_dream_cap_seed_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "梦帽菇孢子",
+        "rawValue": "梦帽菇孢子"
+      }
+    ],
+    "completed": true,
+    "localeChangedByTool": false,
+    "valueSource": "Unity StringDatabase using native formatting and project fallback settings",
+    "scope": "String-table lookup only; item-cached strings, mod delegates and LocHelper error/raw fallback may differ"
+  },
+  "operationId": "e201d90e-a6bf-47c6-9f4c-0ca7f695891a",
+  "sessionId": null,
+  "worldId": null,
+  "executionState": "succeeded",
+  "error": null,
+  "output": {
+    "truncated": false,
+    "omissionCount": 0,
+    "details": [],
+    "detailsOmitted": 0,
+    "limits": {
+      "textCharacters": 2000,
+      "collectionEntries": 200,
+      "depth": 12,
+      "nodes": 4000,
+      "characters": 24000
+    },
+    "hint": "Use filters, snapshot pages, or get_operation result_path with offset/limit for omitted data. Truncated observations are incomplete."
+  }
+}

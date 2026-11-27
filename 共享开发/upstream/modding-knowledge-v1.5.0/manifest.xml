@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Manifest>
+  <ID>modding-knowledge-base</ID>
+  <Name>深空当铺模组开发经验库</Name>
+  <Author>Vorty</Author>
+  <ModVersion>1.5.0</ModVersion>
+  <Description>写给模组作者和 AI 的经验库，不含任何游戏内玩法。订阅后在模组文件夹里阅读 README.md 与 docs/：环境与编译、官方 API 地图、52 条踩坑清单、可复制代码配方（自绘窗口、批量手势、词条角标、异形机器）、发布流程、安全边界、官方红线清单、性能优化（大网格拖拽与批量输出）、调试方法。代码不改变任何游戏内容。English guide: see the English description on the Workshop page or README.md.</Description>
+  <GameVersions>
+  </GameVersions>
+  <Prerequisites>
+  </Prerequisites>
+  <Assemblies>
+    <Assembly>ModdingKnowledge.dll</Assembly>
+  </Assemblies>
+  <Capabilities>
+  </Capabilities>
+</Manifest>

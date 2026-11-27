@@ -1,0 +1,4 @@
+interface:
+  display_name: "既有模组静态接口接入"
+  short_description: "为既有作者模组小改增加明确静态接口，保留原功能并协作换图"
+  default_prompt: "使用 $portrait-studio-adapter，先用简单的话推荐制作或接入路线，保留已有大小位置设置，完成静态图片资源与接口。"

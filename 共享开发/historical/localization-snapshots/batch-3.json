@@ -1,0 +1,484 @@
+{
+  "ok": true,
+  "result": {
+    "table": "Item",
+    "selectedLocale": "zh",
+    "requestedLocale": "zh",
+    "selectedLocaleAfter": "zh",
+    "entries": [
+      {
+        "key": "item_dream_dust_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一小瓶“梦尘”",
+        "rawValue": "一小瓶“梦尘”"
+      },
+      {
+        "key": "item_eel_fillet_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "鳗鱼肉片",
+        "rawValue": "鳗鱼肉片"
+      },
+      {
+        "key": "item_eel_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "鳗鱼",
+        "rawValue": "鳗鱼"
+      },
+      {
+        "key": "item_electric_eel_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "电鳗",
+        "rawValue": "电鳗"
+      },
+      {
+        "key": "item_empty_beer_bottle_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "空啤酒瓶",
+        "rawValue": "空啤酒瓶"
+      },
+      {
+        "key": "item_energy_credit_breeder_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "自充电能量电池",
+        "rawValue": "自充电能量电池"
+      },
+      {
+        "key": "item_energy_credit_dis_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一次性电池",
+        "rawValue": "一次性电池"
+      },
+      {
+        "key": "item_energy_credit_ext_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "能量电池（2型）",
+        "rawValue": "能量电池（2型）"
+      },
+      {
+        "key": "item_energy_credit_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "能量电池",
+        "rawValue": "能量电池"
+      },
+      {
+        "key": "item_energy_drink_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "能量饮料",
+        "rawValue": "能量饮料"
+      },
+      {
+        "key": "item_eng_box_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "工程铸造厂物资箱",
+        "rawValue": "工程铸造厂物资箱"
+      },
+      {
+        "key": "item_eng_keycard_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一次性钥匙卡（工程）",
+        "rawValue": "一次性钥匙卡（工程）"
+      },
+      {
+        "key": "item_evaporator_instruction_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "蒸发器说明",
+        "rawValue": "蒸发器说明"
+      },
+      {
+        "key": "item_evaporator_module_solvent_recovery_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "蒸发器溶剂回收模组",
+        "rawValue": "蒸发器溶剂回收模组"
+      },
+      {
+        "key": "item_evaporator_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "蒸发器",
+        "rawValue": "蒸发器"
+      },
+      {
+        "key": "item_evidence_box_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "治安部物证柜",
+        "rawValue": "治安部物证柜"
+      },
+      {
+        "key": "item_exchange_directive_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "地下交易所清单",
+        "rawValue": "地下交易所清单"
+      },
+      {
+        "key": "item_expedition_box_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "探险补给箱",
+        "rawValue": "探险补给箱"
+      },
+      {
+        "key": "item_expedition_log_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "探险日志",
+        "rawValue": "探险日志"
+      },
+      {
+        "key": "item_fanny_pack_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "腰包",
+        "rawValue": "腰包"
+      },
+      {
+        "key": "item_fanta_pill_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "芬太片",
+        "rawValue": "芬太片"
+      },
+      {
+        "key": "item_farm_module_dream_cap_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "梦帽菇中和水培模组",
+        "rawValue": "梦帽菇中和水培模组"
+      },
+      {
+        "key": "item_farm_module_fillerweed_production_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "填料草增产水培模组",
+        "rawValue": "填料草增产水培模组"
+      },
+      {
+        "key": "item_farm_module_hydroreed_filter_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "水培芦苇滤芯模组",
+        "rawValue": "水培芦苇滤芯模组"
+      },
+      {
+        "key": "item_farm_module_kotton_loom_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "韧棉自动织造水培模组",
+        "rawValue": "韧棉自动织造水培模组"
+      },
+      {
+        "key": "item_farm_module_nightmare_cap_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "梦帽菇梦魇化水培模组",
+        "rawValue": "梦帽菇梦魇化水培模组"
+      },
+      {
+        "key": "item_farm_module_nutrifruit_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "营养果水培模组",
+        "rawValue": "营养果水培模组"
+      },
+      {
+        "key": "item_farm_module_smuggler_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "水培走私模组",
+        "rawValue": "水培走私模组"
+      },
+      {
+        "key": "item_fat_meat_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "动物脂肪",
+        "rawValue": "动物脂肪"
+      },
+      {
+        "key": "item_faucet_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "水龙头",
+        "rawValue": "水龙头"
+      },
+      {
+        "key": "item_fillerweed_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "填料草",
+        "rawValue": "填料草"
+      },
+      {
+        "key": "item_fillerweed_seed_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "填料草种子",
+        "rawValue": "填料草种子"
+      },
+      {
+        "key": "item_fish_fillet_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "鱼肉片",
+        "rawValue": "鱼肉片"
+      },
+      {
+        "key": "item_fish_scrap_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "鱼类边角料",
+        "rawValue": "鱼类边角料"
+      },
+      {
+        "key": "item_flashbang_grenade_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "闪光弹",
+        "rawValue": "闪光弹"
+      },
+      {
+        "key": "item_flashlight_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "手电筒",
+        "rawValue": "手电筒"
+      },
+      {
+        "key": "item_flux_agent_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "助熔剂（基础）",
+        "rawValue": "助熔剂（基础）"
+      },
+      {
+        "key": "item_food_stamp_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "食品券",
+        "rawValue": "食品券"
+      },
+      {
+        "key": "item_fridge_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "冰箱",
+        "rawValue": "冰箱"
+      },
+      {
+        "key": "item_fuel_guide_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "等离子燃料匣鉴定指南",
+        "rawValue": "等离子燃料匣鉴定指南"
+      },
+      {
+        "key": "item_furnace_instruction_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "使用说明：熔炉",
+        "rawValue": "使用说明：熔炉"
+      },
+      {
+        "key": "item_furnace_module_blast_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "熔炉模组（高炉）",
+        "rawValue": "熔炉模组（高炉）"
+      },
+      {
+        "key": "item_furnace_module_junk_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "熔炉模组（垃圾处理）",
+        "rawValue": "熔炉模组（垃圾处理）"
+      },
+      {
+        "key": "item_furnace_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "熔炉",
+        "rawValue": "熔炉"
+      },
+      {
+        "key": "item_galaxy_blend_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "繁星果糊",
+        "rawValue": "繁星果糊"
+      },
+      {
+        "key": "item_gamblers_coin_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "赌徒硬币",
+        "rawValue": "赌徒硬币"
+      },
+      {
+        "key": "item_genetic_scanner_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "基因扫描仪",
+        "rawValue": "基因扫描仪"
+      },
+      {
+        "key": "item_gl_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "25毫米下挂式榴弹发射器",
+        "rawValue": "25毫米下挂式榴弹发射器"
+      },
+      {
+        "key": "item_glass_shard_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "碎玻璃",
+        "rawValue": "碎玻璃"
+      },
+      {
+        "key": "item_glass_shard_shiv_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "玻璃刀",
+        "rawValue": "玻璃刀"
+      }
+    ],
+    "completed": true,
+    "localeChangedByTool": false,
+    "valueSource": "Unity StringDatabase using native formatting and project fallback settings",
+    "scope": "String-table lookup only; item-cached strings, mod delegates and LocHelper error/raw fallback may differ"
+  },
+  "operationId": "61185fab-74aa-4e7e-8e54-c192845dc75d",
+  "sessionId": null,
+  "worldId": null,
+  "executionState": "succeeded",
+  "error": null,
+  "output": {
+    "truncated": false,
+    "omissionCount": 0,
+    "details": [],
+    "detailsOmitted": 0,
+    "limits": {
+      "textCharacters": 2000,
+      "collectionEntries": 200,
+      "depth": 12,
+      "nodes": 4000,
+      "characters": 24000
+    },
+    "hint": "Use filters, snapshot pages, or get_operation result_path with offset/limit for omitted data. Truncated observations are incomplete."
+  }
+}

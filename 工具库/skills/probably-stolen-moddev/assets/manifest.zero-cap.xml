@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod>
+  <ID>your.mod_id</ID>
+  <Name>你的模组名称 | Your Mod Name</Name>
+  <Author>YourName</Author>
+  <ModVersion>0.1.0</ModVersion>
+  <Description>简短双语描述（游戏 Mods 界面按原文显示）。</Description>
+  <GameVersions>
+    <Version>0.46D</Version>
+  </GameVersions>
+  <Prerequisites />
+  <Assemblies>
+    <Assembly>YourMod.dll</Assembly>
+  </Assemblies>
+  <Capabilities />
+</Mod>

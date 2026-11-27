@@ -1,0 +1,190 @@
+key	中文	English	identifiers	previewSpriteKey
+vanilla_client_retired_rancher	退休养鼠人	Retired Rancher	retired_rancher	maleFarmer1
+vanilla_client_retired_winemaker	退休酿酒师	Retired Winemaker	retired_winemaker	maleFarmer1
+vanilla_client_retired_gunsmith	退休枪匠	Retired Gunsmith	retired_gunsmith	maleLower1
+vanilla_client_retired_water_merchant	退休水商	Retired Water Merchant	retired_water_merchant	maleLower1
+vanilla_client_lower_level_gunsmith	下层区枪匠	Lower Level Gunsmith	lower_level_gunsmith	maleLower1
+vanilla_client_waterSeller	水商	Water Trader	waterSeller	merchant
+vanilla_client_lotteryRep	彩票代表	Lottery Representative	lotteryRep	maleScav1
+vanilla_client_shadyPharma	上层区药商	Upper Level Pharmacist	shadyPharma	maleSci1
+vanilla_client_lowLevelDoctor	下层区医生	Lower Level Doctor	lowLevelDoctor	maleSci1
+vanilla_client_nurseMinor2	下层区护士	Lower Level Nurse	nurseMinor2	femaleSci1
+vanilla_client_nurseMinor	中层区护士	Mid Level Nurse	nurseMinor	femaleSci1
+vanilla_client_clinicNurse	诊所护士（中层区）	Clinic Nurse (Mid Level)	clinicNurse	femaleSci1
+vanilla_client_lowerInventor	下层区发明家	Lower Level Inventor	lowerInventor	femaleSci1
+vanilla_client_lowerLevelChemist	下层区化学家	Lower Level Chemist	lowerLevelChemist	maleSci1
+vanilla_client_lowerLevelChemistBarter	下层区化学家（以物易物）	Lower Level Chemist (Barter)	lowerLevelChemistBarter	maleScav1
+vanilla_client_rareLowerLevelChemist	药商（稀有来访）	Pharmacist (Rare Visit)	rareLowerLevelChemist	maleSci1
+vanilla_client_pharmacist	药商（事件）	Pharmacist (Event)	pharmacist	maleSci1
+vanilla_client_thiefGenericMedSeller	偷药的	Medicine Thief	thiefGenericMedSeller	maleBM1
+vanilla_client_serpicoOfficerReturn	治安部警官（塞尔皮科事件回访）	Security Officer (Serpico Follow-up)	serpicoOfficerReturn	maleSec1
+vanilla_client_spacerFood	星际客（食品交易）	Spacer (Food Trade)	spacerFood	maleScav1
+vanilla_client_upperLowerVisitor	上层区访客	Upper Level Visitor	upperLowerVisitor,upperLowerVisitorLuxury	maleUpper1
+vanilla_client_poisonBuyer	可疑的买家	Shady Buyer	poisonBuyer	maleBM1
+vanilla_client_spacerFoodVariety	星际客（多样食品）	Spacer (Food Variety)	spacerFoodVariety	maleLower1
+vanilla_client_spacerAmenityVariety	星际客（日用品采购）	Spacer (Amenities)	spacerAmenityVariety	maleLower1
+vanilla_client_junker	废料客	Junker	junker,junker2	maleScav1
+vanilla_client_farmer_standard	水培农场主	Hydroponic Farmer	farmer_standard,farmerMinor	maleFarmer1
+vanilla_client_scavStamp	拾荒客（邮票卖家）	Scav (Stamp Seller)	scavStamp	maleScav1
+vanilla_client_merchant	商人	Merchant	merchant	merchant
+vanilla_client_shadyMerchant	可疑的商人	Shady Merchant	shadyMerchant	shadyMerchant
+vanilla_client_machine_scrapper	废料拆解工	Scrapper	machine_scrapper,brokenMachineIntro	maleScav1
+vanilla_client_miner	矿工	Miner	miner,minerMinor	maleScav1
+vanilla_client_scavGeneral	拾荒客（杂货交易）	Scavenger (General Trade)	scavGeneral	maleScav1
+vanilla_client_scavCrate	拾荒客（箱子交易）	Scavenger (Crates)	scavCrate	maleScav1
+vanilla_client_scavInspectable	拾荒客（可检查物品）	Scavenger (Inspectable Goods)	scavInspectable	maleScav1
+vanilla_client_thief	小偷	Thief	thief	maleBM1
+vanilla_client_pettyThief	扒手	Petty Thief	pettyThief	maleBM1
+vanilla_client_foodThief	食物窃贼	Food Thief	foodThief	maleBM1
+vanilla_client_supplier	补给运输员	Supply Runner	supplier	merchant
+vanilla_client_supplierIntro	供货商	Supplier	supplierIntro	merchant
+vanilla_client_securityInspector	懒惰的治安部盘查员	Lazy Security Inspector	securityInspector	maleSec1
+vanilla_client_scavBlood	面色惨白的拾荒客	Pale Scav	scavBlood	maleScav1
+vanilla_client_loan_shark	高利贷者	Loan Shark	loan_shark,loan_shark2,loan_shark_collect	shadyMerchant
+vanilla_client_mercenaryBuyer	雇佣兵	Mercenary	mercenaryBuyer	maleMerc1
+vanilla_client_lower_level_rare_merchant	稀有品商人	Rare Merchant	lower_level_rare_merchant	maleLower1
+vanilla_client_secSurplusMerchant	治安部征用官	Security Requisition Officer	secSurplusMerchant,secRequisitionOfficer	maleSec1
+vanilla_client_cluelessTouristBuyer	游客	Tourist	cluelessTouristBuyer	maleLower1
+vanilla_client_brokeUpperLevel	上层区公民（缺钱来访）	Upper Level Citizen (Short of Cash)	brokeUpperLevel	maleUpper1
+vanilla_client_touristWeaponSouvenirBuyer	空间站游客	Station Tourist	touristWeaponSouvenirBuyer,touristJunkSouvenirBuyer	maleLower1
+vanilla_client_foodBankBuyer	粮站供应商	Food Bank Supplier	foodBankBuyer	maleLower1
+vanilla_client_criminalBuyerThief	来买东西的小偷	Shopping Thief	criminalBuyerThief	maleBM1
+vanilla_client_criminalBuyerMerc	来买东西的雇佣兵	Shopping Mercenary	criminalBuyerMerc	maleMerc1
+vanilla_client_upperLevelCharity	上层区志愿者	Upper Level Volunteer	upperLevelCharity	maleUpper1
+vanilla_client_lower_level_flexi_buyer	下层区公民（柔性材料采购）	Lower Level Citizen (Flexi Buyer)	lower_level_flexi_buyer	maleLower1
+vanilla_client_businessPermitOfficial	贸易委员会官员	Trade Board Official	businessPermitOfficial	admin
+vanilla_client_scavAppraisal	拾荒客（首次鉴定）	Scavenger (First Appraisal)	scavAppraisal	maleScav1
+vanilla_client_scavAppraisalRandom	拾荒客（鉴定来访）	Scavenger (Appraisal)	scavAppraisalRandom	maleScav1
+vanilla_client_addictBarter	瘾君子拾荒客（以物易物）	Scav Addict (Barter)	addictBarter	maleScav1
+vanilla_client_addictGeneralBarter	瘾君子拾荒客（杂货交换）	Scav Addict (General Barter)	addictGeneralBarter	maleScav1
+vanilla_client_storyFoodBarter	贫穷的拾荒客（首次换粮）	Poor Scav (First Food Barter)	storyFoodBarter	maleScav1
+vanilla_client_addictBarterBlood	瘾君子	Addict	addictBarterBlood	maleScav1
+vanilla_client_scavBarter	拾荒客（以物易物）	Scav (Barter)	scavBarter	maleScav1
+vanilla_client_normalFoodBarter	贫穷的拾荒客	Poor Scav	normalFoodBarter	maleScav1
+vanilla_client_cartelSec	治安部警官（卡特尔事件）	Security Officer (Cartel Event)	cartelSec	maleSec1
+vanilla_client_cartelWoundedSoldier	卡特尔士兵	Cartel Soldier	cartelWoundedSoldier	maleBM1
+vanilla_client_shadyFarmer	可疑的农场主	Shady Farmer	shadyFarmer	maleFarmer1
+vanilla_client_street_dealer	商人	Dealer	street_dealer	maleBM1
+vanilla_client_iceMiner	冰矿工	Ice Miner	iceMiner	maleLower1
+vanilla_client_foreman	工头	Foreman	foreman	maleEng1
+vanilla_client_scavengerHousehold	拾荒客（日用品）	Scavenger (Household Goods)	scavengerHousehold	maleScav1
+vanilla_client_panicBuyer	星际客（恐慌采购）	Spacer (Panic Buying)	panicBuyer	maleLower1
+vanilla_client_corporateBuyer	企业代表	Corporate Representative	corporateBuyer	maleUpper1
+vanilla_client_generic_water_buyer	下层区公民（购水事件）	Lower Level Citizen (Water Event)	generic_water_buyer	maleLower1
+vanilla_client_foodBuyer	食物买家	Food Buyer	foodBuyer	maleScav1
+vanilla_client_farmerSeedBuyer	农场主	Farmer	farmerSeedBuyer	maleFarmer1
+vanilla_client_lynching_citizen	愤怒的公民	Angry Citizen	lynching_citizen	maleLower1
+vanilla_client_lowerLevelCitizenPowerBuying	下层区公民（购电事件）	Lower Level Citizen (Power Event)	lowerLevelCitizenPowerBuying	maleLower1
+vanilla_client_lowerLevelCitizenMaintenanceBuying	下层区公民（维修采购）	Lower Level Citizen (Maintenance)	lowerLevelCitizenMaintenanceBuying	maleLower1
+vanilla_client_upperLevelCitizenPowerBuying	上层区居民	Upper Level Resident	upperLevelCitizenPowerBuying	maleUpper1
+vanilla_client_panickedShopkeeperWeaponBuyer	惊恐的店主	Panicked Shopkeeper	panickedShopkeeperWeaponBuyer	maleLower1
+vanilla_client_clinicVolunteer	诊所志愿者	Clinic Volunteer	clinicVolunteer	maleMed1
+vanilla_client_ll_gun_buyer	下层区公民（枪械买家）	Lower Level Citizen (Gun Buyer)	ll_gun_buyer	maleScav1
+vanilla_client_merc_gun_buyer	雇佣兵（枪械买家）	Mercenary (Gun Buyer)	merc_gun_buyer	maleMerc1
+vanilla_client_ul_gun_buyer	上层区公民（枪械买家）	Upper Level Citizen (Gun Buyer)	ul_gun_buyer	maleUpper1
+vanilla_client_ll_gun_seller	下层区公民（枪械卖家）	Lower Level Citizen (Gun Seller)	ll_gun_seller	maleScav1
+vanilla_client_merc_gun_seller	雇佣兵（枪械卖家）	Mercenary (Gun Seller)	merc_gun_seller	maleMerc1
+vanilla_client_ul_gun_seller	上层区公民（枪械卖家）	Upper Level Citizen (Gun Seller)	ul_gun_seller	maleMerc1
+vanilla_client_beggerInformation	乞丐	Beggar	beggerInformation	maleScav1
+vanilla_client_shadyCustomerInformation	可疑的顾客	Shady Customer	shadyCustomerInformation	maleBM1
+vanilla_client_scavWaterMinor	患病的拾荒客	Sick Scav	scavWaterMinor	maleScav1
+vanilla_client_scavHaul	拾荒客（收获交易）	Scav (Haul)	scavHaul	maleScav1
+vanilla_client_patrolOfficer	巡逻警官	Patrol Officer	patrolOfficer	maleSec1
+vanilla_client_woundedMan	受伤的男人	Wounded Man	woundedMan	maleBM1
+vanilla_client_upperLevelVisitorMinor	上层区公民（日常来访）	Upper Level Citizen (Minor Visit)	upperLevelVisitorMinor	maleUpper1
+vanilla_client_minorMerc	雇佣兵（日常来访）	Mercenary (Minor Visit)	minorMerc	maleMerc1
+vanilla_client_annoyedEngineer	烦躁的工程师	Annoyed Engineer	annoyedEngineer	maleEng1
+vanilla_client_salvagePilot	打捞船飞行员	Salvage Ship Pilot	salvagePilot	maleLower1
+vanilla_client_sickLowers	患病的下层区公民	Sick Lower Level Citizen	sickLowers	maleLower1
+vanilla_client_lowerLevelElder	下层区长者	Lower Level Elder	lowerLevelElder	maleScav1
+vanilla_client_OldScav1	老拾荒客	Old Scav	OldScav1	maleScav1
+vanilla_client_lover	绝望的爱人	Desperate Lover	lover	maleScav1
+vanilla_client_lotteryWinnerMinor	上层区公民（彩票得主）	Upper Level Citizen (Lottery Winner)	lotteryWinnerMinor	maleUpper1
+vanilla_client_peatMinorClient	拾荒客（泥炭交易）	Scavenger (Peat)	peatMinorClient	maleScav1
+vanilla_client_conspiracyMinor	阴谋论者	Conspiracy Theorist	conspiracyMinor	maleScav1
+vanilla_client_upperLevelServantHoboParty	上层区仆从（聚会事件）	Upper Level Servant (Party Event)	upperLevelServantHoboParty	maleUpper1
+vanilla_client_radioactiveWasteCustomer	企业废弃物管理员	Corporate Waste Manager	radioactiveWasteCustomer	maleLower1
+vanilla_client_morningMobLeader	暴民首领	Mob Leader	morningMobLeader	maleLower1
+vanilla_client_morningSecLeader	治安部带队警官	Security Squad Leader	morningSecLeader	maleSec1
+vanilla_client_morningULHitman	杀手	Hitman	morningULHitman	maleMerc1
+vanilla_client_cartelRetired	卡特尔杀手	Cartel Hitman	cartelRetired	maleBM1
+vanilla_client_revRaider	革命军游击队	Revolution Raider	revRaider	maleRev1
+vanilla_client_revQuartermaster	革命军军需官	Revolution Quartermaster	revQuartermaster	maleRev1
+vanilla_client_revolutionaryBuyer	革命军战士	Revolutionary Fighter	revolutionaryBuyer	maleRev1
+vanilla_client_securityOfficer	治安部警官（执照与检查）	Security Officer (Permit and Inspection)	securityOfficer,securityOfficerRevokePermit,securityOfficerAugAllClear	maleSec1
+vanilla_client_food_shortage_client	下层区公民	Lower Level Citizen	food_shortage_client	maleLower1
+vanilla_client_medical_shortage_client	忧心忡忡的居民	Worried Resident	medical_shortage_client	maleLower1
+vanilla_client_substance_shortage_client	可疑的瘾君子	Shady Addict	substance_shortage_client	maleBM1
+vanilla_client_weapon_armor_shortage_client	紧张的当地人	Tense Local	weapon_armor_shortage_client	maleLower1
+vanilla_client_material_shortage_client	废料商人	Scrap Dealer	material_shortage_client	maleScav1
+vanilla_client_retired_junker	退休废料客	Retired Junker	retired_junker,retired_junker_intro	maleScav1
+vanilla_client_scalper	黄牛贩子	Scalper	scalper	shadyMerchant
+vanilla_client_food_scav_story	拾荒客（食品剧情）	Scavenger (Food Story)	food_scav_story,food_scav_story2,food_scav_story3	maleScav1
+vanilla_client_story_scrap_seller	拾荒客（废料剧情）	Scavenger (Scrap Story)	story_scrap_seller	maleScav1
+vanilla_client_story_cigarette_vendor	拾荒客（香烟剧情）	Scavenger (Cigarette Story)	story_cigarette_vendor,story_cigarette_vendor2	maleScav1
+vanilla_client_luckyScavStory	幸运的拾荒客	Lucky Scavenger	luckyScavStory	maleScav1
+vanilla_client_appraisalBoardIntro	鉴定委员会成员	Appraiser Board Member	appraisalBoardIntro,appraisalBoardIntro2,appraisalBoardPromotion	admin
+vanilla_client_storyWaterVendor	下层区公民（水贩剧情）	Lower Level Citizen (Water Vendor Story)	storyWaterVendor	maleLower1
+vanilla_client_story_water_buyer	拾荒客（购水剧情）	Scavenger (Water Buyer Story)	story_water_buyer,story_water_buyer2	maleScav1
+vanilla_client_spacerFoodStory	星际客（购粮剧情）	Spacer (Food Buyer Story)	spacerFoodStory,spacerFoodStory2	maleLower1
+vanilla_client_offDutyOfficerStoryTreat	休班警官	Off Duty Officer	offDutyOfficerStoryTreat,offDutyOfficerStoryBeer	maleSecOff1
+vanilla_client_loanClerk0	贷款业务员	Loan Clerk	loanClerk0,loanClerk1,loanClerk2	maleLower1
+vanilla_client_courrierRedImp	红魔鬼快递员	Red Imp Courier	courrierRedImp,courrierRedImpFree	courrier
+vanilla_client_courrierMining	GP采矿快递员	GP Mining Courier	courrierMining,courrierMiningFree	courrier
+vanilla_client_courrierPharma	快递员	Courier	courrierPharma,courrierPharmaFree	maleBM1
+vanilla_client_hypertech_smuggler	超科技走私贩	Hypertech Smuggler	hypertech_smuggler	maleBM1
+vanilla_client_food_surplus_client	下层区商人（食品过剩）	Lower Level Trader (Food Surplus)	food_surplus_client	maleLower1
+vanilla_client_medical_surplus_client	下层区摊贩	Lower Level Vendor	medical_surplus_client	maleLower1
+vanilla_client_substance_surplus_client	狡猾的商人	Shifty Dealer	substance_surplus_client	maleBM1
+vanilla_client_weapon_armor_surplus_client	下层区武器商人	Lower Level Weapon Trader	weapon_armor_surplus_client	maleLower1
+vanilla_client_material_surplus_client	下层区商人（材料过剩）	Lower Level Trader (Material Surplus)	material_surplus_client	maleLower1
+vanilla_client_waterScavenger	拾荒客（购水）	Scavenger (Water Buyer)	waterScavenger	maleScav1
+vanilla_client_thirstySpacer	口渴的星际客	Thirsty Spacer	thirstySpacer	maleLower1
+vanilla_client_scavWaterShopper	拾荒客（补水采购）	Scav (Hydration Seeker)	scavWaterShopper	maleLower1
+vanilla_client_waterSpace2	星际客（购水）	Spacer (Water Shopper)	waterSpace2	maleLower1
+vanilla_client_waterStockpiler	囤水者	Water Stockpiler	waterStockpiler	maleUpper1
+vanilla_client_spacerFoodI	星际客（购粮）	Spacer (Food Buyer)	spacerFoodI	maleLower1
+vanilla_client_hungrySpacer	忍饥挨饿的星际客	Hungry Spacer	hungrySpacer	maleLower1
+vanilla_client_spacerChef	星际客厨师	Spacer Cook	spacerChef	maleChef1
+vanilla_client_expeditionSupplier	探险供应商	Expedition Supplier	expeditionSupplier	maleLower1
+vanilla_client_privateChef	上层区私人厨师	Upper Level Private Chef	privateChef	maleChef1
+vanilla_client_spacerMedical	负伤的星际客	Injured Spacer	spacerMedical	maleLower1
+vanilla_client_sickChildCaretaker	病童看护者	Sick Child Caretaker	sickChildCaretaker	maleScav1
+vanilla_client_hospitalAdmin	上层区医院供货商	Upper Level Hospital Supplier	hospitalAdmin	maleUpper1
+vanilla_client_lowerRepairman	下层区修理工	Lower Level Repairman	lowerRepairman	maleEng1
+vanilla_client_scrap_byer	废品收购人	Scrap Buyer	scrap_byer	maleScav1
+vanilla_client_maintenanceWorker	维护工人	Maintenance Worker	maintenanceWorker	maleEng1
+vanilla_client_stationEngineer	空间站工程师	Station Engineer	stationEngineer,stationEngineerMinor	maleEng1
+vanilla_client_spacerHouseholdItem	星际客（日用品）	Spacer (Household Items)	spacerHouseholdItem	maleLower1
+vanilla_client_youngSpacerHousehold	年轻的星际客	Young Spacer	youngSpacerHousehold	maleLower1
+vanilla_client_familyMother	下层区家长	Lower Level Parent	familyMother	maleScav1
+vanilla_client_citizenHousehold	公民	Citizen	citizenHousehold	maleLower1
+vanilla_client_upperMaid	上层区仆从	Upper Level Servant	upperMaid	maleLower1
+vanilla_client_desperateAddict	绝望的瘾君子	Desperate Addict	desperateAddict	maleScav1
+vanilla_client_wornOutSpacer	筋疲力尽的星际客	Worn-Out Spacer	wornOutSpacer	maleLower1
+vanilla_client_upperLevelHedonist	上层区寻欢客	Upper Levels Hedonist	upperLevelHedonist	maleUpper1
+vanilla_client_scavenger	拾荒客（武器采购）	Scavenger (Weapons)	scavenger	maleScav1
+vanilla_client_selfDefenseEnthusiast	自卫爱好者	Self-Defense Enthusiast	selfDefenseEnthusiast	maleLower1
+vanilla_client_privateSecurityContractor	私人安保承包商	Private Security Contractor	privateSecurityContractor	maleMerc1
+vanilla_client_waterCompany	下层区公民（水务公司）	Lower Level Citizen (Water Company)	waterCompany	maleLower1
+vanilla_client_waterSellerScav	拾荒客（水卖家）	Scav (Water Seller)	waterSellerScav	maleScav1
+vanilla_client_waterHishonestSellerScav	拾荒客（掺假水卖家）	Scav (Dishonest Water Seller)	waterHishonestSellerScav	maleScav1
+vanilla_client_honestBadWaterSeller	拾荒客（劣质水卖家）	Scav (Honest Bad Water Seller)	honestBadWaterSeller	maleScav1
+vanilla_client_evidenceSeller	小偷（证据卖家）	Thief (Evidence Seller)	evidenceSeller	maleBM1
+vanilla_client_lunCriminel	犯罪嫌疑人（伦警官事件）	Suspect (Officer Lun Event)	lunCriminel	maleBM1
+vanilla_client_eleanorThreat	黑市打手	Black Market Thug	eleanorThreat	maleBM5
+vanilla_client_eleanorUncle	埃莉诺的叔叔	Eleanor's Uncle	eleanorUncle	maleBM5
+vanilla_client_eleanorBailOfficer	治安部警官（埃莉诺保释）	Security Officer (Eleanor Bail)	eleanorBailOfficer	maleSec1
+vanilla_client_serpico5	治安部警官（塞尔皮科事件）	Security Officer (Serpico Event)	serpico5	maleSec1
+vanilla_client_grandpa_cheng_referral	程大爷介绍的客人	Grandpa Cheng’s Referral	grandpa_cheng_referral	maleLower1
+vanilla_client_ulDiscerningShopper	挑剔的上层区顾客	Discerning Upper Level Shopper	ulDiscerningShopper	maleUpper1
+vanilla_client_louOperativeIntro	共和国特工	Republic Operative	louOperativeIntro,louOperativeIntroShot,louOperativeReward,louOperativeTrapFailed,louOperativeQuestioning	maleMerc3
+vanilla_client_courrierChem	阿希什（化工快递员）	Ashish (Chemical Courier)	courrierChem,courrierChemFree	maleBM3
+vanilla_client_scavGenericFoodSeller	拾荒客（食品卖家）	Scavenger (Food Seller)	scavGenericFoodSeller	maleScav1
+vanilla_client_scavGenericHouseholdSeller	拾荒客（日用品卖家）	Scavenger (Household Seller)	scavGenericHouseholdSeller	maleScav1
+vanilla_client_scavGenericMaterialSeller	拾荒客（材料卖家）	Scavenger (Materials Seller)	scavGenericMaterialSeller	maleScav1
+vanilla_client_scavGenericMedSeller	拾荒客（药品卖家）	Scavenger (Medicine Seller)	scavGenericMedSeller	maleScav1
+vanilla_client_thiefGenericFoodSeller	食物窃贼（供货）	Food Thief (Supplier)	thiefGenericFoodSeller	maleBM1
+vanilla_client_thiefGenericHouseholdSeller	日用品窃贼	Household Goods Thief	thiefGenericHouseholdSeller	maleBM1
+vanilla_client_thiefGenericMaterialSeller	材料窃贼	Material Thief	thiefGenericMaterialSeller	maleBM1
+vanilla_client_thiefGenericLuxurySeller	奢侈品窃贼	Luxury Goods Thief	thiefGenericLuxurySeller	maleBM1

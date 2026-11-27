@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Mod>
+  <ID>example.managedportraits</ID>
+  <Name>管理器托管立绘包 / Managed Portrait Pack</Name>
+  <Author>Portrait pack author</Author>
+  <ModVersion>1.0</ModVersion>
+  <Description>静态图片的显示、大小位置和选图由支持托管协议的 Portrait Studio 负责。</Description>
+  <GameVersions><Version>0.46D</Version></GameVersions>
+  <Prerequisites><Mod>PortraitStudio</Mod></Prerequisites>
+  <Assemblies><Assembly>PortraitPack.dll</Assembly></Assemblies>
+  <Capabilities />
+</Mod>

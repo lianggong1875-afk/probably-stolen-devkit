@@ -1,0 +1,100 @@
+{
+  "format": "portrait-studio-static/1",
+  "contract": "static-display-transaction/1",
+  "providerId": "example.managedportraits",
+  "catalogRevision": "1",
+  "role": "resources",
+  "renderMode": "static",
+  "resourceSets": [
+    {
+      "id": "npc-main",
+      "kind": "character",
+      "renderMode": "static",
+      "subject": {
+        "owner": "example.managedportraits",
+        "key": "custom-npc"
+      },
+      "slot": "main",
+      "resources": [
+        {
+          "id": "example",
+          "resourceRevision": "1",
+          "renderMode": "static",
+          "path": "Portraits/mentor/example.png",
+          "texture": {
+            "width": 576,
+            "height": 422,
+            "contentHash": "f00ba95d66cee17c05a08ca3a3f06b14c03348e9da14a9b935b2b1a1c261b397",
+            "filter": "Point",
+            "wrapU": "Clamp",
+            "wrapV": "Clamp",
+            "wrapW": "Clamp",
+            "anisoLevel": 0,
+            "mipMapBias": 0,
+            "colorSpace": "sRGB",
+            "mipmaps": {
+              "mode": "none"
+            }
+          },
+          "geometry": {
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 576,
+              "height": 422
+            },
+            "pixelsPerUnit": 200,
+            "pivotX": 0.5,
+            "pivotY": 0.5,
+            "border": {
+              "left": 0,
+              "bottom": 0,
+              "right": 0,
+              "top": 0
+            },
+            "meshType": "FullRect"
+          }
+        },
+        {
+          "id": "alternative",
+          "resourceRevision": "1",
+          "renderMode": "static",
+          "path": "Portraits/mentor/alternative.png",
+          "texture": {
+            "width": 576,
+            "height": 422,
+            "contentHash": "f00ba95d66cee17c05a08ca3a3f06b14c03348e9da14a9b935b2b1a1c261b397",
+            "filter": "Point",
+            "wrapU": "Clamp",
+            "wrapV": "Clamp",
+            "wrapW": "Clamp",
+            "anisoLevel": 0,
+            "mipMapBias": 0,
+            "colorSpace": "sRGB",
+            "mipmaps": {
+              "mode": "none"
+            }
+          },
+          "geometry": {
+            "rect": {
+              "x": 0,
+              "y": 0,
+              "width": 576,
+              "height": 422
+            },
+            "pixelsPerUnit": 200,
+            "pivotX": 0.5,
+            "pivotY": 0.5,
+            "border": {
+              "left": 0,
+              "bottom": 0,
+              "right": 0,
+              "top": 0
+            },
+            "meshType": "FullRect"
+          }
+        }
+      ]
+    }
+  ]
+}

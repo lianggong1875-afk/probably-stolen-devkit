@@ -1,0 +1,24 @@
+# 本地 Git 数据目录
+Git仓库/
+
+# 缓存与临时构建产物
+缓存文件夹/
+**/obj/
+**/bin/
+**/__pycache__/
+*.pyc
+*.tmp
+*.bak
+*.bak*
+torchinductor_*/
+
+# 大体积第三方二进制工具（不进版本库）
+工具库/body-locator/models/*.pt
+工具库/build/ilspycmd/.store/
+工具库/probes/ps-modbridge/tmp/
+工具库/probes/ps-modbridge/out/*.dll
+
+# 编译输出 DLL / PDB（源码为准，按需重编）
+深空电玩/build/
+深空当铺：可能是群友/build/
+深空桥接器/build/

@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-managed/1"
+        },
+        "contract": {
+          "const": "static-manager-rendering/1"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "generation": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "providerId",
+        "revision",
+        "instance",
+        "renderMode",
+        "generation",
+        "enabled"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "surfaceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "surfaceType": {
+          "enum": [
+            "SpriteRenderer",
+            "Image"
+          ]
+        },
+        "originVisitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "required": [
+        "targetId",
+        "displayId",
+        "visitId",
+        "displayEpoch",
+        "surfaceId",
+        "surfaceType"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-managed/1"
+        },
+        "contract": {
+          "const": "static-manager-rendering/1"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "generation": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "op": {
+          "const": "changed"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "providerId",
+        "revision",
+        "instance",
+        "renderMode",
+        "generation",
+        "enabled",
+        "op"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-managed/1"
+        },
+        "contract": {
+          "const": "static-manager-rendering/1"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "generation": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "op": {
+          "const": "hide"
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "reason": {
+          "enum": [
+            "hidden",
+            "rebound",
+            "destroyed"
+          ]
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "providerId",
+        "revision",
+        "instance",
+        "renderMode",
+        "generation",
+        "enabled",
+        "op",
+        "targetId",
+        "displayId",
+        "visitId",
+        "displayEpoch",
+        "reason"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

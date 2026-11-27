@@ -1,0 +1,484 @@
+{
+  "ok": true,
+  "result": {
+    "table": "Item",
+    "selectedLocale": "zh",
+    "requestedLocale": "zh",
+    "selectedLocaleAfter": "zh",
+    "entries": [
+      {
+        "key": "item_mini_bottle_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "瓶装水（微型）",
+        "rawValue": "瓶装水（微型）"
+      },
+      {
+        "key": "item_mirage_projector_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "幻影投影仪",
+        "rawValue": "幻影投影仪"
+      },
+      {
+        "key": "item_modified_access_card_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "篡改识别卡",
+        "rawValue": "篡改识别卡"
+      },
+      {
+        "key": "item_module_bay_expansion_kit_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "模组舱扩建套件",
+        "rawValue": "模组舱扩建套件"
+      },
+      {
+        "key": "item_module_extractor_advanced_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "模组提取器（高级）",
+        "rawValue": "模组提取器（高级）"
+      },
+      {
+        "key": "item_module_extractor_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "模组提取器（基础）",
+        "rawValue": "模组提取器（基础）"
+      },
+      {
+        "key": "item_moisture_farm_instruction_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "使用说明：水分收集器",
+        "rawValue": "使用说明：水分收集器"
+      },
+      {
+        "key": "item_moisture_farm_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "水分收集器",
+        "rawValue": "水分收集器"
+      },
+      {
+        "key": "item_morsel_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一口食物",
+        "rawValue": "一口食物"
+      },
+      {
+        "key": "item_neuroactive_perfume_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "“同步”神经活性香水",
+        "rawValue": "“同步”神经活性香水"
+      },
+      {
+        "key": "item_newspaper_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "报纸",
+        "rawValue": "报纸"
+      },
+      {
+        "key": "item_nightmare_cap_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "梦魇帽菇",
+        "rawValue": "梦魇帽菇"
+      },
+      {
+        "key": "item_nightmare_dust_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一小瓶“梦魇尘”",
+        "rawValue": "一小瓶“梦魇尘”"
+      },
+      {
+        "key": "item_node_medium_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "节点（中）",
+        "rawValue": "节点（中）"
+      },
+      {
+        "key": "item_node_small_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "节点（小）",
+        "rawValue": "节点（小）"
+      },
+      {
+        "key": "item_nuclear_waste_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "放射性废料",
+        "rawValue": "放射性废料"
+      },
+      {
+        "key": "item_nudka_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "努特加",
+        "rawValue": "努特加"
+      },
+      {
+        "key": "item_nutrient_tablet_container_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "水培营养片药瓶",
+        "rawValue": "水培营养片药瓶"
+      },
+      {
+        "key": "item_nutrifruit_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "营养果",
+        "rawValue": "营养果"
+      },
+      {
+        "key": "item_nutrifruit_seed_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "营养果种子",
+        "rawValue": "营养果种子"
+      },
+      {
+        "key": "item_nutrifruit_seed_packet_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一包营养果种子",
+        "rawValue": "一包营养果种子"
+      },
+      {
+        "key": "item_nuts_metal_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "金属螺丝",
+        "rawValue": "金属螺丝"
+      },
+      {
+        "key": "item_outlet_hopper_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "出料斗",
+        "rawValue": "出料斗"
+      },
+      {
+        "key": "item_pack_condom_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一盒瑞克斯避孕套",
+        "rawValue": "一盒瑞克斯避孕套"
+      },
+      {
+        "key": "item_packet_red_cigarette_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一包海明威香烟",
+        "rawValue": "一包海明威香烟"
+      },
+      {
+        "key": "item_paper_towel_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一卷纸巾",
+        "rawValue": "一卷纸巾"
+      },
+      {
+        "key": "item_permit_gun_1_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "I级武器许可证",
+        "rawValue": "I级武器许可证"
+      },
+      {
+        "key": "item_permit_gun_2_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "II级武器许可证",
+        "rawValue": "II级武器许可证"
+      },
+      {
+        "key": "item_permit_gun_3_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "III级武器许可证",
+        "rawValue": "III级武器许可证"
+      },
+      {
+        "key": "item_phagimycin_pill_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "噬菌霉素片",
+        "rawValue": "噬菌霉素片"
+      },
+      {
+        "key": "item_pheromone_perfume_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "“本源”费洛蒙香水",
+        "rawValue": "“本源”费洛蒙香水"
+      },
+      {
+        "key": "item_pink_alt_injector_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "奥克莫吸注射器",
+        "rawValue": "奥克莫吸注射器"
+      },
+      {
+        "key": "item_pink_injector_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "奥克西莫注射器",
+        "rawValue": "奥克西莫注射器"
+      },
+      {
+        "key": "item_pipe_weapon_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "铅管",
+        "rawValue": "铅管"
+      },
+      {
+        "key": "item_pistol_switch_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "手枪自动阻铁",
+        "rawValue": "手枪自动阻铁"
+      },
+      {
+        "key": "item_plant_analyser_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "植物分析仪",
+        "rawValue": "植物分析仪"
+      },
+      {
+        "key": "item_plasma_fuel_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "等离子燃料匣",
+        "rawValue": "等离子燃料匣"
+      },
+      {
+        "key": "item_portable_water_purifier_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "海德拉科技微型净水器",
+        "rawValue": "海德拉科技微型净水器"
+      },
+      {
+        "key": "item_postit_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "便签",
+        "rawValue": "便签"
+      },
+      {
+        "key": "item_powerblock_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "能量阵列",
+        "rawValue": "能量阵列"
+      },
+      {
+        "key": "item_printed_gun_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "“解放者”3D打印手枪",
+        "rawValue": "“解放者”3D打印手枪"
+      },
+      {
+        "key": "item_printer_chip_10_mag_ext_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "3D打印机芯片（x{0} 加长10毫米弹匣）",
+        "rawValue": "3D打印机芯片（x{0} 加长10毫米弹匣）"
+      },
+      {
+        "key": "item_printer_chip_10_mag_high_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "3D打印机芯片（x{0} 大容量10毫米弹匣）",
+        "rawValue": "3D打印机芯片（x{0} 大容量10毫米弹匣）"
+      },
+      {
+        "key": "item_printer_chip_10_mag_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "3D打印机芯片（x{0} 10毫米弹匣）",
+        "rawValue": "3D打印机芯片（x{0} 10毫米弹匣）"
+      },
+      {
+        "key": "item_printer_chip_22_mag_ext_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "3D打印机芯片（x{0} 加长.22弹匣）",
+        "rawValue": "3D打印机芯片（x{0} 加长.22弹匣）"
+      },
+      {
+        "key": "item_printer_chip_22_mag_high_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "3D打印机芯片（x{0} 大容量.22弹匣）",
+        "rawValue": "3D打印机芯片（x{0} 大容量.22弹匣）"
+      },
+      {
+        "key": "item_printer_chip_22_mag_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "3D打印机芯片（x{0} .22弹匣）",
+        "rawValue": "3D打印机芯片（x{0} .22弹匣）"
+      },
+      {
+        "key": "item_printer_chip_box_cutter_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "3D打印机芯片（美工刀×{0}）",
+        "rawValue": "3D打印机芯片（美工刀×{0}）"
+      },
+      {
+        "key": "item_printer_chip_combat_knife_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "3D打印机芯片（战斗匕首×{0}）",
+        "rawValue": "3D打印机芯片（战斗匕首×{0}）"
+      },
+      {
+        "key": "item_printer_chip_combat_machete_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "3D打印机芯片（战斗砍刀×{0}）",
+        "rawValue": "3D打印机芯片（战斗砍刀×{0}）"
+      }
+    ],
+    "completed": true,
+    "localeChangedByTool": false,
+    "valueSource": "Unity StringDatabase using native formatting and project fallback settings",
+    "scope": "String-table lookup only; item-cached strings, mod delegates and LocHelper error/raw fallback may differ"
+  },
+  "operationId": "6c741a39-b3b6-4d31-b47f-85c3bd4b4e15",
+  "sessionId": null,
+  "worldId": null,
+  "executionState": "succeeded",
+  "error": null,
+  "output": {
+    "truncated": false,
+    "omissionCount": 0,
+    "details": [],
+    "detailsOmitted": 0,
+    "limits": {
+      "textCharacters": 2000,
+      "collectionEntries": 200,
+      "depth": 12,
+      "nodes": 4000,
+      "characters": 24000
+    },
+    "hint": "Use filters, snapshot pages, or get_operation result_path with offset/limit for omitted data. Truncated observations are incomplete."
+  }
+}

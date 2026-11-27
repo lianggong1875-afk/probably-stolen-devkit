@@ -1,0 +1,223 @@
+{
+  "ok": true,
+  "result": {
+    "table": "Item",
+    "selectedLocale": "zh",
+    "requestedLocale": "zh",
+    "selectedLocaleAfter": "zh",
+    "entries": [
+      {
+        "key": "item_water_ration_small_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "密封水配给包（小）",
+        "rawValue": "密封水配给包（小）"
+      },
+      {
+        "key": "item_water_tablet_container_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一瓶净水药片",
+        "rawValue": "一瓶净水药片"
+      },
+      {
+        "key": "item_water_tablet_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "净水药片",
+        "rawValue": "净水药片"
+      },
+      {
+        "key": "item_water_tank_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "储水罐",
+        "rawValue": "储水罐"
+      },
+      {
+        "key": "item_water_test_container_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "水质检测试剂盒",
+        "rawValue": "水质检测试剂盒"
+      },
+      {
+        "key": "item_water_test_strip_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "水质检测试纸",
+        "rawValue": "水质检测试纸"
+      },
+      {
+        "key": "item_welder_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "等离子切割机",
+        "rawValue": "等离子切割机"
+      },
+      {
+        "key": "item_wine_berry_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "荧光莓",
+        "rawValue": "荧光莓"
+      },
+      {
+        "key": "item_wine_bloomberry_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "荧光莓果酿",
+        "rawValue": "荧光莓果酿"
+      },
+      {
+        "key": "item_wine_book_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "荧光莓果酿发酵指南",
+        "rawValue": "荧光莓果酿发酵指南"
+      },
+      {
+        "key": "item_wine_bottle_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "酒瓶",
+        "rawValue": "酒瓶"
+      },
+      {
+        "key": "item_wine_gloomberry_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "阴光莓果酿",
+        "rawValue": "阴光莓果酿"
+      },
+      {
+        "key": "item_wine_superyeast_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "超级酵母",
+        "rawValue": "超级酵母"
+      },
+      {
+        "key": "item_wine_yeast_infinite_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "酵母生物反应器",
+        "rawValue": "酵母生物反应器"
+      },
+      {
+        "key": "item_wine_yeast_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "酵母",
+        "rawValue": "酵母"
+      },
+      {
+        "key": "item_wine_yeast_red_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "合成酵母",
+        "rawValue": "合成酵母"
+      },
+      {
+        "key": "item_wire_cutter_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "剪线钳",
+        "rawValue": "剪线钳"
+      },
+      {
+        "key": "item_wire_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "线缆",
+        "rawValue": "线缆"
+      },
+      {
+        "key": "item_xray_scanner_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "便携式X射线扫描仪",
+        "rawValue": "便携式X射线扫描仪"
+      },
+      {
+        "key": "item_zerochew_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一板零嚼",
+        "rawValue": "一板零嚼"
+      },
+      {
+        "key": "item_zyanide_pill_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "山奈德片",
+        "rawValue": "山奈德片"
+      }
+    ],
+    "completed": true,
+    "localeChangedByTool": false,
+    "valueSource": "Unity StringDatabase using native formatting and project fallback settings",
+    "scope": "String-table lookup only; item-cached strings, mod delegates and LocHelper error/raw fallback may differ"
+  },
+  "operationId": "e4541382-16ba-4a39-8f90-e5e6ee503f4a",
+  "sessionId": null,
+  "worldId": null,
+  "executionState": "succeeded",
+  "error": null,
+  "output": {
+    "truncated": false,
+    "omissionCount": 0,
+    "details": [],
+    "detailsOmitted": 0,
+    "limits": {
+      "textCharacters": 2000,
+      "collectionEntries": 200,
+      "depth": 12,
+      "nodes": 4000,
+      "characters": 24000
+    },
+    "hint": "Use filters, snapshot pages, or get_operation result_path with offset/limit for omitted data. Truncated observations are incomplete."
+  }
+}

@@ -1,0 +1,484 @@
+{
+  "ok": true,
+  "result": {
+    "table": "Item",
+    "selectedLocale": "zh",
+    "requestedLocale": "zh",
+    "selectedLocaleAfter": "zh",
+    "entries": [
+      {
+        "key": "item_screwdriver_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "螺丝刀",
+        "rawValue": "螺丝刀"
+      },
+      {
+        "key": "item_sec_box_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "治安部物资箱",
+        "rawValue": "治安部物资箱"
+      },
+      {
+        "key": "item_sec_keycard_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一次性钥匙卡（治安）",
+        "rawValue": "一次性钥匙卡（治安）"
+      },
+      {
+        "key": "item_sec_slip_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "事件回执单",
+        "rawValue": "事件回执单"
+      },
+      {
+        "key": "item_security_alarm_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "警报系统",
+        "rawValue": "警报系统"
+      },
+      {
+        "key": "item_self_refilling_perfume_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "“同步”自动补充神经活性香水",
+        "rawValue": "“同步”自动补充神经活性香水"
+      },
+      {
+        "key": "item_ser_keycard_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一次性钥匙卡（服务）",
+        "rawValue": "一次性钥匙卡（服务）"
+      },
+      {
+        "key": "item_service_box_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "后勤服务部物资箱",
+        "rawValue": "后勤服务部物资箱"
+      },
+      {
+        "key": "item_shampoo_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一瓶四合一洗涤剂",
+        "rawValue": "一瓶四合一洗涤剂"
+      },
+      {
+        "key": "item_short_stock_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "“小圆盾”枪托",
+        "rawValue": "“小圆盾”枪托"
+      },
+      {
+        "key": "item_shotgun_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "“壁垒”双动式霰弹枪",
+        "rawValue": "“壁垒”双动式霰弹枪"
+      },
+      {
+        "key": "item_sign_berry_name",
+        "found": false,
+        "existsInRequestedLocale": false,
+        "resolvedLocale": null,
+        "fallbackUsed": null,
+        "value": "Translation Error 'item_sign_berry_name' in Item",
+        "rawValue": null
+      },
+      {
+        "key": "item_sign_expedition_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "探险招募牌",
+        "rawValue": "探险招募牌"
+      },
+      {
+        "key": "item_sign_firearm_heavy_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "重型枪械霓虹灯牌",
+        "rawValue": "重型枪械霓虹灯牌"
+      },
+      {
+        "key": "item_sign_firearm_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "枪械霓虹灯牌",
+        "rawValue": "枪械霓虹灯牌"
+      },
+      {
+        "key": "item_sign_food_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "食品霓虹灯牌",
+        "rawValue": "食品霓虹灯牌"
+      },
+      {
+        "key": "item_sign_household_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "日用品霓虹灯牌",
+        "rawValue": "日用品霓虹灯牌"
+      },
+      {
+        "key": "item_sign_luxury_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "奢侈品霓虹灯牌",
+        "rawValue": "奢侈品霓虹灯牌"
+      },
+      {
+        "key": "item_sign_material_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "材料霓虹灯牌",
+        "rawValue": "材料霓虹灯牌"
+      },
+      {
+        "key": "item_sign_medical_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "医疗霓虹灯牌",
+        "rawValue": "医疗霓虹灯牌"
+      },
+      {
+        "key": "item_sign_water_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "水霓虹灯牌",
+        "rawValue": "水霓虹灯牌"
+      },
+      {
+        "key": "item_silencer_makeshift_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "简易消音器",
+        "rawValue": "简易消音器"
+      },
+      {
+        "key": "item_silencer_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "消音器",
+        "rawValue": "消音器"
+      },
+      {
+        "key": "item_silencer2_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "夜枭消音器",
+        "rawValue": "夜枭消音器"
+      },
+      {
+        "key": "item_skincare_cream_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "“永恒”焕活精华液",
+        "rawValue": "“永恒”焕活精华液"
+      },
+      {
+        "key": "item_skinning_knife_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "剥皮刀",
+        "rawValue": "剥皮刀"
+      },
+      {
+        "key": "item_slip_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "凭单",
+        "rawValue": "凭单"
+      },
+      {
+        "key": "item_small_bottled_water_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "瓶装水（小）",
+        "rawValue": "瓶装水（小）"
+      },
+      {
+        "key": "item_small_eel_fillet_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "鳗鱼肉片（小）",
+        "rawValue": "鳗鱼肉片（小）"
+      },
+      {
+        "key": "item_small_fish_fillet_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "鱼肉片（小）",
+        "rawValue": "鱼肉片（小）"
+      },
+      {
+        "key": "item_small_morsel_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一小口食物",
+        "rawValue": "一小口食物"
+      },
+      {
+        "key": "item_small_pistol_ammo_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": ".22 SR弹药",
+        "rawValue": ".22 SR弹药"
+      },
+      {
+        "key": "item_small_pistol_ammo_nl_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": ".22 SR弹药（非致命）",
+        "rawValue": ".22 SR弹药（非致命）"
+      },
+      {
+        "key": "item_small_pistol_ammo_p_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": ".22 SR弹药（穿甲）",
+        "rawValue": ".22 SR弹药（穿甲）"
+      },
+      {
+        "key": "item_small_raw_meat_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "生肉（小）",
+        "rawValue": "生肉（小）"
+      },
+      {
+        "key": "item_smelling_salt_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "嗅盐",
+        "rawValue": "嗅盐"
+      },
+      {
+        "key": "item_smg_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "“和平使者”重型冲锋枪",
+        "rawValue": "“和平使者”重型冲锋枪"
+      },
+      {
+        "key": "item_smoke_grenade_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "烟雾弹",
+        "rawValue": "烟雾弹"
+      },
+      {
+        "key": "item_smuggler_bay_mini_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "迷你走私储藏区",
+        "rawValue": "迷你走私储藏区"
+      },
+      {
+        "key": "item_smuggler_bay_mod_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "走私者暗格（改进）",
+        "rawValue": "走私者暗格（改进）"
+      },
+      {
+        "key": "item_smuggler_bay_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "走私者暗格",
+        "rawValue": "走私者暗格"
+      },
+      {
+        "key": "item_soda_red_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "汽水",
+        "rawValue": "汽水"
+      },
+      {
+        "key": "item_stamp_guide_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "食品券鉴定手册",
+        "rawValue": "食品券鉴定手册"
+      },
+      {
+        "key": "item_stock_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "“守护者”枪托",
+        "rawValue": "“守护者”枪托"
+      },
+      {
+        "key": "item_storage_bay_chem_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "化学师储藏区",
+        "rawValue": "化学师储藏区"
+      },
+      {
+        "key": "item_storage_bay_expansion_kit_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "储藏区扩建套件",
+        "rawValue": "储藏区扩建套件"
+      },
+      {
+        "key": "item_storage_bay_gun_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "枪械师储藏区",
+        "rawValue": "枪械师储藏区"
+      },
+      {
+        "key": "item_storage_bay_large_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "储藏区（扩建）",
+        "rawValue": "储藏区（扩建）"
+      },
+      {
+        "key": "item_storage_bay_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "储藏区",
+        "rawValue": "储藏区"
+      },
+      {
+        "key": "item_storage_coordinator_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "储物协调器",
+        "rawValue": "储物协调器"
+      }
+    ],
+    "completed": true,
+    "localeChangedByTool": false,
+    "valueSource": "Unity StringDatabase using native formatting and project fallback settings",
+    "scope": "String-table lookup only; item-cached strings, mod delegates and LocHelper error/raw fallback may differ"
+  },
+  "operationId": "ed759aa1-5618-4d83-88b6-7c5f4849a637",
+  "sessionId": null,
+  "worldId": null,
+  "executionState": "succeeded",
+  "error": null,
+  "output": {
+    "truncated": false,
+    "omissionCount": 0,
+    "details": [],
+    "detailsOmitted": 0,
+    "limits": {
+      "textCharacters": 2000,
+      "collectionEntries": 200,
+      "depth": 12,
+      "nodes": 4000,
+      "characters": 24000
+    },
+    "hint": "Use filters, snapshot pages, or get_operation result_path with offset/limit for omitted data. Truncated observations are incomplete."
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "protocol": {
+      "const": "portrait-studio-static/1"
+    },
+    "contract": {
+      "const": "static-display-transaction/1"
+    },
+    "renderMode": {
+      "const": "static"
+    },
+    "providerId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "instance": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      },
+      "minItems": 0,
+      "maxItems": 4096,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "protocol",
+    "contract",
+    "renderMode",
+    "providerId",
+    "instance",
+    "revision",
+    "targets"
+  ],
+  "additionalProperties": false
+}

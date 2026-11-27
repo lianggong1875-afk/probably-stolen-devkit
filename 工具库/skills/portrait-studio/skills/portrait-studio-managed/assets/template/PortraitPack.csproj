@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework><AssemblyName>PortraitPack</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>$(MSBuildProjectDirectory)/artifacts/build/</OutputPath><DebugType>none</DebugType>
+  </PropertyGroup>
+  <ItemGroup><Compile Include="Entry.cs" />
+    <Reference Include="Assembly-CSharp"><HintPath>$(GameRoot)/Probably Stolen_Data/Managed/Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

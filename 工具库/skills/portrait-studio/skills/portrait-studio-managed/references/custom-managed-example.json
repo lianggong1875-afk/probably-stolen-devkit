@@ -1,0 +1,43 @@
+{
+  "format": "portrait-studio-managed/1",
+  "contract": "static-manager-rendering/1",
+  "providerId": "example.managedportraits",
+  "revision": "1",
+  "renderMode": "static",
+  "renderOwner": "PortraitStudio",
+  "targets": [
+    {
+      "id": "npc-main",
+      "kind": "character",
+      "renderMode": "static",
+      "subject": {
+        "owner": "example.managedportraits",
+        "key": "custom-npc"
+      },
+      "slot": "main",
+      "binding": {
+        "type": "custom"
+      },
+      "defaultResource": {
+        "providerId": "example.managedportraits",
+        "setId": "npc-main",
+        "id": "example",
+        "revision": "1"
+      },
+      "candidateResources": [
+        {
+          "providerId": "example.managedportraits",
+          "setId": "npc-main",
+          "id": "example",
+          "revision": "1"
+        },
+        {
+          "providerId": "example.managedportraits",
+          "setId": "npc-main",
+          "id": "alternative",
+          "revision": "1"
+        }
+      ]
+    }
+  ]
+}

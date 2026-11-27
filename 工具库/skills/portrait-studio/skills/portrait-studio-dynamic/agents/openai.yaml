@@ -1,0 +1,4 @@
+interface:
+  display_name: "动态立绘接口接入"
+  short_description: "保留作者的动画、表情和服装合成，实现独立运行与管理器显示交接"
+  default_prompt: "使用 $portrait-studio-dynamic，为我的动态立绘模组增加公开接口，保留原有动画、独立设置和剧情功能。"

@@ -1,0 +1,16 @@
+<Mod>
+  <ID>ModDevBridgeNext</ID>
+  <Name>用 AI 开发 MOD / Build MODs with AI [Full / 本地开发版]</Name>
+  <Author>Unc1e</Author>
+  <ModVersion>0.6.0</ModVersion>
+  <Description>Local AI MOD development bridge / 本地 AI MOD 开发桥。Standard MCP over loopback HTTP; game must be running. / 游戏运行时提供本机 MCP。</Description>
+  <Assemblies>
+    <Assembly>ModDevBridgeNext.dll</Assembly>
+  </Assemblies>
+  <Capabilities>
+    <Capability>files</Capability>
+    <Capability>network</Capability>
+    <Capability>dynamic-code</Capability>
+    <Capability>reflection-external</Capability>
+  </Capabilities>
+</Mod>

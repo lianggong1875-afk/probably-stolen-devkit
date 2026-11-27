@@ -1,0 +1,4 @@
+interface:
+  display_name: "新建独立静态立绘包"
+  short_description: "制作可独立换图并显式声明静态的人物、通缉照片和场景多候选包"
+  default_prompt: "使用 $portrait-studio-pack，先用简单的话推荐制作或接入路线，保留已有大小位置设置，完成静态图片资源与接口。"

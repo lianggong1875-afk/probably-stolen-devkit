@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>立绘构图调整</title>
+<style>
+body{margin:0;background:#17202b;color:#e9edf2;font:15px system-ui}main{max-width:1320px;margin:auto;padding:22px}h1{font-size:24px;margin:0 0 10px}p{line-height:1.6;color:#bfcbd8}button,input,select{font:inherit;border-radius:5px;padding:7px;border:1px solid #617184;background:#253548;color:inherit}button{cursor:pointer}button.primary{background:#267566}button:disabled{opacity:.5;cursor:default}label{display:inline-flex;align-items:center;gap:6px;margin:5px}input[type=number]{width:85px}.toolbar{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;align-items:center}canvas{width:100%;background:#222e3c;touch-action:none;cursor:move;border:1px solid #617184}#status{min-height:25px;color:#8de2ce}#info{white-space:pre-wrap;font-size:13px}details{margin:15px 0}input[type=file]{max-width:270px}.warn{color:#ffdb99}#viewport{max-width:1152px}small{color:#bfccda}
+</style>
+<main><h1>立绘构图调整</h1>
+<p>拖动图片调整位置，改变大小或点选锚点。保存会更新源码清单，PNG 保持原样；重新构建后在游戏中查看。</p>
+<div class="toolbar"><label>资源 <select id="asset"></select></label><button id="reload">重新载入</button><button class="primary" id="save">保存全部调整</button></div>
+<div id="viewport"><canvas id="view" width="960" height="540" aria-label="构图预览，可拖动立绘"></canvas></div>
+<div class="toolbar"><label>大小倍数 <input id="scale" type="number" value="1" min="0.01" max="100" step="0.05"></label><label>左右 <input id="x" type="number" value="0" step="0.05"></label><label>上下 <input id="y" type="number" value="0" step="0.05"></label><button id="reset">撤销此图调整</button><button id="full">恢复完整图片</button><button id="anchor">点图片设置锚点</button></div>
+<div class="toolbar"><button id="fit">按有效内容估算初始大小</button><button id="bottom">有效内容底部对齐参考</button><button id="group">把本次缩放、位移应用到同组候选</button><label>背景截图 <input id="background" type="file" accept="image/*"></label><button id="clearBackground">移除截图</button></div>
+<small>有效内容按透明度计算。带实色背景的图按整图估算；长发、头饰、武器仍会影响结果，可继续手动调整。</small>
+<details><summary>参考与预览设置</summary><p>虚线框只是尺寸参考，人物和场景默认使用不同参考尺寸。没有截图时，柜台线仅作示意。截图请使用实际游戏画面，调整原点和预览像素密度对齐显示位置；游戏内的遮罩、遮挡和采样仍需实机检查。</p>
+<label>参考宽度 <input id="refW" type="number" min="0.01" value="2.88" step="0.05"></label><label>参考高度 <input id="refH" type="number" min="0.01" value="2.11" step="0.05"></label><label>预览像素/单位 <input id="density" type="number" min="1" value="100" step="5"></label><label>原点 X <input id="originX" type="number" value="480" step="5"></label><label>原点 Y <input id="originY" type="number" value="270" step="5"></label><label><input id="counter" type="checkbox" checked>示意柜台</label></details>
+<p id="status" role="status"></p><p id="info"></p></main>
+<script>
+'use strict';
+const TOKEN='__TOKEN__';
+const $=id=>document.getElementById(id), clone=x=>JSON.parse(JSON.stringify(x));
+function moved(g,scale,x,y){if(![scale,x,y].every(Number.isFinite)||scale<=0)throw Error('请填写有效大小和位置');let n=clone(g);n.pixelsPerUnit/=scale;n.pivotX-=x*n.pixelsPerUnit/n.rect.width;n.pivotY-=y*n.pixelsPerUnit/n.rect.height;return n;}
+function imageBox(g,ox,oy,density){const r=g.rect,p=g.pixelsPerUnit;return{x:ox-g.pivotX*r.width/p*density,y:oy-(1-g.pivotY)*r.height/p*density,w:r.width/p*density,h:r.height/p*density};}
+function contentAligned(g,b,refW,refH,fit){let n=clone(g);if(fit)n.pixelsPerUnit=Math.max(b.w/refW,b.h/refH);n.pivotX=(b.x+b.w/2)/g.rect.width;n.pivotY=(g.rect.height-b.y-b.h+n.pixelsPerUnit*refH/2)/g.rect.height;return n;}
+let state,rows=[],selected=-1,art=null,background=null,pickAnchor=false,drag=null,loadSequence=0;
+const canvas=$('view'),ctx=canvas.getContext('2d');
+function status(s,error=false){$('status').textContent=s;$('status').style.color=error?'#ffbd99':'#8de2ce';}
+async function api(path,options={}){const response=await fetch(path,{...options,headers:{'X-Framing-Token':TOKEN,'Content-Type':'application/json',...options.headers}});if(!response.ok){let e=await response.json();throw Error(e.error||response.statusText);}return response;}
+function current(){return rows[selected];}
+function params(){return ['scale','x','y'].map(id=>Number($(id).value));}
+function geometry(){let r=current();return moved(r.work,...params());}
+function commit(){if(current()){current().work=geometry();['scale','x','y'].forEach((id,i)=>$(id).value=i===0?1:0);}}
+function controls(){return {ox:Number($('originX').value),oy:Number($('originY').value),d:Number($('density').value),w:Number($('refW').value),h:Number($('refH').value)};}
+function draw(){ctx.clearRect(0,0,960,540);if(background)ctx.drawImage(background,0,0,960,540);else{ctx.fillStyle='#243649';ctx.fillRect(0,0,960,540);ctx.fillStyle='#bfd2e1';ctx.font='15px system-ui';ctx.fillText('构图示意 · 非游戏截图',18,26);}
+if(!current()||!art)return;const {ox,oy,d,w,h}=controls();if(![ox,oy,d,w,h].every(Number.isFinite)||d<=0||w<=0||h<=0)return;
+try{let g=geometry(),r=g.rect,b=imageBox(g,ox,oy,d);ctx.imageSmoothingEnabled=current().asset.texture.filter!=='Point';ctx.drawImage(art,r.x,art.height-r.y-r.height,r.width,r.height,b.x,b.y,b.w,b.h);
+ctx.strokeStyle='#6ed7d9';ctx.lineWidth=1;ctx.setLineDash([5,5]);ctx.strokeRect(ox-w*d/2,oy-h*d/2,w*d,h*d);ctx.setLineDash([]);ctx.beginPath();ctx.moveTo(ox-10,oy);ctx.lineTo(ox+10,oy);ctx.moveTo(ox,oy-10);ctx.lineTo(ox,oy+10);ctx.stroke();
+if($('counter').checked){let cy=oy+h*d/2;ctx.fillStyle=background?'#9f763477':'#56452be6';ctx.fillRect(0,cy,960,540-cy);ctx.strokeStyle='#c6a576';ctx.beginPath();ctx.moveTo(0,cy);ctx.lineTo(960,cy);ctx.stroke();}
+const t=current().asset.texture;$('info').textContent=`${current().group.id} / ${current().asset.id}\nPNG ${t.width}×${t.height}；可见区域 ${r.width}×${r.height}；局部大小 ${(r.width/g.pixelsPerUnit).toFixed(3)}×${(r.height/g.pixelsPerUnit).toFixed(3)}\nPPU ${g.pixelsPerUnit.toFixed(4)}；锚点 ${g.pivotX.toFixed(4)}, ${g.pivotY.toFixed(4)}；${t.filter} / mip ${t.mipmaps.mode}`;
+}catch(e){status(e.message,true);}}
+async function select(index){const sequence=++loadSequence;selected=index;art=null;let r=current();['scale','x','y'].forEach((id,i)=>$(id).value=i===0?1:0);let scene=r.group.kind==='scene',wanted=r.group.kind==='wanted';$('refW').value=scene?16:wanted?1.5:2.88;$('refH').value=scene?9:wanted?1.66:2.11;$('density').value=scene?50:100;$('counter').checked=!scene&&!wanted;pickAnchor=false;try{let response=await api('/image?path='+encodeURIComponent(r.asset.path));let url=URL.createObjectURL(await response.blob());let im=new Image();try{await new Promise((resolve,reject)=>{im.onload=resolve;im.onerror=()=>reject(Error('图片解码失败'));im.src=url;});}finally{URL.revokeObjectURL(url);}if(sequence!==loadSequence)return;art=im;draw();}catch(e){status(e.message,true);}}
+async function load(){state=await(await api('/catalog')).json();rows=[];$('asset').replaceChildren();for(let group of state.catalog.resourceSets)for(let asset of group.resources){rows.push({group,asset,work:clone(asset.geometry)});let option=document.createElement('option');option.textContent=group.subject.key+' / '+asset.id+' / '+asset.resourceRevision;option.value=rows.length-1;$('asset').append(option);}if(rows.length)await select(0);status('已载入；保存仅修改源码清单。');}
+function effectiveBounds(){const g=current().work,r=g.rect,c=document.createElement('canvas');c.width=r.width;c.height=r.height;let cx=c.getContext('2d',{willReadFrequently:true});cx.drawImage(art,r.x,art.height-r.y-r.height,r.width,r.height,0,0,r.width,r.height);let a=cx.getImageData(0,0,r.width,r.height).data,x0=r.width,y0=r.height,x1=-1,y1=-1;for(let y=0;y<r.height;y++)for(let x=0;x<r.width;x++)if(a[(y*r.width+x)*4+3]>=16){x0=Math.min(x0,x);y0=Math.min(y0,y);x1=Math.max(x1,x);y1=Math.max(y1,y);}if(x1<0)throw Error('此图没有可见内容');return{x:x0,y:y0,w:x1-x0+1,h:y1-y0+1};}
+function action(f){return async(...args)=>{try{await f(...args);}catch(e){status(e.message,true);}};}
+$('asset').onchange=action(async()=>{commit();await select(Number($('asset').value));});
+$('reload').onclick=action(async()=>{if(confirm('放弃尚未保存的调整并重新载入？'))await load();});
+$('save').onclick=action(async()=>{commit();let edits=rows.filter(r=>JSON.stringify(r.work)!==JSON.stringify(r.asset.geometry)).map(r=>({setId:r.group.id,id:r.asset.id,revision:r.asset.resourceRevision,geometry:r.work}));if(!edits.length){status('没有待保存的调整');return;}$('save').disabled=true;try{let result=await(await api('/save',{method:'POST',body:JSON.stringify({baseHash:state.baseHash,edits})})).json();await load();status(`已保存 ${result.changed} 张图片的构图；备份在源码 .portrait-framing。请重新构建后查看游戏效果。`);}finally{$('save').disabled=false;}});
+$('reset').onclick=()=>{current().work=clone(current().asset.geometry);['scale','x','y'].forEach((id,i)=>$(id).value=i===0?1:0);draw();};
+$('full').onclick=action(()=>{commit();let r=current(),t=r.asset.texture;r.work.rect={x:0,y:0,width:t.width,height:t.height};draw();status('已恢复完整图片范围，请继续调整大小与位置。');});
+$('anchor').onclick=()=>{pickAnchor=true;status('点图片上的参考点，该点将移到十字原点。');};
+for(let id of ['fit','bottom'])$(id).onclick=action(()=>{if(current().group.kind==='scene'&&id==='fit')throw Error('场景保留原有几何，用大小和位置调整，避免破坏背景比例');commit();let c=controls();current().work=contentAligned(current().work,effectiveBounds(),c.w,c.h,id==='fit');draw();status('已按透明边界估算；请查看人物比例并继续调整。');});
+$('group').onclick=action(()=>{let selectedRow=current(),[scale,x,y]=params();if(!confirm('把当前输入的大小倍数、左右、上下增量应用到此组每张候选？已保存或已提交的调整不会重复套用。'))return;for(let r of rows)if(r.group.id===selectedRow.group.id)r.work=moved(r.work,scale,x,y);['scale','x','y'].forEach((id,i)=>$(id).value=i===0?1:0);draw();status('已应用同一调整增量，候选图仍可逐张校准。');});
+$('background').onchange=action(async()=>{let file=$('background').files[0];if(!file)return;let im=new Image(),url=URL.createObjectURL(file);try{await new Promise((resolve,reject)=>{im.onload=resolve;im.onerror=()=>reject(Error('截图解码失败'));im.src=url;});background=im;draw();status('截图仅在浏览器本地使用；请在预览设置中校准原点与像素密度。');}finally{URL.revokeObjectURL(url);}});
+$('clearBackground').onclick=()=>{background=null;$('background').value='';draw();};
+for(let id of ['scale','x','y','refW','refH','originX','originY','density','counter'])$(id).oninput=draw;
+function point(e){let r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*960/r.width,y:(e.clientY-r.top)*540/r.height};}
+canvas.onpointerdown=action(e=>{if(!art)return;let p=point(e),c=controls();if(pickAnchor){commit();let g=current().work,b=imageBox(g,c.ox,c.oy,c.d);g.pivotX=(p.x-b.x)/b.w;g.pivotY=1-(p.y-b.y)/b.h;pickAnchor=false;draw();status('已设置锚点。');return;}drag={point:p,x:Number($('x').value),y:Number($('y').value)};canvas.setPointerCapture(e.pointerId);});
+canvas.onpointermove=e=>{if(!drag)return;let p=point(e),d=controls().d;$('x').value=(drag.x+(p.x-drag.point.x)/d).toFixed(4);$('y').value=(drag.y-(p.y-drag.point.y)/d).toFixed(4);draw();};canvas.onpointerup=canvas.onpointercancel=()=>{drag=null;};
+action(load)();
+</script></html>

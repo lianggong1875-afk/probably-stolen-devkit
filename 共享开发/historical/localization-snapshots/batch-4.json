@@ -1,0 +1,484 @@
+{
+  "ok": true,
+  "result": {
+    "table": "Item",
+    "selectedLocale": "zh",
+    "requestedLocale": "zh",
+    "selectedLocaleAfter": "zh",
+    "entries": [
+      {
+        "key": "item_glock_receiver_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "哨兵3型。",
+        "rawValue": "哨兵3型。"
+      },
+      {
+        "key": "item_graft_tilapia_fry_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "植皮罗非鱼苗",
+        "rawValue": "植皮罗非鱼苗"
+      },
+      {
+        "key": "item_graft_tilapia_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "植皮罗非鱼",
+        "rawValue": "植皮罗非鱼"
+      },
+      {
+        "key": "item_graft_tilapia_roe_fertilized_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "植皮罗非鱼卵（受精）",
+        "rawValue": "植皮罗非鱼卵（受精）"
+      },
+      {
+        "key": "item_graft_tilapia_roe_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "植皮罗非鱼卵",
+        "rawValue": "植皮罗非鱼卵"
+      },
+      {
+        "key": "item_grip_gel_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "触感记忆握把凝胶",
+        "rawValue": "触感记忆握把凝胶"
+      },
+      {
+        "key": "item_grip_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "前握把",
+        "rawValue": "前握把"
+      },
+      {
+        "key": "item_gun_part_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "枪械零件",
+        "rawValue": "枪械零件"
+      },
+      {
+        "key": "item_gutter_tilapia_fry_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "阴沟罗非鱼苗",
+        "rawValue": "阴沟罗非鱼苗"
+      },
+      {
+        "key": "item_gutter_tilapia_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "阴沟罗非鱼",
+        "rawValue": "阴沟罗非鱼"
+      },
+      {
+        "key": "item_gutter_tilapia_roe_fertilized_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "阴沟罗非鱼卵（受精）",
+        "rawValue": "阴沟罗非鱼卵（受精）"
+      },
+      {
+        "key": "item_gutter_tilapia_roe_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "阴沟罗非鱼卵",
+        "rawValue": "阴沟罗非鱼卵"
+      },
+      {
+        "key": "item_gutterflow_pellet_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "污泥饲料粒",
+        "rawValue": "污泥饲料粒"
+      },
+      {
+        "key": "item_handmade_pistol_frame_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "“巢火”紧凑型手枪框架",
+        "rawValue": "“巢火”紧凑型手枪框架"
+      },
+      {
+        "key": "item_handmade_pistol_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "“巢火”紧凑型手枪",
+        "rawValue": "“巢火”紧凑型手枪"
+      },
+      {
+        "key": "item_handnote_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "手写便签",
+        "rawValue": "手写便签"
+      },
+      {
+        "key": "item_hatchet_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "短柄斧",
+        "rawValue": "短柄斧"
+      },
+      {
+        "key": "item_heating_plate_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "加热板",
+        "rawValue": "加热板"
+      },
+      {
+        "key": "item_heavy_handmade_pistol_frame_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "“铁铸10”手枪框架",
+        "rawValue": "“铁铸10”手枪框架"
+      },
+      {
+        "key": "item_heavy_handmade_pistol_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "“铁铸10”手枪",
+        "rawValue": "“铁铸10”手枪"
+      },
+      {
+        "key": "item_heavy_pistol_ammo_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "10毫米弹药",
+        "rawValue": "10毫米弹药"
+      },
+      {
+        "key": "item_heavy_pistol_ammo_nl_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "10毫米弹药（非致命）",
+        "rawValue": "10毫米弹药（非致命）"
+      },
+      {
+        "key": "item_heavy_pistol_ammo_p_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "10毫米弹药（穿甲弹）",
+        "rawValue": "10毫米弹药（穿甲弹）"
+      },
+      {
+        "key": "item_hemostatic_bandage_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "止血绷带",
+        "rawValue": "止血绷带"
+      },
+      {
+        "key": "item_hydroponic_guide_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "水培农业手册",
+        "rawValue": "水培农业手册"
+      },
+      {
+        "key": "item_hydroponic_instruction_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "水培系统说明",
+        "rawValue": "水培系统说明"
+      },
+      {
+        "key": "item_hydroponic_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "水培系统",
+        "rawValue": "水培系统"
+      },
+      {
+        "key": "item_hydroponic_nutrient_tablet_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "水培营养片",
+        "rawValue": "水培营养片"
+      },
+      {
+        "key": "item_hydroreed_filter_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "水培芦苇滤芯",
+        "rawValue": "水培芦苇滤芯"
+      },
+      {
+        "key": "item_hydroreed_seed_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "水培芦苇种子",
+        "rawValue": "水培芦苇种子"
+      },
+      {
+        "key": "item_hypertech_bay_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "超科技储藏区",
+        "rawValue": "超科技储藏区"
+      },
+      {
+        "key": "item_hypertech_electronic_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "电子元件（超科技）",
+        "rawValue": "电子元件（超科技）"
+      },
+      {
+        "key": "item_hypertech_power_cell_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "超科技能源单元",
+        "rawValue": "超科技能源单元"
+      },
+      {
+        "key": "item_industrial_fish_feed_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "工业鱼饲料",
+        "rawValue": "工业鱼饲料"
+      },
+      {
+        "key": "item_ingot_book_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "冶金手册",
+        "rawValue": "冶金手册"
+      },
+      {
+        "key": "item_injector_guide_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "免疫宁检测指南",
+        "rawValue": "免疫宁检测指南"
+      },
+      {
+        "key": "item_intake_hopper_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "进料斗",
+        "rawValue": "进料斗"
+      },
+      {
+        "key": "item_intel_sec_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "治安部档案",
+        "rawValue": "治安部档案"
+      },
+      {
+        "key": "item_internal_springs_improved_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "改良内部弹簧组",
+        "rawValue": "改良内部弹簧组"
+      },
+      {
+        "key": "item_internal_springs_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "高耐久内部弹簧组",
+        "rawValue": "高耐久内部弹簧组"
+      },
+      {
+        "key": "item_joe_card_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "名片（乔·王尔德）",
+        "rawValue": "名片（乔·王尔德）"
+      },
+      {
+        "key": "item_junk_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "垃圾",
+        "rawValue": "垃圾"
+      },
+      {
+        "key": "item_kids_backpack_large_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "儿童背包（大）",
+        "rawValue": "儿童背包（大）"
+      },
+      {
+        "key": "item_kids_backpack_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "儿童背包",
+        "rawValue": "儿童背包"
+      },
+      {
+        "key": "item_kitchen_cleaver_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "切肉刀",
+        "rawValue": "切肉刀"
+      },
+      {
+        "key": "item_kitchen_knife_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "厨刀",
+        "rawValue": "厨刀"
+      },
+      {
+        "key": "item_kotton_fabric_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "韧棉织物",
+        "rawValue": "韧棉织物"
+      },
+      {
+        "key": "item_kotton_fiber_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "韧棉纤维",
+        "rawValue": "韧棉纤维"
+      },
+      {
+        "key": "item_kotton_seed_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "韧棉种子",
+        "rawValue": "韧棉种子"
+      },
+      {
+        "key": "item_labeler_blue_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "蓝色标签打印机",
+        "rawValue": "蓝色标签打印机"
+      }
+    ],
+    "completed": true,
+    "localeChangedByTool": false,
+    "valueSource": "Unity StringDatabase using native formatting and project fallback settings",
+    "scope": "String-table lookup only; item-cached strings, mod delegates and LocHelper error/raw fallback may differ"
+  },
+  "operationId": "3a79697c-531d-462c-9809-04f012d546c8",
+  "sessionId": null,
+  "worldId": null,
+  "executionState": "succeeded",
+  "error": null,
+  "output": {
+    "truncated": false,
+    "omissionCount": 0,
+    "details": [],
+    "detailsOmitted": 0,
+    "limits": {
+      "textCharacters": 2000,
+      "collectionEntries": 200,
+      "depth": 12,
+      "nodes": 4000,
+      "characters": 24000
+    },
+    "hint": "Use filters, snapshot pages, or get_operation result_path with offset/limit for omitted data. Truncated observations are incomplete."
+  }
+}

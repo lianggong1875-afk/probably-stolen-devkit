@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!-- The SDK supplies Roslyn only. All runtime references come from Unity Mono. -->
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>ModDevBridgeNext</AssemblyName>
+    <OutputType>Library</OutputType>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <NoStdLib>true</NoStdLib>
+    <LangVersion>10</LangVersion>
+    <Nullable>disable</Nullable>
+    <NuGetAudit>false</NuGetAudit>
+    <BridgeEdition Condition="'$(BridgeEdition)' == ''">Full</BridgeEdition>
+    <DefineConstants Condition="'$(BridgeEdition)' == 'Full'">$(DefineConstants);BRIDGE_FULL</DefineConstants>
+    <Deterministic>true</Deterministic>
+    <PathMap>$(MSBuildProjectDirectory)=/_/ModDevBridgeNext</PathMap>
+  </PropertyGroup>
+  <Target Name="CheckBridgeInputs" BeforeTargets="PrepareForBuild">
+    <Error Condition="!Exists('$(GameManaged)/Assembly-CSharp.dll')" Text="Set GameManaged to the installed game's Probably Stolen_Data/Managed directory." />
+    <Error Condition="'$(BridgeEdition)' != 'Full' And '$(BridgeEdition)' != 'Compatible'" Text="BridgeEdition must be Full or Compatible." />
+  </Target>
+  <ItemGroup>
+    <Compile Include="src/*.cs" />
+    <Reference Include="$(GameManaged)/*.dll"><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

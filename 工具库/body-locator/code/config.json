@@ -1,0 +1,71 @@
+{
+  "model_type": "transition-span-locator",
+  "version": "transition-joint-real-1",
+  "backbone": "alphaedge-ai/mmBERT-small-zho-32768",
+  "encoder": {
+    "model_type": "modernbert",
+    "hidden_size": 384,
+    "num_hidden_layers": 22,
+    "vocab_size": 32768,
+    "max_position_embeddings": 8192
+  },
+  "architecture": {
+    "global_dim": 256,
+    "global_layers": 2,
+    "global_heads": 4,
+    "dropout": 0.1,
+    "chunks_per_forward": 1,
+    "window": 4096,
+    "overlap": 128,
+    "max_total_tokens": 8192
+  },
+  "task": "single contiguous body span [start, end) in Unicode codepoint offsets",
+  "output_heads": [
+    "start_logits (N+1)",
+    "end_logits (N+1)"
+  ],
+  "parameters": 57529988,
+  "train_settings": {
+    "epochs": 4,
+    "lr": 0.0002,
+    "encoder_lr": 0.00001,
+    "window": 4096,
+    "overlap": 128,
+    "max_total_tokens": 8192,
+    "seed": 42
+  },
+  "data": {
+    "train": 5729,
+    "dev": 329,
+    "test": 306
+  },
+  "dev_metrics": {
+    "exact": 307,
+    "evaluated": 328,
+    "exact_rate": 0.9359756097560976,
+    "body_char_f1": 0.9945669892663107,
+    "body_deleted_chars": 2824,
+    "nonbody_kept_chars": 4525,
+    "top5_deleted_chars": 2760
+  },
+  "files": {
+    "best.pt": {
+      "dtype": "float32",
+      "bytes": 230186088
+    },
+    "best_fp16.pt": {
+      "dtype": "float16-storage",
+      "bytes": 115123979
+    },
+    "best_int8.pt": {
+      "dtype": "int8-dynamic-linear",
+      "bytes": 96601867
+    }
+  },
+  "inference": {
+    "window": 4096,
+    "overlap": 128,
+    "max_total_tokens": 8192,
+    "output": "single contiguous [start, end) in Unicode codepoints"
+  }
+}

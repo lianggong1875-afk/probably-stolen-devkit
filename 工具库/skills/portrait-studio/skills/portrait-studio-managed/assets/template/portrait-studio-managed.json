@@ -1,0 +1,128 @@
+{
+  "format": "portrait-studio-managed/1",
+  "contract": "static-manager-rendering/1",
+  "providerId": "example.managedportraits",
+  "revision": "1",
+  "renderMode": "static",
+  "renderOwner": "PortraitStudio",
+  "targets": [
+    {
+      "id": "mentor-main",
+      "kind": "character",
+      "renderMode": "static",
+      "subject": {
+        "owner": "game",
+        "key": "mentor"
+      },
+      "slot": "main",
+      "binding": {
+        "type": "sprite-key",
+        "key": "mentor"
+      },
+      "defaultResource": {
+        "providerId": "example.managedportraits",
+        "setId": "mentor-main",
+        "id": "example",
+        "revision": "1"
+      },
+      "candidateResources": [
+        {
+          "providerId": "example.managedportraits",
+          "setId": "mentor-main",
+          "id": "example",
+          "revision": "1"
+        },
+        {
+          "providerId": "example.managedportraits",
+          "setId": "mentor-main",
+          "id": "alternative",
+          "revision": "1"
+        }
+      ]
+    },
+    {
+      "id": "landlord-main",
+      "kind": "character",
+      "renderMode": "static",
+      "subject": {
+        "owner": "game",
+        "key": "landlord"
+      },
+      "slot": "main",
+      "binding": {
+        "type": "sprite-key",
+        "key": "landlord"
+      },
+      "defaultResource": {
+        "providerId": "example.managedportraits",
+        "setId": "landlord-main",
+        "id": "example",
+        "revision": "1"
+      },
+      "candidateResources": [
+        {
+          "providerId": "example.managedportraits",
+          "setId": "landlord-main",
+          "id": "example",
+          "revision": "1"
+        }
+      ]
+    },
+    {
+      "id": "wanted4-photo",
+      "kind": "wanted",
+      "renderMode": "static",
+      "subject": {
+        "owner": "game",
+        "key": "wanted4"
+      },
+      "slot": "photo",
+      "binding": {
+        "type": "wanted-photo",
+        "key": "wanted4"
+      },
+      "defaultResource": {
+        "providerId": "example.managedportraits",
+        "setId": "wanted4-photo",
+        "id": "example",
+        "revision": "1"
+      },
+      "candidateResources": [
+        {
+          "providerId": "example.managedportraits",
+          "setId": "wanted4-photo",
+          "id": "example",
+          "revision": "1"
+        }
+      ]
+    },
+    {
+      "id": "dumping-ground-background",
+      "kind": "scene",
+      "renderMode": "static",
+      "subject": {
+        "owner": "game",
+        "key": "dumping_ground"
+      },
+      "slot": "background",
+      "binding": {
+        "type": "scene-key",
+        "key": "dumping_ground"
+      },
+      "defaultResource": {
+        "providerId": "example.managedportraits",
+        "setId": "dumping-ground-background",
+        "id": "example",
+        "revision": "1"
+      },
+      "candidateResources": [
+        {
+          "providerId": "example.managedportraits",
+          "setId": "dumping-ground-background",
+          "id": "example",
+          "revision": "1"
+        }
+      ]
+    }
+  ]
+}

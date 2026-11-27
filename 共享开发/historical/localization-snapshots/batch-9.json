@@ -1,0 +1,484 @@
+{
+  "ok": true,
+  "result": {
+    "table": "Item",
+    "selectedLocale": "zh",
+    "requestedLocale": "zh",
+    "selectedLocaleAfter": "zh",
+    "entries": [
+      {
+        "key": "item_stun_baton_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "眩晕警棍",
+        "rawValue": "眩晕警棍"
+      },
+      {
+        "key": "item_stun_gun_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "“脉冲卫士”电击枪",
+        "rawValue": "“脉冲卫士”电击枪"
+      },
+      {
+        "key": "item_sturgeon_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "鲟鱼",
+        "rawValue": "鲟鱼"
+      },
+      {
+        "key": "item_sturgeon_roe_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "鲟鱼卵",
+        "rawValue": "鲟鱼卵"
+      },
+      {
+        "key": "item_sup_keycard_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一次性钥匙卡（补给）",
+        "rawValue": "一次性钥匙卡（补给）"
+      },
+      {
+        "key": "item_surgery_tool_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "外科手术工具套装",
+        "rawValue": "外科手术工具套装"
+      },
+      {
+        "key": "item_system_capped_neural_core_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "神经核心模组（受限）",
+        "rawValue": "神经核心模组（受限）"
+      },
+      {
+        "key": "item_system_module_corrupt_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "损坏模组",
+        "rawValue": "损坏模组"
+      },
+      {
+        "key": "item_system_module_eco_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "环保模组",
+        "rawValue": "环保模组"
+      },
+      {
+        "key": "item_system_module_efficiancy_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "效率模组",
+        "rawValue": "效率模组"
+      },
+      {
+        "key": "item_system_module_fineness_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "精炼模组",
+        "rawValue": "精炼模组"
+      },
+      {
+        "key": "item_system_module_overclock_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "超频模组",
+        "rawValue": "超频模组"
+      },
+      {
+        "key": "item_system_module_performance_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "性能模组",
+        "rawValue": "性能模组"
+      },
+      {
+        "key": "item_system_module_quality_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "质量模组",
+        "rawValue": "质量模组"
+      },
+      {
+        "key": "item_system_module_ruined_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "报废模组",
+        "rawValue": "报废模组"
+      },
+      {
+        "key": "item_system_module_streamlining_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "优化模组",
+        "rawValue": "优化模组"
+      },
+      {
+        "key": "item_system_uncapped_neural_core_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "神经核心模组（无限制）",
+        "rawValue": "神经核心模组（无限制）"
+      },
+      {
+        "key": "item_tazer_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "电击枪",
+        "rawValue": "电击枪"
+      },
+      {
+        "key": "item_tilapia_fry_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "罗非鱼苗",
+        "rawValue": "罗非鱼苗"
+      },
+      {
+        "key": "item_tilapia_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "罗非鱼",
+        "rawValue": "罗非鱼"
+      },
+      {
+        "key": "item_tilapia_roe_fertilized_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "罗非鱼卵（受精）",
+        "rawValue": "罗非鱼卵（受精）"
+      },
+      {
+        "key": "item_tilapia_roe_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "罗非鱼卵",
+        "rawValue": "罗非鱼卵"
+      },
+      {
+        "key": "item_tilapia_skin_graft_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "罗非鱼植皮片",
+        "rawValue": "罗非鱼植皮片"
+      },
+      {
+        "key": "item_tiny_fish_fillet_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "鱼肉片（极小）",
+        "rawValue": "鱼肉片（极小）"
+      },
+      {
+        "key": "item_toilet_paper_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一卷厕纸",
+        "rawValue": "一卷厕纸"
+      },
+      {
+        "key": "item_toolbox_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "工具箱",
+        "rawValue": "工具箱"
+      },
+      {
+        "key": "item_toothpaste_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一支牙膏",
+        "rawValue": "一支牙膏"
+      },
+      {
+        "key": "item_topical_bandage_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "外用药膏绷带",
+        "rawValue": "外用药膏绷带"
+      },
+      {
+        "key": "item_trashcan_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "垃圾桶",
+        "rawValue": "垃圾桶"
+      },
+      {
+        "key": "item_trigger_group_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "精调扳机组",
+        "rawValue": "精调扳机组"
+      },
+      {
+        "key": "item_turbo_booster_adv_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "高级涡轮增压器",
+        "rawValue": "高级涡轮增压器"
+      },
+      {
+        "key": "item_turbo_booster_hypertech_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "超科技涡轮增压器",
+        "rawValue": "超科技涡轮增压器"
+      },
+      {
+        "key": "item_turbo_booster_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一次性涡轮增压器",
+        "rawValue": "一次性涡轮增压器"
+      },
+      {
+        "key": "item_tutorial_book_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "导师手册",
+        "rawValue": "导师手册"
+      },
+      {
+        "key": "item_unlicensed_phagimycin_pill_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "无证噬菌霉素片",
+        "rawValue": "无证噬菌霉素片"
+      },
+      {
+        "key": "item_used_water_testing_strip_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "水质检测试纸（已使用）",
+        "rawValue": "水质检测试纸（已使用）"
+      },
+      {
+        "key": "item_uv_filter_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "紫外线灯",
+        "rawValue": "紫外线灯"
+      },
+      {
+        "key": "item_vending_fountain_core_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "自动售水机核心",
+        "rawValue": "自动售水机核心"
+      },
+      {
+        "key": "item_vending_fountain_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "自动售水机",
+        "rawValue": "自动售水机"
+      },
+      {
+        "key": "item_vending_machine_core_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "自动售货机核心",
+        "rawValue": "自动售货机核心"
+      },
+      {
+        "key": "item_vending_machine_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "自动售货机",
+        "rawValue": "自动售货机"
+      },
+      {
+        "key": "item_wanted_paper_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "治安部通缉名单",
+        "rawValue": "治安部通缉名单"
+      },
+      {
+        "key": "item_water_filter_adv_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "高级滤水器",
+        "rawValue": "高级滤水器"
+      },
+      {
+        "key": "item_water_filter_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "滤水器",
+        "rawValue": "滤水器"
+      },
+      {
+        "key": "item_water_guide_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "水资源交易手册",
+        "rawValue": "水资源交易手册"
+      },
+      {
+        "key": "item_water_jug_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "桶装水",
+        "rawValue": "桶装水"
+      },
+      {
+        "key": "item_water_pitcher_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "水罐",
+        "rawValue": "水罐"
+      },
+      {
+        "key": "item_water_purifier_instruction_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "净水器说明",
+        "rawValue": "净水器说明"
+      },
+      {
+        "key": "item_water_purifier_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "净水器",
+        "rawValue": "净水器"
+      },
+      {
+        "key": "item_water_ration_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "密封水配给包（标准）",
+        "rawValue": "密封水配给包（标准）"
+      }
+    ],
+    "completed": true,
+    "localeChangedByTool": false,
+    "valueSource": "Unity StringDatabase using native formatting and project fallback settings",
+    "scope": "String-table lookup only; item-cached strings, mod delegates and LocHelper error/raw fallback may differ"
+  },
+  "operationId": "87ca60f7-71c4-4db3-b461-8724816d1ad0",
+  "sessionId": null,
+  "worldId": null,
+  "executionState": "succeeded",
+  "error": null,
+  "output": {
+    "truncated": false,
+    "omissionCount": 0,
+    "details": [],
+    "detailsOmitted": 0,
+    "limits": {
+      "textCharacters": 2000,
+      "collectionEntries": 200,
+      "depth": 12,
+      "nodes": 4000,
+      "characters": 24000
+    },
+    "hint": "Use filters, snapshot pages, or get_operation result_path with offset/limit for omitted data. Truncated observations are incomplete."
+  }
+}

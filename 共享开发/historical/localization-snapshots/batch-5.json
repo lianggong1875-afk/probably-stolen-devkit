@@ -1,0 +1,484 @@
+{
+  "ok": true,
+  "result": {
+    "table": "Item",
+    "selectedLocale": "zh",
+    "requestedLocale": "zh",
+    "selectedLocaleAfter": "zh",
+    "entries": [
+      {
+        "key": "item_labeler_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "标签打印机",
+        "rawValue": "标签打印机"
+      },
+      {
+        "key": "item_large_bottled_water_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "瓶装水（大）",
+        "rawValue": "瓶装水（大）"
+      },
+      {
+        "key": "item_large_fish_fillet_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "鱼肉片（大）",
+        "rawValue": "鱼肉片（大）"
+      },
+      {
+        "key": "item_large_purple_injector_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "免疫宁注射器",
+        "rawValue": "免疫宁注射器"
+      },
+      {
+        "key": "item_laser_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "激光瞄准器",
+        "rawValue": "激光瞄准器"
+      },
+      {
+        "key": "item_laser_toy_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "玩具激光笔",
+        "rawValue": "玩具激光笔"
+      },
+      {
+        "key": "item_laser2_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "目标捕获装置",
+        "rawValue": "目标捕获装置"
+      },
+      {
+        "key": "item_li_eat_snackbar_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "轻食能量棒",
+        "rawValue": "轻食能量棒"
+      },
+      {
+        "key": "item_li_formula_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "李北文的奥克莫吸配方",
+        "rawValue": "李北文的奥克莫吸配方"
+      },
+      {
+        "key": "item_liquid_luck_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "液体好运",
+        "rawValue": "液体好运"
+      },
+      {
+        "key": "item_logo_checker_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "共和国标志校验卡",
+        "rawValue": "共和国标志校验卡"
+      },
+      {
+        "key": "item_lottery_info_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "下层区彩票说明",
+        "rawValue": "下层区彩票说明"
+      },
+      {
+        "key": "item_lottery_ticket_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "彩票",
+        "rawValue": "彩票"
+      },
+      {
+        "key": "item_lottery_ticket_old_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "旧彩票",
+        "rawValue": "旧彩票"
+      },
+      {
+        "key": "item_lou_bomb_armed_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "已激活的塑性炸药",
+        "rawValue": "已激活的塑性炸药"
+      },
+      {
+        "key": "item_lou_bomb_fake_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "假塑性炸药",
+        "rawValue": "假塑性炸药"
+      },
+      {
+        "key": "item_lou_locker_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "卢的储物柜",
+        "rawValue": "卢的储物柜"
+      },
+      {
+        "key": "item_lou_old_orders_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "共和国旧军令",
+        "rawValue": "共和国旧军令"
+      },
+      {
+        "key": "item_lou_toy_box_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "卢的玩具箱",
+        "rawValue": "卢的玩具箱"
+      },
+      {
+        "key": "item_luxury_supply_crate_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "给埃莉诺的慰问包裹",
+        "rawValue": "给埃莉诺的慰问包裹"
+      },
+      {
+        "key": "item_machine_bay_ext_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "机器区（扩建）",
+        "rawValue": "机器区（扩建）"
+      },
+      {
+        "key": "item_machine_bay_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "机器区",
+        "rawValue": "机器区"
+      },
+      {
+        "key": "item_mag_10mm_ext_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "加长10毫米弹匣",
+        "rawValue": "加长10毫米弹匣"
+      },
+      {
+        "key": "item_mag_10mm_high_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "大容量10毫米弹匣",
+        "rawValue": "大容量10毫米弹匣"
+      },
+      {
+        "key": "item_mag_10mm_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "10毫米弹匣",
+        "rawValue": "10毫米弹匣"
+      },
+      {
+        "key": "item_mag_10mm_smg_box_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "10毫米冲锋枪箱式弹匣",
+        "rawValue": "10毫米冲锋枪箱式弹匣"
+      },
+      {
+        "key": "item_mag_10mm_smg_high_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "大容量10毫米冲锋枪弹匣",
+        "rawValue": "大容量10毫米冲锋枪弹匣"
+      },
+      {
+        "key": "item_mag_10mm_smg_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "10毫米冲锋枪弹匣",
+        "rawValue": "10毫米冲锋枪弹匣"
+      },
+      {
+        "key": "item_mag_22_ext_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "加长.22弹匣",
+        "rawValue": "加长.22弹匣"
+      },
+      {
+        "key": "item_mag_22_high_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "大容量.22弹匣",
+        "rawValue": "大容量.22弹匣"
+      },
+      {
+        "key": "item_mag_22_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": ".22弹匣",
+        "rawValue": ".22弹匣"
+      },
+      {
+        "key": "item_magnifier_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "放大镜",
+        "rawValue": "放大镜"
+      },
+      {
+        "key": "item_makeshift_reactor_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "简易微型核反应堆",
+        "rawValue": "简易微型核反应堆"
+      },
+      {
+        "key": "item_makeshift_storage_bay_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "简易储藏区",
+        "rawValue": "简易储藏区"
+      },
+      {
+        "key": "item_marking_pen_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "标记笔",
+        "rawValue": "标记笔"
+      },
+      {
+        "key": "item_match_barrel_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "比赛级枪管",
+        "rawValue": "比赛级枪管"
+      },
+      {
+        "key": "item_meal_cap_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "食用帽菇",
+        "rawValue": "食用帽菇"
+      },
+      {
+        "key": "item_meat_scrap_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "动物下水",
+        "rawValue": "动物下水"
+      },
+      {
+        "key": "item_med_bottle_blue_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "碱性溶液瓶",
+        "rawValue": "碱性溶液瓶"
+      },
+      {
+        "key": "item_med_bottle_orange_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "还原剂瓶",
+        "rawValue": "还原剂瓶"
+      },
+      {
+        "key": "item_med_bottle_red_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "酸性溶液瓶",
+        "rawValue": "酸性溶液瓶"
+      },
+      {
+        "key": "item_med_bottle_small_pink_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "脂合剂瓶",
+        "rawValue": "脂合剂瓶"
+      },
+      {
+        "key": "item_med_bottle_violet_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "N-羟甲基碱溶液瓶",
+        "rawValue": "N-羟甲基碱溶液瓶"
+      },
+      {
+        "key": "item_med_box_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "医疗舱物资箱",
+        "rawValue": "医疗舱物资箱"
+      },
+      {
+        "key": "item_med_keycard_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "一次性钥匙卡（医疗）",
+        "rawValue": "一次性钥匙卡（医疗）"
+      },
+      {
+        "key": "item_mentor_contract_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "租赁协议",
+        "rawValue": "租赁协议"
+      },
+      {
+        "key": "item_metal_ingot_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "金属锭",
+        "rawValue": "金属锭"
+      },
+      {
+        "key": "item_metal_scanner_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "拾荒扫描仪",
+        "rawValue": "拾荒扫描仪"
+      },
+      {
+        "key": "item_mind_reprogrammer_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "心智重编程器",
+        "rawValue": "心智重编程器"
+      },
+      {
+        "key": "item_mini_alcohol_bottle_name",
+        "found": true,
+        "existsInRequestedLocale": true,
+        "resolvedLocale": "zh",
+        "fallbackUsed": false,
+        "value": "小瓶酒精",
+        "rawValue": "小瓶酒精"
+      }
+    ],
+    "completed": true,
+    "localeChangedByTool": false,
+    "valueSource": "Unity StringDatabase using native formatting and project fallback settings",
+    "scope": "String-table lookup only; item-cached strings, mod delegates and LocHelper error/raw fallback may differ"
+  },
+  "operationId": "177d6b90-bd36-4d1a-87da-0a8ba1ce5e0d",
+  "sessionId": null,
+  "worldId": null,
+  "executionState": "succeeded",
+  "error": null,
+  "output": {
+    "truncated": false,
+    "omissionCount": 0,
+    "details": [],
+    "detailsOmitted": 0,
+    "limits": {
+      "textCharacters": 2000,
+      "collectionEntries": 200,
+      "depth": 12,
+      "nodes": 4000,
+      "characters": 24000
+    },
+    "hint": "Use filters, snapshot pages, or get_operation result_path with offset/limit for omitted data. Truncated observations are incomplete."
+  }
+}

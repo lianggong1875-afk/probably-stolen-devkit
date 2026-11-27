@@ -1,0 +1,4328 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "resource": {
+      "type": "object",
+      "properties": {
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "setId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "required": [
+        "providerId",
+        "setId",
+        "id",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    "layout": {
+      "type": "object",
+      "properties": {
+        "scale": {
+          "type": "number",
+          "minimum": 0.25,
+          "maximum": 3
+        },
+        "x": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        },
+        "y": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "scale",
+        "x",
+        "y"
+      ],
+      "additionalProperties": false
+    },
+    "subject": {
+      "type": "object",
+      "properties": {
+        "owner": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "key": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "required": [
+        "owner",
+        "key"
+      ],
+      "additionalProperties": false
+    },
+    "memory": {
+      "type": "object",
+      "properties": {
+        "residentBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "pinnedBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "warmBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "pendingDestroyBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "borrowedBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "decodeReservedBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "residentBytes",
+        "pinnedBytes",
+        "warmBytes",
+        "pendingDestroyBytes",
+        "borrowedBytes",
+        "decodeReservedBytes"
+      ],
+      "additionalProperties": false
+    },
+    "grant": {
+      "type": "object",
+      "properties": {
+        "residentDeltaBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "peakAdditionalBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "residentDeltaBytes",
+        "peakAdditionalBytes"
+      ],
+      "additionalProperties": false
+    },
+    "textureCost": {
+      "type": "object",
+      "properties": {
+        "textureKey": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "residentBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "alreadyResident": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "textureKey",
+        "residentBytes",
+        "alreadyResident"
+      ],
+      "additionalProperties": false
+    },
+    "held": {
+      "type": "object",
+      "properties": {
+        "resource": {
+          "$ref": "#/$defs/resource"
+        },
+        "refCount": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "resource",
+        "refCount"
+      ],
+      "additionalProperties": false
+    },
+    "binding": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "sprite-key",
+            "wanted-photo",
+            "scene-key",
+            "custom"
+          ]
+        },
+        "key": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "budget": {
+      "type": "object",
+      "properties": {
+        "residentDeltaBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "peakAdditionalBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "textures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/textureCost"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "residentDeltaBytes",
+        "peakAdditionalBytes",
+        "textures"
+      ],
+      "additionalProperties": false
+    },
+    "level": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "^(?!/)(?!.*(?:\\\\|:))(?!.*(?:^|/)(?:\\.|\\.\\.|)(?:/|$)).+\\.png$"
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "level",
+        "path",
+        "width",
+        "height",
+        "sha256"
+      ],
+      "additionalProperties": false
+    },
+    "texture": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8192
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8192
+        },
+        "contentHash": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "filter": {
+          "enum": [
+            "Point",
+            "Bilinear",
+            "Trilinear"
+          ]
+        },
+        "wrapU": {
+          "enum": [
+            "Clamp",
+            "Repeat",
+            "Mirror",
+            "MirrorOnce"
+          ]
+        },
+        "wrapV": {
+          "enum": [
+            "Clamp",
+            "Repeat",
+            "Mirror",
+            "MirrorOnce"
+          ]
+        },
+        "wrapW": {
+          "enum": [
+            "Clamp",
+            "Repeat",
+            "Mirror",
+            "MirrorOnce"
+          ]
+        },
+        "anisoLevel": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16
+        },
+        "mipMapBias": {
+          "type": "number"
+        },
+        "colorSpace": {
+          "enum": [
+            "sRGB",
+            "linear"
+          ]
+        },
+        "mipmaps": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "mode": {
+                  "enum": [
+                    "none",
+                    "generate"
+                  ]
+                }
+              },
+              "required": [
+                "mode"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "mode": {
+                  "enum": [
+                    "provided"
+                  ]
+                },
+                "levels": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/level"
+                  },
+                  "minItems": 1,
+                  "maxItems": 13
+                }
+              },
+              "required": [
+                "mode",
+                "levels"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": [
+        "width",
+        "height",
+        "contentHash",
+        "filter",
+        "wrapU",
+        "wrapV",
+        "wrapW",
+        "anisoLevel",
+        "mipMapBias",
+        "colorSpace",
+        "mipmaps"
+      ],
+      "additionalProperties": false
+    },
+    "geometry": {
+      "type": "object",
+      "properties": {
+        "rect": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "y": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "width": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "height": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "x",
+            "y",
+            "width",
+            "height"
+          ],
+          "additionalProperties": false
+        },
+        "pixelsPerUnit": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "pivotX": {
+          "type": "number"
+        },
+        "pivotY": {
+          "type": "number"
+        },
+        "border": {
+          "type": "object",
+          "properties": {
+            "left": {
+              "type": "number",
+              "minimum": 0
+            },
+            "bottom": {
+              "type": "number",
+              "minimum": 0
+            },
+            "right": {
+              "type": "number",
+              "minimum": 0
+            },
+            "top": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "left",
+            "bottom",
+            "right",
+            "top"
+          ],
+          "additionalProperties": false
+        },
+        "meshType": {
+          "enum": [
+            "FullRect"
+          ]
+        }
+      },
+      "required": [
+        "rect",
+        "pixelsPerUnit",
+        "pivotX",
+        "pivotY",
+        "border",
+        "meshType"
+      ],
+      "additionalProperties": false
+    },
+    "asset": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "resourceRevision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "renderMode": {
+          "enum": [
+            "static"
+          ]
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 512,
+          "pattern": "^(?!/)(?!.*(?:\\\\|:))(?!.*(?:^|/)(?:\\.|\\.\\.|)(?:/|$)).+\\.png$"
+        },
+        "texture": {
+          "$ref": "#/$defs/texture"
+        },
+        "geometry": {
+          "$ref": "#/$defs/geometry"
+        }
+      },
+      "required": [
+        "id",
+        "resourceRevision",
+        "renderMode",
+        "path",
+        "texture",
+        "geometry"
+      ],
+      "additionalProperties": false
+    },
+    "set": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "kind": {
+          "enum": [
+            "character",
+            "wanted",
+            "scene"
+          ]
+        },
+        "subject": {
+          "$ref": "#/$defs/subject"
+        },
+        "slot": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "renderMode": {
+          "enum": [
+            "static"
+          ]
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/asset"
+          },
+          "minItems": 1,
+          "maxItems": 4096
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "subject",
+        "slot",
+        "renderMode",
+        "resources"
+      ],
+      "additionalProperties": false
+    },
+    "target": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "kind": {
+          "enum": [
+            "character",
+            "wanted",
+            "scene"
+          ]
+        },
+        "subject": {
+          "$ref": "#/$defs/subject"
+        },
+        "slot": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "renderMode": {
+          "enum": [
+            "static"
+          ]
+        },
+        "binding": {
+          "$ref": "#/$defs/binding"
+        },
+        "defaultMode": {
+          "enum": [
+            "source",
+            "resource"
+          ]
+        },
+        "defaultResource": {
+          "$ref": "#/$defs/resource"
+        },
+        "candidateResources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/resource"
+          },
+          "minItems": 0,
+          "maxItems": 4096
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "subject",
+        "slot",
+        "renderMode",
+        "binding",
+        "defaultMode",
+        "candidateResources"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "defaultMode": {
+                "const": "resource"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "defaultResource"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "defaultResource"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "portraitSet": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "renderMode": {
+          "enum": [
+            "static"
+          ]
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/resource"
+          },
+          "minItems": 1,
+          "maxItems": 4096
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "renderMode",
+        "entries"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "op": {
+          "const": "discover"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "op"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "hello"
+        },
+        "seq": {
+          "const": 0
+        },
+        "eventSeq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "memory": {
+          "$ref": "#/$defs/memory"
+        },
+        "snapshotId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "last": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "op",
+        "seq",
+        "eventSeq",
+        "targets",
+        "memory",
+        "snapshotId",
+        "page",
+        "last"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "acquire"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "minItems": 1,
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "targets"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "ready"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "requestOp": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "minItems": 1,
+          "maxItems": 32
+        },
+        "memory": {
+          "$ref": "#/$defs/memory"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "requestOp",
+        "targets",
+        "memory"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "select"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "choiceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "mode": {
+          "enum": [
+            "follow",
+            "original",
+            "selected"
+          ]
+        },
+        "setDefault": {
+          "type": "boolean"
+        },
+        "layout": {
+          "$ref": "#/$defs/layout"
+        },
+        "resource": {
+          "$ref": "#/$defs/resource"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "targetId",
+        "choiceId",
+        "mode",
+        "setDefault"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "selected"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "resource"
+            ]
+          },
+          "else": {
+            "not": {
+              "required": [
+                "resource"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "stored"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "requestOp": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "choiceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "setDefault": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "requestOp",
+        "targetId",
+        "choiceId",
+        "setDefault"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "forget-choice"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "choiceIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "minItems": 1,
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "choiceIds"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "forgotten"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "requestOp": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "choiceIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "minItems": 1,
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "requestOp",
+        "choiceIds"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "show"
+        },
+        "seq": {
+          "const": 0
+        },
+        "eventSeq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "surfaceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "originVisitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "eventSeq",
+        "targetId",
+        "displayId",
+        "visitId",
+        "displayEpoch",
+        "surfaceId"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "hide"
+        },
+        "seq": {
+          "const": 0
+        },
+        "eventSeq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "reason": {
+          "enum": [
+            "hidden",
+            "destroyed",
+            "rebound"
+          ]
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "eventSeq",
+        "targetId",
+        "displayId",
+        "visitId",
+        "displayEpoch",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "plan"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "choiceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "transactionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "surfaceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "encounterId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "groupId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presenterProviderId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presentationRole": {
+          "enum": [
+            "presenter",
+            "silent"
+          ]
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "targetId",
+        "displayId",
+        "visitId",
+        "choiceId",
+        "transactionId",
+        "surfaceId",
+        "encounterId",
+        "groupId",
+        "presenterProviderId",
+        "presentationRole",
+        "displayEpoch"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "planned"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "requestOp": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "choiceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "transactionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "surfaceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "encounterId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "groupId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presenterProviderId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presentationRole": {
+          "enum": [
+            "presenter",
+            "silent"
+          ]
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "planId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "budget": {
+          "$ref": "#/$defs/budget"
+        },
+        "memory": {
+          "$ref": "#/$defs/memory"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "requestOp",
+        "targetId",
+        "displayId",
+        "visitId",
+        "choiceId",
+        "transactionId",
+        "surfaceId",
+        "encounterId",
+        "groupId",
+        "presenterProviderId",
+        "presentationRole",
+        "displayEpoch",
+        "planId",
+        "budget",
+        "memory"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "prepare"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "choiceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "transactionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "surfaceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "encounterId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "groupId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presenterProviderId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presentationRole": {
+          "enum": [
+            "presenter",
+            "silent"
+          ]
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "planId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "reservationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "grant": {
+          "$ref": "#/$defs/grant"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "targetId",
+        "displayId",
+        "visitId",
+        "choiceId",
+        "transactionId",
+        "surfaceId",
+        "encounterId",
+        "groupId",
+        "presenterProviderId",
+        "presentationRole",
+        "displayEpoch",
+        "planId",
+        "reservationId",
+        "grant"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "prepared"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "requestOp": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "choiceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "transactionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "surfaceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "encounterId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "groupId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presenterProviderId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presentationRole": {
+          "enum": [
+            "presenter",
+            "silent"
+          ]
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "planId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "reservationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "memory": {
+          "$ref": "#/$defs/memory"
+        },
+        "heldResources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/held"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "snapshotId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "last": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "requestOp",
+        "targetId",
+        "displayId",
+        "visitId",
+        "choiceId",
+        "transactionId",
+        "surfaceId",
+        "encounterId",
+        "groupId",
+        "presenterProviderId",
+        "presentationRole",
+        "displayEpoch",
+        "planId",
+        "reservationId",
+        "memory",
+        "heldResources",
+        "snapshotId",
+        "page",
+        "last"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "commit"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "choiceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "transactionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "surfaceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "encounterId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "groupId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presenterProviderId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presentationRole": {
+          "enum": [
+            "presenter",
+            "silent"
+          ]
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "planId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "reservationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "targetId",
+        "displayId",
+        "visitId",
+        "choiceId",
+        "transactionId",
+        "surfaceId",
+        "encounterId",
+        "groupId",
+        "presenterProviderId",
+        "presentationRole",
+        "displayEpoch",
+        "planId",
+        "reservationId"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "applied"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "requestOp": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "choiceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "transactionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "surfaceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "encounterId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "groupId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presenterProviderId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presentationRole": {
+          "enum": [
+            "presenter",
+            "silent"
+          ]
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "planId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "reservationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "memory": {
+          "$ref": "#/$defs/memory"
+        },
+        "heldResources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/held"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "snapshotId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "last": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "requestOp",
+        "targetId",
+        "displayId",
+        "visitId",
+        "choiceId",
+        "transactionId",
+        "surfaceId",
+        "encounterId",
+        "groupId",
+        "presenterProviderId",
+        "presentationRole",
+        "displayEpoch",
+        "planId",
+        "reservationId",
+        "memory",
+        "heldResources",
+        "snapshotId",
+        "page",
+        "last"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "rollback"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "choiceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "transactionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "surfaceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "encounterId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "groupId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presenterProviderId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presentationRole": {
+          "enum": [
+            "presenter",
+            "silent"
+          ]
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "planId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "reservationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "targetId",
+        "displayId",
+        "visitId",
+        "choiceId",
+        "transactionId",
+        "surfaceId",
+        "encounterId",
+        "groupId",
+        "presenterProviderId",
+        "presentationRole",
+        "displayEpoch",
+        "planId",
+        "reservationId"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "rolled-back"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "requestOp": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "choiceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "transactionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "surfaceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "encounterId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "groupId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presenterProviderId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presentationRole": {
+          "enum": [
+            "presenter",
+            "silent"
+          ]
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "planId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "reservationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "memory": {
+          "$ref": "#/$defs/memory"
+        },
+        "heldResources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/held"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "snapshotId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "last": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "requestOp",
+        "targetId",
+        "displayId",
+        "visitId",
+        "choiceId",
+        "transactionId",
+        "surfaceId",
+        "encounterId",
+        "groupId",
+        "presenterProviderId",
+        "presentationRole",
+        "displayEpoch",
+        "planId",
+        "reservationId",
+        "memory",
+        "heldResources",
+        "snapshotId",
+        "page",
+        "last"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "finish"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "choiceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "transactionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "surfaceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "encounterId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "groupId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presenterProviderId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presentationRole": {
+          "enum": [
+            "presenter",
+            "silent"
+          ]
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "planId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "reservationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "targetId",
+        "displayId",
+        "visitId",
+        "choiceId",
+        "transactionId",
+        "surfaceId",
+        "encounterId",
+        "groupId",
+        "presenterProviderId",
+        "presentationRole",
+        "displayEpoch",
+        "planId",
+        "reservationId"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "finished"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "requestOp": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "choiceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "transactionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "surfaceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "encounterId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "groupId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presenterProviderId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presentationRole": {
+          "enum": [
+            "presenter",
+            "silent"
+          ]
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "planId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "reservationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "memory": {
+          "$ref": "#/$defs/memory"
+        },
+        "heldResources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/held"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "snapshotId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "last": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "requestOp",
+        "targetId",
+        "displayId",
+        "visitId",
+        "choiceId",
+        "transactionId",
+        "surfaceId",
+        "encounterId",
+        "groupId",
+        "presenterProviderId",
+        "presentationRole",
+        "displayEpoch",
+        "planId",
+        "reservationId",
+        "memory",
+        "heldResources",
+        "snapshotId",
+        "page",
+        "last"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "cancel"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "choiceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "transactionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "surfaceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "encounterId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "groupId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presenterProviderId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presentationRole": {
+          "enum": [
+            "presenter",
+            "silent"
+          ]
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "planId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "reservationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "targetId",
+        "displayId",
+        "visitId",
+        "choiceId",
+        "transactionId",
+        "surfaceId",
+        "encounterId",
+        "groupId",
+        "presenterProviderId",
+        "presentationRole",
+        "displayEpoch",
+        "planId"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "cancelled"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "requestOp": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "choiceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "transactionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "surfaceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "encounterId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "groupId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presenterProviderId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presentationRole": {
+          "enum": [
+            "presenter",
+            "silent"
+          ]
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "planId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "reservationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "memory": {
+          "$ref": "#/$defs/memory"
+        },
+        "heldResources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/held"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "snapshotId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "last": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "requestOp",
+        "targetId",
+        "displayId",
+        "visitId",
+        "choiceId",
+        "transactionId",
+        "surfaceId",
+        "encounterId",
+        "groupId",
+        "presenterProviderId",
+        "presentationRole",
+        "displayEpoch",
+        "planId",
+        "memory",
+        "heldResources",
+        "snapshotId",
+        "page",
+        "last"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "transaction-expired"
+        },
+        "seq": {
+          "const": 0
+        },
+        "eventSeq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "choiceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "transactionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "surfaceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "encounterId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "groupId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presenterProviderId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presentationRole": {
+          "enum": [
+            "presenter",
+            "silent"
+          ]
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "planId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "reservationId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "memory": {
+          "$ref": "#/$defs/memory"
+        },
+        "heldResources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/held"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "snapshotId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "last": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "eventSeq",
+        "targetId",
+        "displayId",
+        "visitId",
+        "choiceId",
+        "transactionId",
+        "surfaceId",
+        "encounterId",
+        "groupId",
+        "presenterProviderId",
+        "presentationRole",
+        "displayEpoch",
+        "planId",
+        "memory",
+        "heldResources",
+        "snapshotId",
+        "page",
+        "last"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "display-released"
+        },
+        "seq": {
+          "const": 0
+        },
+        "eventSeq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "memory": {
+          "$ref": "#/$defs/memory"
+        },
+        "heldResources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/held"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "snapshotId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "last": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "eventSeq",
+        "targetId",
+        "displayId",
+        "visitId",
+        "displayEpoch",
+        "memory",
+        "heldResources",
+        "snapshotId",
+        "page",
+        "last"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "memory-changed"
+        },
+        "seq": {
+          "const": 0
+        },
+        "eventSeq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "memory": {
+          "$ref": "#/$defs/memory"
+        },
+        "heldResources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/held"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "snapshotId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "last": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "eventSeq",
+        "memory",
+        "heldResources",
+        "snapshotId",
+        "page",
+        "last"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "trim"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "warmLimitBytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "warmLimitBytes"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "trimmed"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "requestOp": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "memory": {
+          "$ref": "#/$defs/memory"
+        },
+        "heldResources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/held"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "snapshotId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "last": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "requestOp",
+        "memory",
+        "heldResources",
+        "snapshotId",
+        "page",
+        "last"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "heartbeat"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "ack"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "requestOp": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "requestOp"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "release"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "released"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "requestOp": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "memory": {
+          "$ref": "#/$defs/memory"
+        },
+        "heldResources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/held"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "snapshotId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "last": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "requestOp",
+        "memory",
+        "heldResources",
+        "snapshotId",
+        "page",
+        "last"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "query-state"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "state"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "requestOp": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "snapshotId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "last": {
+          "type": "boolean"
+        },
+        "displays": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "targetId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160
+              },
+              "displayId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160
+              },
+              "visitId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160
+              },
+              "displayEpoch": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991
+              },
+              "surfaceId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160
+              },
+              "originVisitId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160
+              },
+              "choiceId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 160
+              },
+              "phase": {
+                "enum": [
+                  "shown",
+                  "planned",
+                  "prepared",
+                  "applied",
+                  "finished"
+                ]
+              }
+            },
+            "required": [
+              "targetId",
+              "displayId",
+              "visitId",
+              "displayEpoch",
+              "surfaceId",
+              "phase"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 0,
+          "maxItems": 32
+        },
+        "memory": {
+          "$ref": "#/$defs/memory"
+        },
+        "heldResources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/held"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "requestOp",
+        "snapshotId",
+        "page",
+        "last",
+        "displays",
+        "memory",
+        "heldResources"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "const": "portrait-studio-static/1"
+        },
+        "contract": {
+          "const": "static-display-transaction/1"
+        },
+        "renderMode": {
+          "const": "static"
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "instance": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "session": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "op": {
+          "const": "error"
+        },
+        "seq": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "requestOp": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "code": {
+          "enum": [
+            "invalid-message",
+            "invalid-layout",
+            "stale-session",
+            "stale-display",
+            "stale-plan",
+            "identity-mismatch",
+            "resource-missing",
+            "resource-changed",
+            "unsupported-geometry",
+            "budget-exceeded",
+            "apply-failed",
+            "transaction-expired"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 1024
+        },
+        "targetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "displayId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "visitId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "choiceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "transactionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "surfaceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "encounterId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "groupId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presenterProviderId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "presentationRole": {
+          "enum": [
+            "presenter",
+            "silent"
+          ]
+        },
+        "displayEpoch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "protocol",
+        "contract",
+        "renderMode",
+        "providerId",
+        "revision",
+        "instance",
+        "session",
+        "op",
+        "seq",
+        "requestOp",
+        "code",
+        "message"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

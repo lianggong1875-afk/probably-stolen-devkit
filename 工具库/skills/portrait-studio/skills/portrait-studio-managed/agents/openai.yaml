@@ -1,0 +1,4 @@
+interface:
+  display_name: "管理器托管静态立绘"
+  short_description: "把静态立绘展示和调整交给管理器，整理资源并移除已托管位置的原换图入口"
+  default_prompt: "使用 $portrait-studio-managed，把我的静态立绘交给 Portrait Studio 显示和调整，保留其他功能。"
