@@ -18,6 +18,7 @@
 9. **静态状态三处成对重置**：`OnDisable` / 读档 / 热重载。
 10. **自检进日志**：引用型数据（前置、配方、剧情 id、容器绑定）在 `OnGameLoadedLate` 做完整性 + 环检测并 Warn。
 11. **开工前先翻原版口子，最后才写 Harmony**：`ModHelper` **144 个** public static 方法、`GameItemFunc` **51 个**委托属性（拖拽 target 三组九个、容器准入、堆叠、槽位数量/优先级、父子形状/贴图/状态修饰、自定义 tooltip 富文本、每秒 tick、读档回调）、`ModHook` **37 个**钩子。三处都找不到再 Patch。工坊实证：零 Patch 能做出带 UI 的机器、剧本引擎、流水线控制器。
+12. **⛔ 绝不碰模组加载器状态**：不调 `ModLoader.SetModEnabled/ReorderMods/ApproveAndEnable`、`ModTrust.Approve`（带 `[ModRestricted("loader-target")]`，**编译即 Refused、运行即抛异常**）；连 `ES3.Save("modOrder", …)` 字面量调用也会被 ModScanner 硬拒。只读 `ModLoader.Mods` / `IsModEnabled` / `TrustState` / `RestartRequired`。别用 `new string(char[])` 拼键名规避扫描。
 
 ## 1. 内容扩展（物品 / 机器 / 配方）
 
