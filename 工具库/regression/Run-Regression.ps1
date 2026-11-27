@@ -1,15 +1,17 @@
 ﻿#Requires -Version 5.1
 <#
 .SYNOPSIS
-    深空电玩离线回归统一入口（只保留 tests\ 下的真实行为与不变量测试）。
+    双模组离线回归统一入口（只保留 tests\ 下的真实行为与不变量测试）。
 
 .EXAMPLE
     .\工具库\regression\Run-Regression.ps1
-    .\工具库\regression\Run-Regression.ps1 -Only appraisal
+    .\工具库\regression\Run-Regression.ps1 -Mod Freya
+    .\工具库\regression\Run-Regression.ps1 -Mod Arcade -Only appraisal
     .\工具库\regression\Run-Regression.ps1 -List
 #>
 [CmdletBinding()]
 param(
+    [ValidateSet('Arcade', 'Freya', 'All')][string]$Mod = 'All',
     [string[]]$Only = @(),
     [switch]$List,
     [switch]$KeepCache
@@ -19,29 +21,36 @@ $ErrorActionPreference = 'Continue'
 $here = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Parent $MyInvocation.MyCommand.Path }
 $workspace = (Resolve-Path -LiteralPath (Join-Path $here '..\..')).Path
 $arcade = Join-Path $workspace '深空电玩'
-if (!(Test-Path -LiteralPath (Join-Path $arcade 'DeepSpaceArcade.csproj') -PathType Leaf)) {
+$freya = Join-Path $workspace '深空当铺：可能是群友'
+if ($Mod -ne 'Freya' -and !(Test-Path -LiteralPath (Join-Path $arcade 'DeepSpaceArcade.csproj') -PathType Leaf)) {
     Write-Host "未找到深空电玩项目: $arcade"
     exit 2
 }
-$cacheRoot = Join-Path $arcade 'build\regression'
+if ($Mod -ne 'Arcade' -and !(Test-Path -LiteralPath (Join-Path $freya 'DeepSpacePawn.csproj') -PathType Leaf)) {
+    Write-Host "未找到可能是群友项目: $freya"
+    exit 2
+}
+$cacheRoot = Join-Path $workspace '缓存文件夹\regression'
 
 $suites = @(
-    @{ name = 'appraisal'; script = 'tests\appraisal\Run-AppraisalRegression.ps1' }
-    @{ name = 'texts';     script = 'tests\texts\Run-TextsRegression.ps1' }
+    @{ mod = 'Arcade'; name = 'appraisal';       root = $arcade; script = 'tests\appraisal\Run-AppraisalRegression.ps1' }
+    @{ mod = 'Arcade'; name = 'texts';           root = $arcade; script = 'tests\texts\Run-TextsRegression.ps1' }
+    @{ mod = 'Freya';  name = 'freya-integrity'; root = $freya;  script = 'tests\integrity\Run-FreyaIntegrityRegression.ps1' }
 )
 
 if ($List) {
-    foreach ($s in $suites) { '{0,-12} {1}' -f $s.name, $s.script }
+    foreach ($s in $suites) { '{0,-8} {1,-16} {2}' -f $s.mod, $s.name, $s.script }
     exit 0
 }
 
 $selected = @()
 foreach ($s in $suites) {
+    if ($Mod -ne 'All' -and $s.mod -ne $Mod) { continue }
     if ($Only.Count -gt 0 -and ($Only -notcontains $s.name)) { continue }
     $selected += $s
 }
 if ($selected.Count -eq 0) {
-    Write-Host "未匹配任何套件 '$($Only -join ',')'; 可用: $($suites.name -join ', ')"
+    Write-Host "未匹配任何套件 Mod=$Mod Only='$($Only -join ',')'; 可用: $($suites.name -join ', ')"
     exit 2
 }
 
@@ -73,7 +82,7 @@ foreach ($s in $selected) {
     [void](New-Item -ItemType Directory -Force -Path $dir)
     $log = Join-Path $dir 'run.log'
 
-    $scriptPath = Join-Path $arcade $s.script
+    $scriptPath = Join-Path $s.root $s.script
     $row = [ordered]@{ suite = $s.name; exit = 'missing'; pass = ''; fail = ''; secs = 0; log = $log }
     if (!(Test-Path -LiteralPath $scriptPath)) {
         "SUITE SCRIPT MISSING: $scriptPath" | Out-File -FilePath $log -Encoding utf8

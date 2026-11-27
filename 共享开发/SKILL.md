@@ -1,15 +1,15 @@
 ---
 name: probably-stolen-local-development
-description: Local Unity Mono mod development handbook for Probably Stolen (DeepSpaceArcade and DeepSpacePawn).
+description: Local workspace entry pointer for Probably Stolen mods. Redirects to AGENTS.md and probably-stolen-moddev skill.
 ---
 
-# 深空当铺本地模组开发指南
+# 深空当铺本地模组开发入口（已收束至主技能）
 
-开始前先读根目录 [AGENTS.md](../AGENTS.md)，打开目标项目的 `PROGRESS.md`，按 [开发流程与编程规范](开发流程与经验.md) 执行。
+> 本文件仅作工作区根目录快捷入口，完整架构、原版 API、工坊蒸馏经验与工具链已统一维护在主技能 `probably-stolen-moddev`（[工具库/skills/probably-stolen-moddev/SKILL.md](../工具库/skills/probably-stolen-moddev/SKILL.md)）与带标签总索引 [CATALOG.md](模组制作经验库/CATALOG.md)。
 
-## 开发工作流
+## 最小开工清单
 
-1. **查接口再写代码**：先看 [原版接口速查](模组制作经验库/03-原版接口速查.md) 或 `reference/Assembly-CSharp/`，确认准确方法名、重载签名和生命周期，不猜 API。
-2. **简洁实现**：直接写清晰内聚的 C# 代码，拒绝多余的 Policy/Seam 拆分和静默吞异常 `try/catch`。
-3. **双编译 + 扫能力**：用 `工具库\build\Build-Mod.ps1` 验证开发版与 `-PublicRelease` 零能力版均 0 警告 0 错误，跑 `工具库\regression\Run-Regression.ps1`。
-4. **实机验证**：只在 Slot 1 验证，核实加载哈希和实际表现；改完用 `git commit` 保存一个干净节点，并更新对应项目 `PROGRESS.md`。
+1. **先建分支再查接口**：按 [AGENTS.md](../AGENTS.md) §5 用 `New-FeatureBranch.ps1` 建分支；用 `python 工具库\kb-tools\kb_pipeline.py query --domain <域>` 秒查带可信度标签的经验/模板/原版 API，再核对 `reference/Assembly-CSharp/`，不猜签名。
+2. **简洁零能力实现**：优先 `ModHelper`（145 方法）/ `GameItemFunc`（51 委托）/ `ModHook`（44 事件），拒绝多余套娃与内部空 `catch {}`。
+3. **五道合并门禁**：合并前必跑 `.\工具库\build\Invoke-PreMergeGate.ps1 -Mod <Arcade|Freya|All>`（编译 + `-PublicRelease -Scan` 零能力 + 回归 + 跨模组冲突扫描 + 工作区洁净）。
+4. **真机只进 Slot 1**：核对 `saveSlot`、`worldId` 与加载哈希，更新对应项目 `PROGRESS.md`。

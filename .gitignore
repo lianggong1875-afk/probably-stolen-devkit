@@ -15,6 +15,8 @@ torchinductor_*/
 # 大体积第三方二进制工具（不进版本库）
 工具库/body-locator/models/*.pt
 工具库/build/ilspycmd/.store/
+工具库/build/gh-cli/
+工具库/build/dsh-maintenance/
 工具库/probes/ps-modbridge/tmp/
 工具库/probes/ps-modbridge/out/*.dll
 

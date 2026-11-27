@@ -1,0 +1,4201 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-11-28 01:03:51",
+  "taxonomy_ref": "工具库/kb-tools/taxonomy.json",
+  "stats": {
+    "total": 98,
+    "by_layer": {
+      "doc-guide": 23,
+      "skill": 3,
+      "workshop-distill": 42,
+      "template-cs": 13,
+      "tool-script": 17
+    },
+    "by_trust": {
+      "L1-verified-runtime": 43,
+      "L2-verified-host": 18,
+      "L3-distilled-source": 30,
+      "L4-caution-antipattern": 7
+    },
+    "by_domain": {
+      "workflow": 37,
+      "interop": 35,
+      "items": 24,
+      "machines": 16,
+      "appraisal": 10,
+      "customers": 14,
+      "ui": 21,
+      "persistence": 15,
+      "media": 23,
+      "events": 13,
+      "afterhour": 7,
+      "architecture": 24,
+      "perf": 10,
+      "multiplayer": 4,
+      "economy": 4
+    },
+    "unique_workshop_ids": 82
+  },
+  "entries": [
+    {
+      "id": "01-环境与工具链",
+      "path": "共享开发/模组制作经验库/01-环境与工具链.md",
+      "title": "01 环境与工具链",
+      "layer": "doc-guide",
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "must-read-before-coding",
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 88,
+      "workshop_ids": [],
+      "api_symbols": [
+        "ModScanner"
+      ],
+      "best_for": "查本机目录分工、构建/回归命令、PS5.1 编码规则",
+      "must_avoid": ""
+    },
+    {
+      "id": "02-加载器与权限",
+      "path": "共享开发/模组制作经验库/02-加载器与权限.md",
+      "title": "02 加载器与权限",
+      "layer": "doc-guide",
+      "domains": [
+        "interop",
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "must-read-before-coding",
+        "troubleshoot"
+      ],
+      "status": "active",
+      "lines": 64,
+      "workshop_ids": [],
+      "api_symbols": [
+        "ModLoader",
+        "ModScanner",
+        "IMod",
+        "InspectionUIManager",
+        "LoadedMod"
+      ],
+      "best_for": "查 ModScanner IL 扫描规则、零能力 <Capabilities/> 与哈希核验",
+      "must_avoid": ""
+    },
+    {
+      "id": "03-原版接口速查",
+      "path": "共享开发/模组制作经验库/03-原版接口速查.md",
+      "title": "03 原版接口速查",
+      "layer": "doc-guide",
+      "domains": [
+        "items",
+        "machines",
+        "appraisal",
+        "customers",
+        "ui",
+        "persistence",
+        "interop"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "api-lookup"
+      ],
+      "status": "active",
+      "lines": 925,
+      "workshop_ids": [],
+      "api_symbols": [
+        "GameItem",
+        "ModLoader",
+        "DirectoryMaster",
+        "ModHelper",
+        "GraphUtils",
+        "MachineHelper",
+        "ModHook",
+        "WaterHelper",
+        "StoreClient",
+        "ItemBehaviourManager",
+        "LoadedMod",
+        "PlayerStore",
+        "ChemicalHelper",
+        "GameItemFunc",
+        "GeneralHelper",
+        "Liquid",
+        "MachineProgressHelper",
+        "ItemFeature"
+      ],
+      "best_for": "写代码前查原版 ModHelper(145)/ModHook(44)/GameItemFunc(51) 及物品/机器/顾客/液体权威签名",
+      "must_avoid": ""
+    },
+    {
+      "id": "04-真机测试与探针",
+      "path": "共享开发/模组制作经验库/04-真机测试与探针.md",
+      "title": "04 真机测试与探针",
+      "layer": "doc-guide",
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "must-read-before-coding",
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 143,
+      "workshop_ids": [
+        "3835953432"
+      ],
+      "api_symbols": [
+        "GameItem",
+        "ItemSpawner",
+        "GraphUtils",
+        "ItemFeature",
+        "PixelWindow",
+        "StoreBell",
+        "StoreShutterButton",
+        "TypeHelper",
+        "GameInventory",
+        "InspectionUIManager",
+        "ItemCondition",
+        "MachineProgressHelper",
+        "ShowcaseHelper"
+      ],
+      "best_for": "Slot 1 真机测试流程、防碰 Slot 0、桥接与键鼠拖拽实操",
+      "must_avoid": ""
+    },
+    {
+      "id": "05-测试与回归",
+      "path": "共享开发/模组制作经验库/05-测试与回归.md",
+      "title": "05 测试与回归",
+      "layer": "doc-guide",
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "must-read-before-coding"
+      ],
+      "status": "active",
+      "lines": 27,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "跑 Run-Regression.ps1 与写防假绿的真实行为断言",
+      "must_avoid": ""
+    },
+    {
+      "id": "06-玩法与文案规范",
+      "path": "共享开发/模组制作经验库/06-玩法与文案规范.md",
+      "title": "06 玩法与文案规范",
+      "layer": "doc-guide",
+      "domains": [
+        "appraisal",
+        "media",
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "must-read-before-coding"
+      ],
+      "status": "active",
+      "lines": 70,
+      "workshop_ids": [],
+      "api_symbols": [
+        "ItemFeature"
+      ],
+      "best_for": "西方深空科幻文案红线、realCondition 判定铁律、立绘绿边消除",
+      "must_avoid": ""
+    },
+    {
+      "id": "07-踩坑台账",
+      "path": "共享开发/模组制作经验库/07-踩坑台账.md",
+      "title": "07 踩坑台账",
+      "layer": "doc-guide",
+      "domains": [
+        "items",
+        "machines",
+        "ui",
+        "events",
+        "afterhour",
+        "interop",
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "troubleshoot"
+      ],
+      "status": "active",
+      "lines": 223,
+      "workshop_ids": [],
+      "api_symbols": [
+        "PlayerStore",
+        "StoreUIManager",
+        "GameItem",
+        "SpriteDict",
+        "ModLoader",
+        "StoreClient",
+        "ChemicalHelper",
+        "GraphUtils",
+        "Liquid",
+        "LocHelper",
+        "ModHelper",
+        "NewsUIManager",
+        "RenderHandler",
+        "AppHandHelper",
+        "AppraisalHelper",
+        "AppraisalItemRegistry",
+        "AppraisalItemType",
+        "CustomUIManager"
+      ],
+      "best_for": "遇到异常症状（紫问号、穿模、假绿、热重载失效、桥接报错）第一时间按现象反查",
+      "must_avoid": ""
+    },
+    {
+      "id": "08-立绘接入与PortraitStudio",
+      "path": "共享开发/模组制作经验库/08-立绘接入与PortraitStudio.md",
+      "title": "08 立绘接入与 Portrait Studio",
+      "layer": "doc-guide",
+      "domains": [
+        "media",
+        "customers",
+        "interop"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse",
+        "api-lookup"
+      ],
+      "status": "active",
+      "lines": 224,
+      "workshop_ids": [],
+      "api_symbols": [
+        "SpriteDict",
+        "ModLoader",
+        "StoreClient"
+      ],
+      "best_for": "让 NPC 立绘被 Portrait Studio 识别且零能力不交控制权、1728x1266 硬规格",
+      "must_avoid": ""
+    },
+    {
+      "id": "09-模组架构与物品调用规范",
+      "path": "共享开发/模组制作经验库/09-模组架构与物品调用规范.md",
+      "title": "09 模组架构与物品调用规范",
+      "layer": "doc-guide",
+      "domains": [
+        "items",
+        "architecture",
+        "interop"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "must-read-before-coding",
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 258,
+      "workshop_ids": [],
+      "api_symbols": [
+        "DirectoryMaster",
+        "EmporiumEntry",
+        "GameItem",
+        "PlayerStore",
+        "GraphUtils",
+        "ItemSpawner",
+        "ItemDirectory",
+        "ItemSelectHandler",
+        "ItemSpawnerHiddenList",
+        "MapUIManager",
+        "GameInventory",
+        "GeneralHelper",
+        "ItemFeature",
+        "ItemMouseDragHandler",
+        "ItemMultiSelectHandler",
+        "ModLoader",
+        "ModScanner",
+        "PermitHelper"
+      ],
+      "best_for": "物品发现/三入口发放语义/精确投放/就绪检查链与异常边界策略",
+      "must_avoid": ""
+    },
+    {
+      "id": "10-开发桥接器能力速查",
+      "path": "共享开发/模组制作经验库/10-开发桥接器能力速查.md",
+      "title": "10 开发桥接器能力速查（ModDevBridgeNext）",
+      "layer": "doc-guide",
+      "domains": [
+        "workflow",
+        "interop"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "cap-network",
+      "intent": [
+        "api-lookup",
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 331,
+      "workshop_ids": [
+        "3834799226"
+      ],
+      "api_symbols": [
+        "CustomUIDebugPanel",
+        "DebugPanel",
+        "Dialogue",
+        "IMod",
+        "ModScanner",
+        "RNG",
+        "StoreBell",
+        "StoreShutterButton"
+      ],
+      "best_for": "查 ModDevBridgeNext MCP 工具契约、热重载与 C# 探针编写",
+      "must_avoid": ""
+    },
+    {
+      "id": "11-事件系统接入规范",
+      "path": "共享开发/模组制作经验库/11-事件系统接入规范.md",
+      "title": "11 事件系统：怎么接进原版事件池",
+      "layer": "doc-guide",
+      "domains": [
+        "events",
+        "customers",
+        "persistence"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse",
+        "api-lookup"
+      ],
+      "status": "active",
+      "lines": 431,
+      "workshop_ids": [
+        "3833966506"
+      ],
+      "api_symbols": [
+        "StoreEvent",
+        "StoreEventActionDict",
+        "RNG",
+        "ModHelper",
+        "StoreEventManager",
+        "ModHook",
+        "StoreEventBlueprint",
+        "StoreClientManager",
+        "PlayerStore",
+        "Station",
+        "GameItem",
+        "IMod",
+        "NewsUIManager",
+        "StoreStation"
+      ],
+      "best_for": "做空间站事件（原版池与自持蓝图双路线）、涨跌价 negociationDatas、日历与报纸",
+      "must_avoid": ""
+    },
+    {
+      "id": "12-立绘引擎与音画资源架构",
+      "path": "共享开发/模组制作经验库/12-立绘引擎与音画资源架构.md",
+      "title": "12 立绘引擎、高清道具与配音资源架构",
+      "layer": "doc-guide",
+      "domains": [
+        "media",
+        "interop"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 110,
+      "workshop_ids": [
+        "3829932963",
+        "3840289739"
+      ],
+      "api_symbols": [
+        "ModHelper",
+        "Dialogue",
+        "DialogUIManager",
+        "DialoguePhoneUIManager",
+        "EmporiumEntry",
+        "EmporiumOption",
+        "LocHelper",
+        "ModHook",
+        "ModLoader",
+        "SpriteDict",
+        "StoreClient"
+      ],
+      "best_for": "高清去像素化租约、高清道具图标 PPU 公式与防脏边、零依赖 WAV 配音挂载",
+      "must_avoid": ""
+    },
+    {
+      "id": "13-鉴定扩展与交互纸张规范",
+      "path": "共享开发/模组制作经验库/13-鉴定扩展与交互纸张规范.md",
+      "title": "13 鉴定扩展、自定义放大镜与交互纸张规范",
+      "layer": "doc-guide",
+      "domains": [
+        "appraisal",
+        "ui"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse",
+        "api-lookup"
+      ],
+      "status": "active",
+      "lines": 176,
+      "workshop_ids": [
+        "3828921912",
+        "3831174434",
+        "3842921324",
+        "3843582575"
+      ],
+      "api_symbols": [
+        "ModHelper",
+        "ModHook",
+        "InspectionUIManager",
+        "AppraisalItemRegistry",
+        "AppraisalRankHelper",
+        "ModReflect",
+        "NewGameData",
+        "StartingScenario",
+        "AppraisalHelper",
+        "DialogUIManager",
+        "DirectoryMaster",
+        "EmporiumAudioPlayer",
+        "GameItem",
+        "IdleAnimator",
+        "ModLoader",
+        "NegociationUIManager",
+        "RenderHandler",
+        "RichTextBuilder"
+      ],
+      "best_for": "自定义鉴定品类/扩级、放大镜双树 LensFollow、JSON 交互纸张、关系网科技树",
+      "must_avoid": ""
+    },
+    {
+      "id": "14-模组高级编程架构与工程模式",
+      "path": "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md",
+      "title": "14 模组高级编程架构与工程模式",
+      "layer": "doc-guide",
+      "domains": [
+        "architecture",
+        "persistence",
+        "ui",
+        "perf",
+        "interop"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 166,
+      "workshop_ids": [],
+      "api_symbols": [
+        "ModHelper",
+        "ModHook",
+        "InputActionManager",
+        "ModReflect",
+        "StoreEventManager",
+        "GameItem",
+        "GameItemElement",
+        "PlayerStore",
+        "RichTextBuilder",
+        "CustomEventHandler",
+        "CustomUIManager",
+        "CustomUIWindow",
+        "DirectoryMaster",
+        "EmporiumEntry",
+        "IMod",
+        "ItemMouseDragHandler",
+        "ItemSpawnerHiddenList",
+        "KeyBindHelper"
+      ],
+      "best_for": "ES3 防坏档投影、模态窗口防穿透、分帧索引、回滚队列、大合集三种组织模式",
+      "must_avoid": ""
+    },
+    {
+      "id": "15-机器运行动画与雪碧图规范",
+      "path": "共享开发/模组制作经验库/15-机器运行动画与雪碧图规范.md",
+      "title": "15 机器运行动画与雪碧图规范",
+      "layer": "doc-guide",
+      "domains": [
+        "machines",
+        "media"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 86,
+      "workshop_ids": [
+        "3839773708"
+      ],
+      "api_symbols": [
+        "GameItemElement",
+        "MachineHelper",
+        "SpriteAnimationHelper",
+        "GameItem",
+        "InputActionManager",
+        "LoadedMod",
+        "ModLoader",
+        "PlayerStore",
+        "PowerHelper",
+        "TagSystem"
+      ],
+      "best_for": "机器 8 列雪碧图运行动画、零存档污染 Image.sprite 替换、供电与状态判定",
+      "must_avoid": ""
+    },
+    {
+      "id": "16-报纸事件配图与BetterNewspapers规范",
+      "path": "共享开发/模组制作经验库/16-报纸事件配图与BetterNewspapers规范.md",
+      "title": "16 报纸事件配图与 Better Newspapers 规范",
+      "layer": "doc-guide",
+      "domains": [
+        "events",
+        "media",
+        "interop"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 81,
+      "workshop_ids": [
+        "3839534065"
+      ],
+      "api_symbols": [
+        "ModLoader",
+        "ModHelper",
+        "ModReflect",
+        "NewsUIManager",
+        "StoreEvent"
+      ],
+      "best_for": "9 色新闻纸半色调配图、HarmonyAfter(mod.<id>) 与 Better Newspapers 共存避让",
+      "must_avoid": ""
+    },
+    {
+      "id": "17-工坊发布与SteamUGC上传",
+      "path": "共享开发/模组制作经验库/17-工坊发布与SteamUGC上传.md",
+      "title": "17 · 工坊发布与 SteamUGC 上传",
+      "layer": "doc-guide",
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "must-read-before-coding",
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 109,
+      "workshop_ids": [
+        "3846263529",
+        "3846263756"
+      ],
+      "api_symbols": [
+        "ModScanner"
+      ],
+      "best_for": "独立进程 SteamUGC 上传、封面规格、白名单洁净度与发布核对",
+      "must_avoid": ""
+    },
+    {
+      "id": "18-夜晚外出区域与探索扩展规范",
+      "path": "共享开发/模组制作经验库/18-夜晚外出区域与探索扩展规范.md",
+      "title": "夜晚外出区域与探索扩展规范",
+      "layer": "doc-guide",
+      "domains": [
+        "afterhour",
+        "media",
+        "customers"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse",
+        "api-lookup"
+      ],
+      "status": "active",
+      "lines": 126,
+      "workshop_ids": [
+        "3829957165",
+        "3840817561",
+        "3844162371"
+      ],
+      "api_symbols": [
+        "AfterhourLocation",
+        "ModHelper",
+        "MapUIManager",
+        "PlayerStore",
+        "TransitUI",
+        "EmporiumEntry",
+        "ModHook",
+        "DelegateAfterhourLocation",
+        "CustomUIBuilder",
+        "DrJacksonLocation",
+        "AfterhourEffect",
+        "AfterhourEvents",
+        "AfterhourLocationState",
+        "CommissaryLocation",
+        "CustomUIManager",
+        "Dialogue",
+        "DumpingGroundLocation",
+        "GeneralHelper"
+      ],
+      "best_for": "新增打烊夜出地点、博士式摊位防丢货 Leave 铁律、全屏 CG 舞台与地图事件",
+      "must_avoid": ""
+    },
+    {
+      "id": "19-工坊模组逆向与蒸馏",
+      "path": "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md",
+      "title": "19-工坊模组逆向与蒸馏",
+      "layer": "doc-guide",
+      "domains": [
+        "workflow",
+        "architecture"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling",
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 181,
+      "workshop_ids": [],
+      "api_symbols": [
+        "GameItem",
+        "IMod",
+        "ModHook",
+        "Station",
+        "ChemicalHelper",
+        "CustomUIManager",
+        "Difficulty",
+        "EmporiumEntry",
+        "GraphUtils",
+        "ItemSpawner",
+        "Liquid",
+        "LocHelper",
+        "ModHelper",
+        "ModReflect",
+        "NetworkUpgrade",
+        "PlayerStore",
+        "SaveManager"
+      ],
+      "best_for": "工坊抓取/筛选/反编译/精读六问与各批次蒸馏总账",
+      "must_avoid": ""
+    },
+    {
+      "id": "20-各类模组制作规范",
+      "path": "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "title": "20-各类模组制作规范",
+      "layer": "doc-guide",
+      "domains": [
+        "architecture",
+        "items",
+        "ui",
+        "perf",
+        "events",
+        "interop",
+        "media",
+        "persistence",
+        "workflow"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "must-read-before-coding"
+      ],
+      "status": "active",
+      "lines": 339,
+      "workshop_ids": [],
+      "api_symbols": [
+        "ModHelper",
+        "ModHook",
+        "DirectoryMaster",
+        "GameItem",
+        "ModLoader",
+        "PixelWindow",
+        "PlayerStore",
+        "CustomUIManager",
+        "GraphUtils",
+        "ItemSpawner",
+        "LocHelper",
+        "MachineHelper",
+        "ModScanner",
+        "SpriteHelper",
+        "CustomUIBuilder",
+        "FontLoader",
+        "GameGridInventory",
+        "GameItemFunc"
+      ],
+      "best_for": "开工前按模组类型对号入座查十二条总规、禁忌、验收清单与冲突红线",
+      "must_avoid": ""
+    },
+    {
+      "id": "开发流程与经验",
+      "path": "共享开发/开发流程与经验.md",
+      "title": "深空当铺模组开发流程与编程规范",
+      "layer": "doc-guide",
+      "domains": [
+        "workflow",
+        "items",
+        "interop"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "must-read-before-coding"
+      ],
+      "status": "active",
+      "lines": 80,
+      "workshop_ids": [],
+      "api_symbols": [
+        "DirectoryMaster",
+        "PlayerStore",
+        "GraphUtils",
+        "ModHook",
+        "ModLoader",
+        "GameItem",
+        "ItemFeature",
+        "ItemSpawner",
+        "PixelWindow"
+      ],
+      "best_for": "六条模组编程硬规范（拒套娃/异常暴露/Harmony重载/物品铁律/零能力/真测试）",
+      "must_avoid": ""
+    },
+    {
+      "id": "GLOSSARY",
+      "path": "共享开发/GLOSSARY.md",
+      "title": "深空当铺模组开发",
+      "layer": "doc-guide",
+      "domains": [
+        "appraisal",
+        "items",
+        "workflow"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "n/a",
+      "intent": [
+        "must-read-before-coding"
+      ],
+      "status": "active",
+      "lines": 97,
+      "workshop_ids": [],
+      "api_symbols": [
+        "DirectoryMaster",
+        "ItemFeature",
+        "GameItem",
+        "ModHook",
+        "ModScanner"
+      ],
+      "best_for": "全工作区唯一术语表（成色/真伪/品类/标签/零能力/Slot 0与1 唯一叫法）",
+      "must_avoid": ""
+    },
+    {
+      "id": "分支与备份规范",
+      "path": "共享开发/分支与备份规范.md",
+      "title": "分支、门禁与多路备份规范",
+      "layer": "doc-guide",
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "must-read-before-coding",
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 232,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "开工建分支、五道合并门禁、四路多盘备份、恢复演练与回滚纪律",
+      "must_avoid": ""
+    },
+    {
+      "id": "SKILL",
+      "path": "共享开发/SKILL.md",
+      "title": "深空当铺本地模组开发入口（已收束至主技能）",
+      "layer": "skill",
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "n/a",
+      "intent": [
+        "must-read-before-coding"
+      ],
+      "status": "superseded",
+      "lines": 15,
+      "workshop_ids": [],
+      "api_symbols": [
+        "GameItemFunc",
+        "ModHelper",
+        "ModHook"
+      ],
+      "best_for": "工作区快捷指针，已统一收束至主技能 probably-stolen-moddev 与 CATALOG.md",
+      "must_avoid": ""
+    },
+    {
+      "id": "distill:3828893950-DangpuPlus",
+      "path": "共享开发/模组制作经验库/workshop-distill/3828893950-DangpuPlus.md",
+      "title": "3828893950 · DangpuPlus（当铺Plus）—— 反编译蒸馏档案",
+      "layer": "workshop-distill",
+      "domains": [
+        "architecture",
+        "ui"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 431,
+      "workshop_ids": [
+        "3828893950"
+      ],
+      "api_symbols": [
+        "PixelWindow",
+        "ModHook",
+        "EmporiumEntry",
+        "ItemMultiSelectHandler",
+        "ModHelper",
+        "StoreUIManager",
+        "GameItem",
+        "GraphUtils",
+        "OverlayHandler",
+        "PlayerStore",
+        "SaveManager",
+        "WaterHelper",
+        "AdvButtonElement",
+        "AdvCalendarUIManager"
+      ],
+      "best_for": "巨无霸多功能合集组织范本(a)：静态委托表 FeaturePack(103项)+熔断+配置门面",
+      "digest": "常驻逻辑合集用 FeaturePack 静态委托表 + 异常熔断；渲染层只做进出上下文成对包裹，不整段替换绘制",
+      "must_avoid": "不支持热摘除单个功能补丁；不要在简单模组里硬套 103 项框架",
+      "curated": true
+    },
+    {
+      "id": "distill:3828902092-ElectronicsExpansion",
+      "path": "共享开发/模组制作经验库/workshop-distill/3828902092-ElectronicsExpansion.md",
+      "title": "工坊 3828902092 架构蒸馏档案 —— 电子产品拓展 / Electronics Expansion",
+      "layer": "workshop-distill",
+      "domains": [
+        "architecture",
+        "items",
+        "machines",
+        "ui",
+        "perf"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "mixed",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 711,
+      "workshop_ids": [
+        "3828902092"
+      ],
+      "api_symbols": [
+        "ModHook",
+        "PlayerStore",
+        "GameItem",
+        "GameSlotInventory",
+        "IMod",
+        "ModHelper",
+        "ModLoader"
+      ],
+      "best_for": "全工坊最大(18.7万行/389 Patch)超巨型模组：JSON内容表+有序阶段注册+补丁分相(800/0/-50)+依赖键缓存",
+      "digest": "200+实体先钉死 JSON Schema+加载期不变量证伪；同钩子多补丁用优先级分相(800准备/0常规/-50裁决)；ModuleLifecycle.Seal()禁重复序号；critical失败自卸保原版存档",
+      "must_avoid": "严禁抄其 2.1 万行全量反射契约表、1.2 万行单文件 OnGUI、漏装主程序集与空 critical 集",
+      "curated": true
+    },
+    {
+      "id": "distill:3828909239-ProbablyMultiplayer",
+      "path": "共享开发/模组制作经验库/workshop-distill/3828909239-ProbablyMultiplayer.md",
+      "title": "深空串门：可能是联机的 / Probably Multiplayer（真人顾客联机）｜工坊 3828909239",
+      "layer": "workshop-distill",
+      "domains": [
+        "multiplayer",
+        "customers",
+        "persistence"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "cap-network",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 458,
+      "workshop_ids": [
+        "3828909239"
+      ],
+      "api_symbols": [
+        "PlayerStore",
+        "ModHelper",
+        "StoreClient",
+        "DialogUIManager",
+        "NegociationUIManager",
+        "StoreClientList",
+        "BargainUIManager",
+        "DirectoryMaster",
+        "GameItem",
+        "StoreClientInstance",
+        "StoreClientManager",
+        "EmporiumEntry",
+        "InputActionManager",
+        "MapUIManager"
+      ],
+      "best_for": "自写 WebSocket + 服务器权威联机架构；真人借壳进原版顾客流程与物品树序列化隔离",
+      "digest": "联机绝不直接写对方 PlayerStore，只传物品树存档片段并在对端重建；注意 EncodeItem 往 savedItemFeatureList 塞残留的坑",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:3828921912-AppraisalAssistant",
+      "path": "共享开发/模组制作经验库/workshop-distill/3828921912-AppraisalAssistant.md",
+      "title": "鉴定助手 / Appraisal Assistant 蒸馏档案",
+      "layer": "workshop-distill",
+      "domains": [
+        "appraisal",
+        "interop"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 482,
+      "workshop_ids": [
+        "3828921912"
+      ],
+      "api_symbols": [
+        "GameItem",
+        "InspectionUIManager",
+        "AppraisalHelper",
+        "CustomUIManager",
+        "AppraisalItemRegistry",
+        "AppraisalServiceHelper",
+        "ModHelper",
+        "AppraisalItemType",
+        "CustomUIWindow",
+        "ConfigEntry",
+        "InsInjectorHelper",
+        "ItemContextHandler",
+        "AppHandHelper",
+        "CustomUIBuilder"
+      ],
+      "best_for": "45万订阅鉴定助手：IL指纹+GetPatchInfo递归+IL解释器，以及 5 个共存红线方法",
+      "digest": "不暴露外部服务，靠 PriceSnapshot 克隆执行 getCorrectValue；自家注册鉴定品类改读 modifiedState.dict 可绕开其 IsTag 解释器拒识",
+      "must_avoid": "严禁对其 5 个红线方法（GameItem.IsTag、AppraisalHelper.GetCorrectBaseValue、AppHand/Ribwich/PlasmaHelper.GetCorrectValue、AppraisalItemType.Matches、AppraisalItemRegistry.Find）做破坏性 Prefix",
+      "curated": true
+    },
+    {
+      "id": "distill:3829012791-ItemSpawner",
+      "path": "共享开发/模组制作经验库/workshop-distill/3829012791-ItemSpawner.md",
+      "title": "物品浏览器与物品编辑模型（Item Spawner）｜工坊 3829012791",
+      "layer": "workshop-distill",
+      "domains": [
+        "items",
+        "ui",
+        "architecture"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 124,
+      "workshop_ids": [
+        "3829012791"
+      ],
+      "api_symbols": [
+        "GameItem",
+        "DirectoryMaster",
+        "ItemFeature",
+        "LoadedMod",
+        "GeneralHelper",
+        "LocHelper",
+        "ModLoader",
+        "StoreUIManager"
+      ],
+      "best_for": "物品目录三级索引、字段增量编辑状态模型与 Lib/App 两层拆分架构",
+      "digest": "遍历目录做只读探测后必须 Destroy；Lib/App 两层拆分便于复用物品查询与编辑核心",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:3829206666-SmartInventoryArrange",
+      "path": "共享开发/模组制作经验库/workshop-distill/3829206666-SmartInventoryArrange.md",
+      "title": "智能仓库排列 / Smart Inventory Arrange 蒸馏档案",
+      "layer": "workshop-distill",
+      "domains": [
+        "items",
+        "ui",
+        "perf",
+        "architecture"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 634,
+      "workshop_ids": [
+        "3829206666",
+        "3834649530"
+      ],
+      "api_symbols": [
+        "InventorySortHelper",
+        "GameItem",
+        "GameInventory",
+        "GridShape",
+        "ItemContextHandler",
+        "ModHelper",
+        "GameGridInventory",
+        "GridShapeBuilder",
+        "ItemMouseDragHandler",
+        "DirectoryMaster",
+        "EmporiumEntry",
+        "ItemMultiSelectHandler",
+        "SlotMarker",
+        "TreeNodeRender"
+      ],
+      "best_for": "61万订阅标杆：20项字典序目标、防剧透 real-state-appraisal-ignored、modifiedShape原地重排与回滚",
+      "digest": "自动整理严守 real-state-appraisal-ignored 只读玩家可见信息；modifiedShape 原地重排失败即整体回滚并协同接管撤销栈",
+      "must_avoid": "整理/排序功能严禁读取 ItemFeature.realCondition（会直接剧透真假货）",
+      "curated": true
+    },
+    {
+      "id": "distill:3829957165-PenQoL补丁表",
+      "path": "共享开发/模组制作经验库/workshop-distill/3829957165-PenQoL补丁表.md",
+      "title": "3829957165 · Pen's QoL Tweaks —— 特性化补丁表 蒸馏档案",
+      "layer": "workshop-distill",
+      "domains": [
+        "architecture",
+        "ui",
+        "interop"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 508,
+      "workshop_ids": [
+        "3829957165"
+      ],
+      "api_symbols": [
+        "ItemMouseDragHandler",
+        "ItemMultiSelectHandler",
+        "GameItem",
+        "GameInventory",
+        "PixelWindow",
+        "StoreUIManager",
+        "GameOptionRegistry",
+        "MachineryTabs",
+        "ModHelper",
+        "ModHook",
+        "PlayerStore",
+        "ConfigEntry",
+        "GameSlotInventory",
+        "MachineryButton"
+      ],
+      "best_for": "多功能合集组织范本(c)：特性化补丁对象表 + 方法级热摘挂 Unpatch(target, method)",
+      "digest": "支持运行中热开关单功能且 N 开关合并 1 补丁；每处 AccessTools.Method 显式传 Type[] 参数表",
+      "must_avoid": "每条补丁的目标解析+安装必须独立 try/catch（勿写循环外实参求值导致单条 AmbiguousMatch 拖垮全表）；Applied 标记须对照 Harmony.GetPatchInfo 真实状态",
+      "curated": true
+    },
+    {
+      "id": "distill:3832823827-ModConflictScanner",
+      "path": "共享开发/模组制作经验库/workshop-distill/3832823827-ModConflictScanner.md",
+      "title": "3832823827 · 模组冲突检测器 / Mod Conflict Scanner —— 源码蒸馏档案",
+      "layer": "workshop-distill",
+      "domains": [
+        "interop",
+        "workflow"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 450,
+      "workshop_ids": [
+        "3832823827"
+      ],
+      "api_symbols": [
+        "ModLoader",
+        "ModUIManager",
+        "ModElement",
+        "GameItem",
+        "ModHook",
+        "FontLoader",
+        "LocHelper",
+        "PlayerStore",
+        "LoadedMod",
+        "ModScanner",
+        "DirectoryMaster",
+        "RenderHandler",
+        "SpriteDict",
+        "CustomUIBuilder"
+      ],
+      "best_for": "工坊冲突检测器实证：三类冲突模型与全局显示层/本地化层两类红色硬靶点",
+      "digest": "工坊检测器只查 Declared/Assembly/25 条固定 IL 靶表，不查 identifier/语言 key/atlas 重复；红色硬冲突集中在全局物品名与本地化字体层",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:3833966506-StationEvents",
+      "path": "共享开发/模组制作经验库/workshop-distill/3833966506-StationEvents.md",
+      "title": "空间站事件拓展 / Station Events｜工坊 3833966506",
+      "layer": "workshop-distill",
+      "domains": [
+        "events",
+        "persistence",
+        "customers",
+        "ui"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 500,
+      "workshop_ids": [
+        "3833966506"
+      ],
+      "api_symbols": [
+        "StoreEvent",
+        "StoreEventManager",
+        "CalendarDayElement",
+        "GameItem",
+        "NegociationData",
+        "PlayerStore",
+        "RNG",
+        "StoreClient",
+        "CalendarEventElement",
+        "ModHelper",
+        "NewsUIManager",
+        "StoreEventActionDict",
+        "StoreEventBlueprint",
+        "DirectoryMaster"
+      ],
+      "best_for": "事件模组标杆：私有蓝图表+ActivateEvent+negociationDatas零改价+ES3投影+天数回放",
+      "digest": "不写原版蓝图表而自持列表+ActivateEvent；涨跌价直接填 negociationDatas 零价格 Patch；ES3 浅克隆剥离+天数回放；展示层只换容器不重写逻辑",
+      "must_avoid": "非海量事件勿抄其 2 处 HandleNewEvent* IL Transpiler（双改冲突点且未声明优先级）",
+      "curated": true
+    },
+    {
+      "id": "distill:3834649530-SmartArrangement",
+      "path": "共享开发/模组制作经验库/workshop-distill/3834649530-SmartArrangement.md",
+      "title": "智能排列 · 模组（Smart Arrangement · Modules）蒸馏档案",
+      "layer": "workshop-distill",
+      "domains": [
+        "items",
+        "machines",
+        "perf"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 429,
+      "workshop_ids": [
+        "3834649530"
+      ],
+      "api_symbols": [
+        "ModHelper",
+        "CustomUIManager",
+        "GameGridInventory",
+        "GameItem",
+        "ModuleHelper",
+        "GeneralHelper",
+        "GraphUtils",
+        "GridShape",
+        "GridShapeBuilder",
+        "ItemContextHandler",
+        "CustomUIBuilder",
+        "GameInventory",
+        "IMod",
+        "InputActionManager"
+      ],
+      "best_for": "机器模块舱位图棋盘 + 模拟退火搜索 + 四卡方案对比 + 事务式装机与留空算法",
+      "digest": "模块舱优化用位图棋盘做离线退火求解，给出多目标对比后事务式装入，支持 reserveRoom 预留指定空位",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:3838944803-UpperLevels",
+      "path": "共享开发/模组制作经验库/workshop-distill/3838944803-UpperLevels.md",
+      "title": "3838944803 · 上层区 Upper Levels：可能是 DLC —— 架构蒸馏",
+      "layer": "workshop-distill",
+      "domains": [
+        "architecture",
+        "afterhour",
+        "customers",
+        "media"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 520,
+      "workshop_ids": [
+        "3838944803"
+      ],
+      "api_symbols": [
+        "ModHelper",
+        "ModHook",
+        "Difficulty",
+        "PlayerStore",
+        "AfterhourEffect",
+        "MapUIManager",
+        "AfterhourEffectPolarity",
+        "GameItem",
+        "StartingPerkIconLoader",
+        "LocHelper",
+        "StoreClientManager",
+        "CustomUIManager",
+        "DifficultyRules",
+        "StartingPerk"
+      ],
+      "best_for": "DLC 级新区域：用 Difficulty.Current.source 单点总闸压成开关且零入侵存档",
+      "digest": "不建 Unity 新场景，把整片上层区压成 Difficulty.Current.source 单点布尔开关，店面原地换皮+AddClient改客群，零入侵存档",
+      "must_avoid": "267 Patch 仅靠首行早退有效，小模组切勿照搬大规模 Patch 面",
+      "curated": true
+    },
+    {
+      "id": "distill:3840533881-LagInspector",
+      "path": "共享开发/模组制作经验库/workshop-distill/3840533881-LagInspector.md",
+      "title": "Lag Inspector（卡顿纠察）蒸馏档案",
+      "layer": "workshop-distill",
+      "domains": [
+        "perf",
+        "interop",
+        "workflow"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 449,
+      "workshop_ids": [
+        "3840533881"
+      ],
+      "api_symbols": [
+        "PlayerStore",
+        "GameItem",
+        "ModHelper",
+        "ModLoader",
+        "StoreClientManager",
+        "NegociationUIManager",
+        "StoreClient",
+        "CustomUIManager",
+        "RunStats",
+        "SlotMarker",
+        "StallWatchdog",
+        "StoreReputation",
+        "EmporiumEntry",
+        "GameItemElement"
+      ],
+      "best_for": "Harmony.GetPatchInfo(method).Owners 做补丁归属归因与 Stopwatch 帧栈耗时统计",
+      "digest": "性能定位用 Stopwatch 分阶段计时 + Harmony.GetPatchInfo(m).Owners 精确归因到具体模组；归因缓存不缓存空结果以看见晚加载补丁",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:3841509159-ClaimsAndUprisings",
+      "path": "共享开发/模组制作经验库/workshop-distill/3841509159-ClaimsAndUprisings.md",
+      "title": "工坊 3841509159 架构蒸馏档案 —— `yexiaoyang.InteriorExpansion`（室内扩建）",
+      "layer": "workshop-distill",
+      "domains": [
+        "architecture",
+        "ui",
+        "persistence",
+        "interop"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 557,
+      "workshop_ids": [
+        "3841509159"
+      ],
+      "api_symbols": [
+        "PlayerStore",
+        "GameItem",
+        "Room",
+        "LoadedMod",
+        "ModHelper",
+        "ModHook",
+        "StoreUIManager",
+        "ItemFeature",
+        "CustomUIManager",
+        "ModLoader",
+        "SaveManager",
+        "EmporiumEntry",
+        "GraphNodeStorage",
+        "IMod"
+      ],
+      "best_for": "233 Patch 巨型模组降维三件套：作用域租约令牌 + 单点模态仲裁器 + 原子代际构建",
+      "digest": "用 IDisposable 查询作用域令牌 + 单点模态仲裁器 + Fork/校验/原子提交三件基础设施，把 233 个 Patch 压成 30 行早退薄片",
+      "must_avoid": "不要把 395 个文件平铺在单目录；不要靠 119 个分散早退门替代统一门面",
+      "curated": true
+    },
+    {
+      "id": "distill:3841909877-ProbablyExtendFramework",
+      "path": "共享开发/模组制作经验库/workshop-distill/3841909877-ProbablyExtendFramework.md",
+      "title": "Probably Extend Framework（主框架本体）｜工坊 3841909877",
+      "layer": "workshop-distill",
+      "domains": [
+        "media",
+        "architecture",
+        "interop"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 500,
+      "workshop_ids": [
+        "3841909877",
+        "3841912659"
+      ],
+      "api_symbols": [
+        "ModHelper",
+        "PlayerStore",
+        "SpriteDict",
+        "GameItem",
+        "DialogUIManager",
+        "ItemContextHandler",
+        "ModConfigWindow",
+        "ModReflect",
+        "ModHook",
+        "LoadedMod",
+        "ModLoader",
+        "ModScanner",
+        "ToggleAppearanceHelper",
+        "CustomUIWindow"
+      ],
+      "best_for": "多功能组织范本(b)与贴图引擎：自描述 Patch 注册表(延迟解析+Report)+sig注入使主体零能力",
+      "digest": "自描述 Patch 注册表用 Func<MethodBase> 延迟解析+逐条 catch+Report() 秒定位失效补丁；JSON 声明式接贴图，靠伴生模组把文件权限剥离出主体",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:3841912659-ExtendFrameworkFiles",
+      "path": "共享开发/模组制作经验库/workshop-distill/3841912659-ExtendFrameworkFiles.md",
+      "title": "Probably Extend Framework · File Companion（框架本体/伴生模组拆分）｜工坊 3841912659",
+      "layer": "workshop-distill",
+      "domains": [
+        "media",
+        "interop",
+        "architecture"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "cap-files",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 59,
+      "workshop_ids": [
+        "3841912659"
+      ],
+      "api_symbols": [
+        "ModHelper",
+        "ModLoader"
+      ],
+      "best_for": "框架本体(零能力) + 文件伴生模组(files能力) 拆分范式与约定式本地素材目录",
+      "digest": "主体保持零能力，把必须直读硬盘的外部素材目录剥进独立伴生模组，支持丢图即生效",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:3842773239-WildNetAPI",
+      "path": "共享开发/模组制作经验库/workshop-distill/3842773239-WildNetAPI.md",
+      "title": "Wild's Network API（关系网科技树第三方互操作协议）｜工坊 3842773239",
+      "layer": "workshop-distill",
+      "domains": [
+        "interop",
+        "ui",
+        "afterhour"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 164,
+      "workshop_ids": [
+        "3842773239"
+      ],
+      "api_symbols": [
+        "NetworkUpgrade",
+        "ModHelper",
+        "ModHook",
+        "WildNetworkUI",
+        "NetworkUpgradeLayout",
+        "IMod"
+      ],
+      "best_for": "跨模组零硬依赖消息总线（约定 GameObject + BroadcastMessage + 版本化字典）与 SelfCheck 环检测",
+      "digest": "不引用对方 DLL，用原版 ModHelper.Expose/SendMessage 或约定 GameObject+带版本号字典互操作；读档后跑 DFS 三色环检测与缺失前置自检",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:3843892181-ValueCache",
+      "path": "共享开发/模组制作经验库/workshop-distill/3843892181-ValueCache.md",
+      "title": "估价缓存优化 / Value Cache（代际失效缓存）｜工坊 3843892181",
+      "layer": "workshop-distill",
+      "domains": [
+        "perf",
+        "economy"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 134,
+      "workshop_ids": [
+        "3843892181"
+      ],
+      "api_symbols": [
+        "GameItem",
+        "Dialogue",
+        "IngotPurityHelper",
+        "ItemFeature",
+        "LabelerElement",
+        "LabelerUIManager",
+        "NegociationData",
+        "PlayerStore",
+        "StoreEventManager",
+        "StoreStation",
+        "VendingFountainHelper"
+      ],
+      "best_for": "弱表 ConditionalWeakTable + 全局 epoch 代际失效缓存（EpochCache.cs 来源）",
+      "digest": "缓存用 ConditionalWeakTable 防 GameItem 内存泄漏，全局 epoch++ 实现 O(1) 全量失效，键必须包含事件/加价/纯度/日期",
+      "must_avoid": "不要抄其 44 个无 HarmonyPriority 的密集 Patch，必须显式声明优先级",
+      "curated": true
+    },
+    {
+      "id": "distill:3844123767-ContainerLink",
+      "path": "共享开发/模组制作经验库/workshop-distill/3844123767-ContainerLink.md",
+      "title": "Container Link（容器连接）· 工坊 3844123767 蒸馏档案",
+      "layer": "workshop-distill",
+      "domains": [
+        "items",
+        "machines",
+        "interop"
+      ],
+      "trust": "L4-caution-antipattern",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 400,
+      "workshop_ids": [
+        "3844123767"
+      ],
+      "api_symbols": [
+        "GameItem",
+        "PixelWindow",
+        "ModReflect",
+        "GameGridInventory",
+        "PlayerStore",
+        "MachineFridge",
+        "GameInventory",
+        "GraphNodeStorage",
+        "TagState",
+        "EmporiumEntry",
+        "ItemMultiSelectHandler",
+        "MachineryButton",
+        "ModLog",
+        "StorageExpansionHelper"
+      ],
+      "best_for": "不新增容器类型的跨柜连接（版本化 Tag 存图 + 事务式物品搬运）",
+      "digest": "不造新容器类型，把链接拓扑存在版本化 Tag 里并用事务式搬运同步，避免破坏原版容器序列化",
+      "must_avoid": "严禁抄其大量空 catch {} 静默吞异常",
+      "curated": true
+    },
+    {
+      "id": "distill:3844162371-Sakurazaki角色模组",
+      "path": "共享开发/模组制作经验库/workshop-distill/3844162371-Sakurazaki角色模组.md",
+      "title": "樱咲羽衣 · 下层区诊所 / Sakurazaki（工坊 3844162371）",
+      "layer": "workshop-distill",
+      "domains": [
+        "afterhour",
+        "customers",
+        "media"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 445,
+      "workshop_ids": [
+        "3844162371"
+      ],
+      "api_symbols": [
+        "Dialogue",
+        "StoreClient",
+        "ModHelper",
+        "PlayerStore",
+        "SpriteDict",
+        "DirectoryMaster",
+        "AfterhourLocation",
+        "StoreClientListDict",
+        "StoreClientUniqueList",
+        "ModHook",
+        "ModuleEffectHelper",
+        "GameItem",
+        "RNG",
+        "LoadedMod"
+      ],
+      "best_for": "完整 L3 角色模组范本：全屏 CG 打工舞台、外置多语言台词、回店幂等发奖与原版 NPC 选项插入",
+      "digest": "夜出全屏 CG 舞台用 StageObject+Aspect Fill/Fit；奖励不在 Leave() 塞库而是落账回店校验 IN_STORE 后幂等发；插原版 NPC 选项沿 nextDialogue 找首个 choices>=2 节点",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:3844377158-SleepLagOptimizer",
+      "path": "共享开发/模组制作经验库/workshop-distill/3844377158-SleepLagOptimizer.md",
+      "title": "Sleep Lag Optimizer（过夜卡顿优化器）｜工坊 3844377158",
+      "layer": "workshop-distill",
+      "domains": [
+        "perf",
+        "machines"
+      ],
+      "trust": "L4-caution-antipattern",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 149,
+      "workshop_ids": [
+        "3844377158"
+      ],
+      "api_symbols": [
+        "GameItemElement",
+        "ChemicalHelper",
+        "GameItem",
+        "GameGridInventory",
+        "GameItemFunc",
+        "GameSlotInventory",
+        "WaterHelper",
+        "EmporiumEntry",
+        "Liquid",
+        "PlayerStore",
+        "GameInventory",
+        "SlotMarker"
+      ],
+      "best_for": "原版过夜 360 tick 化学模拟真相与 Prefix 开标志 / Finalizer 关标志延迟校验范式",
+      "digest": "原版过夜每晚跑 360 次化学模拟；批处理延迟校验必须用 Prefix 开标志 + Finalizer 关标志防异常路径泄漏",
+      "must_avoid": "严禁抄其整段替换 RunNightlyChemicalSimulation（与所有同类优化模组互斥）",
+      "curated": true
+    },
+    {
+      "id": "distill:3845197390-NightRegulars立绘框架",
+      "path": "共享开发/模组制作经验库/workshop-distill/3845197390-NightRegulars立绘框架.md",
+      "title": "立绘框架：按需加载 + 套装回退 + 高清去像素（Immortal Night Bazaar 的 yg_regulars）｜工坊 3845197390",
+      "layer": "workshop-distill",
+      "domains": [
+        "media",
+        "customers"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 101,
+      "workshop_ids": [
+        "3845197390"
+      ],
+      "api_symbols": [
+        "Dialogue",
+        "WantedElement"
+      ],
+      "best_for": "程序/美术分离的立绘框架：按需加载 + extreme→adult→serene 永不空白回退链",
+      "digest": "立绘按需加载并设三层回退链确保永不空白；程序框架与独立美术包解耦",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:3845199370-PipelineController",
+      "path": "共享开发/模组制作经验库/workshop-distill/3845199370-PipelineController.md",
+      "title": "Pipeline Controller（流水线控制器，工坊 3845199370）蒸馏档案",
+      "layer": "workshop-distill",
+      "domains": [
+        "machines",
+        "items",
+        "architecture"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 450,
+      "workshop_ids": [
+        "3845199370"
+      ],
+      "api_symbols": [
+        "GameItem",
+        "GameItemFunc",
+        "MachineHelper",
+        "GameInventory",
+        "GraphUtils",
+        "CustomUIManager",
+        "GameSlotInventory",
+        "DirectoryMaster",
+        "HopperHelper",
+        "HydroponicHelper",
+        "PixelElement",
+        "SaveManager",
+        "CustomUIWindow",
+        "EmporiumEntry"
+      ],
+      "best_for": "图结构存物品 Tag + 拓扑 Tick + 靠 GameItemFunc 委托接管交互（仅 5 个外围 Patch）",
+      "digest": "靠 GameItemFunc 委托（target/activate/tick）替代大规模 Harmony Patch，管网图序列化在物品 Tag 上按拓扑序结算",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:3845554726-DigitalVault",
+      "path": "共享开发/模组制作经验库/workshop-distill/3845554726-DigitalVault.md",
+      "title": "Digital Storage: Possibly Hyper-Compatible（数字仓储）蒸馏档案",
+      "layer": "workshop-distill",
+      "domains": [
+        "items",
+        "persistence"
+      ],
+      "trust": "L4-caution-antipattern",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 346,
+      "workshop_ids": [
+        "3845554726"
+      ],
+      "api_symbols": [
+        "GameItem",
+        "PlayerStore",
+        "SaveState",
+        "SaveManager",
+        "CustomUIManager",
+        "GameItemElement",
+        "RenderHandler",
+        "IMod",
+        "ItemFeature",
+        "LetterboxManager",
+        "MachineHelper",
+        "ModHelper",
+        "ModHook",
+        "PaperAssets"
+      ],
+      "best_for": "物品数据化（将物品状态编码进 Tag 字符串存储）思路参考",
+      "digest": "把多件物品压成编码串存进容器物品 Tag 实现数字仓储，零新增 ES3 顶层键",
+      "must_avoid": "严禁抄其 96 处空 catch {} 静默吞异常",
+      "curated": true
+    },
+    {
+      "id": "distill:3845556624+3845895085-文字层逆向",
+      "path": "共享开发/模组制作经验库/workshop-distill/3845556624+3845895085-文字层逆向.md",
+      "title": "文字层逆向两例：Locale Error Fix + CJK Font Fallback｜工坊 3845556624 / 3845895085",
+      "layer": "workshop-distill",
+      "domains": [
+        "ui",
+        "interop"
+      ],
+      "trust": "L4-caution-antipattern",
+      "capability": "mixed",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 174,
+      "workshop_ids": [
+        "3845556624",
+        "3845895085"
+      ],
+      "api_symbols": [
+        "LocHelper",
+        "ModHook",
+        "Liquid",
+        "ModLoader",
+        "ModLog"
+      ],
+      "best_for": "本地化表初始化时序（早期读 LocHelper.Get 报 invalid operation handle）与 TMP 全局 CJK 回退字体",
+      "digest": "不要在 Init/OnEnable 缓存 LocHelper.Get（表未就绪会抛 invalid operation handle）；CJK 显示靠挂 TMP_Settings.fallbackFontAssets + ForceMeshUpdate",
+      "must_avoid": "严禁抄 Locale Error Fix 吞掉原版 fallback 链导致缺词退化为裸 key",
+      "curated": true
+    },
+    {
+      "id": "distill:3845671416-StorageControlTerminal",
+      "path": "共享开发/模组制作经验库/workshop-distill/3845671416-StorageControlTerminal.md",
+      "title": "3845671416 · 存储控制终端 / Storage Control Terminal —— 反编译蒸馏档案",
+      "layer": "workshop-distill",
+      "domains": [
+        "items",
+        "ui",
+        "architecture"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 378,
+      "workshop_ids": [
+        "3845671416"
+      ],
+      "api_symbols": [
+        "GameItem",
+        "GraphUtils",
+        "CustomUIBuilder",
+        "ModHelper",
+        "ModHook",
+        "GameInventory",
+        "ModReflect",
+        "CustomUIManager",
+        "GameItemFunc",
+        "GeneralHelper",
+        "GameGridInventory",
+        "TagState",
+        "EmporiumEntry",
+        "SlotMarker"
+      ],
+      "best_for": "零 Harmony Patch 做出带 CustomUI 界面的跨容器聚合存储终端标杆",
+      "digest": "0 Patch 也能造复杂机器：SetGameItemType(MACHINE) + onActivateSlotItemFunc 开 CustomUIManager.CreateWindow + 跨容器聚合索引",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:3845680734-QiluoItemEditor",
+      "path": "共享开发/模组制作经验库/workshop-distill/3845680734-QiluoItemEditor.md",
+      "title": "绮罗的编辑工具 / Qiluo Item Editor（运行时物品全字段编辑器）｜工坊 3845680734",
+      "layer": "workshop-distill",
+      "domains": [
+        "items",
+        "appraisal",
+        "interop"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 436,
+      "workshop_ids": [
+        "3845680734"
+      ],
+      "api_symbols": [
+        "GameItem",
+        "TagState",
+        "GeneralHelper",
+        "DirectoryMaster",
+        "PlayerStore",
+        "DurabilityHelper",
+        "ItemDirectory",
+        "ItemFeature",
+        "ItemFeatureList",
+        "ItemSpawner",
+        "RichTextBuilder",
+        "SaveManager",
+        "TagSystem",
+        "GameItemFunc"
+      ],
+      "best_for": "GameItem 全字段可编辑权威字典与受保护字段黑名单",
+      "digest": "完整盘点 GameItem 运行期可安全修改字段 vs 受保护内部字段，适合物品编辑/克隆/贴图修复查表",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:3845751834-SpriteHeal",
+      "path": "共享开发/模组制作经验库/workshop-distill/3845751834-SpriteHeal.md",
+      "title": "物品贴图自愈 / Sprite Heal（原版标记位 bug 逆向）｜工坊 3845751834",
+      "layer": "workshop-distill",
+      "domains": [
+        "items",
+        "media",
+        "interop"
+      ],
+      "trust": "L4-caution-antipattern",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 87,
+      "workshop_ids": [
+        "3845751834"
+      ],
+      "api_symbols": [
+        "GameItem",
+        "LoadedMod",
+        "GameItemElement",
+        "ModLoader"
+      ],
+      "best_for": "原版 useSpriteFromMod 粘滞 bug 逆向（切回原版图集未清标志→白底问号）",
+      "digest": "从模组贴图切换回原版图集时必须同步清 useSpriteFromMod 标志，否则 ResolveSpriteByName 继续查模组表返回白底问号",
+      "must_avoid": "不要抄其内部空 catch {}",
+      "curated": true
+    },
+    {
+      "id": "distill:3845754309-AIStoreManager",
+      "path": "共享开发/模组制作经验库/workshop-distill/3845754309-AIStoreManager.md",
+      "title": "深空當鋪：店長可能是智能體 / White Dragon Ledger｜工坊 3845754309",
+      "layer": "workshop-distill",
+      "domains": [
+        "multiplayer",
+        "persistence",
+        "workflow"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 445,
+      "workshop_ids": [
+        "3845754309"
+      ],
+      "api_symbols": [
+        "ModHelper",
+        "NegociationUIManager",
+        "BargainUIManager",
+        "GraphUtils",
+        "LoadedMod",
+        "MapUIManager",
+        "NewGameDifficultyUI",
+        "StoreDoor",
+        "DialogUIManager",
+        "EndOfDayUIManager",
+        "GameItem",
+        "Interactable",
+        "MainMenuUIController",
+        "ModReflect"
+      ],
+      "best_for": "用原版白名单 ModData JSON 文件收件箱实现零端口外部进程/AI 通信（ModDataInbox.cs 来源）",
+      "digest": "不开 HTTP 端口也能连外部脚本/AI：用 ModHelper.*ModDataFile* 做消费即删+代号命名+坏命令丢弃的文件收件箱（实测零能力）",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:3845965318-ZohFramework",
+      "path": "共享开发/模组制作经验库/workshop-distill/3845965318-ZohFramework.md",
+      "title": "Zoh Framework（工坊 3845965318）蒸馏档案",
+      "layer": "workshop-distill",
+      "domains": [
+        "architecture",
+        "customers",
+        "events"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 450,
+      "workshop_ids": [
+        "3845965318"
+      ],
+      "api_symbols": [
+        "ModHelper",
+        "Dialogue",
+        "ModHook",
+        "PlayerStore",
+        "GraphUtils",
+        "ModLoader",
+        "StoreClientListDict",
+        "IMod",
+        "SpriteDict",
+        "StoreClient",
+        "StoreReputation",
+        "CustomUIManager",
+        "DialogUIManager",
+        "DirectoryMaster"
+      ],
+      "best_for": "零 Patch 自研脚本 DSL 引擎（词法/语法/三 Pass 执行）、安全闲聊注入与坏脚本降级",
+      "digest": "0 Patch 建剧本 DSL 引擎，文本外置方便非程序员编辑；坏脚本降级成普通顾客不崩档；安全注入闲聊用 allDoneDialogue + ConditionalWeakTable",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:3846086230-ProgressBar",
+      "path": "共享开发/模组制作经验库/workshop-distill/3846086230-ProgressBar.md",
+      "title": "Progress Bar（读档/过夜进度条与分帧加载）｜工坊 3846086230",
+      "layer": "workshop-distill",
+      "domains": [
+        "persistence",
+        "perf",
+        "ui"
+      ],
+      "trust": "L4-caution-antipattern",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 195,
+      "workshop_ids": [
+        "3846086230"
+      ],
+      "api_symbols": [
+        "PlayerStore",
+        "GameItem",
+        "DirectoryMaster",
+        "GeneralHelper",
+        "GraphNodeStorage",
+        "LocHelper",
+        "MachineHelper",
+        "SaveState",
+        "SpriteHelper",
+        "GameCharacterItem",
+        "GameInventory",
+        "GraphUtils",
+        "ModHook",
+        "PlantTraitList"
+      ],
+      "best_for": "原版读档管线四阶段逆向（SaveState→Decode→Link→挂载）与分帧重建 + 模态 InputGate",
+      "digest": "读档管线拆成 Decode/Link/Build 分帧执行可消卡顿，容器编号 Link 对齐最易出错；出错必须能回退原版读档",
+      "must_avoid": "严禁在不具备完整出错回退的前提下整段替换 DecodeSaveItem",
+      "curated": true
+    },
+    {
+      "id": "distill:UI深度扩展八例",
+      "path": "共享开发/模组制作经验库/workshop-distill/UI深度扩展八例.md",
+      "title": "UI 深度扩展八例（原版 UI 能被改到什么程度、每种改法的代价）",
+      "layer": "workshop-distill",
+      "domains": [
+        "ui",
+        "items",
+        "appraisal"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 547,
+      "workshop_ids": [
+        "3828868413",
+        "3828938065",
+        "3829012791",
+        "3838828332",
+        "3841350358",
+        "3842791640",
+        "3842891745",
+        "3845160523"
+      ],
+      "api_symbols": [
+        "GameItem",
+        "PixelWindow",
+        "GameGridInventory",
+        "RichTextBuilder",
+        "DirectoryMaster",
+        "InputActionManager",
+        "ModConfigWindow",
+        "ModHook",
+        "GameOptionUIManager",
+        "TreeNodeRender",
+        "DurabilityHelper",
+        "GameItemElement",
+        "InputActionHandler",
+        "ItemFeature"
+      ],
+      "best_for": "八种 UI 扩展改法与代价对照（Tooltip 钩子、窗口缩放接管 getter、轮盘防输入锁死）",
+      "digest": "Tooltip 优先 ModHook.OnCreateTooltipLate；改窗口尺寸必须接管 getter 链并声明优先级；Update 轮询节流 0.12~0.25s；屏蔽输入必须配 Clear() 兜底防永久失输入",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:两类内容扩展-鉴定服务与零Patch养殖",
+      "path": "共享开发/模组制作经验库/workshop-distill/两类内容扩展-鉴定服务与零Patch养殖.md",
+      "title": "两类内容扩展：鉴定服务扩展 + 零 Patch 养殖玩法",
+      "layer": "workshop-distill",
+      "domains": [
+        "appraisal",
+        "items",
+        "architecture"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 200,
+      "workshop_ids": [
+        "3836549936",
+        "3844144965"
+      ],
+      "api_symbols": [
+        "ModHook",
+        "GameItem",
+        "AppraisalServiceHelper",
+        "AppraisalHelper",
+        "ModHelper",
+        "PlayerStore",
+        "ContainerHelper",
+        "ContrabandHelper",
+        "DialogUIManager",
+        "DirectoryMaster",
+        "EmporiumAnalytics",
+        "ExchangeBarter",
+        "GameItemElement",
+        "ItemFeature"
+      ],
+      "best_for": "鉴定/盘查/保险/服务费 20 个靶点表 + 零 Patch 做整套养殖玩法（32文件/5792行）骨架",
+      "digest": "Extended Appraisals 绘出鉴定服务 20 个接入靶点；Hatch Ranching 实证 0 Harmony Patch 仅靠 ModHelper+GameItemFunc 可做完整养殖系统",
+      "must_avoid": "同一靶点（如 OnEstimate）挂多个补丁时必须显式声明 HarmonyPriority",
+      "curated": true
+    },
+    {
+      "id": "distill:事件与内容扩展四例",
+      "path": "共享开发/模组制作经验库/workshop-distill/事件与内容扩展四例.md",
+      "title": "事件系统与内容扩展四例｜工坊 3829019153 + 3844993390 + 3829961729 + 3828910575",
+      "layer": "workshop-distill",
+      "domains": [
+        "events",
+        "customers",
+        "items"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 549,
+      "workshop_ids": [
+        "3828910575",
+        "3829019153",
+        "3829961729",
+        "3844993390"
+      ],
+      "api_symbols": [
+        "ModHook",
+        "StoreEvent",
+        "ModHelper",
+        "ScavHelper",
+        "PlayerStore",
+        "SecData",
+        "LootRegistry",
+        "StoreEventManager",
+        "GameItem",
+        "PreBuiltItemHelper",
+        "StoreShutterButton",
+        "StoreEventBlueprint",
+        "AppraisalRankHelper",
+        "DurabilityHelper"
+      ],
+      "best_for": "卷帘门事件展示、拾荒事件注入、外置新闻数据、熟练度等级挂原版数值四例对照",
+      "digest": "事件与掉落表原版均有公开扩展口（StoreEventBlueprint/LootRegistry/OnLootRolled），优先走官方钩子不整段替换",
+      "must_avoid": "勿抄 Scavenging Events 放弃官方口子去整段替换拾荒方法",
+      "curated": true
+    },
+    {
+      "id": "distill:报纸配图与机器动画两标杆",
+      "path": "共享开发/模组制作经验库/workshop-distill/报纸配图与机器动画两标杆.md",
+      "title": "双标杆蒸馏：报纸事件配图（3839534065）与机器运行动画（3839773708）",
+      "layer": "workshop-distill",
+      "domains": [
+        "events",
+        "machines",
+        "media",
+        "interop"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 548,
+      "workshop_ids": [
+        "3839534065",
+        "3839773708"
+      ],
+      "api_symbols": [
+        "NewsUIManager",
+        "ModHelper",
+        "MachineHelper",
+        "ModConfigWindow",
+        "LoadedMod",
+        "StoreEvent",
+        "GameItemElement",
+        "MachineBlender",
+        "ModHook",
+        "ModLoader",
+        "ModUIManager",
+        "CustomUIManager",
+        "GameItem",
+        "InputActionManager"
+      ],
+      "best_for": "Better Newspapers 与 Vanilla Machine Animations 源码对账（修正 15/16 号文档 10 处误差）",
+      "digest": "VMA 用 OwnedFrames/HasForeignSprite 做让位式 Image.sprite 替换且缺图不占位；BN 自己不写 HarmonyAfter，我方必须写 HarmonyAfter(mod.local.newspaper.illustrations)",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:机器改造与流体操作四例",
+      "path": "共享开发/模组制作经验库/workshop-distill/机器改造与流体操作四例.md",
+      "title": "机器改造与流体操作四例｜工坊 3845287659 + 3842333957 + 3844978771 + 3846097337",
+      "layer": "workshop-distill",
+      "domains": [
+        "machines",
+        "items",
+        "interop"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 252,
+      "workshop_ids": [
+        "3842333957",
+        "3844978771",
+        "3845287659",
+        "3846097337"
+      ],
+      "api_symbols": [
+        "WaterHelper",
+        "MachineProgressHelper",
+        "ChemicalHelper",
+        "GameItem",
+        "MachineHelper",
+        "Liquid",
+        "MachineryHelper",
+        "HydroponicHelper",
+        "ModHook",
+        "GameSlotInventory",
+        "MachineMoistureFarm",
+        "MachineRAS",
+        "MachineWineRack",
+        "SaveManager"
+      ],
+      "best_for": "原版机器槽位全景、TransientTagBoost 临时改数值范式、实时触发时机与液体原子定量搬运",
+      "digest": "改机器加速用 Prefix 暂存+Postfix/Finalizer 还原（TransientTagBoost）；实时化只改触发时机不重写加工；液体按 part 分开存，定量搬运先取 min(Free,Vol) 再双端 SetChemContentUL",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:桥接器与开发框架两例",
+      "path": "共享开发/模组制作经验库/workshop-distill/桥接器与开发框架两例.md",
+      "title": "桥接器与开发框架两例：MCP Bridge（3834799226）+ SDJYBN Framework（3833164503）",
+      "layer": "workshop-distill",
+      "domains": [
+        "workflow",
+        "interop",
+        "architecture"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "cap-network",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 493,
+      "workshop_ids": [
+        "3833164503",
+        "3834799226"
+      ],
+      "api_symbols": [
+        "GameItemElement",
+        "ModHelper",
+        "GraphUtils",
+        "ModHook",
+        "ModLoader",
+        "ModScanner",
+        "IMod",
+        "ConfigEntry",
+        "CustomUIDebugPanel",
+        "PlayerStore",
+        "RichTextBuilder",
+        "DebugPanel",
+        "DirectoryMaster",
+        "EmporiumEntry"
+      ],
+      "best_for": "MCP Bridge vs 深空桥接器安全边界对照 + SDJYBN 轻量框架结构",
+      "digest": "内嵌 HTTP 桥必须守死 IsLoopback + Host==127.0.0.1 + Origin==null 三重边界；轻量库用 _isHost 区分宿主与被引用态",
+      "must_avoid": "严禁抄 MCP Bridge 零鉴权 + CORS *（本机任意网页可驱动游戏）",
+      "curated": true
+    },
+    {
+      "id": "distill:模组列表管理五例",
+      "path": "共享开发/模组制作经验库/workshop-distill/模组列表管理五例.md",
+      "title": "模组列表管理五例 · 合并蒸馏档案",
+      "layer": "workshop-distill",
+      "domains": [
+        "interop",
+        "persistence"
+      ],
+      "trust": "L4-caution-antipattern",
+      "capability": "mixed",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 447,
+      "workshop_ids": [
+        "3831227725",
+        "3844117944",
+        "3844491258",
+        "3845322500",
+        "3845718219",
+        "3845720714"
+      ],
+      "api_symbols": [
+        "ModLoader",
+        "ModTrust",
+        "ModHelper",
+        "LoadGameUI",
+        "ModScanner",
+        "PlayerStore",
+        "LoadedMod",
+        "ModElement",
+        "SaveUIManager",
+        "ModReflect",
+        "ModUIManager",
+        "NewGameData",
+        "ModHook",
+        "ModLog"
+      ],
+      "best_for": "SaveFile.es3 modOrder/modTrust HMAC 结构与 ModLoader 只读公开面实证",
+      "digest": "模组启用态存在 SaveFile.es3 的 modOrder/modTrust（带 HMAC）；我们只读 ModLoader.Mods/IsModEnabled/TrustState",
+      "must_avoid": "严禁调用 [ModRestricted(loader-target)]、严禁 ES3.Save(modOrder/modTrust)、严禁像 Mod Preloader 拼 char[] 绕过 ModScanner",
+      "curated": true
+    },
+    {
+      "id": "distill:玩法模块三例-职业拍卖灾难",
+      "path": "共享开发/模组制作经验库/workshop-distill/玩法模块三例-职业拍卖灾难.md",
+      "title": "玩法模块三例：销赃职业 / 夜间拍卖 / 災變日 —— 架构向蒸馏",
+      "layer": "workshop-distill",
+      "domains": [
+        "architecture",
+        "events",
+        "afterhour",
+        "customers",
+        "economy"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 415,
+      "workshop_ids": [
+        "3829429358",
+        "3829946713",
+        "3833407098"
+      ],
+      "api_symbols": [
+        "ModHook",
+        "StoreEvent",
+        "PlayerStore",
+        "ModHelper",
+        "StoreReputation",
+        "CustomUIManager",
+        "GameItem",
+        "CustomUIBuilder",
+        "ReputationUIManager",
+        "NegociationData",
+        "StoreReputationPerk",
+        "StoreClient",
+        "StoreEventManager",
+        "GameGridInventory"
+      ],
+      "best_for": "新玩法接原版三时段选型（营业日开关门 / 打烊夜出地图 / 跨日 StoreEvent 链）",
+      "digest": "按玩法节奏选挂点：营业日用 OnShutterOpened/Closed、夜出用 AddAfterhourLocation+回店发奖、跨日连环用 StoreEvent+老档补前置纸条",
+      "must_avoid": "勿抄单文件 6000 行巨石与 297 个分散 ModData 散键（应结构化收纳）",
+      "curated": true
+    },
+    {
+      "id": "distill:生产链与自动化四例",
+      "path": "共享开发/模组制作经验库/workshop-distill/生产链与自动化四例.md",
+      "title": "生产链与自动化四例｜酿酒拓展 + 原版化学扩展 + 水培塔 + Station",
+      "layer": "workshop-distill",
+      "domains": [
+        "machines",
+        "items",
+        "persistence",
+        "architecture"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 548,
+      "workshop_ids": [
+        "3829730904",
+        "3832077837",
+        "3834024821",
+        "3838443003"
+      ],
+      "api_symbols": [
+        "GameItem",
+        "Station",
+        "PlayerStore",
+        "GameInventory",
+        "WineHelper",
+        "MachineHelper",
+        "MachineWineRack",
+        "ModHook",
+        "WaterHelper",
+        "ChemicalHelper",
+        "MachineHydroponic",
+        "ChemFinisherRecipe",
+        "DirectoryMaster",
+        "ItemDirectory"
+      ],
+      "best_for": "酿酒/化学/水培塔/Station 四例：标准机器四件套、零整段替换、DecodeNodes 存档迁移与 19 文件总控自动化",
+      "digest": "新机器走 SetupBatterySlot+SetupModuleBay+SetupManualSlot+InitMachinery+STANDARD/TURBO 标签+断电退款；0 处自建加工 tick；存档改名走 SaveManager.DecodeNodes Prefix；小体量自动化靠工作区容器+FindAllChildrenType+EndNight Postfix",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:美术与角色模组三级形态与立绘包规格",
+      "path": "共享开发/模组制作经验库/workshop-distill/美术与角色模组三级形态与立绘包规格.md",
+      "title": "美术与角色模组的三级形态 · 立绘包规格",
+      "layer": "workshop-distill",
+      "domains": [
+        "media",
+        "customers"
+      ],
+      "trust": "L2-verified-host",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 341,
+      "workshop_ids": [
+        "3829696854",
+        "3832333084",
+        "3838776570",
+        "3844162371",
+        "3846193221"
+      ],
+      "api_symbols": [
+        "SpriteDict",
+        "IMod",
+        "ModLoader",
+        "LoadedMod",
+        "PlayerStore",
+        "EmporiumEntry",
+        "GenericClientMono",
+        "MapUIManager",
+        "ModHelper",
+        "ModHook",
+        "ModManifest",
+        "ModScanner",
+        "PaperUIManager",
+        "StoreUIManager"
+      ],
+      "best_for": "美术模组三级形态（L1 3文件/L2 15文件/L3 58文件）、1728×1266 立绘硬规格与空壳资源包",
+      "digest": "立绘硬规格 1728×1266/PPU 600/pivot(0.5,0.4976)/Point/无mipmap；换脸只换 SpriteRenderer.sprite 且条件还原，不改 SpriteDict；纯图包可用空壳 DLL + provider JSON",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:补充两例-调试面板与双人联机",
+      "path": "共享开发/模组制作经验库/workshop-distill/补充两例-调试面板与双人联机.md",
+      "title": "补充两例：调试面板（Debug Console Plus）与双人联机（NextDoor）",
+      "layer": "workshop-distill",
+      "domains": [
+        "ui",
+        "multiplayer",
+        "workflow"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "mixed",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 109,
+      "workshop_ids": [
+        "3828909239",
+        "3829432366",
+        "3845780921"
+      ],
+      "api_symbols": [
+        "PlayerStore",
+        "InputActionHandler",
+        "InputActionManager",
+        "ModHook",
+        "EndOfDayUIManager",
+        "GameMaster",
+        "ModHelper",
+        "ModReflect",
+        "SaveUIManager"
+      ],
+      "best_for": "调试面板（改 getter 不改字段）与 TCP+镜像视图双人联机路线对照",
+      "digest": "调试注入优先改 getter 不改原版字段；双人联机另辟 TCP 镜像视图路线；慎 Patch 全局 InputActionManager（多模组高频冲突区）",
+      "must_avoid": "",
+      "curated": true
+    },
+    {
+      "id": "distill:金融与公司两个经济系统",
+      "path": "共享开发/模组制作经验库/workshop-distill/金融与公司两个经济系统.md",
+      "title": "两套经济系统：金融交易所 Exchange + 公司增强 CorpPresence",
+      "layer": "workshop-distill",
+      "domains": [
+        "economy",
+        "architecture",
+        "persistence",
+        "customers"
+      ],
+      "trust": "L3-distilled-source",
+      "capability": "zero-cap",
+      "intent": [
+        "case-study"
+      ],
+      "status": "active",
+      "lines": 539,
+      "workshop_ids": [
+        "3828913695",
+        "3829559307"
+      ],
+      "api_symbols": [
+        "PlayerStore",
+        "GameItem",
+        "NegociationData",
+        "ModHelper",
+        "ModHook",
+        "StoreEvent",
+        "StoreUIManager",
+        "CustomUIManager",
+        "GraphUtils",
+        "StoreEventManager",
+        "IMod",
+        "InputActionManager",
+        "ItemDirectory",
+        "PowerHelper"
+      ],
+      "best_for": "影子账本（Exchange：不改原版价格+日种子回放 K 线）vs 内容经济（CorpPresence：九企档位）路线选型",
+      "digest": "复杂经济首选 Exchange 影子账本（零改 GetCurrentValue、只存日种子按需回放历史 K 线、ModHelper.AddCredit 闭环）",
+      "must_avoid": "慎抄 CorpPresence 重度改写存档链",
+      "curated": true
+    },
+    {
+      "id": "tpl:CustomInspectLens",
+      "path": "工具库/templates/mod-patterns/CustomInspectLens.cs",
+      "title": "CustomInspectLens.cs",
+      "layer": "template-cs",
+      "domains": [
+        "appraisal",
+        "ui"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 87,
+      "workshop_ids": [],
+      "api_symbols": [
+        "InspectionUIManager"
+      ],
+      "best_for": "自定义物品接入原版放大镜双视图 + LensFollow 同步",
+      "must_avoid": ""
+    },
+    {
+      "id": "tpl:EpochCache",
+      "path": "工具库/templates/mod-patterns/EpochCache.cs",
+      "title": "EpochCache.cs",
+      "layer": "template-cs",
+      "domains": [
+        "perf",
+        "economy"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 197,
+      "workshop_ids": [
+        "3843892181"
+      ],
+      "api_symbols": [
+        "GameItem",
+        "PlayerStore",
+        "StoreEvent",
+        "StoreStation",
+        "NegociationData",
+        "StoreEventManager"
+      ],
+      "best_for": "ConditionalWeakTable + 全局 epoch 代际失效缓存（O(1) 清空、防内存泄漏）",
+      "must_avoid": ""
+    },
+    {
+      "id": "tpl:Es3SafePersistence",
+      "path": "工具库/templates/mod-patterns/Es3SafePersistence.cs",
+      "title": "Es3SafePersistence.cs",
+      "layer": "template-cs",
+      "domains": [
+        "persistence",
+        "events"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 81,
+      "workshop_ids": [],
+      "api_symbols": [
+        "StoreEvent",
+        "StoreEventManager",
+        "ModHelper",
+        "Station"
+      ],
+      "best_for": "ES3Type.WriteProperties 浅克隆投影剥离（卸载不坏档），编译需引 Assembly-CSharp-firstpass.dll",
+      "must_avoid": ""
+    },
+    {
+      "id": "tpl:HdCameraLease",
+      "path": "工具库/templates/mod-patterns/HdCameraLease.cs",
+      "title": "HdCameraLease.cs",
+      "layer": "template-cs",
+      "domains": [
+        "media",
+        "interop"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 102,
+      "workshop_ids": [],
+      "api_symbols": [
+        "EmporiumEntry",
+        "EmporiumOption"
+      ],
+      "best_for": "零反射跨模组 PixelPerfectCamera 高清去像素化共享租约",
+      "must_avoid": ""
+    },
+    {
+      "id": "tpl:MachineManualSlot",
+      "path": "工具库/templates/mod-patterns/MachineManualSlot.cs",
+      "title": "MachineManualSlot.cs",
+      "layer": "template-cs",
+      "domains": [
+        "machines",
+        "ui"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 114,
+      "workshop_ids": [
+        "3845199370"
+      ],
+      "api_symbols": [
+        "GameItem",
+        "GameSlotInventory",
+        "EmporiumEntry",
+        "GraphNodeStorage",
+        "MachineryPanelRow",
+        "ModHook",
+        "DirectoryMaster",
+        "GraphUtils",
+        "MachineryContainerUtils",
+        "MachineryPanel",
+        "PixelWindow"
+      ],
+      "best_for": "把说明文档直接放进原版机器自带说明书槽（免做额外 UI）",
+      "must_avoid": ""
+    },
+    {
+      "id": "tpl:ModDataInbox",
+      "path": "工具库/templates/mod-patterns/ModDataInbox.cs",
+      "title": "ModDataInbox.cs",
+      "layer": "template-cs",
+      "domains": [
+        "multiplayer",
+        "persistence",
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 167,
+      "workshop_ids": [
+        "3845754309"
+      ],
+      "api_symbols": [
+        "ModHelper",
+        "ModScanner"
+      ],
+      "best_for": "用原版白名单 ModData 文件收件箱与外部脚本/AI 通信（不开端口且实测零能力）",
+      "must_avoid": ""
+    },
+    {
+      "id": "tpl:ModalInputGate",
+      "path": "工具库/templates/mod-patterns/ModalInputGate.cs",
+      "title": "ModalInputGate.cs",
+      "layer": "template-cs",
+      "domains": [
+        "ui"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 63,
+      "workshop_ids": [],
+      "api_symbols": [
+        "InputActionManager",
+        "CustomEventHandler"
+      ],
+      "best_for": "游戏内大型模态面板防关窗点击穿透状态机与焦点清理",
+      "must_avoid": ""
+    },
+    {
+      "id": "tpl:NewspaperArtHelper",
+      "path": "工具库/templates/mod-patterns/NewspaperArtHelper.cs",
+      "title": "NewspaperArtHelper.cs",
+      "layer": "template-cs",
+      "domains": [
+        "events",
+        "media",
+        "interop"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 240,
+      "workshop_ids": [],
+      "api_symbols": [
+        "NewsUIElement",
+        "LoadedMod",
+        "NewsUIManager",
+        "ModLoader"
+      ],
+      "best_for": "报纸事件配图 9 色复古相框、CenterCrop 与 Better Newspapers 避让排版",
+      "must_avoid": ""
+    },
+    {
+      "id": "tpl:ReadyChain",
+      "path": "工具库/templates/mod-patterns/ReadyChain.cs",
+      "title": "ReadyChain.cs",
+      "layer": "template-cs",
+      "domains": [
+        "items",
+        "architecture"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 39,
+      "workshop_ids": [],
+      "api_symbols": [
+        "PlayerStore",
+        "EmporiumEntry",
+        "MapUIManager",
+        "StoreUIManager"
+      ],
+      "best_for": "店内就绪检查链（先判 PlayerStore.HasInstance）与 Unity 假 null 检测",
+      "must_avoid": ""
+    },
+    {
+      "id": "tpl:SafeSpriteHelper",
+      "path": "工具库/templates/mod-patterns/SafeSpriteHelper.cs",
+      "title": "SafeSpriteHelper.cs",
+      "layer": "template-cs",
+      "domains": [
+        "media",
+        "items"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 71,
+      "workshop_ids": [],
+      "api_symbols": [
+        "LoadedMod",
+        "ModHook"
+      ],
+      "best_for": "像素贴图 Point 锐化、高清道具 PPU 计算、不可读纹理 GPU 导出 PNG",
+      "must_avoid": ""
+    },
+    {
+      "id": "tpl:SpriteSheetMachineAnim",
+      "path": "工具库/templates/mod-patterns/SpriteSheetMachineAnim.cs",
+      "title": "SpriteSheetMachineAnim.cs",
+      "layer": "template-cs",
+      "domains": [
+        "machines",
+        "media"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 288,
+      "workshop_ids": [],
+      "api_symbols": [
+        "GameItemElement",
+        "GameItem",
+        "GeneralHelper",
+        "LoadedMod",
+        "SpriteAnimationHelper",
+        "ModLoader"
+      ],
+      "best_for": "8 列网格雪碧图机器运行动画（零存档污染、150ms 节流、供电与让位保护）",
+      "must_avoid": ""
+    },
+    {
+      "id": "tpl:TransientTagBoost",
+      "path": "工具库/templates/mod-patterns/TransientTagBoost.cs",
+      "title": "TransientTagBoost.cs",
+      "layer": "template-cs",
+      "domains": [
+        "machines",
+        "interop"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 129,
+      "workshop_ids": [
+        "3845287659"
+      ],
+      "api_symbols": [
+        "GameItem",
+        "MachineProgressHelper",
+        "SaveManager",
+        "HydroponicHelper",
+        "MachineMoistureFarm",
+        "MachinePurifier",
+        "MachineryHelper"
+      ],
+      "best_for": "临时改数值→调原版→Postfix+Finalizer 还原（不整段替换原版机器入口）",
+      "must_avoid": ""
+    },
+    {
+      "id": "tpl:WavPcmDecoder",
+      "path": "工具库/templates/mod-patterns/WavPcmDecoder.cs",
+      "title": "WavPcmDecoder.cs",
+      "layer": "template-cs",
+      "domains": [
+        "media"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 80,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "纯 C# 解析 RIFF PCM16 WAV 转 AudioClip（零第三方依赖）",
+      "must_avoid": ""
+    },
+    {
+      "id": "tool:Build-Mod.ps1",
+      "path": "工具库/build/Build-Mod.ps1",
+      "title": "Build-Mod.ps1",
+      "layer": "tool-script",
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 124,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "统一编译开发版/-PublicRelease零能力版并支持-Scan/-Install",
+      "must_avoid": ""
+    },
+    {
+      "id": "tool:Test-ArcadeLoaderScan.ps1",
+      "path": "工具库/build/Test-ArcadeLoaderScan.ps1",
+      "title": "Test-ArcadeLoaderScan.ps1",
+      "layer": "tool-script",
+      "domains": [
+        "workflow",
+        "interop"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 50,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "调用游戏真实 ModScanner 离线扫描候选 DLL 权限",
+      "must_avoid": ""
+    },
+    {
+      "id": "tool:New-FeatureBranch.ps1",
+      "path": "工具库/build/New-FeatureBranch.ps1",
+      "title": "New-FeatureBranch.ps1",
+      "layer": "tool-script",
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 113,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "按规范同时创建本地与云端功能分支",
+      "must_avoid": ""
+    },
+    {
+      "id": "tool:Invoke-PreMergeGate.ps1",
+      "path": "工具库/build/Invoke-PreMergeGate.ps1",
+      "title": "Invoke-PreMergeGate.ps1",
+      "layer": "tool-script",
+      "domains": [
+        "workflow",
+        "interop"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 186,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "合并前五道门禁一键执行（编译/零能力/回归/冲突/洁净）",
+      "must_avoid": ""
+    },
+    {
+      "id": "tool:New-ReleasePackage.ps1",
+      "path": "工具库/build/New-ReleasePackage.ps1",
+      "title": "New-ReleasePackage.ps1",
+      "layer": "tool-script",
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 149,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "工坊零能力发布封装、封面与白名单校验",
+      "must_avoid": ""
+    },
+    {
+      "id": "tool:Publish-Workshop.ps1",
+      "path": "工具库/build/Publish-Workshop.ps1",
+      "title": "Publish-Workshop.ps1",
+      "layer": "tool-script",
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 126,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "工坊打包上传（须用户确认；默认不覆盖线上描述）",
+      "must_avoid": ""
+    },
+    {
+      "id": "tool:Backup-All.ps1",
+      "path": "工具库/build/Backup-All.ps1",
+      "title": "Backup-All.ps1",
+      "layer": "tool-script",
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 213,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "本地裸仓镜像 + bundle + 美术文案资产包一键多路备份",
+      "must_avoid": ""
+    },
+    {
+      "id": "tool:Run-Regression.ps1",
+      "path": "工具库/regression/Run-Regression.ps1",
+      "title": "Run-Regression.ps1",
+      "layer": "tool-script",
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 123,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "运行离线真行为与核心不变量回归套件",
+      "must_avoid": ""
+    },
+    {
+      "id": "tool:fetch_workshop.py",
+      "path": "工具库/workshop-tools/fetch_workshop.py",
+      "title": "fetch_workshop.py",
+      "layer": "tool-script",
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 325,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "抓取 Steam 创意工坊列表/简介摘要/本地订阅对比",
+      "must_avoid": ""
+    },
+    {
+      "id": "tool:distill_prep.py",
+      "path": "工具库/workshop-tools/distill_prep.py",
+      "title": "distill_prep.py",
+      "layer": "tool-script",
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 123,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "批量挑主 DLL 反编译并生成透视报告",
+      "must_avoid": ""
+    },
+    {
+      "id": "tool:conflict_scan.py",
+      "path": "工具库/workshop-tools/conflict_scan.py",
+      "title": "conflict_scan.py",
+      "layer": "tool-script",
+      "domains": [
+        "interop",
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 368,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "跨模组静态冲突扫描（支持 --gate 与 HarmonyBefore/After 识别）",
+      "must_avoid": ""
+    },
+    {
+      "id": "tool:inspect_mod.py",
+      "path": "工具库/skills/decomp-api/inspect_mod.py",
+      "title": "inspect_mod.py",
+      "layer": "tool-script",
+      "domains": [
+        "workflow",
+        "interop"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 202,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "秒级透视源码目录或 DLL 的 IMod/HarmonyPatch/Hook/权限信号",
+      "must_avoid": ""
+    },
+    {
+      "id": "tool:extract_api.py",
+      "path": "工具库/skills/decomp-api/extract_api.py",
+      "title": "extract_api.py",
+      "layer": "tool-script",
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 110,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "从反编译 .cs 秒级提取公开 API 清单",
+      "must_avoid": ""
+    },
+    {
+      "id": "tool:kb_pipeline.py",
+      "path": "工具库/kb-tools/kb_pipeline.py",
+      "title": "kb_pipeline.py",
+      "layer": "tool-script",
+      "domains": [
+        "workflow",
+        "architecture"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 829,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "知识库自动打标、原版源码验真、按标签秒检、13模板零能力实测",
+      "must_avoid": ""
+    },
+    {
+      "id": "tool:Sync-ModdevSkill.ps1",
+      "path": "工具库/kb-tools/Sync-ModdevSkill.ps1",
+      "title": "Sync-ModdevSkill.ps1",
+      "layer": "tool-script",
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 93,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "对齐双副本脚本并同步 probably-stolen-moddev 到 DSH_HOME（SHA-256 核验）",
+      "must_avoid": ""
+    },
+    {
+      "id": "tool:pack-spritesheet.py",
+      "path": "工具库/img/pack-spritesheet.py",
+      "title": "pack-spritesheet.py",
+      "layer": "tool-script",
+      "domains": [
+        "machines",
+        "media"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 133,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "机器 8 列雪碧图打包/校验/拆解",
+      "must_avoid": ""
+    },
+    {
+      "id": "tool:newsprint-tone.py",
+      "path": "工具库/img/newsprint-tone.py",
+      "title": "newsprint-tone.py",
+      "layer": "tool-script",
+      "domains": [
+        "events",
+        "media"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 107,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "9 色泛黄新闻纸 + 2x2 半色调网点图片转换",
+      "must_avoid": ""
+    },
+    {
+      "id": "skill:SKILL.md",
+      "path": "工具库/skills/probably-stolen-moddev/SKILL.md",
+      "title": "《深空当铺》（Probably Stolen）模组开发技能",
+      "layer": "skill",
+      "domains": [
+        "architecture",
+        "items",
+        "machines",
+        "appraisal",
+        "events",
+        "afterhour",
+        "media",
+        "interop",
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "zero-cap",
+      "intent": [
+        "must-read-before-coding",
+        "pattern-reuse"
+      ],
+      "status": "active",
+      "lines": 66,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "《深空当铺》全流程核心领域开发技能（路由总入口）",
+      "must_avoid": ""
+    },
+    {
+      "id": "skill:README.md",
+      "path": "共享开发/AI技能库/README.md",
+      "title": "AI 技能库",
+      "layer": "skill",
+      "domains": [
+        "workflow"
+      ],
+      "trust": "L1-verified-runtime",
+      "capability": "n/a",
+      "intent": [
+        "tooling"
+      ],
+      "status": "active",
+      "lines": 39,
+      "workshop_ids": [],
+      "api_symbols": [],
+      "best_for": "流程层 AI 技能库（mattpocock/skills 27 个中文化方法论与工作区落地）",
+      "must_avoid": ""
+    }
+  ],
+  "api_index": {
+    "AfterhourEffect": [
+      "共享开发/模组制作经验库/18-夜晚外出区域与探索扩展规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3838944803-UpperLevels.md"
+    ],
+    "AfterhourLocation": [
+      "共享开发/模组制作经验库/18-夜晚外出区域与探索扩展规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3844162371-Sakurazaki角色模组.md"
+    ],
+    "AppHandHelper": [
+      "共享开发/模组制作经验库/07-踩坑台账.md",
+      "共享开发/模组制作经验库/workshop-distill/3828921912-AppraisalAssistant.md"
+    ],
+    "AppraisalHelper": [
+      "共享开发/模组制作经验库/07-踩坑台账.md",
+      "共享开发/模组制作经验库/13-鉴定扩展与交互纸张规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3828921912-AppraisalAssistant.md",
+      "共享开发/模组制作经验库/workshop-distill/两类内容扩展-鉴定服务与零Patch养殖.md"
+    ],
+    "AppraisalItemRegistry": [
+      "共享开发/模组制作经验库/07-踩坑台账.md",
+      "共享开发/模组制作经验库/13-鉴定扩展与交互纸张规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3828921912-AppraisalAssistant.md"
+    ],
+    "AppraisalItemType": [
+      "共享开发/模组制作经验库/07-踩坑台账.md",
+      "共享开发/模组制作经验库/workshop-distill/3828921912-AppraisalAssistant.md"
+    ],
+    "AppraisalRankHelper": [
+      "共享开发/模组制作经验库/13-鉴定扩展与交互纸张规范.md",
+      "共享开发/模组制作经验库/workshop-distill/事件与内容扩展四例.md"
+    ],
+    "AppraisalServiceHelper": [
+      "共享开发/模组制作经验库/workshop-distill/3828921912-AppraisalAssistant.md",
+      "共享开发/模组制作经验库/workshop-distill/两类内容扩展-鉴定服务与零Patch养殖.md"
+    ],
+    "BargainUIManager": [
+      "共享开发/模组制作经验库/workshop-distill/3828909239-ProbablyMultiplayer.md",
+      "共享开发/模组制作经验库/workshop-distill/3845754309-AIStoreManager.md"
+    ],
+    "ChemicalHelper": [
+      "共享开发/模组制作经验库/03-原版接口速查.md",
+      "共享开发/模组制作经验库/07-踩坑台账.md",
+      "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md",
+      "共享开发/模组制作经验库/workshop-distill/3844377158-SleepLagOptimizer.md",
+      "共享开发/模组制作经验库/workshop-distill/机器改造与流体操作四例.md",
+      "共享开发/模组制作经验库/workshop-distill/生产链与自动化四例.md"
+    ],
+    "ConfigEntry": [
+      "共享开发/模组制作经验库/workshop-distill/3828921912-AppraisalAssistant.md",
+      "共享开发/模组制作经验库/workshop-distill/3829957165-PenQoL补丁表.md",
+      "共享开发/模组制作经验库/workshop-distill/桥接器与开发框架两例.md"
+    ],
+    "CustomEventHandler": [
+      "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md",
+      "工具库/templates/mod-patterns/ModalInputGate.cs"
+    ],
+    "CustomUIBuilder": [
+      "共享开发/模组制作经验库/18-夜晚外出区域与探索扩展规范.md",
+      "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3828921912-AppraisalAssistant.md",
+      "共享开发/模组制作经验库/workshop-distill/3832823827-ModConflictScanner.md",
+      "共享开发/模组制作经验库/workshop-distill/3834649530-SmartArrangement.md",
+      "共享开发/模组制作经验库/workshop-distill/3845671416-StorageControlTerminal.md",
+      "共享开发/模组制作经验库/workshop-distill/玩法模块三例-职业拍卖灾难.md"
+    ],
+    "CustomUIDebugPanel": [
+      "共享开发/模组制作经验库/10-开发桥接器能力速查.md",
+      "共享开发/模组制作经验库/workshop-distill/桥接器与开发框架两例.md"
+    ],
+    "CustomUIManager": [
+      "共享开发/模组制作经验库/07-踩坑台账.md",
+      "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md",
+      "共享开发/模组制作经验库/18-夜晚外出区域与探索扩展规范.md",
+      "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md",
+      "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3828921912-AppraisalAssistant.md",
+      "共享开发/模组制作经验库/workshop-distill/3834649530-SmartArrangement.md",
+      "共享开发/模组制作经验库/workshop-distill/3838944803-UpperLevels.md",
+      "共享开发/模组制作经验库/workshop-distill/3840533881-LagInspector.md",
+      "共享开发/模组制作经验库/workshop-distill/3841509159-ClaimsAndUprisings.md",
+      "共享开发/模组制作经验库/workshop-distill/3845199370-PipelineController.md",
+      "共享开发/模组制作经验库/workshop-distill/3845554726-DigitalVault.md",
+      "共享开发/模组制作经验库/workshop-distill/3845671416-StorageControlTerminal.md",
+      "共享开发/模组制作经验库/workshop-distill/3845965318-ZohFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/报纸配图与机器动画两标杆.md",
+      "共享开发/模组制作经验库/workshop-distill/玩法模块三例-职业拍卖灾难.md",
+      "共享开发/模组制作经验库/workshop-distill/金融与公司两个经济系统.md"
+    ],
+    "CustomUIWindow": [
+      "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md",
+      "共享开发/模组制作经验库/workshop-distill/3828921912-AppraisalAssistant.md",
+      "共享开发/模组制作经验库/workshop-distill/3841909877-ProbablyExtendFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/3845199370-PipelineController.md"
+    ],
+    "DebugPanel": [
+      "共享开发/模组制作经验库/10-开发桥接器能力速查.md",
+      "共享开发/模组制作经验库/workshop-distill/桥接器与开发框架两例.md"
+    ],
+    "DialogUIManager": [
+      "共享开发/模组制作经验库/12-立绘引擎与音画资源架构.md",
+      "共享开发/模组制作经验库/13-鉴定扩展与交互纸张规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3828909239-ProbablyMultiplayer.md",
+      "共享开发/模组制作经验库/workshop-distill/3841909877-ProbablyExtendFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/3845754309-AIStoreManager.md",
+      "共享开发/模组制作经验库/workshop-distill/3845965318-ZohFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/两类内容扩展-鉴定服务与零Patch养殖.md"
+    ],
+    "Dialogue": [
+      "共享开发/模组制作经验库/10-开发桥接器能力速查.md",
+      "共享开发/模组制作经验库/12-立绘引擎与音画资源架构.md",
+      "共享开发/模组制作经验库/18-夜晚外出区域与探索扩展规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3843892181-ValueCache.md",
+      "共享开发/模组制作经验库/workshop-distill/3844162371-Sakurazaki角色模组.md",
+      "共享开发/模组制作经验库/workshop-distill/3845197390-NightRegulars立绘框架.md",
+      "共享开发/模组制作经验库/workshop-distill/3845965318-ZohFramework.md"
+    ],
+    "Difficulty": [
+      "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md",
+      "共享开发/模组制作经验库/workshop-distill/3838944803-UpperLevels.md"
+    ],
+    "DirectoryMaster": [
+      "共享开发/模组制作经验库/03-原版接口速查.md",
+      "共享开发/模组制作经验库/09-模组架构与物品调用规范.md",
+      "共享开发/模组制作经验库/13-鉴定扩展与交互纸张规范.md",
+      "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md",
+      "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "共享开发/开发流程与经验.md",
+      "共享开发/GLOSSARY.md",
+      "共享开发/模组制作经验库/workshop-distill/3828909239-ProbablyMultiplayer.md",
+      "共享开发/模组制作经验库/workshop-distill/3829012791-ItemSpawner.md",
+      "共享开发/模组制作经验库/workshop-distill/3829206666-SmartInventoryArrange.md",
+      "共享开发/模组制作经验库/workshop-distill/3832823827-ModConflictScanner.md",
+      "共享开发/模组制作经验库/workshop-distill/3833966506-StationEvents.md",
+      "共享开发/模组制作经验库/workshop-distill/3844162371-Sakurazaki角色模组.md",
+      "共享开发/模组制作经验库/workshop-distill/3845199370-PipelineController.md",
+      "共享开发/模组制作经验库/workshop-distill/3845680734-QiluoItemEditor.md",
+      "共享开发/模组制作经验库/workshop-distill/3845965318-ZohFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/3846086230-ProgressBar.md",
+      "共享开发/模组制作经验库/workshop-distill/UI深度扩展八例.md",
+      "共享开发/模组制作经验库/workshop-distill/两类内容扩展-鉴定服务与零Patch养殖.md",
+      "共享开发/模组制作经验库/workshop-distill/桥接器与开发框架两例.md",
+      "共享开发/模组制作经验库/workshop-distill/生产链与自动化四例.md",
+      "工具库/templates/mod-patterns/MachineManualSlot.cs"
+    ],
+    "DurabilityHelper": [
+      "共享开发/模组制作经验库/workshop-distill/3845680734-QiluoItemEditor.md",
+      "共享开发/模组制作经验库/workshop-distill/UI深度扩展八例.md",
+      "共享开发/模组制作经验库/workshop-distill/事件与内容扩展四例.md"
+    ],
+    "EmporiumEntry": [
+      "共享开发/模组制作经验库/09-模组架构与物品调用规范.md",
+      "共享开发/模组制作经验库/12-立绘引擎与音画资源架构.md",
+      "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md",
+      "共享开发/模组制作经验库/18-夜晚外出区域与探索扩展规范.md",
+      "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md",
+      "共享开发/模组制作经验库/workshop-distill/3828893950-DangpuPlus.md",
+      "共享开发/模组制作经验库/workshop-distill/3828909239-ProbablyMultiplayer.md",
+      "共享开发/模组制作经验库/workshop-distill/3829206666-SmartInventoryArrange.md",
+      "共享开发/模组制作经验库/workshop-distill/3840533881-LagInspector.md",
+      "共享开发/模组制作经验库/workshop-distill/3841509159-ClaimsAndUprisings.md",
+      "共享开发/模组制作经验库/workshop-distill/3844123767-ContainerLink.md",
+      "共享开发/模组制作经验库/workshop-distill/3844377158-SleepLagOptimizer.md",
+      "共享开发/模组制作经验库/workshop-distill/3845199370-PipelineController.md",
+      "共享开发/模组制作经验库/workshop-distill/3845671416-StorageControlTerminal.md",
+      "共享开发/模组制作经验库/workshop-distill/桥接器与开发框架两例.md",
+      "共享开发/模组制作经验库/workshop-distill/美术与角色模组三级形态与立绘包规格.md",
+      "工具库/templates/mod-patterns/HdCameraLease.cs",
+      "工具库/templates/mod-patterns/MachineManualSlot.cs",
+      "工具库/templates/mod-patterns/ReadyChain.cs"
+    ],
+    "EmporiumOption": [
+      "共享开发/模组制作经验库/12-立绘引擎与音画资源架构.md",
+      "工具库/templates/mod-patterns/HdCameraLease.cs"
+    ],
+    "EndOfDayUIManager": [
+      "共享开发/模组制作经验库/workshop-distill/3845754309-AIStoreManager.md",
+      "共享开发/模组制作经验库/workshop-distill/补充两例-调试面板与双人联机.md"
+    ],
+    "FontLoader": [
+      "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3832823827-ModConflictScanner.md"
+    ],
+    "GameGridInventory": [
+      "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3829206666-SmartInventoryArrange.md",
+      "共享开发/模组制作经验库/workshop-distill/3834649530-SmartArrangement.md",
+      "共享开发/模组制作经验库/workshop-distill/3844123767-ContainerLink.md",
+      "共享开发/模组制作经验库/workshop-distill/3844377158-SleepLagOptimizer.md",
+      "共享开发/模组制作经验库/workshop-distill/3845671416-StorageControlTerminal.md",
+      "共享开发/模组制作经验库/workshop-distill/UI深度扩展八例.md",
+      "共享开发/模组制作经验库/workshop-distill/玩法模块三例-职业拍卖灾难.md"
+    ],
+    "GameInventory": [
+      "共享开发/模组制作经验库/04-真机测试与探针.md",
+      "共享开发/模组制作经验库/09-模组架构与物品调用规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3829206666-SmartInventoryArrange.md",
+      "共享开发/模组制作经验库/workshop-distill/3829957165-PenQoL补丁表.md",
+      "共享开发/模组制作经验库/workshop-distill/3834649530-SmartArrangement.md",
+      "共享开发/模组制作经验库/workshop-distill/3844123767-ContainerLink.md",
+      "共享开发/模组制作经验库/workshop-distill/3844377158-SleepLagOptimizer.md",
+      "共享开发/模组制作经验库/workshop-distill/3845199370-PipelineController.md",
+      "共享开发/模组制作经验库/workshop-distill/3845671416-StorageControlTerminal.md",
+      "共享开发/模组制作经验库/workshop-distill/3846086230-ProgressBar.md",
+      "共享开发/模组制作经验库/workshop-distill/生产链与自动化四例.md"
+    ],
+    "GameItem": [
+      "共享开发/模组制作经验库/03-原版接口速查.md",
+      "共享开发/模组制作经验库/04-真机测试与探针.md",
+      "共享开发/模组制作经验库/07-踩坑台账.md",
+      "共享开发/模组制作经验库/09-模组架构与物品调用规范.md",
+      "共享开发/模组制作经验库/11-事件系统接入规范.md",
+      "共享开发/模组制作经验库/13-鉴定扩展与交互纸张规范.md",
+      "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md",
+      "共享开发/模组制作经验库/15-机器运行动画与雪碧图规范.md",
+      "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md",
+      "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "共享开发/开发流程与经验.md",
+      "共享开发/GLOSSARY.md",
+      "共享开发/模组制作经验库/workshop-distill/3828893950-DangpuPlus.md",
+      "共享开发/模组制作经验库/workshop-distill/3828902092-ElectronicsExpansion.md",
+      "共享开发/模组制作经验库/workshop-distill/3828909239-ProbablyMultiplayer.md",
+      "共享开发/模组制作经验库/workshop-distill/3828921912-AppraisalAssistant.md",
+      "共享开发/模组制作经验库/workshop-distill/3829012791-ItemSpawner.md",
+      "共享开发/模组制作经验库/workshop-distill/3829206666-SmartInventoryArrange.md",
+      "共享开发/模组制作经验库/workshop-distill/3829957165-PenQoL补丁表.md",
+      "共享开发/模组制作经验库/workshop-distill/3832823827-ModConflictScanner.md",
+      "共享开发/模组制作经验库/workshop-distill/3833966506-StationEvents.md",
+      "共享开发/模组制作经验库/workshop-distill/3834649530-SmartArrangement.md",
+      "共享开发/模组制作经验库/workshop-distill/3838944803-UpperLevels.md",
+      "共享开发/模组制作经验库/workshop-distill/3840533881-LagInspector.md",
+      "共享开发/模组制作经验库/workshop-distill/3841509159-ClaimsAndUprisings.md",
+      "共享开发/模组制作经验库/workshop-distill/3841909877-ProbablyExtendFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/3843892181-ValueCache.md",
+      "共享开发/模组制作经验库/workshop-distill/3844123767-ContainerLink.md",
+      "共享开发/模组制作经验库/workshop-distill/3844162371-Sakurazaki角色模组.md",
+      "共享开发/模组制作经验库/workshop-distill/3844377158-SleepLagOptimizer.md",
+      "共享开发/模组制作经验库/workshop-distill/3845199370-PipelineController.md",
+      "共享开发/模组制作经验库/workshop-distill/3845554726-DigitalVault.md",
+      "共享开发/模组制作经验库/workshop-distill/3845671416-StorageControlTerminal.md",
+      "共享开发/模组制作经验库/workshop-distill/3845680734-QiluoItemEditor.md",
+      "共享开发/模组制作经验库/workshop-distill/3845751834-SpriteHeal.md",
+      "共享开发/模组制作经验库/workshop-distill/3845754309-AIStoreManager.md",
+      "共享开发/模组制作经验库/workshop-distill/3846086230-ProgressBar.md",
+      "共享开发/模组制作经验库/workshop-distill/UI深度扩展八例.md",
+      "共享开发/模组制作经验库/workshop-distill/两类内容扩展-鉴定服务与零Patch养殖.md",
+      "共享开发/模组制作经验库/workshop-distill/事件与内容扩展四例.md",
+      "共享开发/模组制作经验库/workshop-distill/报纸配图与机器动画两标杆.md",
+      "共享开发/模组制作经验库/workshop-distill/机器改造与流体操作四例.md",
+      "共享开发/模组制作经验库/workshop-distill/玩法模块三例-职业拍卖灾难.md",
+      "共享开发/模组制作经验库/workshop-distill/生产链与自动化四例.md",
+      "共享开发/模组制作经验库/workshop-distill/金融与公司两个经济系统.md",
+      "工具库/templates/mod-patterns/EpochCache.cs",
+      "工具库/templates/mod-patterns/MachineManualSlot.cs",
+      "工具库/templates/mod-patterns/SpriteSheetMachineAnim.cs",
+      "工具库/templates/mod-patterns/TransientTagBoost.cs"
+    ],
+    "GameItemElement": [
+      "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md",
+      "共享开发/模组制作经验库/15-机器运行动画与雪碧图规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3840533881-LagInspector.md",
+      "共享开发/模组制作经验库/workshop-distill/3844377158-SleepLagOptimizer.md",
+      "共享开发/模组制作经验库/workshop-distill/3845554726-DigitalVault.md",
+      "共享开发/模组制作经验库/workshop-distill/3845751834-SpriteHeal.md",
+      "共享开发/模组制作经验库/workshop-distill/UI深度扩展八例.md",
+      "共享开发/模组制作经验库/workshop-distill/两类内容扩展-鉴定服务与零Patch养殖.md",
+      "共享开发/模组制作经验库/workshop-distill/报纸配图与机器动画两标杆.md",
+      "共享开发/模组制作经验库/workshop-distill/桥接器与开发框架两例.md",
+      "工具库/templates/mod-patterns/SpriteSheetMachineAnim.cs"
+    ],
+    "GameItemFunc": [
+      "共享开发/模组制作经验库/03-原版接口速查.md",
+      "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "共享开发/SKILL.md",
+      "共享开发/模组制作经验库/workshop-distill/3844377158-SleepLagOptimizer.md",
+      "共享开发/模组制作经验库/workshop-distill/3845199370-PipelineController.md",
+      "共享开发/模组制作经验库/workshop-distill/3845671416-StorageControlTerminal.md",
+      "共享开发/模组制作经验库/workshop-distill/3845680734-QiluoItemEditor.md"
+    ],
+    "GameSlotInventory": [
+      "共享开发/模组制作经验库/workshop-distill/3828902092-ElectronicsExpansion.md",
+      "共享开发/模组制作经验库/workshop-distill/3829957165-PenQoL补丁表.md",
+      "共享开发/模组制作经验库/workshop-distill/3844377158-SleepLagOptimizer.md",
+      "共享开发/模组制作经验库/workshop-distill/3845199370-PipelineController.md",
+      "共享开发/模组制作经验库/workshop-distill/机器改造与流体操作四例.md",
+      "工具库/templates/mod-patterns/MachineManualSlot.cs"
+    ],
+    "GeneralHelper": [
+      "共享开发/模组制作经验库/03-原版接口速查.md",
+      "共享开发/模组制作经验库/09-模组架构与物品调用规范.md",
+      "共享开发/模组制作经验库/18-夜晚外出区域与探索扩展规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3829012791-ItemSpawner.md",
+      "共享开发/模组制作经验库/workshop-distill/3834649530-SmartArrangement.md",
+      "共享开发/模组制作经验库/workshop-distill/3845671416-StorageControlTerminal.md",
+      "共享开发/模组制作经验库/workshop-distill/3845680734-QiluoItemEditor.md",
+      "共享开发/模组制作经验库/workshop-distill/3846086230-ProgressBar.md",
+      "工具库/templates/mod-patterns/SpriteSheetMachineAnim.cs"
+    ],
+    "GraphNodeStorage": [
+      "共享开发/模组制作经验库/workshop-distill/3841509159-ClaimsAndUprisings.md",
+      "共享开发/模组制作经验库/workshop-distill/3844123767-ContainerLink.md",
+      "共享开发/模组制作经验库/workshop-distill/3846086230-ProgressBar.md",
+      "工具库/templates/mod-patterns/MachineManualSlot.cs"
+    ],
+    "GraphUtils": [
+      "共享开发/模组制作经验库/03-原版接口速查.md",
+      "共享开发/模组制作经验库/04-真机测试与探针.md",
+      "共享开发/模组制作经验库/07-踩坑台账.md",
+      "共享开发/模组制作经验库/09-模组架构与物品调用规范.md",
+      "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md",
+      "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "共享开发/开发流程与经验.md",
+      "共享开发/模组制作经验库/workshop-distill/3828893950-DangpuPlus.md",
+      "共享开发/模组制作经验库/workshop-distill/3834649530-SmartArrangement.md",
+      "共享开发/模组制作经验库/workshop-distill/3845199370-PipelineController.md",
+      "共享开发/模组制作经验库/workshop-distill/3845671416-StorageControlTerminal.md",
+      "共享开发/模组制作经验库/workshop-distill/3845754309-AIStoreManager.md",
+      "共享开发/模组制作经验库/workshop-distill/3845965318-ZohFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/3846086230-ProgressBar.md",
+      "共享开发/模组制作经验库/workshop-distill/桥接器与开发框架两例.md",
+      "共享开发/模组制作经验库/workshop-distill/金融与公司两个经济系统.md",
+      "工具库/templates/mod-patterns/MachineManualSlot.cs"
+    ],
+    "GridShape": [
+      "共享开发/模组制作经验库/workshop-distill/3829206666-SmartInventoryArrange.md",
+      "共享开发/模组制作经验库/workshop-distill/3834649530-SmartArrangement.md"
+    ],
+    "GridShapeBuilder": [
+      "共享开发/模组制作经验库/workshop-distill/3829206666-SmartInventoryArrange.md",
+      "共享开发/模组制作经验库/workshop-distill/3834649530-SmartArrangement.md"
+    ],
+    "HydroponicHelper": [
+      "共享开发/模组制作经验库/workshop-distill/3845199370-PipelineController.md",
+      "共享开发/模组制作经验库/workshop-distill/机器改造与流体操作四例.md",
+      "工具库/templates/mod-patterns/TransientTagBoost.cs"
+    ],
+    "IMod": [
+      "共享开发/模组制作经验库/02-加载器与权限.md",
+      "共享开发/模组制作经验库/10-开发桥接器能力速查.md",
+      "共享开发/模组制作经验库/11-事件系统接入规范.md",
+      "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md",
+      "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md",
+      "共享开发/模组制作经验库/workshop-distill/3828902092-ElectronicsExpansion.md",
+      "共享开发/模组制作经验库/workshop-distill/3834649530-SmartArrangement.md",
+      "共享开发/模组制作经验库/workshop-distill/3841509159-ClaimsAndUprisings.md",
+      "共享开发/模组制作经验库/workshop-distill/3842773239-WildNetAPI.md",
+      "共享开发/模组制作经验库/workshop-distill/3845554726-DigitalVault.md",
+      "共享开发/模组制作经验库/workshop-distill/3845965318-ZohFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/桥接器与开发框架两例.md",
+      "共享开发/模组制作经验库/workshop-distill/美术与角色模组三级形态与立绘包规格.md",
+      "共享开发/模组制作经验库/workshop-distill/金融与公司两个经济系统.md"
+    ],
+    "InputActionHandler": [
+      "共享开发/模组制作经验库/workshop-distill/UI深度扩展八例.md",
+      "共享开发/模组制作经验库/workshop-distill/补充两例-调试面板与双人联机.md"
+    ],
+    "InputActionManager": [
+      "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md",
+      "共享开发/模组制作经验库/15-机器运行动画与雪碧图规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3828909239-ProbablyMultiplayer.md",
+      "共享开发/模组制作经验库/workshop-distill/3834649530-SmartArrangement.md",
+      "共享开发/模组制作经验库/workshop-distill/UI深度扩展八例.md",
+      "共享开发/模组制作经验库/workshop-distill/报纸配图与机器动画两标杆.md",
+      "共享开发/模组制作经验库/workshop-distill/补充两例-调试面板与双人联机.md",
+      "共享开发/模组制作经验库/workshop-distill/金融与公司两个经济系统.md",
+      "工具库/templates/mod-patterns/ModalInputGate.cs"
+    ],
+    "InspectionUIManager": [
+      "共享开发/模组制作经验库/02-加载器与权限.md",
+      "共享开发/模组制作经验库/04-真机测试与探针.md",
+      "共享开发/模组制作经验库/13-鉴定扩展与交互纸张规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3828921912-AppraisalAssistant.md",
+      "工具库/templates/mod-patterns/CustomInspectLens.cs"
+    ],
+    "ItemContextHandler": [
+      "共享开发/模组制作经验库/workshop-distill/3828921912-AppraisalAssistant.md",
+      "共享开发/模组制作经验库/workshop-distill/3829206666-SmartInventoryArrange.md",
+      "共享开发/模组制作经验库/workshop-distill/3834649530-SmartArrangement.md",
+      "共享开发/模组制作经验库/workshop-distill/3841909877-ProbablyExtendFramework.md"
+    ],
+    "ItemDirectory": [
+      "共享开发/模组制作经验库/09-模组架构与物品调用规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3845680734-QiluoItemEditor.md",
+      "共享开发/模组制作经验库/workshop-distill/生产链与自动化四例.md",
+      "共享开发/模组制作经验库/workshop-distill/金融与公司两个经济系统.md"
+    ],
+    "ItemFeature": [
+      "共享开发/模组制作经验库/03-原版接口速查.md",
+      "共享开发/模组制作经验库/04-真机测试与探针.md",
+      "共享开发/模组制作经验库/06-玩法与文案规范.md",
+      "共享开发/模组制作经验库/09-模组架构与物品调用规范.md",
+      "共享开发/开发流程与经验.md",
+      "共享开发/GLOSSARY.md",
+      "共享开发/模组制作经验库/workshop-distill/3829012791-ItemSpawner.md",
+      "共享开发/模组制作经验库/workshop-distill/3841509159-ClaimsAndUprisings.md",
+      "共享开发/模组制作经验库/workshop-distill/3843892181-ValueCache.md",
+      "共享开发/模组制作经验库/workshop-distill/3845554726-DigitalVault.md",
+      "共享开发/模组制作经验库/workshop-distill/3845680734-QiluoItemEditor.md",
+      "共享开发/模组制作经验库/workshop-distill/UI深度扩展八例.md",
+      "共享开发/模组制作经验库/workshop-distill/两类内容扩展-鉴定服务与零Patch养殖.md"
+    ],
+    "ItemMouseDragHandler": [
+      "共享开发/模组制作经验库/09-模组架构与物品调用规范.md",
+      "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md",
+      "共享开发/模组制作经验库/workshop-distill/3829206666-SmartInventoryArrange.md",
+      "共享开发/模组制作经验库/workshop-distill/3829957165-PenQoL补丁表.md"
+    ],
+    "ItemMultiSelectHandler": [
+      "共享开发/模组制作经验库/09-模组架构与物品调用规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3828893950-DangpuPlus.md",
+      "共享开发/模组制作经验库/workshop-distill/3829206666-SmartInventoryArrange.md",
+      "共享开发/模组制作经验库/workshop-distill/3829957165-PenQoL补丁表.md",
+      "共享开发/模组制作经验库/workshop-distill/3844123767-ContainerLink.md"
+    ],
+    "ItemSpawner": [
+      "共享开发/模组制作经验库/04-真机测试与探针.md",
+      "共享开发/模组制作经验库/09-模组架构与物品调用规范.md",
+      "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md",
+      "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "共享开发/开发流程与经验.md",
+      "共享开发/模组制作经验库/workshop-distill/3845680734-QiluoItemEditor.md"
+    ],
+    "ItemSpawnerHiddenList": [
+      "共享开发/模组制作经验库/09-模组架构与物品调用规范.md",
+      "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md"
+    ],
+    "Liquid": [
+      "共享开发/模组制作经验库/03-原版接口速查.md",
+      "共享开发/模组制作经验库/07-踩坑台账.md",
+      "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md",
+      "共享开发/模组制作经验库/workshop-distill/3844377158-SleepLagOptimizer.md",
+      "共享开发/模组制作经验库/workshop-distill/3845556624+3845895085-文字层逆向.md",
+      "共享开发/模组制作经验库/workshop-distill/机器改造与流体操作四例.md"
+    ],
+    "LoadedMod": [
+      "共享开发/模组制作经验库/02-加载器与权限.md",
+      "共享开发/模组制作经验库/03-原版接口速查.md",
+      "共享开发/模组制作经验库/15-机器运行动画与雪碧图规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3829012791-ItemSpawner.md",
+      "共享开发/模组制作经验库/workshop-distill/3832823827-ModConflictScanner.md",
+      "共享开发/模组制作经验库/workshop-distill/3841509159-ClaimsAndUprisings.md",
+      "共享开发/模组制作经验库/workshop-distill/3841909877-ProbablyExtendFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/3844162371-Sakurazaki角色模组.md",
+      "共享开发/模组制作经验库/workshop-distill/3845751834-SpriteHeal.md",
+      "共享开发/模组制作经验库/workshop-distill/3845754309-AIStoreManager.md",
+      "共享开发/模组制作经验库/workshop-distill/报纸配图与机器动画两标杆.md",
+      "共享开发/模组制作经验库/workshop-distill/模组列表管理五例.md",
+      "共享开发/模组制作经验库/workshop-distill/美术与角色模组三级形态与立绘包规格.md",
+      "工具库/templates/mod-patterns/NewspaperArtHelper.cs",
+      "工具库/templates/mod-patterns/SafeSpriteHelper.cs",
+      "工具库/templates/mod-patterns/SpriteSheetMachineAnim.cs"
+    ],
+    "LocHelper": [
+      "共享开发/模组制作经验库/07-踩坑台账.md",
+      "共享开发/模组制作经验库/12-立绘引擎与音画资源架构.md",
+      "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md",
+      "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3829012791-ItemSpawner.md",
+      "共享开发/模组制作经验库/workshop-distill/3832823827-ModConflictScanner.md",
+      "共享开发/模组制作经验库/workshop-distill/3838944803-UpperLevels.md",
+      "共享开发/模组制作经验库/workshop-distill/3845556624+3845895085-文字层逆向.md",
+      "共享开发/模组制作经验库/workshop-distill/3846086230-ProgressBar.md"
+    ],
+    "MachineHelper": [
+      "共享开发/模组制作经验库/03-原版接口速查.md",
+      "共享开发/模组制作经验库/15-机器运行动画与雪碧图规范.md",
+      "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3845199370-PipelineController.md",
+      "共享开发/模组制作经验库/workshop-distill/3845554726-DigitalVault.md",
+      "共享开发/模组制作经验库/workshop-distill/3846086230-ProgressBar.md",
+      "共享开发/模组制作经验库/workshop-distill/报纸配图与机器动画两标杆.md",
+      "共享开发/模组制作经验库/workshop-distill/机器改造与流体操作四例.md",
+      "共享开发/模组制作经验库/workshop-distill/生产链与自动化四例.md"
+    ],
+    "MachineMoistureFarm": [
+      "共享开发/模组制作经验库/workshop-distill/机器改造与流体操作四例.md",
+      "工具库/templates/mod-patterns/TransientTagBoost.cs"
+    ],
+    "MachineProgressHelper": [
+      "共享开发/模组制作经验库/03-原版接口速查.md",
+      "共享开发/模组制作经验库/04-真机测试与探针.md",
+      "共享开发/模组制作经验库/workshop-distill/机器改造与流体操作四例.md",
+      "工具库/templates/mod-patterns/TransientTagBoost.cs"
+    ],
+    "MachineWineRack": [
+      "共享开发/模组制作经验库/workshop-distill/机器改造与流体操作四例.md",
+      "共享开发/模组制作经验库/workshop-distill/生产链与自动化四例.md"
+    ],
+    "MachineryButton": [
+      "共享开发/模组制作经验库/workshop-distill/3829957165-PenQoL补丁表.md",
+      "共享开发/模组制作经验库/workshop-distill/3844123767-ContainerLink.md"
+    ],
+    "MachineryHelper": [
+      "共享开发/模组制作经验库/workshop-distill/机器改造与流体操作四例.md",
+      "工具库/templates/mod-patterns/TransientTagBoost.cs"
+    ],
+    "MapUIManager": [
+      "共享开发/模组制作经验库/09-模组架构与物品调用规范.md",
+      "共享开发/模组制作经验库/18-夜晚外出区域与探索扩展规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3828909239-ProbablyMultiplayer.md",
+      "共享开发/模组制作经验库/workshop-distill/3838944803-UpperLevels.md",
+      "共享开发/模组制作经验库/workshop-distill/3845754309-AIStoreManager.md",
+      "共享开发/模组制作经验库/workshop-distill/美术与角色模组三级形态与立绘包规格.md",
+      "工具库/templates/mod-patterns/ReadyChain.cs"
+    ],
+    "ModConfigWindow": [
+      "共享开发/模组制作经验库/workshop-distill/3841909877-ProbablyExtendFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/UI深度扩展八例.md",
+      "共享开发/模组制作经验库/workshop-distill/报纸配图与机器动画两标杆.md"
+    ],
+    "ModElement": [
+      "共享开发/模组制作经验库/workshop-distill/3832823827-ModConflictScanner.md",
+      "共享开发/模组制作经验库/workshop-distill/模组列表管理五例.md"
+    ],
+    "ModHelper": [
+      "共享开发/模组制作经验库/03-原版接口速查.md",
+      "共享开发/模组制作经验库/07-踩坑台账.md",
+      "共享开发/模组制作经验库/11-事件系统接入规范.md",
+      "共享开发/模组制作经验库/12-立绘引擎与音画资源架构.md",
+      "共享开发/模组制作经验库/13-鉴定扩展与交互纸张规范.md",
+      "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md",
+      "共享开发/模组制作经验库/16-报纸事件配图与BetterNewspapers规范.md",
+      "共享开发/模组制作经验库/18-夜晚外出区域与探索扩展规范.md",
+      "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md",
+      "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "共享开发/SKILL.md",
+      "共享开发/模组制作经验库/workshop-distill/3828893950-DangpuPlus.md",
+      "共享开发/模组制作经验库/workshop-distill/3828902092-ElectronicsExpansion.md",
+      "共享开发/模组制作经验库/workshop-distill/3828909239-ProbablyMultiplayer.md",
+      "共享开发/模组制作经验库/workshop-distill/3828921912-AppraisalAssistant.md",
+      "共享开发/模组制作经验库/workshop-distill/3829206666-SmartInventoryArrange.md",
+      "共享开发/模组制作经验库/workshop-distill/3829957165-PenQoL补丁表.md",
+      "共享开发/模组制作经验库/workshop-distill/3833966506-StationEvents.md",
+      "共享开发/模组制作经验库/workshop-distill/3834649530-SmartArrangement.md",
+      "共享开发/模组制作经验库/workshop-distill/3838944803-UpperLevels.md",
+      "共享开发/模组制作经验库/workshop-distill/3840533881-LagInspector.md",
+      "共享开发/模组制作经验库/workshop-distill/3841509159-ClaimsAndUprisings.md",
+      "共享开发/模组制作经验库/workshop-distill/3841909877-ProbablyExtendFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/3841912659-ExtendFrameworkFiles.md",
+      "共享开发/模组制作经验库/workshop-distill/3842773239-WildNetAPI.md",
+      "共享开发/模组制作经验库/workshop-distill/3844162371-Sakurazaki角色模组.md",
+      "共享开发/模组制作经验库/workshop-distill/3845554726-DigitalVault.md",
+      "共享开发/模组制作经验库/workshop-distill/3845671416-StorageControlTerminal.md",
+      "共享开发/模组制作经验库/workshop-distill/3845754309-AIStoreManager.md",
+      "共享开发/模组制作经验库/workshop-distill/3845965318-ZohFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/两类内容扩展-鉴定服务与零Patch养殖.md",
+      "共享开发/模组制作经验库/workshop-distill/事件与内容扩展四例.md",
+      "共享开发/模组制作经验库/workshop-distill/报纸配图与机器动画两标杆.md",
+      "共享开发/模组制作经验库/workshop-distill/桥接器与开发框架两例.md",
+      "共享开发/模组制作经验库/workshop-distill/模组列表管理五例.md",
+      "共享开发/模组制作经验库/workshop-distill/玩法模块三例-职业拍卖灾难.md",
+      "共享开发/模组制作经验库/workshop-distill/美术与角色模组三级形态与立绘包规格.md",
+      "共享开发/模组制作经验库/workshop-distill/补充两例-调试面板与双人联机.md",
+      "共享开发/模组制作经验库/workshop-distill/金融与公司两个经济系统.md",
+      "工具库/templates/mod-patterns/Es3SafePersistence.cs",
+      "工具库/templates/mod-patterns/ModDataInbox.cs"
+    ],
+    "ModHook": [
+      "共享开发/模组制作经验库/03-原版接口速查.md",
+      "共享开发/模组制作经验库/11-事件系统接入规范.md",
+      "共享开发/模组制作经验库/12-立绘引擎与音画资源架构.md",
+      "共享开发/模组制作经验库/13-鉴定扩展与交互纸张规范.md",
+      "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md",
+      "共享开发/模组制作经验库/18-夜晚外出区域与探索扩展规范.md",
+      "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md",
+      "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "共享开发/开发流程与经验.md",
+      "共享开发/GLOSSARY.md",
+      "共享开发/SKILL.md",
+      "共享开发/模组制作经验库/workshop-distill/3828893950-DangpuPlus.md",
+      "共享开发/模组制作经验库/workshop-distill/3828902092-ElectronicsExpansion.md",
+      "共享开发/模组制作经验库/workshop-distill/3829957165-PenQoL补丁表.md",
+      "共享开发/模组制作经验库/workshop-distill/3832823827-ModConflictScanner.md",
+      "共享开发/模组制作经验库/workshop-distill/3838944803-UpperLevels.md",
+      "共享开发/模组制作经验库/workshop-distill/3841509159-ClaimsAndUprisings.md",
+      "共享开发/模组制作经验库/workshop-distill/3841909877-ProbablyExtendFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/3842773239-WildNetAPI.md",
+      "共享开发/模组制作经验库/workshop-distill/3844162371-Sakurazaki角色模组.md",
+      "共享开发/模组制作经验库/workshop-distill/3845554726-DigitalVault.md",
+      "共享开发/模组制作经验库/workshop-distill/3845556624+3845895085-文字层逆向.md",
+      "共享开发/模组制作经验库/workshop-distill/3845671416-StorageControlTerminal.md",
+      "共享开发/模组制作经验库/workshop-distill/3845965318-ZohFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/3846086230-ProgressBar.md",
+      "共享开发/模组制作经验库/workshop-distill/UI深度扩展八例.md",
+      "共享开发/模组制作经验库/workshop-distill/两类内容扩展-鉴定服务与零Patch养殖.md",
+      "共享开发/模组制作经验库/workshop-distill/事件与内容扩展四例.md",
+      "共享开发/模组制作经验库/workshop-distill/报纸配图与机器动画两标杆.md",
+      "共享开发/模组制作经验库/workshop-distill/机器改造与流体操作四例.md",
+      "共享开发/模组制作经验库/workshop-distill/桥接器与开发框架两例.md",
+      "共享开发/模组制作经验库/workshop-distill/模组列表管理五例.md",
+      "共享开发/模组制作经验库/workshop-distill/玩法模块三例-职业拍卖灾难.md",
+      "共享开发/模组制作经验库/workshop-distill/生产链与自动化四例.md",
+      "共享开发/模组制作经验库/workshop-distill/美术与角色模组三级形态与立绘包规格.md",
+      "共享开发/模组制作经验库/workshop-distill/补充两例-调试面板与双人联机.md",
+      "共享开发/模组制作经验库/workshop-distill/金融与公司两个经济系统.md",
+      "工具库/templates/mod-patterns/MachineManualSlot.cs",
+      "工具库/templates/mod-patterns/SafeSpriteHelper.cs"
+    ],
+    "ModLoader": [
+      "共享开发/模组制作经验库/02-加载器与权限.md",
+      "共享开发/模组制作经验库/03-原版接口速查.md",
+      "共享开发/模组制作经验库/07-踩坑台账.md",
+      "共享开发/模组制作经验库/08-立绘接入与PortraitStudio.md",
+      "共享开发/模组制作经验库/09-模组架构与物品调用规范.md",
+      "共享开发/模组制作经验库/12-立绘引擎与音画资源架构.md",
+      "共享开发/模组制作经验库/13-鉴定扩展与交互纸张规范.md",
+      "共享开发/模组制作经验库/15-机器运行动画与雪碧图规范.md",
+      "共享开发/模组制作经验库/16-报纸事件配图与BetterNewspapers规范.md",
+      "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "共享开发/开发流程与经验.md",
+      "共享开发/模组制作经验库/workshop-distill/3828902092-ElectronicsExpansion.md",
+      "共享开发/模组制作经验库/workshop-distill/3829012791-ItemSpawner.md",
+      "共享开发/模组制作经验库/workshop-distill/3832823827-ModConflictScanner.md",
+      "共享开发/模组制作经验库/workshop-distill/3840533881-LagInspector.md",
+      "共享开发/模组制作经验库/workshop-distill/3841509159-ClaimsAndUprisings.md",
+      "共享开发/模组制作经验库/workshop-distill/3841909877-ProbablyExtendFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/3841912659-ExtendFrameworkFiles.md",
+      "共享开发/模组制作经验库/workshop-distill/3845556624+3845895085-文字层逆向.md",
+      "共享开发/模组制作经验库/workshop-distill/3845751834-SpriteHeal.md",
+      "共享开发/模组制作经验库/workshop-distill/3845965318-ZohFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/报纸配图与机器动画两标杆.md",
+      "共享开发/模组制作经验库/workshop-distill/桥接器与开发框架两例.md",
+      "共享开发/模组制作经验库/workshop-distill/模组列表管理五例.md",
+      "共享开发/模组制作经验库/workshop-distill/美术与角色模组三级形态与立绘包规格.md",
+      "工具库/templates/mod-patterns/NewspaperArtHelper.cs",
+      "工具库/templates/mod-patterns/SpriteSheetMachineAnim.cs"
+    ],
+    "ModLog": [
+      "共享开发/模组制作经验库/workshop-distill/3844123767-ContainerLink.md",
+      "共享开发/模组制作经验库/workshop-distill/3845556624+3845895085-文字层逆向.md",
+      "共享开发/模组制作经验库/workshop-distill/模组列表管理五例.md"
+    ],
+    "ModReflect": [
+      "共享开发/模组制作经验库/13-鉴定扩展与交互纸张规范.md",
+      "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md",
+      "共享开发/模组制作经验库/16-报纸事件配图与BetterNewspapers规范.md",
+      "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md",
+      "共享开发/模组制作经验库/workshop-distill/3841909877-ProbablyExtendFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/3844123767-ContainerLink.md",
+      "共享开发/模组制作经验库/workshop-distill/3845671416-StorageControlTerminal.md",
+      "共享开发/模组制作经验库/workshop-distill/3845754309-AIStoreManager.md",
+      "共享开发/模组制作经验库/workshop-distill/模组列表管理五例.md",
+      "共享开发/模组制作经验库/workshop-distill/补充两例-调试面板与双人联机.md"
+    ],
+    "ModScanner": [
+      "共享开发/模组制作经验库/01-环境与工具链.md",
+      "共享开发/模组制作经验库/02-加载器与权限.md",
+      "共享开发/模组制作经验库/09-模组架构与物品调用规范.md",
+      "共享开发/模组制作经验库/10-开发桥接器能力速查.md",
+      "共享开发/模组制作经验库/17-工坊发布与SteamUGC上传.md",
+      "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "共享开发/GLOSSARY.md",
+      "共享开发/模组制作经验库/workshop-distill/3832823827-ModConflictScanner.md",
+      "共享开发/模组制作经验库/workshop-distill/3841909877-ProbablyExtendFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/桥接器与开发框架两例.md",
+      "共享开发/模组制作经验库/workshop-distill/模组列表管理五例.md",
+      "共享开发/模组制作经验库/workshop-distill/美术与角色模组三级形态与立绘包规格.md",
+      "工具库/templates/mod-patterns/ModDataInbox.cs"
+    ],
+    "ModUIManager": [
+      "共享开发/模组制作经验库/workshop-distill/3832823827-ModConflictScanner.md",
+      "共享开发/模组制作经验库/workshop-distill/报纸配图与机器动画两标杆.md",
+      "共享开发/模组制作经验库/workshop-distill/模组列表管理五例.md"
+    ],
+    "NegociationData": [
+      "共享开发/模组制作经验库/workshop-distill/3833966506-StationEvents.md",
+      "共享开发/模组制作经验库/workshop-distill/3843892181-ValueCache.md",
+      "共享开发/模组制作经验库/workshop-distill/玩法模块三例-职业拍卖灾难.md",
+      "共享开发/模组制作经验库/workshop-distill/金融与公司两个经济系统.md",
+      "工具库/templates/mod-patterns/EpochCache.cs"
+    ],
+    "NegociationUIManager": [
+      "共享开发/模组制作经验库/13-鉴定扩展与交互纸张规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3828909239-ProbablyMultiplayer.md",
+      "共享开发/模组制作经验库/workshop-distill/3840533881-LagInspector.md",
+      "共享开发/模组制作经验库/workshop-distill/3845754309-AIStoreManager.md"
+    ],
+    "NetworkUpgrade": [
+      "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md",
+      "共享开发/模组制作经验库/workshop-distill/3842773239-WildNetAPI.md"
+    ],
+    "NewGameData": [
+      "共享开发/模组制作经验库/13-鉴定扩展与交互纸张规范.md",
+      "共享开发/模组制作经验库/workshop-distill/模组列表管理五例.md"
+    ],
+    "NewsUIManager": [
+      "共享开发/模组制作经验库/07-踩坑台账.md",
+      "共享开发/模组制作经验库/11-事件系统接入规范.md",
+      "共享开发/模组制作经验库/16-报纸事件配图与BetterNewspapers规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3833966506-StationEvents.md",
+      "共享开发/模组制作经验库/workshop-distill/报纸配图与机器动画两标杆.md",
+      "工具库/templates/mod-patterns/NewspaperArtHelper.cs"
+    ],
+    "PixelWindow": [
+      "共享开发/模组制作经验库/04-真机测试与探针.md",
+      "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "共享开发/开发流程与经验.md",
+      "共享开发/模组制作经验库/workshop-distill/3828893950-DangpuPlus.md",
+      "共享开发/模组制作经验库/workshop-distill/3829957165-PenQoL补丁表.md",
+      "共享开发/模组制作经验库/workshop-distill/3844123767-ContainerLink.md",
+      "共享开发/模组制作经验库/workshop-distill/UI深度扩展八例.md",
+      "工具库/templates/mod-patterns/MachineManualSlot.cs"
+    ],
+    "PlayerStore": [
+      "共享开发/模组制作经验库/03-原版接口速查.md",
+      "共享开发/模组制作经验库/07-踩坑台账.md",
+      "共享开发/模组制作经验库/09-模组架构与物品调用规范.md",
+      "共享开发/模组制作经验库/11-事件系统接入规范.md",
+      "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md",
+      "共享开发/模组制作经验库/15-机器运行动画与雪碧图规范.md",
+      "共享开发/模组制作经验库/18-夜晚外出区域与探索扩展规范.md",
+      "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md",
+      "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "共享开发/开发流程与经验.md",
+      "共享开发/模组制作经验库/workshop-distill/3828893950-DangpuPlus.md",
+      "共享开发/模组制作经验库/workshop-distill/3828902092-ElectronicsExpansion.md",
+      "共享开发/模组制作经验库/workshop-distill/3828909239-ProbablyMultiplayer.md",
+      "共享开发/模组制作经验库/workshop-distill/3829957165-PenQoL补丁表.md",
+      "共享开发/模组制作经验库/workshop-distill/3832823827-ModConflictScanner.md",
+      "共享开发/模组制作经验库/workshop-distill/3833966506-StationEvents.md",
+      "共享开发/模组制作经验库/workshop-distill/3838944803-UpperLevels.md",
+      "共享开发/模组制作经验库/workshop-distill/3840533881-LagInspector.md",
+      "共享开发/模组制作经验库/workshop-distill/3841509159-ClaimsAndUprisings.md",
+      "共享开发/模组制作经验库/workshop-distill/3841909877-ProbablyExtendFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/3843892181-ValueCache.md",
+      "共享开发/模组制作经验库/workshop-distill/3844123767-ContainerLink.md",
+      "共享开发/模组制作经验库/workshop-distill/3844162371-Sakurazaki角色模组.md",
+      "共享开发/模组制作经验库/workshop-distill/3844377158-SleepLagOptimizer.md",
+      "共享开发/模组制作经验库/workshop-distill/3845554726-DigitalVault.md",
+      "共享开发/模组制作经验库/workshop-distill/3845680734-QiluoItemEditor.md",
+      "共享开发/模组制作经验库/workshop-distill/3845965318-ZohFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/3846086230-ProgressBar.md",
+      "共享开发/模组制作经验库/workshop-distill/两类内容扩展-鉴定服务与零Patch养殖.md",
+      "共享开发/模组制作经验库/workshop-distill/事件与内容扩展四例.md",
+      "共享开发/模组制作经验库/workshop-distill/桥接器与开发框架两例.md",
+      "共享开发/模组制作经验库/workshop-distill/模组列表管理五例.md",
+      "共享开发/模组制作经验库/workshop-distill/玩法模块三例-职业拍卖灾难.md",
+      "共享开发/模组制作经验库/workshop-distill/生产链与自动化四例.md",
+      "共享开发/模组制作经验库/workshop-distill/美术与角色模组三级形态与立绘包规格.md",
+      "共享开发/模组制作经验库/workshop-distill/补充两例-调试面板与双人联机.md",
+      "共享开发/模组制作经验库/workshop-distill/金融与公司两个经济系统.md",
+      "工具库/templates/mod-patterns/EpochCache.cs",
+      "工具库/templates/mod-patterns/ReadyChain.cs"
+    ],
+    "PowerHelper": [
+      "共享开发/模组制作经验库/15-机器运行动画与雪碧图规范.md",
+      "共享开发/模组制作经验库/workshop-distill/金融与公司两个经济系统.md"
+    ],
+    "RNG": [
+      "共享开发/模组制作经验库/10-开发桥接器能力速查.md",
+      "共享开发/模组制作经验库/11-事件系统接入规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3833966506-StationEvents.md",
+      "共享开发/模组制作经验库/workshop-distill/3844162371-Sakurazaki角色模组.md"
+    ],
+    "RenderHandler": [
+      "共享开发/模组制作经验库/07-踩坑台账.md",
+      "共享开发/模组制作经验库/13-鉴定扩展与交互纸张规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3832823827-ModConflictScanner.md",
+      "共享开发/模组制作经验库/workshop-distill/3845554726-DigitalVault.md"
+    ],
+    "RichTextBuilder": [
+      "共享开发/模组制作经验库/13-鉴定扩展与交互纸张规范.md",
+      "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md",
+      "共享开发/模组制作经验库/workshop-distill/3845680734-QiluoItemEditor.md",
+      "共享开发/模组制作经验库/workshop-distill/UI深度扩展八例.md",
+      "共享开发/模组制作经验库/workshop-distill/桥接器与开发框架两例.md"
+    ],
+    "SaveManager": [
+      "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md",
+      "共享开发/模组制作经验库/workshop-distill/3828893950-DangpuPlus.md",
+      "共享开发/模组制作经验库/workshop-distill/3841509159-ClaimsAndUprisings.md",
+      "共享开发/模组制作经验库/workshop-distill/3845199370-PipelineController.md",
+      "共享开发/模组制作经验库/workshop-distill/3845554726-DigitalVault.md",
+      "共享开发/模组制作经验库/workshop-distill/3845680734-QiluoItemEditor.md",
+      "共享开发/模组制作经验库/workshop-distill/机器改造与流体操作四例.md",
+      "工具库/templates/mod-patterns/TransientTagBoost.cs"
+    ],
+    "SaveState": [
+      "共享开发/模组制作经验库/workshop-distill/3845554726-DigitalVault.md",
+      "共享开发/模组制作经验库/workshop-distill/3846086230-ProgressBar.md"
+    ],
+    "SaveUIManager": [
+      "共享开发/模组制作经验库/workshop-distill/模组列表管理五例.md",
+      "共享开发/模组制作经验库/workshop-distill/补充两例-调试面板与双人联机.md"
+    ],
+    "SlotMarker": [
+      "共享开发/模组制作经验库/workshop-distill/3829206666-SmartInventoryArrange.md",
+      "共享开发/模组制作经验库/workshop-distill/3840533881-LagInspector.md",
+      "共享开发/模组制作经验库/workshop-distill/3844377158-SleepLagOptimizer.md",
+      "共享开发/模组制作经验库/workshop-distill/3845671416-StorageControlTerminal.md"
+    ],
+    "SpriteAnimationHelper": [
+      "共享开发/模组制作经验库/15-机器运行动画与雪碧图规范.md",
+      "工具库/templates/mod-patterns/SpriteSheetMachineAnim.cs"
+    ],
+    "SpriteDict": [
+      "共享开发/模组制作经验库/07-踩坑台账.md",
+      "共享开发/模组制作经验库/08-立绘接入与PortraitStudio.md",
+      "共享开发/模组制作经验库/12-立绘引擎与音画资源架构.md",
+      "共享开发/模组制作经验库/workshop-distill/3832823827-ModConflictScanner.md",
+      "共享开发/模组制作经验库/workshop-distill/3841909877-ProbablyExtendFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/3844162371-Sakurazaki角色模组.md",
+      "共享开发/模组制作经验库/workshop-distill/3845965318-ZohFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/美术与角色模组三级形态与立绘包规格.md"
+    ],
+    "SpriteHelper": [
+      "共享开发/模组制作经验库/20-各类模组制作规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3846086230-ProgressBar.md"
+    ],
+    "Station": [
+      "共享开发/模组制作经验库/11-事件系统接入规范.md",
+      "共享开发/模组制作经验库/19-工坊模组逆向与蒸馏.md",
+      "共享开发/模组制作经验库/workshop-distill/生产链与自动化四例.md",
+      "工具库/templates/mod-patterns/Es3SafePersistence.cs"
+    ],
+    "StoreBell": [
+      "共享开发/模组制作经验库/04-真机测试与探针.md",
+      "共享开发/模组制作经验库/10-开发桥接器能力速查.md"
+    ],
+    "StoreClient": [
+      "共享开发/模组制作经验库/03-原版接口速查.md",
+      "共享开发/模组制作经验库/07-踩坑台账.md",
+      "共享开发/模组制作经验库/08-立绘接入与PortraitStudio.md",
+      "共享开发/模组制作经验库/12-立绘引擎与音画资源架构.md",
+      "共享开发/模组制作经验库/workshop-distill/3828909239-ProbablyMultiplayer.md",
+      "共享开发/模组制作经验库/workshop-distill/3833966506-StationEvents.md",
+      "共享开发/模组制作经验库/workshop-distill/3840533881-LagInspector.md",
+      "共享开发/模组制作经验库/workshop-distill/3844162371-Sakurazaki角色模组.md",
+      "共享开发/模组制作经验库/workshop-distill/3845965318-ZohFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/玩法模块三例-职业拍卖灾难.md"
+    ],
+    "StoreClientListDict": [
+      "共享开发/模组制作经验库/workshop-distill/3844162371-Sakurazaki角色模组.md",
+      "共享开发/模组制作经验库/workshop-distill/3845965318-ZohFramework.md"
+    ],
+    "StoreClientManager": [
+      "共享开发/模组制作经验库/11-事件系统接入规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3828909239-ProbablyMultiplayer.md",
+      "共享开发/模组制作经验库/workshop-distill/3838944803-UpperLevels.md",
+      "共享开发/模组制作经验库/workshop-distill/3840533881-LagInspector.md"
+    ],
+    "StoreEvent": [
+      "共享开发/模组制作经验库/11-事件系统接入规范.md",
+      "共享开发/模组制作经验库/16-报纸事件配图与BetterNewspapers规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3833966506-StationEvents.md",
+      "共享开发/模组制作经验库/workshop-distill/事件与内容扩展四例.md",
+      "共享开发/模组制作经验库/workshop-distill/报纸配图与机器动画两标杆.md",
+      "共享开发/模组制作经验库/workshop-distill/玩法模块三例-职业拍卖灾难.md",
+      "共享开发/模组制作经验库/workshop-distill/金融与公司两个经济系统.md",
+      "工具库/templates/mod-patterns/EpochCache.cs",
+      "工具库/templates/mod-patterns/Es3SafePersistence.cs"
+    ],
+    "StoreEventActionDict": [
+      "共享开发/模组制作经验库/11-事件系统接入规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3833966506-StationEvents.md"
+    ],
+    "StoreEventBlueprint": [
+      "共享开发/模组制作经验库/11-事件系统接入规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3833966506-StationEvents.md",
+      "共享开发/模组制作经验库/workshop-distill/事件与内容扩展四例.md"
+    ],
+    "StoreEventManager": [
+      "共享开发/模组制作经验库/11-事件系统接入规范.md",
+      "共享开发/模组制作经验库/14-模组高级编程架构与工程模式.md",
+      "共享开发/模组制作经验库/workshop-distill/3833966506-StationEvents.md",
+      "共享开发/模组制作经验库/workshop-distill/3843892181-ValueCache.md",
+      "共享开发/模组制作经验库/workshop-distill/事件与内容扩展四例.md",
+      "共享开发/模组制作经验库/workshop-distill/玩法模块三例-职业拍卖灾难.md",
+      "共享开发/模组制作经验库/workshop-distill/金融与公司两个经济系统.md",
+      "工具库/templates/mod-patterns/EpochCache.cs",
+      "工具库/templates/mod-patterns/Es3SafePersistence.cs"
+    ],
+    "StoreReputation": [
+      "共享开发/模组制作经验库/workshop-distill/3840533881-LagInspector.md",
+      "共享开发/模组制作经验库/workshop-distill/3845965318-ZohFramework.md",
+      "共享开发/模组制作经验库/workshop-distill/玩法模块三例-职业拍卖灾难.md"
+    ],
+    "StoreShutterButton": [
+      "共享开发/模组制作经验库/04-真机测试与探针.md",
+      "共享开发/模组制作经验库/10-开发桥接器能力速查.md",
+      "共享开发/模组制作经验库/workshop-distill/事件与内容扩展四例.md"
+    ],
+    "StoreStation": [
+      "共享开发/模组制作经验库/11-事件系统接入规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3843892181-ValueCache.md",
+      "工具库/templates/mod-patterns/EpochCache.cs"
+    ],
+    "StoreUIManager": [
+      "共享开发/模组制作经验库/07-踩坑台账.md",
+      "共享开发/模组制作经验库/workshop-distill/3828893950-DangpuPlus.md",
+      "共享开发/模组制作经验库/workshop-distill/3829012791-ItemSpawner.md",
+      "共享开发/模组制作经验库/workshop-distill/3829957165-PenQoL补丁表.md",
+      "共享开发/模组制作经验库/workshop-distill/3841509159-ClaimsAndUprisings.md",
+      "共享开发/模组制作经验库/workshop-distill/美术与角色模组三级形态与立绘包规格.md",
+      "共享开发/模组制作经验库/workshop-distill/金融与公司两个经济系统.md",
+      "工具库/templates/mod-patterns/ReadyChain.cs"
+    ],
+    "TagState": [
+      "共享开发/模组制作经验库/workshop-distill/3844123767-ContainerLink.md",
+      "共享开发/模组制作经验库/workshop-distill/3845671416-StorageControlTerminal.md",
+      "共享开发/模组制作经验库/workshop-distill/3845680734-QiluoItemEditor.md"
+    ],
+    "TagSystem": [
+      "共享开发/模组制作经验库/15-机器运行动画与雪碧图规范.md",
+      "共享开发/模组制作经验库/workshop-distill/3845680734-QiluoItemEditor.md"
+    ],
+    "TreeNodeRender": [
+      "共享开发/模组制作经验库/workshop-distill/3829206666-SmartInventoryArrange.md",
+      "共享开发/模组制作经验库/workshop-distill/UI深度扩展八例.md"
+    ],
+    "WaterHelper": [
+      "共享开发/模组制作经验库/03-原版接口速查.md",
+      "共享开发/模组制作经验库/workshop-distill/3828893950-DangpuPlus.md",
+      "共享开发/模组制作经验库/workshop-distill/3844377158-SleepLagOptimizer.md",
+      "共享开发/模组制作经验库/workshop-distill/机器改造与流体操作四例.md",
+      "共享开发/模组制作经验库/workshop-distill/生产链与自动化四例.md"
+    ]
+  }
+}

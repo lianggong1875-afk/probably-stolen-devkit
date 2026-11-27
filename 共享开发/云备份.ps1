@@ -25,7 +25,12 @@ param(
     [ValidateSet('all', 'devkit', 'arcade', 'pawn')]
     [string]$Target = 'all',
 
-    [switch]$DryRun
+    [switch]$DryRun,
+
+    # 要同步的工作区分支（默认 main）。云端会建立同名分支：
+    #   -Branch main            → 推云端 main（原有行为）
+    #   -Branch feat/arcade-xxx → 推云端 feat/arcade-xxx，本地分支一开就能有异地副本
+    [string]$Branch = 'main'
 )
 
 $ErrorActionPreference = 'Continue'
@@ -71,8 +76,8 @@ function Sync-Devkit {
     Get-ChildItem -LiteralPath $dir -Force | Where-Object { $_.Name -ne '.git' } |
         Remove-Item -Recurse -Force
 
-    git -C $ws archive --format=zip -o $zip HEAD -- 共享开发 工具库 深空桥接器 AGENTS.md README.md .gitignore 2>$null
-    if ($LASTEXITCODE -ne 0) { throw 'git archive 失败' }
+    git -C $ws archive --format=zip -o $zip $Branch -- 共享开发 工具库 深空桥接器 AGENTS.md README.md .gitignore 2>$null
+    if ($LASTEXITCODE -ne 0) { throw "git archive 失败（分支 $Branch 是否存在？）" }
     Expand-Archive -LiteralPath $zip -DestinationPath $dir -Force
     Remove-Item -LiteralPath $zip -Force
 
@@ -91,11 +96,16 @@ function Sync-Devkit {
 
     git -C $dir remote get-url origin 2>$null | Out-Null
     if ($LASTEXITCODE -ne 0) { git -C $dir remote add origin $repos.devkit 2>$null }
-    $out = git -C $dir push -u origin main 2>&1
-    if ($LASTEXITCODE -ne 0) {
-        throw "devkit 推送失败：$($out -join ' ')（远端历史与本地不连续时，删掉 缓存文件夹\cloud-repos\devkit 重跑一次）"
+    # 云端目标分支 = 源分支名（默认 main，就是原有行为）
+    if ($Branch -eq 'main') {
+        $out = git -C $dir push -u origin main 2>&1
+    } else {
+        $out = git -C $dir push -u origin "HEAD:refs/heads/$Branch" 2>&1
     }
-    Write-Host "  已推送：$($repos.devkit)"
+    if ($LASTEXITCODE -ne 0) {
+        throw "devkit 推送失败（云端分支 $Branch）：$($out -join ' ')（远端历史与本地不连续时，删掉 缓存文件夹\cloud-repos\devkit 重跑一次）"
+    }
+    Write-Host "  已推送：$($repos.devkit) [$Branch]"
 }
 
 function Sync-Module {
@@ -103,23 +113,28 @@ function Sync-Module {
         [string]$Name,
         [string]$Prefix,
         [string]$Branch,
-        [string]$Url
+        [string]$Url,
+        [string]$SourceBranch = 'main'
     )
-    Write-Host "--- $Name（$Prefix）" -ForegroundColor Cyan
+    Write-Host "--- $Name（$Prefix）[$SourceBranch]" -ForegroundColor Cyan
 
     if ($DryRun) {
-        Write-Host "  [DryRun] 会 git subtree split --prefix=$Prefix -b $Branch 并推送 $Url"
+        Write-Host "  [DryRun] 会 git subtree split --prefix=$Prefix <$SourceBranch> -b $Branch 并推送 $Url [$SourceBranch]"
         return
     }
 
+    $rev = (git -C $ws rev-parse $SourceBranch 2>$null)
+    if ($LASTEXITCODE -ne 0 -or -not $rev) { throw "源分支不存在：$SourceBranch" }
+
     git -C $ws branch -D $Branch 2>$null | Out-Null
-    $split = git -C $ws subtree split --prefix=$Prefix -b $Branch 2>&1
+    $split = git -C $ws subtree split --prefix=$Prefix $rev -b $Branch 2>&1
     if ($LASTEXITCODE -ne 0) { throw "subtree split 失败：$split" }
     $commits = git -C $ws rev-list --count $Branch 2>$null
 
-    $out = git -C $ws push $Url "$Branch`:refs/heads/main" 2>&1
+    # 云端目标分支与源分支同名
+    $out = git -C $ws push $Url "$Branch`:refs/heads/$SourceBranch" 2>&1
     if ($LASTEXITCODE -ne 0) { throw "$Name 推送失败：$($out -join ' ')" }
-    Write-Host "  $commits 次提交已推送：$Url"
+    Write-Host "  $commits 次提交已推送：$Url [$SourceBranch]"
     git -C $ws branch -D $Branch 2>$null | Out-Null
 }
 
@@ -133,11 +148,11 @@ if ($Target -in @('all', 'devkit')) {
     try { Sync-Devkit } catch { $failed += "devkit"; Write-Host "  失败：$($_.Exception.Message)" -ForegroundColor Red }
 }
 if ($Target -in @('all', 'arcade')) {
-    try { Sync-Module -Name 'deepspace-arcade' -Prefix '深空电玩' -Branch 'cloud/arcade' -Url $repos.arcade }
+    try { Sync-Module -Name 'deepspace-arcade' -Prefix '深空电玩' -Branch 'cloud/arcade' -Url $repos.arcade -SourceBranch $Branch }
     catch { $failed += "arcade"; Write-Host "  失败：$($_.Exception.Message)" -ForegroundColor Red }
 }
 if ($Target -in @('all', 'pawn')) {
-    try { Sync-Module -Name 'probably-stolen' -Prefix '深空当铺：可能是群友' -Branch 'cloud/pawn' -Url $repos.pawn }
+    try { Sync-Module -Name 'probably-stolen' -Prefix '深空当铺：可能是群友' -Branch 'cloud/pawn' -Url $repos.pawn -SourceBranch $Branch }
     catch { $failed += "pawn"; Write-Host "  失败：$($_.Exception.Message)" -ForegroundColor Red }
 }
 

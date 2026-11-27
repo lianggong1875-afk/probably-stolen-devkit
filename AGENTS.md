@@ -12,6 +12,7 @@
 - **AI 技能库**：[共享开发/AI技能库/README.md](共享开发/AI技能库/README.md)（mattpocock/skills 中文化版，流程层方法；与本工作区工具链的对接见 [落地说明](共享开发/AI技能库/matt-pocock/_本工作区落地.md)）
 - **工具库**：[工具库/README.md](工具库/README.md)
 - **云备份**：[共享开发/云备份说明.md](共享开发/云备份说明.md)（三个私有 GitHub 仓库的分工与同步，`共享开发/云备份.ps1` 执行）
+- **分支与备份规范**：[共享开发/分支与备份规范.md](共享开发/分支与备份规范.md)（**每次开工前必读**：分支模型、五道合并门禁、四路备份、三张检查清单）
 - **缓存目录**：`缓存文件夹\`（反编译、临时输出用完就清；`save-backup-20261126-0640\` 存档备份禁止删除）
 
 规则：两款模组源码、美术、构建输出互不引用；新编译产物统一落各自项目 `build/`；完成一批有效改动就打一次清晰的本地 `git commit`，并顺手更新对应项目的 `PROGRESS.md`。
@@ -45,3 +46,28 @@
 - **常规开发闭环**：改代码 → `Build-Mod.ps1` 编译（开发版 + `-PublicRelease` 校验零能力）→ 跑 `Run-Regression.ps1` → 按需直接装机、热重载或进真机 Slot 1 验证（包括桥接工具、探针或 `native-input.ps1` 键鼠模拟）。
 - **验证要诚实**：编译通过不等于游戏运行正常，日志正常不等于画面正确，未真机验证的项如实标明。
 - **编码铁律**：Windows PowerShell 5.1 脚本（`.ps1`）必须保存为 **UTF-8 with BOM**；JSON 配置文件必须 **UTF-8 无 BOM**；改文本用文件编辑工具，不用 PowerShell 管道往返；禁止使用 `nul`/`con` 等 Windows 保留文件名。
+- **shell 铁律**：本机**只有 Windows PowerShell 5.1，没有 `pwsh`（PowerShell 7）**。脚本里要从别的进程调 `.ps1`，用 `Join-Path $PSHOME 'powershell.exe'`，不要写 `pwsh`。另外 `Write-Host` 的输出走 information stream，函数里捕获子脚本输出要用 `*>&1`，用 `2>&1` 抓不到。
+
+## 5. 分支、门禁与备份（硬流程，细则见 [分支与备份规范](共享开发/分支与备份规范.md)）
+
+1. **`main` 只接受合并，不直接提交**。永远可编译、真机可跑、零能力达标。
+2. **开工先建分支，本地和云端同时建**（云端那一步不能省，它是本地硬盘故障时的唯一异地副本）：
+   ```powershell
+   .\工具库\build\New-FeatureBranch.ps1 -Name feat/arcade-burner-animation
+   ```
+   命名：`feat|fix|exp|release/<域>-<短句>`，域 ∈ `arcade` / `freya` / `tools` / `kb`；全小写、连字符分词、**不写中文**；一个分支只做一件事。
+3. **合并前必须过五道门禁**，任何一道红都不许并：
+   ```powershell
+   .\工具库\build\Invoke-PreMergeGate.ps1 -Mod All
+   ```
+   门禁 = ①开发版编译 ②正式候选 + 零能力扫描 ③离线回归 ④跨模组冲突扫描（ERROR 必须为 0）⑤工作区洁净。
+   **真机验证（只进 Slot 1）不进脚本门禁，但发布前必须有结论；没验就写"未真机验证"。**
+4. **合并后打 tag 并上云**：
+   ```powershell
+   git switch main ; git merge --no-ff feat/xxx
+   git tag -a vX.Y.Z -m "..."
+   .\共享开发\云备份.ps1 -Branch main
+   .\工具库\build\Backup-All.ps1
+   ```
+5. **备份要四路，缺一路不算备份**：① 本地工作区 + git ② 云端三仓 ③ **另一块物理盘的裸仓镜像** ④ bundle 单文件；美术与文案另打资产 zip + SHA-256 清单（图是最不可再生的东西）。
+6. **回滚纪律**：没合并的直接丢分支；**合并后发现坏了用 `git revert`，绝不 `reset --hard`**（会改写历史让云端对不上）；工作区物理损坏从裸仓镜像或 bundle 恢复，恢复后先核 `build\public` 的 DLL SHA-256 与 `PROGRESS.md` 是否一致。

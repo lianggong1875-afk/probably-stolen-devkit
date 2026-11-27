@@ -4,7 +4,8 @@
 第一批来自 6 大核心模组（Developer Tools、SDJYBN Framework、Station Events、鉴定扩展家族、双开发桥接器、Portrait Studio 引擎与制作包）；
 第二批（2026-11，`TransientTagBoost` / `EpochCache` / `MachineManualSlot` / `ModDataInbox`）来自 45 个工坊模组的二轮蒸馏。
 
-**这些模板已对着游戏真实 `Assembly-CSharp.dll` + `UnityEngine.CoreModule.dll` + `0Harmony.dll` 编译验证过零错误**（说明里面用到的原版类型与方法名都是真的，不是猜的）。
+**全部 13 个模板已通过自动化真实编译 + 游戏 `ModScanner.Scan` 零能力实测（`Refused: False` 且 `Capabilities` 为空）**。
+注意：模板里用到 ES3 / 像素相机 / 输入 / UI 时，项目编译除 `Assembly-CSharp.dll` / `UnityEngine.CoreModule.dll` / `0Harmony.dll` 外，按需还需引用游戏 `Managed\` 目录下的 `Assembly-CSharp-firstpass.dll`（ES3Types 所在程序集）、`Unity.2D.PixelPerfect.dll`、`UnityEngine.UI.dll`、`UnityEngine.UIModule.dll`、`UnityEngine.InputLegacyModule.dll`、`UnityEngine.ImageConversionModule.dll`、`UnityEngine.AudioModule.dll`、`Unity.TextMeshPro.dll`、`netstandard.dll`。一键复测命令：`python 工具库\kb-tools\kb_pipeline.py verify-templates`。
 
 使用时按需复制到自己模组的 `src/` 并修改命名空间，不要把整套不需要的文件一股脑拖进去。
 
@@ -22,4 +23,4 @@
 | [`TransientTagBoost.cs`](TransientTagBoost.cs) | **临时改数值 → 调原版 → 还原**（Prefix 暂存 / Postfix + Finalizer 还原，改机器速度/产出/耗电而不替换原版入口） | 零能力 | [03](../../共享开发/模组制作经验库/03-原版接口速查.md)（机器系统全景）/ [20](../../共享开发/模组制作经验库/20-各类模组制作规范.md) |
 | [`EpochCache.cs`](EpochCache.cs) | **代际失效缓存**（弱表 + 全局 epoch，O(1) 让全部缓存失效；含估价键构造范例） | 零能力 | [03](../../共享开发/模组制作经验库/03-原版接口速查.md) |
 | [`MachineManualSlot.cs`](MachineManualSlot.cs) | 把一整份文档塞进机器自带**说明书槽**（玩家点开机器就能读，不用另做 UI） | 零能力 | [03](../../共享开发/模组制作经验库/03-原版接口速查.md)（机器面板/说明书槽） |
-| [`ModDataInbox.cs`](ModDataInbox.cs) | **ModData 文件收件箱**：给游戏外脚本/工具/AI 开通道，不用开端口（消费即删 + 代号命名 + 坏命令丢弃） | **需 `files`**（只用于开发期或 companion 模组） | [03](../../共享开发/模组制作经验库/03-原版接口速查.md)（外部进程通道） |
+| [`ModDataInbox.cs`](ModDataInbox.cs) | **ModData 文件收件箱**：给游戏外脚本/工具/AI 开通道，不用开端口（消费即删 + 代号命名 + 坏命令丢弃） | 零能力（已实测 `ModScanner`：`ModHelper.*ModDataFile*` 为白名单沙箱 API） | [03](../../共享开发/模组制作经验库/03-原版接口速查.md)（外部进程通道） |

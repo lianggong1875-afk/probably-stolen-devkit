@@ -18,14 +18,15 @@
 ## 常用命令
 
 ```powershell
+# 本机只有 Windows PowerShell 5.1（无 pwsh）
 # 看会写哪些文件，不动盘
-pwsh -File .\共享开发\AI技能库\sync-skills.ps1 -DryRun
+powershell -NoProfile -ExecutionPolicy Bypass -File .\共享开发\AI技能库\sync-skills.ps1 -DryRun
 
 # 实际同步（写 $env:DSH_HOME\skills）
-pwsh -File .\共享开发\AI技能库\sync-skills.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\共享开发\AI技能库\sync-skills.ps1
 
 # 校验译文结构对齐
-pwsh -File .\共享开发\AI技能库\verify-skills.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\共享开发\AI技能库\verify-skills.ps1
 ```
 
 改完技能正文或重新翻译上游之后，先跑校验，再跑同步。

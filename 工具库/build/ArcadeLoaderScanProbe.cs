@@ -9,11 +9,14 @@ internal static class ArcadeLoaderScanProbe
 {
     private static int Main(string[] args)
     {
-        if (args.Length != 4) return 2;
+        if (args.Length < 3 || args.Length > 4) return 2;
         string managed = Path.GetFullPath(args[0]);
         string candidate = Path.GetFullPath(args[1]);
         string contentRoot = Path.GetFullPath(args[2]);
-        var expected = args[3].Split(',', StringSplitOptions.RemoveEmptyEntries);
+        string expectedRaw = args.Length >= 4 ? args[3] : "";
+        var expected = (string.IsNullOrWhiteSpace(expectedRaw) || expectedRaw == "-" || expectedRaw.Equals("none", StringComparison.OrdinalIgnoreCase))
+            ? Array.Empty<string>()
+            : expectedRaw.Split(',', StringSplitOptions.RemoveEmptyEntries);
         AssemblyLoadContext.Default.Resolving += (context, name) =>
         {
             string path = Path.Combine(managed, name.Name + ".dll");

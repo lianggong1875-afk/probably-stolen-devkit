@@ -28,6 +28,9 @@ internal static class Program
         public List<ulong> Downloads = new List<ulong>();
         public List<ulong> Fetches = new List<ulong>();
         public bool ListSubs = false;
+        // —— 自查 / 清理自己发布的工坊物品（用于误创建后的收尾）——
+        public bool ListMine = false;
+        public List<ulong> DeleteIds = new List<ulong>();
     }
 
     private static int Main(string[] args)
@@ -59,15 +62,31 @@ internal static class Program
                 + " | ownsApp=" + SteamApps.BIsSubscribedApp(new AppId_t(AppId)));
 
             // —— 订阅 / 下载（研读第三方模组）——
+            // ⚠️ 每个分支都必须 return！否则会继续走到下面的 CreateItem/Submit，
+            //    在玩家工坊里创建并提交一个空物品（实测踩过，已清理）。
             if (opt.ListSubs) { ListSubscribed(); return 0; }
-            if (opt.Unsubs.Count > 0 && !SetSubscribed(opt.Unsubs, false)) return 7;
-            if (opt.Subs.Count > 0 && !SetSubscribed(opt.Subs, true)) return 7;
+            if (opt.Unsubs.Count > 0) return SetSubscribed(opt.Unsubs, false) ? 0 : 7;
+            if (opt.Subs.Count > 0) return SetSubscribed(opt.Subs, true) ? 0 : 7;
             if (opt.Fetches.Count > 0)
             {
                 if (!SetSubscribed(opt.Fetches, true)) return 7;
                 return DownloadIds(opt.Fetches) ? 0 : 8;
             }
             if (opt.Downloads.Count > 0) return DownloadIds(opt.Downloads) ? 0 : 8;
+            if (opt.ListMine) { return ListMyItems() ? 0 : 9; }
+            if (opt.DeleteIds.Count > 0) return DeleteItems(opt.DeleteIds) ? 0 : 10;
+
+            // ⚠️ 根本性守卫：走到这里说明上面没有任何子命令命中。
+            // 只有「确实要上传」才会继续（必须有 content 目录或已有物品 id，或 --verify）。
+            // 没有这道守卫时，--sub/--unsub 忘了 return 会一路走到 CreateItem，在工坊里建空物品（实测踩过 4 次）。
+            if (!opt.Verify && opt.Content.Length == 0 && opt.PublishedFileId == 0)
+            {
+                Console.Error.WriteLine("没有指定任何操作。");
+                Console.Error.WriteLine("  上传：--content <目录> [--preview/--title/--desc-file/--id]");
+                Console.Error.WriteLine("  研读：--list-subs / --list-mine / --fetch/--sub/--unsub/--download");
+                Console.Error.WriteLine("  其他：--dry-run / --verify --id <ID> / --delete <ids>");
+                return 2;
+            }
 
             if (opt.DryRun)
             {
@@ -304,6 +323,116 @@ internal static class Program
             SteamAPI.RunCallbacks();
             Thread.Sleep(50);
         }
+    }
+
+    // ================= 自查 / 清理自己发布的工坊物品 =================
+
+    /// <summary>列出本账号在创意工坊「已发布」的全部物品（含误创建的空物品）。</summary>
+    private static bool ListMyItems()
+    {
+        var appId = new AppId_t(AppId);
+        AccountID_t account = SteamUser.GetSteamID().GetAccountID();
+        Console.WriteLine("[mine] 查询已发布物品（account=" + account.m_AccountID + "）");
+        int total = 0;
+        for (uint page = 1; page <= 20; page++)
+        {
+            bool done = false;
+            bool ioFail = false;
+            var result = EResult.k_EResultNone;
+            uint returned = 0;
+            SteamUGCDetails_t[] found = null;
+
+            UGCQueryHandle_t query = SteamUGC.CreateQueryUserUGCRequest(
+                account,
+                EUserUGCList.k_EUserUGCList_Published,
+                EUGCMatchingUGCType.k_EUGCMatchingUGCType_Items,
+                EUserUGCListSortOrder.k_EUserUGCListSortOrder_CreationOrderDesc,
+                appId, appId, page);
+            if (query == UGCQueryHandle_t.Invalid)
+            {
+                Console.Error.WriteLine("[mine] CreateQueryUserUGCRequest 失败");
+                return false;
+            }
+            CallResult<SteamUGCQueryCompleted_t> call = CallResult<SteamUGCQueryCompleted_t>.Create((r, io) =>
+            {
+                ioFail = io;
+                result = r.m_eResult;
+                returned = r.m_unNumResultsReturned;
+                found = new SteamUGCDetails_t[returned];
+                for (uint i = 0; i < returned; i++)
+                {
+                    SteamUGCDetails_t d;
+                    if (SteamUGC.GetQueryUGCResult(r.m_handle, i, out d)) found[i] = d;
+                }
+                SteamUGC.ReleaseQueryUGCRequest(r.m_handle);
+                done = true;
+            });
+            call.Set(SteamUGC.SendQueryUGCRequest(query));
+            WaitCallbacks(() => done, 60000);
+            GC.KeepAlive(call);
+
+            if (!done || ioFail || result != EResult.k_EResultOK)
+            {
+                Console.Error.WriteLine("[mine] 查询失败: done=" + done + " io=" + ioFail + " result=" + result);
+                return false;
+            }
+            if (returned == 0) break;
+
+            foreach (SteamUGCDetails_t d in found)
+            {
+                if (d.m_nPublishedFileId.m_PublishedFileId == 0) continue;
+                DateTime created = DateTimeOffset.FromUnixTimeSeconds((long)d.m_rtimeCreated).ToLocalTime().DateTime;
+                Console.WriteLine("  " + d.m_nPublishedFileId.m_PublishedFileId
+                    + " | " + (string.IsNullOrEmpty(d.m_rgchTitle) ? "(空标题)" : d.m_rgchTitle)
+                    + " | 可见性=" + d.m_eVisibility
+                    + " | 体积=" + d.m_nFileSize + " B"
+                    + " | 创建=" + created.ToString("yyyy-MM-dd HH:mm")
+                    + " | url=https://steamcommunity.com/sharedfiles/filedetails/?id=" + d.m_nPublishedFileId.m_PublishedFileId);
+                total++;
+            }
+            if (returned < 50) break;
+        }
+        Console.WriteLine("[mine] 共 " + total + " 件");
+        return true;
+    }
+
+    /// <summary>删除本账号自己发布的工坊物品（只用于清理误创建的东西）。</summary>
+    private static bool DeleteItems(List<ulong> ids)
+    {
+        bool allOk = true;
+        foreach (ulong id in ids)
+        {
+            bool done = false;
+            bool ioFail = false;
+            var result = EResult.k_EResultNone;
+            SteamAPICall_t handle = SteamUGC.DeleteItem(new PublishedFileId_t(id));
+            if (handle == SteamAPICall_t.Invalid)
+            {
+                Console.Error.WriteLine("[delete] " + id + " DeleteItem 未返回有效句柄");
+                allOk = false;
+                continue;
+            }
+            CallResult<DeleteItemResult_t> call = CallResult<DeleteItemResult_t>.Create((r, io) =>
+            {
+                ioFail = io;
+                result = r.m_eResult;
+                done = true;
+            });
+            call.Set(handle);
+            WaitCallbacks(() => done, 60000);
+            GC.KeepAlive(call);
+
+            if (!done || ioFail || result != EResult.k_EResultOK)
+            {
+                Console.Error.WriteLine("[delete] " + id + " 失败: done=" + done + " io=" + ioFail + " result=" + result);
+                allOk = false;
+            }
+            else
+            {
+                Console.WriteLine("[delete] " + id + " 已删除");
+            }
+        }
+        return allOk;
     }
 
     // ================= 创建物品 =================
@@ -548,6 +677,8 @@ internal static class Program
                 case "--download": o.Downloads.AddRange(ParseIds(Next())); break;
                 case "--fetch": o.Fetches.AddRange(ParseIds(Next())); break;
                 case "--list-subs": o.ListSubs = true; break;
+                case "--list-mine": o.ListMine = true; break;
+                case "--delete": o.DeleteIds.AddRange(ParseIds(Next())); break;
                 default: throw new ArgumentException("未知参数 " + a);
             }
         }
@@ -611,6 +742,8 @@ internal static class Program
   --unsub <ids>        取消订阅
   --download <ids>     触发下载并等本地状态变为「已安装」，打印安装目录
   --fetch <ids>        订阅 + 下载 + 打印安装目录（最常用）
+  --list-mine          列出本账号在工坊「已发布」的全部物品（自查用）
+  --delete <ids>       删除自己发布的工坊物品（只用于清理误创建的东西）
   清单文件格式：一行一个 id，# 开头为注释，可与上面的 id 混用");
     }
 }

@@ -27,7 +27,22 @@
 | [19-工坊模组逆向与蒸馏](19-工坊模组逆向与蒸馏.md) | 要读别人的工坊模组：怎么筛、怎么订阅下载、怎么批量反编译、怎么读、怎么归档；工具链踩坑 |
 | [20-各类模组制作规范](20-各类模组制作规范.md) | **开工前必读**：按模组类型（内容/QoL/性能/事件剧情/框架/工具/美术/存档/联机）给必守项、禁忌、验收清单；跨模组十条铁律与冲突红线 |
 
-`workshop-distill\` 下是逐个工坊模组的蒸馏档案（`<工坊id>-<短名>.md`），索引见 [19](19-工坊模组逆向与蒸馏.md) 第 9 节。
+`workshop-distill\` 下是逐个工坊模组的蒸馏档案（`<工坊id>-<短名>.md`，持续随批次增量扩充），索引见 [19](19-工坊模组逆向与蒸馏.md) 第 9~15 节。
+
+## 结构化打标、压缩速查与秒级检索（新）
+
+- **高密度压缩速查卡（推荐首选）**：[DISTILL_DIGEST.md](DISTILL_DIGEST.md)（将 42 份 / 1.3 MB 工坊蒸馏档案无损压成 ~100 行核心结论 + ⚠️ 禁抄红线，压缩比 >115:1）。
+- **压缩版全库打标总索引**：[CATALOG.md](CATALOG.md) / `CATALOG.json`（零重复总表 + 按域一行路由；涵盖经验规范、全部 `workshop-distill` 档案、13 个实测零能力 C# 模板、工具与技能）。
+- **并发增量刷新**（另一边每新增一批蒸馏档案后跑一次即可，零侵入原文）：
+  ```powershell
+  python 工具库\kb-tools\kb_pipeline.py build
+  python 工具库\kb-tools\kb_pipeline.py audit
+  ```
+- **按标签/原版类秒查**：
+  ```powershell
+  python 工具库\kb-tools\kb_pipeline.py query --domain machines --trust L1,L2
+  python 工具库\kb-tools\kb_pipeline.py query --api StoreEventManager
+  ```
 
 ## 两个高频入口
 

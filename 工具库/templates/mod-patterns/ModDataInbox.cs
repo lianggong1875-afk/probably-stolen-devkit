@@ -11,8 +11,8 @@ namespace ModTemplates
     /// 来源蒸馏：店長可能是智能體（工坊 3845754309，`WhiteDragon.Ledger`）。
     /// 注意：作者简介说用 SQLite，但反编译产物里**没有任何 SQLite 引用**，实际就是这套 ModData 文件轮询。
     ///
-    /// ⚠️ 能力：需要 `files`（读写 ModData 目录），所以**不要放进正式零能力发布候选**，
-    /// 只在开发期 / companion 模组里用。
+    /// ✅ 权限实测：全程仅调用原版白名单沙箱 API（ModHelper.*ModDataFile*），不碰 System.IO。
+    /// 经游戏真实 ModScanner.Scan 实测：Refused = False，Capabilities 为空（零能力，可安全用于正式发布候选）。
     ///
     /// 三条必守细节（照抄）：
     ///   1. **消费即删**：文件存在 = 有待处理命令，读完立刻删，天然幂等，不会重放；

@@ -19,6 +19,7 @@
 
 import argparse
 import hashlib
+import itertools
 import json
 import os
 import re
@@ -52,6 +53,10 @@ HOTSPOTS = {
     "GameItem.ResolveSpriteByName": ("WARN", "贴图解析；接管会影响所有模组物品图标"),
     "ChemicalHelper.RunNightlyChemicalSimulation": ("WARN", "过夜化学模拟；整段替换=与所有优化模组互斥"),
     "PlayerStore.EndNight": ("WARN", "过夜主流程；整段替换风险极高"),
+    "GameItem.IsTag": ("WARN", "Appraisal Assistant 指纹红线方法；Patch 会影响其读取第三方鉴定品类，须纯增量且显式定序"),
+    "AppraisalHelper.GetCorrectBaseValue": ("WARN", "Appraisal Assistant 指纹红线方法；严禁破坏性 Prefix 替换"),
+    "InputActionManager.Update": ("WARN", "全局输入热点；多模组重叠须做模态门控并保证 Clear 兜底"),
+    "PlayerStore.GetNextClient": ("WARN", "访客队列高频争夺点；多模组共存须显式声明优先级分相（准备/常规/裁决）"),
 }
 
 # 能注册出"全局标识"的方法名 → 注册的是什么
@@ -69,12 +74,37 @@ REGISTER_CALLS = {
     "EnableTag": "物品标签",
 }
 
-PATCH_RE = re.compile(r"\[HarmonyPatch\(\s*([^\]]{1,400}?)\)\s*\]", re.S)
+# 额外直写注册点（不经过 ModHelper.Add* 的全局字典/电话/状态键）
+EXTRA_REG_LABELS = {
+    "client_id": "客户蓝图 id",
+    "phone_func": "电话对话 id",
+    "phone_number": "电话号码",
+    "state_key": "存档状态键",
+}
+
+# 已知存在多重载的原版高危方法：不显式写 Type[] 参数表会触发 Harmony AmbiguousMatchException
+KNOWN_OVERLOADED_TARGETS = {
+    "DirectoryMaster.Item",
+    "ContrabandHelper.InitContrabandItem",
+    "GraphUtils.EmporiumTryAdd",
+}
+
+PATCH_RE = re.compile(r"\[(?:HarmonyLib\.)?HarmonyPatch\s*\(((?:[^()\[\]]|\([^()]*\)|\[[^\]]*\]){1,400}?)\)\s*\]", re.S)
+LINE_COMMENT_RE = re.compile(r"//[^\n]*")
+BLOCK_COMMENT_RE = re.compile(r"/\*.*?\*/", re.S)
 TYPEOF_RE = re.compile(r"typeof\s*\(\s*([\w\.]+)\s*\)")
 STR_RE = re.compile(r'"([^"]{1,120})"')
 NAMEOF_RE = re.compile(r"nameof\s*\(\s*[\w\.]*?(\w+)\s*\)")
 REG_RE = re.compile(r"ModHelper\.(\w+)\s*\(\s*([^;]{0,400}?)\)\s*;", re.S)
 IDENT_RE = re.compile(r'"([a-z0-9_\.\-]{3,80})"')
+CLIENT_DICT_RE = re.compile(r'storeClientDict\s*\[\s*"([a-zA-Z0-9_\.\-]{2,80})"\s*\]\s*=')
+PHONE_FUNC_RE = re.compile(r'DialogFuncs\s*\[\s*"([a-zA-Z0-9_\.\-]{2,80})"\s*\]\s*=')
+PHONE_NUM_RE = re.compile(r'(?:new\s+StorePhoneClient\s*\(\s*|PhoneNumber\s*=\s*)(\d{3,10})L?')
+STATE_KEY_RE = re.compile(r'itemDisplayNameCache\s*\[\s*"(__[a-zA-Z0-9_\.\-]+__)"\s*\]')
+# 顺序声明：用来判断"这处重叠有没有被作者主动协调过"
+PRIORITY_RE = re.compile(r"\[HarmonyPriority\s*\(")
+BEFORE_RE = re.compile(r"\[HarmonyBefore\s*\(([^\)]*)\)")
+AFTER_RE = re.compile(r"\[HarmonyAfter\s*\(([^\)]*)\)")
 
 
 def has_cs(root):
@@ -121,8 +151,11 @@ def scan_dir(root):
     res = {
         "root": root,
         "name": derive_name(root),
+        "mod_id": "",              # manifest <ID>，用于匹配 HarmonyBefore/After 里的 "mod.<id>"
         "patches": set(),          # 'Type.Method'
-        "registers": {},           # 'AddNetworkUpgrade' -> set(id)
+        "patch_order": {},         # 'Type.Method' -> {'priority': bool, 'before': set, 'after': set}
+        "missing_overload_types": set(),  # 命中已知多重载方法但未写 Type[] 参数表的目标
+        "registers": {},           # 'AddNetworkUpgrade' / 'client_id' ... -> set(id)
         "files": 0,
         "manifest": None,
         "caps": [],
@@ -130,19 +163,24 @@ def scan_dir(root):
     }
 
     man = None
-    for cand in ("manifest.xml", os.path.join("About", "About.xml")):
-        p = os.path.join(root, cand)
-        if os.path.isfile(p):
-            man = p
+    # manifest 可能在本目录，也可能在上一级（我们把 --dir 指向项目的 src 子目录时）
+    for base in (root, os.path.abspath(os.path.join(root, os.pardir))):
+        for cand in ("manifest.xml", os.path.join("About", "About.xml")):
+            p = os.path.join(base, cand)
+            if os.path.isfile(p):
+                man = p
+                break
+        if man:
             break
     if man:
         try:
             tree = ET.parse(man)
             r = tree.getroot()
             res["name"] = (r.findtext("Name") or res["name"]).strip()
+            res["mod_id"] = (r.findtext("ID") or "").strip()
             caps = r.find("Capabilities")
             if caps is not None:
-                res["caps"] = [c.tag for c in caps]
+                res["caps"] = [(c.text or c.tag).strip() for c in caps if (c.text or c.tag).strip()]
             elif r.find("Capabilities") is None:
                 res["caps"] = []       # 自闭合 <Capabilities/> 也是零能力
         except Exception as e:
@@ -160,17 +198,92 @@ def scan_dir(root):
             text = open(path, encoding="utf-8", errors="replace").read()
         except OSError:
             continue
-        for raw in PATCH_RE.findall(text):
+        # 剥离注释避免把文档示例里的 [HarmonyPatch(...)] 误判为真实补丁
+        text = BLOCK_COMMENT_RE.sub(lambda m: "\n" * m.group(0).count("\n"), text)
+        text = LINE_COMMENT_RE.sub("", text)
+        for m in PATCH_RE.finditer(text):
+            raw = m.group(1)
             t = norm_target(raw)
-            if t:
-                res["patches"].add(t)
+            if not t:
+                continue
+            res["patches"].add(t)
+
+            # 检测已知多重载方法是否缺少 Type[] 参数表
+            if t in KNOWN_OVERLOADED_TARGETS:
+                has_types = ("new Type" in raw) or (len(TYPEOF_RE.findall(raw)) >= 2)
+                if not has_types:
+                    res["missing_overload_types"].add(t)
+
+            # 方法级顺序声明：只提取紧邻本 [HarmonyPatch] 的特性块（向上到上个语句/大括号，向下到类声明或下个 Patch）
+            pre_start = max(0, m.start() - 400)
+            pre = text[pre_start:m.start()]
+            # 截断到最后一个分号或大括号之后，防止串到上一个类
+            cut = max(pre.rfind(";"), pre.rfind("}"), pre.rfind("{"))
+            if cut >= 0:
+                pre = pre[cut + 1:]
+            post_end = min(len(text), m.end() + 400)
+            post = text[m.end():post_end]
+            next_patch = post.find("[HarmonyPatch")
+            if next_patch >= 0:
+                post = post[:next_patch]
+            brace = post.find("{")
+            if brace >= 0:
+                # 只追踪到本类的闭合大括号为止，绝不串到下一个类的类级特性
+                depth = 0
+                end_i = brace
+                for idx in range(brace, min(len(post), brace + 1200)):
+                    ch = post[idx]
+                    if ch == "{":
+                        depth += 1
+                    elif ch == "}":
+                        depth -= 1
+                        if depth == 0:
+                            end_i = idx + 1
+                            break
+                window = pre + post[:end_i]
+            else:
+                window = pre + post
+
+            entry = res["patch_order"].setdefault(t, {"priority": False, "before": set(), "after": set()})
+            if PRIORITY_RE.search(window):
+                entry["priority"] = True
+            for grp in BEFORE_RE.findall(window):
+                entry["before"].update(IDENT_RE.findall(grp))
+            for grp in AFTER_RE.findall(window):
+                entry["after"].update(IDENT_RE.findall(grp))
+
         for name, argstr in REG_RE.findall(text):
             if name in REGISTER_CALLS:
                 # 取参数里第二、三个字符串字面量当 id（modId 通常是第一个）
                 ids = IDENT_RE.findall(argstr)
                 for v in ids[1:3]:
                     res["registers"].setdefault(name, set()).add(v)
+
+        # 额外直写注册点扫描
+        for v in CLIENT_DICT_RE.findall(text):
+            res["registers"].setdefault("client_id", set()).add(v)
+        for v in PHONE_FUNC_RE.findall(text):
+            res["registers"].setdefault("phone_func", set()).add(v)
+        for v in PHONE_NUM_RE.findall(text):
+            res["registers"].setdefault("phone_number", set()).add(v)
+        for v in STATE_KEY_RE.findall(text):
+            res["registers"].setdefault("state_key", set()).add(v)
+
     return res
+
+
+def order_ok(a, b, target):
+    """按方法粒度判断两个模组在 target 上是否已有显式顺序声明。"""
+    oa = a["patch_order"].get(target) or {"priority": False, "before": set(), "after": set()}
+    ob = b["patch_order"].get(target) or {"priority": False, "before": set(), "after": set()}
+    if not oa["priority"] and not ob["priority"]:
+        return False
+    aid, bid = a["mod_id"], b["mod_id"]
+    if not aid or not bid:
+        return False
+    a_ref_b = ("mod." + bid) in oa["before"] or ("mod." + bid) in oa["after"]
+    b_ref_a = ("mod." + aid) in ob["before"] or ("mod." + aid) in ob["after"]
+    return a_ref_b or b_ref_a
 
 
 def hash_dlls(workshop_root):
@@ -201,6 +314,8 @@ def main():
     ap.add_argument("--workshop-root", default=r"D:\steam\steamapps\workshop\content\4348910")
     ap.add_argument("--out", default=None, help="markdown 报告输出路径")
     ap.add_argument("--json", action="store_true", help="额外打印 JSON")
+    ap.add_argument("--gate", action="store_true",
+                    help="门禁模式：单模组命中热点降级为 WARN（已知设计决策不阻塞合并）")
     a = ap.parse_args()
 
     dirs = [os.path.abspath(d) for d in a.dir if os.path.isdir(d)]
@@ -230,26 +345,49 @@ def main():
 
     findings = []      # (level, kind, subject, detail)
 
-    # 1) Harmony 目标交集
+    # 1) Harmony 目标交集（并判断这处重叠有没有被显式声明过顺序）
     by_target = {}
     for m in mods:
         for t in m["patches"]:
-            by_target.setdefault(t, set()).add(m["name"])
+            by_target.setdefault(t, []).append(m)
     for target, owners in sorted(by_target.items()):
-        if len(owners) < 2:
+        uniq = {}
+        for m in owners:
+            uniq[m["name"]] = m
+        if len(uniq) < 2:
             continue
         level, why = HOTSPOTS.get(target, ("INFO", "多个模组同时 Patch 同一个方法"))
+        pairs = list(itertools.combinations(list(uniq.values()), 2))
+        coordinated = all(order_ok(a, b, target) for a, b in pairs)
+        if not coordinated and level == "INFO":
+            level = "WARN"
+        note = "｜顺序：已声明" if coordinated else "｜顺序：**未声明**（谁先跑随缘）"
         findings.append((level, "patch-overlap", target,
-                         "%d 个模组同时 Patch：%s（%s）" % (len(owners), "、".join(sorted(owners)), why)))
+                         "%d 个模组同时 Patch：%s（%s）%s"
+                         % (len(uniq), "、".join(sorted(uniq)), why, note)))
+
+    # 1b) 已知多重载方法缺少 Type[] 参数表
+    for m in mods:
+        for t in sorted(m["missing_overload_types"]):
+            findings.append(("ERROR", "overload-missing-types", t,
+                             "%s 对已知多重载方法 %s 未显式声明 Type[] 参数表，加载可能触发 AmbiguousMatchException"
+                             % (m["name"], t)))
 
     # 2) 单模组命中原版热点（哪怕只有一个，也要提示风险）
     for m in mods:
         for t in m["patches"]:
             if t in HOTSPOTS and len(by_target.get(t, ())) < 2:
                 level, why = HOTSPOTS[t]
+                # --gate 模式：单模组命中热点是"已知的设计决策"（我们明知故犯并加固过），
+                # 不该永远堵住合并 → 降级为 WARN；多重重叠/重复注册/同名 DLL 仍算 ERROR。
+                if a.gate and level == "ERROR":
+                    level = "WARN"
+                    why = why + "｜gate: 单模组热点，已作为已知设计决策接受"
                 findings.append((level, "hotspot", t, "%s 命中原版热点（%s）" % (m["name"], why)))
 
     # 3) 注册标识重复
+    reg_labels = dict(REGISTER_CALLS)
+    reg_labels.update(EXTRA_REG_LABELS)
     by_reg = {}
     for m in mods:
         for api, ids in m["registers"].items():
@@ -257,7 +395,7 @@ def main():
                 by_reg.setdefault((api, i), set()).add(m["name"])
     for (api, ident), owners in sorted(by_reg.items()):
         if len(owners) >= 2:
-            findings.append(("ERROR", "id-collision", "%s(%s)" % (REGISTER_CALLS[api], ident),
+            findings.append(("ERROR", "id-collision", "%s(%s)" % (reg_labels.get(api, api), ident),
                              "被多个模组注册：%s（先到者赢，后到的会被忽略或不生效）" % "、".join(sorted(owners))))
 
     # 4) DLL 同名不同内容

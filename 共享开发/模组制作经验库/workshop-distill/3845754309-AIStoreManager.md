@@ -34,8 +34,7 @@
 | `{generation}-stock-categories.json` | 类目 id → 显示名映射（让 AI 说人话） | `:7058` |
 | `desk-{generation}.json` | **店内实况汇总视图**（顾客/柜台/机器/电话/电脑/暗格/夜报/容量），1 Hz | `RefreshDesk` `:11774-11848` |
 | `lots-{generation}.json` | 进货批次台账（供应商、单价、成员、卖出价） | `PublishLots` `:11570-11583` |
-| `trash-{gen}-{ver}.json` | 垃圾桶清单（吸引力惩罚来源） | `:10936` |
-| `sale-progress-{gen}.json` | 卖货流水线中途进度（断线可续） | `:9312` |
+| `trash-{gen}-{ver}.json` / `sale-progress-{gen}.json` | 垃圾桶清单（吸引力惩罚来源） / 卖货流水线中途进度（断线可续） | `:10936` / `:9312` |
 | `receipt-{command_id}.json` / `last-receipt-{channel}.json` | **命令回执**（幂等去重靠它） | `StoreCommandReceipt` `:2114-2123` |
 | 入站：`counter-/journey-/move-/watch-/report-/sale-{gen}.json` | 外部 AI 下达的命令信箱 | 见 §3 |
 
@@ -49,8 +48,7 @@
 - **物品行**：`id/name/kind/quantity` + 几何 `size{w,h}`、`slot{x,y}`、`rotatable` + 容器 `parent_id/container_path/access` + 液体水 `water_ml/liquid_ml/capacity_ml/empty/contains_water/liquid_main` + 电池 `charge_remaining/charge_max` + `estimated_value` + `contraband/trade_contraband` + `categories` + `bottle_label`（`AddGeometryFields:5839`、`ItemSize:5343`、`ItemSlot:5359`、`InventoryCapacity:5408`、`AddWaterContainerFields:5730`、`EnrichStockRow:5846`）。
 - **顾客与生意**：`visit`、`customer{name, remaining budget}`、`client_role`、对话行 `lines`、`stage`（`ready / not_selling / tablet_closed / speaking / choice_required / confirmation_required`）、报价 `offer{...}`、`dialog_choices`（`CounterView:2392-2511`；气泡取值 `DialogChoices:3133`）。
 - **需求平板**：`PanelDemand`（`:8054-8139`）走 `NegociationUIManager.Instance.uiObject → NegotiationTabletFrame.infoHost` 的子节点，按本地化标签 `ui_nego_restrictions` / `ui_nego_interests` 把"限制/兴趣"两类 Tag 行读成结构化数据；遇到 `Probe` 子节点返回 `panel_updating`（正在刷新），不硬读半截。
-- **机器与工作站**：`MachineRows:11681`、窗口控件树 `ReadWindow:13816` + `DescribeControl:13651`（给每个 `PixelElement` 打 `role/label/path`，让 AI 说得出"按 26℃ 那格按钮"）、加热读数 `HeatingView:1722`。
-- **账单/夜报/盘查**：`NightBill:7894`、`TrashSummary:10880`、`NightReportView:11199`、`SecurityView:10624`（`evidence_level`、`poster.pulled`、`contraband{inventory/showcase/smuggler_bay/hidden_grid/hidden_grid_exposed}`，来源 `ContrabandCounts:10571-10622`）。
+- **机器、工作站、账单与盘查**：`MachineRows:11681`；窗口控件树 `ReadWindow:13816` + `DescribeControl:13651`（给每个 `PixelElement` 打 `role/label/path`，让 AI 说得出"按 26℃ 那格按钮"）；加热读数 `HeatingView:1722`；`NightBill:7894`、`TrashSummary:10880`、`NightReportView:11199`；盘查 `SecurityView:10624`（`evidence_level`、`poster.pulled`、`contraband{inventory/showcase/smuggler_bay/hidden_grid/hidden_grid_exposed}`，来源 `ContrabandCounts:10571-10622`）。
 
 ### 1.3 多久写一次：不是定时，是"变了才写"
 
@@ -97,9 +95,7 @@
 
 补充三处反射兜底（原版没给公开入口的地方）：难度页 `NewGameDifficultyUI.TurnPage/OnPlateClicked`（`StartingDifficulty.cs:11-17, 89-91`）、开局专精 `MainMenuUIController.Instance.OnScenarioContinue(scenario)`（`Specializations.cs:64`）、讨价还价面板 `BargainUIManager` 的私有方法/字段（`InventoryObserver.cs:998-1006`）。
 
-
-`Receipt()`（`:7441-7481`）固定回：`command_id / status / generation / slot / revision / phase / item_id / from / requested_area / expected_revision`，业务再补 `next_tool`（如 `:2941-2942` 的 `next_tool: item_panel` + `after_close_next_tool: reopen_trade_tablet`）。
-状态词表本身就是它的文档：`expired`、`stale_observation`、`scene_changed`、`visit_mismatch`、`shop_closed`、`tablet_closed`、`no_space`、`over_limit`、`insufficient_cash`、`*_unconfirmed`、`outcome_unknown`。**没有"抛异常给 AI"这条路**——异常只在边界 `Debug.LogException` 后落成 `outcome_unknown`（`:56-63`、`:7427-7434`）。
+**统一回执契约**：`Receipt()`（`:7441-7481`）固定回 `command_id / status / generation / slot / revision / phase / item_id / from / requested_area / expected_revision`，业务再补 `next_tool`（如 `:2941-2942` 的 `next_tool: item_panel`、`after_close_next_tool: reopen_trade_tablet`）。状态词表本身就是文档：`expired`、`stale_observation`、`scene_changed`、`visit_mismatch`、`shop_closed`、`tablet_closed`、`no_space`、`over_limit`、`insufficient_cash`、`*_unconfirmed`、`outcome_unknown`；**没有"抛异常给 AI"这条路**——异常只在边界 `Debug.LogException` 后落成 `outcome_unknown`（`:56-63`、`:7427-7434`）。
 
 ---
 
@@ -107,7 +103,7 @@
 
 ### 3.1 谁在轮询
 
-游戏内：`InventoryObserver : MonoBehaviour` 挂在 `DontDestroyOnLoad` 的 `"White Dragon Ledger Observer"` 上（`LedgerMod.cs:19-21`），`LateUpdate()`（`:7081-7134`）里逐个 `Check*`：
+游戏内唯一入口是 `InventoryObserver : MonoBehaviour`（挂在 `DontDestroyOnLoad` 的 `"White Dragon Ledger Observer"` 上，`LedgerMod.cs:19-21`），`LateUpdate()`（`:7081-7134`）里逐个 `Check*`；宿主内则由 Python MCP（stdio）投命令并等回执——`exchange()` 写命令进信箱，75ms 一次读回执、最多等 8 秒（`command_transport.py:114`）。**双端都靠轮询文件**，没有 socket、没有管道、不开端口（也就不存在抢端口、鉴权、与别的模组冲突）。如 `move` 信箱：
 
 ```csharp
 // InventoryObserver.cs:7403-7414 —— move 信箱的轮询（其余信箱同构）
@@ -124,8 +120,6 @@ private void CheckMove()
         return;
     }
 ```
-
-宿主内：Python MCP（stdio）——`exchange()` 写命令进信箱，然后 75ms 一次读回执、最多等 8 秒（`command_transport.py:114`）。**双端都靠轮询文件**，没有 socket、没有管道、没有开端口（也就不存在抢端口、鉴权、与别的模组冲突）。
 
 ### 3.2 投递的原子性：临时文件 + `os.link`
 
@@ -181,8 +175,6 @@ def exchange(folder, inbox, request, read_receipt, previous_command=None, *, wai
 
 ## 4. 为什么能连跑十几天不卡
 
-**一个入口 + 三条约束**：
-
 1. **只有一个 `LateUpdate`**（`:7081-7134`），全部子任务自己算下次到期时间（`nextView / nextCheck / nextCounterPoll / nextMachinePoll / nextJourneyPoll / nextOrderPoll / nextReceptionCheck / nextHeatCheck`）。没有协程风暴，没有 `Update` 里的大对象分配。
 2. **事件驱动优先于轮询**：`Track()`（`:6930-6944`）给每个被监视容器挂原版三组委托 `onSlotAddItemLateFunc / onSlotRemoveItemLateFunc / onSlotChangeAmountItemFunc`，只有真变动的物品进 `changed` 这个 `HashSet<GameItem>`（`Changed:6921-6928`）；卸装时 `DetachAreas()` 逐容器 `Delegate.Remove`（`:6907-6919`），读档与销毁各成对清理一次。
 3. **写侧与读侧都做"没变化就不发"**：
@@ -199,7 +191,7 @@ def exchange(folder, inbox, request, read_receipt, previous_command=None, *, wai
 | 耦合面 | 与原版 UI 的**逻辑层**（方法名/字段名）耦合，不依赖分辨率与布局 | 与**像素层**耦合，分辨率/缩放/主题都影响 |
 | 可自动化断言 | 账本是纯文本，可直接断言 | 只能截图比对 |
 
-遗留代价：`InventoryObserver.cs` 14484 行单体 MonoBehaviour（约 490 个成员），是我们规范明确反对的形态。它换来的是"所有状态都在一个类里，不用跨文件对齐生命周期"——可以理解，但不建议照抄（见 §6 末）。
+遗留代价（见 §6 末第 7 条）：`InventoryObserver.cs` 14484 行单体 MonoBehaviour 是我们规范明确反对的形态。
 
 ---
 
@@ -253,8 +245,7 @@ def exchange(folder, inbox, request, read_receipt, previous_command=None, *, wai
 		sequence = num;
 ```
 
-（`counter_move_protocol` 那行的 `op_implicit` 小写是反编译产物原样，引用时别"顺手修正"。）
-读侧回放（游标 + 严格校验 + 协议版本触发重放）：
+（注：`counter_move_protocol` 那行的 `op_implicit` 小写是反编译产物原样。）读侧回放（游标 + 严格校验 + 协议版本触发重放）：
 
 ```python
 # mcp/ledger.py:69-92

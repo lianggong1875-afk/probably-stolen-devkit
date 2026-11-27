@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "description": "深空当铺模组工作区知识、蒸馏档案、模板、工具与技能六维受控标签词表",
+  "dimensions": {
+    "layer": {
+      "doc-guide": "经验库专题规范文档（01~20）与核心工程手册",
+      "workshop-distill": "第三方工坊模组反编译蒸馏档案（持续增量更新）",
+      "template-cs": "可直接复用的 C# 模组架构模板（templates/mod-patterns）",
+      "tool-script": "构建/扫描/测试/图像处理/蒸馏工具脚本",
+      "skill": "AI 智能体技能（领域技能与流程技能）"
+    },
+    "domain": {
+      "items": "物品目录、发放、占格、容器精确投放、标签与品类",
+      "machines": "机器逻辑、过夜周期、流体/化学品、机器动画",
+      "appraisal": "鉴定品类、鉴定等级、放大镜双视图、真伪/成色判定、交互纸张",
+      "events": "空间站事件、新闻报纸、日历预告、Better Newspapers 兼容",
+      "afterhour": "打烊后夜晚外出地点、商店摊位、CG舞台、夜晚地图事件",
+      "customers": "顾客生成、对话系统、声望、拒收/识破、电话簿",
+      "ui": "CustomUI面板、Tooltip、热键、模态输入隔离、像素窗口、字体本地化",
+      "economy": "经济模型、影子账本、价格修正、拍卖、金融/公司系统",
+      "persistence": "存档读写、ES3防坏档投影、ModData私有数据、读档管线",
+      "media": "立绘规格、PortraitStudio、高清相机租约、贴图去边、WAV配音",
+      "perf": "性能优化、代际缓存、弱表、分帧预算、过夜卡顿排查",
+      "interop": "跨模组通信、Harmony优先级、静态/运行期冲突扫描、加载器安全红线",
+      "multiplayer": "多人联机架构与外部进程通信通道",
+      "architecture": "大型/DLC级模组架构、单点总闸、多功合集组织、脚本DSL",
+      "workflow": "环境构建、ModScanner零能力扫描、离线回归、真机桥接探针、分支备份发布"
+    },
+    "trust": {
+      "L1-verified-runtime": "已通过本机真实编译 / ModScanner 零能力扫描 / 真机 Slot 1 实测验证",
+      "L2-verified-host": "已与工作区 reference/Assembly-CSharp 原版反编译源码逐项核对",
+      "L3-distilled-source": "直接读工坊模组反编译源码提炼（带文件:行号证据，部分推论需自核）",
+      "L4-caution-antipattern": "包含明确不可抄写法（如整段替换入口/绕过扫描/重度改写存档/大量空catch），仅学原理严禁照抄"
+    },
+    "capability": {
+      "zero-cap": "零能力（<Capabilities/>，实测或源码确认不触发外部能力）",
+      "cap-files": "需要 files 能力（磁盘直读/写或伴生资源包）",
+      "cap-network": "需要 network 能力（HTTP/WebSocket/TCP 监听或连接）",
+      "cap-reflection": "涉及外部反射（reflection-external）",
+      "mixed": "混合/分体架构（如主体零能力 + 伴生高权限，或多模组合集含高权样本）",
+      "n/a": "纯文档规范或游戏外独立运行脚本（不受游戏内 ModScanner 约束）"
+    },
+    "intent": {
+      "must-read-before-coding": "开工前必读硬规范与底线",
+      "api-lookup": "原版 API 与接口签名速查",
+      "troubleshoot": "按症状排查问题与踩坑台账",
+      "pattern-reuse": "可直接复制/套用的架构模式与代码模板",
+      "case-study": "工坊模组拆解案例与架构对照",
+      "tooling": "可执行脚本、门禁与自动化工具"
+    },
+    "status": {
+      "active": "现行有效",
+      "needs-review": "待随游戏版本更新复核",
+      "superseded": "已被更新文档/技能替代，仅保留指针"
+    }
+  }
+}

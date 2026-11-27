@@ -26,8 +26,10 @@ INSPECT = r"D:\0深空当铺模组开发\工具库\skills\decomp-api\inspect_mod
 PYTHON = sys.executable
 
 # 第三方运行时库，不是模组本体
+# 注意：别用 "mono." 这种宽泛子串 —— 会误伤叫 "Xxx.Mono.dll" 的模组本体（实测踩过 SmartInventoryArrange.Mono.dll）
 SKIP_DLL = ("0harmony", "microsoft.", "system.", "newtonsoft", "es3", "steamworks",
-            "unityengine", "moddevbridge", "il2cpp", "mono.", "netstandard")
+            "unityengine", "moddevbridge", "il2cpp", "monomod", "mono.cecil",
+            "netstandard", "dsececil", "unity.")
 
 
 def pick_dlls(root):

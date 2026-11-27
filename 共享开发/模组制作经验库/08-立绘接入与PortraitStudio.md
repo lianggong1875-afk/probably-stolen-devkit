@@ -139,3 +139,86 @@ if (!string.IsNullOrEmpty(modId) && HasSpriteDictGetSpritePatch(folder)) {
 - [x] ~~银狼四态按静态 target 接入后实测是否跟随~~ —— 独立包已删，这条作废
 - [ ] 8 个 NPC 目前是 1:1 复制原图，之后可换高清差分（**改 `Textures\*.png` 即可，主模组零能力，不涉及批准**）
 - [ ] 如果哪天确认"玩家确实想在 Portrait Studio 里换我们 NPC 的立绘" → 再按第三节·补做特性 patch，或重新评估独立包
+
+## 七、立绘包规格与美术模组三级形态（2026-11 二轮蒸馏，工坊实测）
+
+完整版见 `workshop-distill\美术与角色模组三级形态与立绘包规格.md`。这里只留**动手要用的硬参数**。
+
+### 7.1 立绘图片规格（原版与主流美术包共用口径，照这个做就对得上）
+
+| 项 | 值 |
+| --- | --- |
+| 尺寸 | **1728 × 1266** |
+| `pixelsPerUnit` | **600.0** |
+| pivot | **(0.5, 0.4976303317535544)** —— 不是 0.5，别四舍五入 |
+| Filter | **Point** |
+| Wrap（U/V/W） | Clamp |
+| mipmaps | **none** |
+| colorSpace | sRGB |
+| meshType | FullRect |
+
+> 依据：`Non-AI NPC Portraits`（3846193221）的 `portrait-studio-provider.json` 里 94 个资源全部是这组值。
+
+### 7.1b 另一套口径：直接注册进 `SpriteDict` 时（樱咲羽衣路线，⚠️ 两套别混用）
+
+`樱咲羽衣·诊所`（3844162371）是**自己** `Sprite.Create` 然后把 sprite 直接塞进 `SpriteDict.spriteDictionary` 的，它用的是另一套公式：
+
+```csharp
+Sprite.Create(tex, rect,
+    pivot: new Vector2(0.5f, 136f / 175f),          // ≈ 0.7771
+    pixelsPerUnit: texHeight * 100f / 175f,          // ≈ 613（1466×1073 的图）
+    extrude: 0,
+    meshType: SpriteMeshType.FullRect);
+```
+
+含义：**让立绘在世界里恒为 1.75 单位高**（因为 ppu 的定义是"每单位多少像素"，100 px/unit 是常数）。它实测 15 张都是约 1466×1073 RGBA、非像素日系半身、长宽比 1.366；配角 288×211 套同一公式也成立。
+
+**两套口径为什么不同、该用哪个**：
+
+| 场景 | 用哪套 |
+| --- | --- |
+| 走 Portrait Studio 提供方协议（`portrait-studio-provider.json`） | 1728×1266 / PPU 600 / pivot 0.4976（§7.1） |
+| 自己 `Sprite.Create` 后塞进 `SpriteDict` | 任意 w×h + `pivot=(0.5, 136/175)` + `ppu = h*100/175` |
+
+> ⚠️ **待核**：我们旧笔记里记过 `pivot=(0.5, 0.657)`，与上面两个数都不同。三套值并存说明**原版立绘的真实 pivot 还没被我们核实过**。做立绘包之前必须去 `共享开发\reference\Assembly-CSharp\SpriteDict.cs` / 原版立绘资源里核对一次，否则脸会上下错位。已记入 `07-踩坑台账` 待办。
+>
+> 补充（2026-11-27 已核到这一步）：**看 png 无法确定 pivot** —— 原版立绘是 Unity Sprite 资源，`pivot` / `pixelsPerUnit` 编码在资源元数据里，不在 png 里；原版 `ModLoader` 给**模组贴图**建 sprite 时用的是 `pivot (0.5,0.5)` + `ppu 100`（`ModLoader.cs:1749/1775`），那是"模组贴图"的口径，不是立绘的口径。
+> 所以**唯一可靠的确认方式是真机读**：进档后用桥接器/探针读
+> `SpriteDict.Instance.spriteDictionary["femaleLower1"].pivot` 与 `.pixelsPerUnit`（顺带 `.rect`、`.texture.width/height`），一次就能定死。这条已列入真机待办。
+
+### 7.1c `SpriteDict` 的立绘其实分池存放（做替换/自愈时必须知道）
+
+`SpriteDict` 不是一个字典，而是**一个通用列表 + 十几个分池列表**，全部是 `private List<SpriteEntry>`：
+
+```
+spriteEntries（通用）
+scavMale/scavFemale   secMale/secFemale   medMale/medFemale   engMale/engFemale
+secCorpoMale/secCorpoFemale   lowerMale/lowerFemale   revMale/revFemale   wanted…
+```
+
+`SpriteEntry { string key; Sprite sprite; }`。
+
+这解释了两件事：
+1. **少女当铺为什么要反射遍历"所有 `List<SpriteEntry>` 类型字段"** —— 它不知道（也不该硬编码）立绘按池拆成这么多列表，遍历同类型字段是最稳的做法。
+2. 我们/框架那种"Patch `SpriteDict.GetSprite(key)`"的做法之所以能工作，是因为对外只有 key→sprite 这一层；但**要枚举"原版有哪些立绘 key"就必须把所有分池都扫一遍**。
+
+### 7.2 三级形态（选方案前先看这张表）
+
+| 级别 | 做法 | 代码量 | 冲突面 |
+| --- | --- | --- | --- |
+| L1 单点装饰 | `SceneManager.sceneLoaded` + 自建组件挂到某个场景物体 | 3 文件 / ~450 行 | 几乎零 |
+| L2 全店换脸 | **只换 `SpriteRenderer.sprite` 引用，不碰 `SpriteDict`** | 15 文件 / ~800 行 | 低 |
+| L3 完整角色模组 | 自定义 NPC + 剧情 + 功能地点 | 58 文件 / 数千行 | 中 |
+| 纯资源包 | 按 `portrait-studio-provider.json` 放图 + 薄 provider DLL | 0~1 个薄 DLL | 零 |
+
+### 7.3 「换脸」要照抄的三条（来自少女当铺 CutePortraits）
+
+1. **不修改 `SpriteDict` 字典**，只在需要时 `renderer.sprite = 我们的图`。这是与"Patch `SpriteDict.GetSprite`"的本质区别——后者会和所有同类模组排队打架（我们现在就是这样，还被迫加了兜底 Postfix）。
+2. **替换前先避让**：扫 `ModLoader.Mods` 的 `Textures` / `Sprites` / `PaperSprites`，当前 `texture` 若属于别的模组就跳过。
+3. **还原要写成条件式**：`if (renderer.sprite == 我们换的那张) renderer.sprite = 原图;` —— 否则会把别人后来换的图一起还原掉。
+
+### 7.4 命名约定
+
+- 传统 `Textures/` 包：文件名 = key，形如 `cp_portrait_<原版立绘key>.png`（`cp_portrait_femaleLower1.png`）
+- 批量生成包：`<原版key>_<作者前缀>_<子池>_<f|m><NN>.png`（`femaleScav_psrl_scav_f01.png`）——**带作者前缀避免撞名**
+- Portrait Studio 包：`Portraits/<key>/handdrawn.png` + JSON 描述
