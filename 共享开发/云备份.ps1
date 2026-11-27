@@ -91,8 +91,10 @@ function Sync-Devkit {
 
     git -C $dir remote get-url origin 2>$null | Out-Null
     if ($LASTEXITCODE -ne 0) { git -C $dir remote add origin $repos.devkit 2>$null }
-    git -C $dir push -q -u origin main 2>&1 | Out-Null
-    if ($LASTEXITCODE -ne 0) { throw 'devkit 推送失败（远端历史与本地不连续时，删掉 缓存文件夹\cloud-repos\devkit 重跑一次）' }
+    $out = git -C $dir push -u origin main 2>&1
+    if ($LASTEXITCODE -ne 0) {
+        throw "devkit 推送失败：$($out -join ' ')（远端历史与本地不连续时，删掉 缓存文件夹\cloud-repos\devkit 重跑一次）"
+    }
     Write-Host "  已推送：$($repos.devkit)"
 }
 
@@ -115,8 +117,8 @@ function Sync-Module {
     if ($LASTEXITCODE -ne 0) { throw "subtree split 失败：$split" }
     $commits = git -C $ws rev-list --count $Branch 2>$null
 
-    git -C $ws push -q $Url "$Branch`:refs/heads/main" 2>&1 | Out-Null
-    if ($LASTEXITCODE -ne 0) { throw "$Name 推送失败" }
+    $out = git -C $ws push $Url "$Branch`:refs/heads/main" 2>&1
+    if ($LASTEXITCODE -ne 0) { throw "$Name 推送失败：$($out -join ' ')" }
     Write-Host "  $commits 次提交已推送：$Url"
     git -C $ws branch -D $Branch 2>$null | Out-Null
 }

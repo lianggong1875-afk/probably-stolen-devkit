@@ -231,6 +231,43 @@ def cmd_brief(args):
     save(details)
 
 
+def cmd_search(args):
+    """按关键词搜创意工坊（走工坊搜索页），输出 id | 名称 | 订阅 | 体积。"""
+    import urllib.parse
+    ids, titles = [], []
+    for page in range(1, args.pages + 1):
+        q = urllib.parse.quote(args.keyword)
+        url = ("https://steamcommunity.com/workshop/browse/?appid=%s&searchtext=%s"
+               "&browsesort=textsearch&section=readytouseitems&p=%d" % (APPID, q, page))
+        try:
+            raw = http(url).decode("utf-8", "replace")
+        except Exception as e:
+            print("  [warn] 搜索页失败 p%d: %s" % (page, e), file=sys.stderr)
+            break
+        page_ids = re.findall(r"sharedfiles/filedetails/\?id=(\d+)", raw)
+        page_titles = [html.unescape(re.sub(r"<[^>]+>", "", t)).strip()
+                       for t in re.findall(r'class="workshopItemTitle[^"]*"[^>]*>(.*?)</div>', raw, re.S)]
+        new = [i for i in dict.fromkeys(page_ids) if i not in ids]
+        if not new:
+            break
+        ids.extend(new)
+        titles.extend(page_titles)
+        time.sleep(0.6)
+    if not ids:
+        print("没搜到结果")
+        return
+    details = api_details(ids)
+    rows = []
+    for pid in ids:
+        d = details.get(pid, {})
+        rows.append((int(d.get("subscriptions", 0) or 0), pid, d.get("title") or "(无标题)",
+                     int(d.get("file_size", 0) or 0) // 1024))
+    rows.sort(reverse=True)
+    for subs, pid, title, kb in rows:
+        print("| %s | %s | 订阅 %s | %s KB |" % (pid, title, subs, kb))
+    save({k: v for k, v in details.items() if v})
+
+
 def cmd_local(args):
     ids = local_ids()
     print("本地已下载 %d 项，抓详情…" % len(ids))
@@ -270,6 +307,10 @@ def main():
     p.set_defaults(fn=cmd_detail)
     p = sub.add_parser("local")
     p.set_defaults(fn=cmd_local)
+    p = sub.add_parser("search")
+    p.add_argument("keyword")
+    p.add_argument("--pages", type=int, default=2)
+    p.set_defaults(fn=cmd_search)
     p = sub.add_parser("brief")
     p.add_argument("ids", nargs="*")
     p.add_argument("--ids-file")

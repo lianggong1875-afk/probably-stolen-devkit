@@ -18,9 +18,7 @@
 | 宿主侧（Python MCP） | SQLite `%LOCALAPPDATA%/WhiteDragonLedger/account.sqlite3`，把 JSON 增量日志**回放**成关系表 | `mcp/ledger_mcp.py`（默认 `--journal` = `<游戏>/AppData/LocalLow/Questing Goose Studio/Probably Stolen/ModData/white_dragon_ledger`，默认 `--database` 如上）；`mcp/database.py:42-84` 建表 |
 
 为什么选 SQLite 而不是文件/内存（作者 README 原话 + 代码印证）："一次建置基準，多次增量查詢…透過 `cursor` 追蹤增量變動（`shop_update`）…交易票據、歷史異動、垃圾桶與已通知的加熱紀錄皆持久化在 SQLite，大幅降低上下文負擔與 token 消耗，斷線重連也能安全續接。"
-代码层面这个收益确实全落在**读侧**：`ledger.py:92-124` 只把 `cursor+1 .. revision` 之间的日志文件读进 SQLite，之后任意按 `name/area/owned/save_id` 过滤分页（`ledger.py:129-146`），不必把几百行库存 JSON 整个塞进上下文。并发与崩溃安全靠 `BEGIN IMMEDIATE` + 8s timeout（`database.py:99-101`），裸文件做不到。
-
-**对我们的意义**：SQLite 不是必需项。真正的设计是"**游戏侧只追加增量，读侧自己建索引**"——我们做桥接器时游戏侧继续写 JSON、索引放在自己的进程里就行。
+代码层面这个收益确实全落在**读侧**：`ledger.py:92-124` 只把 `cursor+1 .. revision` 之间的日志文件读进 SQLite，之后任意按 `name/area/owned/save_id` 过滤分页（`ledger.py:129-146`），不必把几百行库存 JSON 整个塞进上下文。并发与崩溃安全靠 `BEGIN IMMEDIATE` + 8s timeout（`database.py:99-101`），裸文件做不到。结论：SQLite 不是必需项，真正的设计是"**游戏侧只追加增量，读侧自己建索引**"。
 
 ---
 
@@ -99,14 +97,9 @@
 
 补充三处反射兜底（原版没给公开入口的地方）：难度页 `NewGameDifficultyUI.TurnPage/OnPlateClicked`（`StartingDifficulty.cs:11-17, 89-91`）、开局专精 `MainMenuUIController.Instance.OnScenarioContinue(scenario)`（`Specializations.cs:64`）、讨价还价面板 `BargainUIManager` 的私有方法/字段（`InventoryObserver.cs:998-1006`）。
 
-### 2.4 回执契约（每个动作都长一个样）
 
 `Receipt()`（`:7441-7481`）固定回：`command_id / status / generation / slot / revision / phase / item_id / from / requested_area / expected_revision`，业务再补 `next_tool`（如 `:2941-2942` 的 `next_tool: item_panel` + `after_close_next_tool: reopen_trade_tablet`）。
 状态词表本身就是它的文档：`expired`、`stale_observation`、`scene_changed`、`visit_mismatch`、`shop_closed`、`tablet_closed`、`no_space`、`over_limit`、`insufficient_cash`、`*_unconfirmed`、`outcome_unknown`。**没有"抛异常给 AI"这条路**——异常只在边界 `Debug.LogException` 后落成 `outcome_unknown`（`:56-63`、`:7427-7434`）。
-
-### 2.5 顺带一条：让原版 UI 自己当渲染器
-
-`NativeItemPanels.cs` + `ItemPanelView.cs` 不重画任何面板，而是**打开原版物品面板**，把控件树扫成 `ItemPanelView{ Key, Controls, Text, Actions, Scan }`（`ItemPanelView.cs:8-68`），面板动作映射成 `Dictionary<string, Func<JToken,string>>`，由 `PublishItemPanel`（`:6423`）增量发布——AI 看到的"面板"就是玩家看到的那个，不会出现两套 UI。
 
 ---
 
@@ -261,7 +254,6 @@ def exchange(folder, inbox, request, read_receipt, previous_command=None, *, wai
 ```
 
 （`counter_move_protocol` 那行的 `op_implicit` 小写是反编译产物原样，引用时别"顺手修正"。）
-
 读侧回放（游标 + 严格校验 + 协议版本触发重放）：
 
 ```python
