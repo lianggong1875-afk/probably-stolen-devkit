@@ -69,6 +69,13 @@ try {
     if ($LASTEXITCODE -ne 0) { Fail "基准分支不存在：$From" }
 
     if ($current -ne $From) {
+        # 防呆：若基准分支落后于当前分支（当前分支包含 $From 没有的提交），说明 $From 是旧的，
+        # 从它切出去会丢掉别人已经提交但还没合进 $From 的工作。必须显式 -Force 才放行。
+        & git merge-base --is-ancestor $From $current | Out-Null
+        if ($LASTEXITCODE -ne 0 -and -not $Force) {
+            $ahead = (& git rev-list --count "$From..$current").Trim()
+            Fail "基准分支 $From 落后于当前分支 $current（差 $ahead 个提交）。从 $From 切出会丢掉这些改动；先把 $From 合并到最新，或用 -Force 明确承担风险。"
+        }
         Step "从 $current 切到基准分支 $From"
         & git switch $From | Out-Null
         if ($LASTEXITCODE -ne 0) { Fail "切不到 $From" }
@@ -95,9 +102,23 @@ try {
         if (-not (Test-Path -LiteralPath $psExe)) { $psExe = 'powershell.exe' }
         & $psExe -NoProfile -ExecutionPolicy Bypass -File $cloudScript -Branch $Name
         if ($LASTEXITCODE -ne 0) {
-            Write-Host "[WARN] 云端推送失败（本地分支已建好，可稍后手动重跑：powershell -File 共享开发\云备份.ps1 -Branch $Name）" -ForegroundColor Yellow
+            Fail "云端推送失败（$LASTEXITCODE）。云端没有这条分支 = 本地硬盘炸了就没有异地副本。先修网络/凭据再重跑，或显式加 -SkipCloud 并在恢复后立刻补推。"
         }
-        else { Ok "云端分支已建立：$Name" }
+
+        # 回读验证：不看脚本退出码，直接问远端「这条分支到底存不存在」。
+        # 三个云端仓都必须有同名分支，缺一个就等于那块内容没有异地副本。
+        $owner = 'lianggong1875-afk'
+        $repos = @('probably-stolen-devkit', 'deepspace-arcade', 'probably-stolen')
+        $missing = @()
+        foreach ($repo in $repos) {
+            $url = "https://github.com/$owner/$repo.git"
+            $ref = (& git ls-remote --heads $url "refs/heads/$Name" 2>$null)
+            if (-not $ref) { $missing += $repo }
+        }
+        if ($missing.Count -gt 0) {
+            Fail "回读验证失败：云端缺少分支 $Name 的仓：$($missing -join ', ')。本地分支已建好，请重跑 云备份.ps1 -Branch $Name 补齐后再开工。"
+        }
+        Ok "云端分支已建立并回读验证（3/3 仓）：$Name"
     }
 
     Write-Host ""

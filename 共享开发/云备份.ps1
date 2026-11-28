@@ -50,6 +50,32 @@ function Assert-GitRepo {
     if (-not (Test-Path (Join-Path $ws '.git'))) { throw "工作区不是 git 仓库：$ws" }
 }
 
+# 防呆：往云端推 main 的前提是「本地 main 就是最新成果」。
+# 若当前分支领先 main，说明有提交还没合并回主干 —— 此时推 main 会让云端 main 落后于已发布的代码。
+function Test-MainSyncRisk {
+    param([string]$Branch)
+
+    if ($Branch -ne 'main') { return }
+
+    $current = (& git -C $ws rev-parse --abbrev-ref HEAD).Trim()
+    $ahead = (& git -C $ws rev-list --count "main..HEAD" 2>$null)
+    if ($LASTEXITCODE -ne 0 -or -not $ahead) { return }
+
+    $ahead = [int]$ahead.Trim()
+    if ($ahead -le 0) { return }
+
+    Write-Host ''
+    Write-Host '  [WARN] 当前在分支 ' -NoNewline -ForegroundColor Yellow
+    Write-Host $current -NoNewline -ForegroundColor Yellow
+    Write-Host '，它比 main 多 ' -NoNewline -ForegroundColor Yellow
+    Write-Host "$ahead 个提交" -NoNewline -ForegroundColor Yellow
+    Write-Host '。' -ForegroundColor Yellow
+    Write-Host '         这次推的云端 main 只含本地 main 的内容，**不包含这些提交**。' -ForegroundColor Yellow
+    Write-Host '         若这批提交已经发布（发了工坊 / 打了 tag），先把分支合并回 main 再重跑，' -ForegroundColor Yellow
+    Write-Host '         否则云端 main 会与线上实际代码脱节。' -ForegroundColor Yellow
+    Write-Host ''
+}
+
 function Sync-Devkit {
     Write-Host '--- probably-stolen-devkit（经验 + 技能 + 工具库）' -ForegroundColor Cyan
     $dir = Join-Path $staging 'devkit'
@@ -96,7 +122,9 @@ function Sync-Devkit {
 
     git -C $dir remote get-url origin 2>$null | Out-Null
     if ($LASTEXITCODE -ne 0) { git -C $dir remote add origin $repos.devkit 2>$null }
-    # 云端目标分支 = 源分支名（默认 main，就是原有行为）
+    # 云端目标分支 = 源分支名（默认 main，就是原有行为）。
+    # 注意：devkit 是「快照仓」，历史由它自己累积；这里只能推 $dir 的快照提交。
+    # 标签不往三仓推 —— 它们由 Backup-All.ps1 的 git push --mirror 落到裸仓镜像与 bundle（含全部分支与标签）。
     if ($Branch -eq 'main') {
         $out = git -C $dir push -u origin main 2>&1
     } else {
@@ -142,6 +170,8 @@ Assert-GitRepo
 Write-Host "工作区：$ws"
 if ($DryRun) { Write-Host '模式：DryRun（不会写盘、不会推送）' -ForegroundColor Yellow }
 Write-Host ''
+
+Test-MainSyncRisk -Branch $Branch
 
 $failed = @()
 if ($Target -in @('all', 'devkit')) {

@@ -29,7 +29,25 @@ param(
 )
 
 $ErrorActionPreference = 'Continue'
+
+# 编码铁律：本机是中文 Windows + Windows PowerShell 5.1。
+# 不显式设 UTF-8 时，Python（kb_pipeline / conflict_scan）写出的中文会按 GBK 解码成一片乱码，
+# 既没法读日志，也会让下面基于正则的判定在含中文的输出上失准。
+# PYTHONUTF8 让 Python 用 UTF-8 处理 argv 与 stdio；OutputEncoding 让 PowerShell 也按 UTF-8 解回来。
+$env:PYTHONUTF8 = '1'
+$env:PYTHONIOENCODING = 'utf-8'
+try { [Console]::OutputEncoding = [System.Text.Encoding]::UTF8 } catch { }
+
 $repoRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+
+# 是否运行在 git worktree（链接式工作树）里：git-dir 与 git-common-dir 不同即为 worktree。
+# 这类检出常用于「主工作区正被并发编辑时，在干净快照上复验」，它的技能副本天生落后于 DSH_HOME。
+$inLinkedWorktree = $false
+try {
+    $gd = (& git rev-parse --git-dir 2>$null)
+    $gcd = (& git rev-parse --git-common-dir 2>$null)
+    if ($gd -and $gcd -and ($gd.Trim() -ne $gcd.Trim())) { $inLinkedWorktree = $true }
+} catch { }
 $buildScript = Join-Path $repoRoot '工具库\build\Build-Mod.ps1'
 $regScript = Join-Path $repoRoot '工具库\regression\Run-Regression.ps1'
 $scanScript = Join-Path $repoRoot '工具库\workshop-tools\conflict_scan.py'
@@ -55,13 +73,47 @@ function Record-Fail([string]$gate, [string]$detail, [string]$raw) {
 
 function Record-Ok([string]$gate) { Write-Host "[PASS] $gate" -ForegroundColor Green }
 
+# 选定一个「真能用」的 Python：不仅要存在，还要能在本工作区写文件。
+#
+# 为什么必须自检：本机曾经把 D:\0TavernWeave\tools\python314\python.exe（另一个项目的 3.14）
+# 硬编码在候选最前。它存在、能 import、能读文件，但在某些目录（例如 git worktree 的 缓存文件夹）
+# 写盘会被拒（PermissionError: Errno 13），于是 conflict_scan 一落报告就崩，
+# 门禁 4 报成「扫描脚本没输出 ERROR= 计数」——看起来像代码冲突，实际是解释器选错。
+# 现在改为：PATH 上的 python 优先，别项目的路径只作最后兜底，且每个候选都必须过写盘自检。
+$script:ResolvedPython = $null
 function Resolve-Python {
+    if ($script:ResolvedPython) { return $script:ResolvedPython }
+
     $candidates = @(
         $env:PS_PYTHON,
-        'D:\0TavernWeave\tools\python314\python.exe',
-        (Get-Command python -ErrorAction SilentlyContinue | Select-Object -First 1).Source
-    ) | Where-Object { $_ -and (Test-Path -LiteralPath $_) }
-    return ($candidates | Select-Object -First 1)
+        (Get-Command python -ErrorAction SilentlyContinue | Select-Object -First 1).Source,
+        (Get-Command python3 -ErrorAction SilentlyContinue | Select-Object -First 1).Source,
+        'D:\0TavernWeave\tools\python314\python.exe'
+    ) | Where-Object { $_ -and (Test-Path -LiteralPath $_) } | Select-Object -Unique
+
+    $probeDir = Join-Path (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)) '缓存文件夹'
+    if (-not (Test-Path -LiteralPath $probeDir)) {
+        New-Item -ItemType Directory -Path $probeDir -Force | Out-Null
+    }
+
+    foreach ($c in $candidates) {
+        $probe = Join-Path $probeDir ('_pychk_' + [guid]::NewGuid().ToString('N').Substring(0, 8) + '.tmp')
+        # 用环境变量传路径：避免中文路径被嵌进 -c 字符串时引发二次转义问题。
+        $env:DSH_PY_PROBE = $probe
+        try {
+            & $c -c "import os,io;io.open(os.environ['DSH_PY_PROBE'],'w',encoding='utf-8').write('ok')" 2>$null | Out-Null
+            if ($LASTEXITCODE -eq 0 -and (Test-Path -LiteralPath $probe)) {
+                $script:ResolvedPython = $c
+                return $c
+            }
+        } catch { }
+        finally {
+            Remove-Item -LiteralPath $probe -Force -ErrorAction SilentlyContinue
+            Remove-Item Env:\DSH_PY_PROBE -ErrorAction SilentlyContinue
+        }
+        Write-Host "[WARN] 跳过不可用的 python（写不进工作区缓存目录）：$c" -ForegroundColor Yellow
+    }
+    return $null
 }
 
 Push-Location $repoRoot
@@ -142,22 +194,36 @@ try {
             if ($failures.Count -gt 0 -and -not $KeepGoing) { $shouldStop = $true }
         }
         else {
-            $args = @($scanScript,
+            # 预建报告目录：干净克隆 / 新建 worktree 里没有 缓存文件夹，
+            # Python 会因写不进报告抛异常，然后被误判成「没输出 ERROR= 计数」。
+            $reportDir = Split-Path -Parent $reportPath
+            if ($reportDir -and -not (Test-Path -LiteralPath $reportDir)) {
+                New-Item -ItemType Directory -Path $reportDir -Force | Out-Null
+            }
+
+            # 注意：不能叫 $args —— 那是 PowerShell 的自动变量（函数的参数数组），
+            # 覆盖它会让 @splat 行为在别的作用域里变味。用 $cliArgs。
+            $cliArgs = @($scanScript,
                 '--dir', '深空电玩\src',
                 '--dir', '深空当铺：可能是群友\src',
                 '--dir', '深空桥接器\src',
                 '--gate',
                 '--out', $reportPath)
-            if ($IncludeWorkshop) { $args += @('--dir', '缓存文件夹\decomp_ws') }
+            if ($IncludeWorkshop) { $cliArgs += @('--dir', '缓存文件夹\decomp_ws') }
 
-            $raw = (& $py @args *>&1 | Out-String)
+            $raw = (& $py @cliArgs *>&1 | Out-String)
+            $scanExit = $LASTEXITCODE
             Write-Host $raw
             if ($raw -match 'ERROR=(\d+)') {
                 $errCount = [int]$Matches[1]
                 if ($errCount -gt 0) { Record-Fail $gate "有 $errCount 条 ERROR（详见 $reportPath）" '' }
                 else { Record-Ok $gate }
             }
-            else { Record-Fail $gate '扫描脚本没输出 ERROR= 计数，无法判定' $raw }
+            elseif ($raw -match 'Traceback \(most recent call last\)') {
+                # 区分「扫描器自身崩了」和「扫描完了但没给计数」——两者处置完全不同。
+                Record-Fail $gate "扫描脚本自身崩溃（Python 异常，退出码 $scanExit）" ''
+            }
+            else { Record-Fail $gate "扫描脚本没输出 ERROR= 计数（退出码 $scanExit），无法判定" $raw }
             if ($failures.Count -gt 0 -and -not $KeepGoing) { $shouldStop = $true }
         }
     }
@@ -184,9 +250,22 @@ try {
             else {
                 $raw = (& $py $kbScript 'audit' *>&1 | Out-String)
                 Write-Host $raw
-                if ($LASTEXITCODE -ne 0 -or $raw -notmatch 'ERROR=0') {
-                    Record-Fail $gate 'kb_pipeline audit 未通过' $raw
+                $auditPass = ($LASTEXITCODE -eq 0 -and $raw -match 'ERROR=0')
+
+                # worktree 伪影：本脚本常被用来在「干净检出」上复验（主工作区正被别人改时）。
+                # 这种链接式 worktree 里的 工具库/skills 是旧快照，而 DSH_HOME 是主工作区那份，
+                # 「不同步」是必然现象、不代表技能真的脏。剔除这一条后若再无 ERROR，就判通过并说明。
+                if (-not $auditPass -and $inLinkedWorktree -and ($raw -match '本地技能与 DSH_HOME 不同步')) {
+                    $meaningful = @($raw -split "`r?`n" | Where-Object {
+                        $_ -match '\[ERROR\]' -and $_ -notmatch '本地技能与 DSH_HOME 不同步'
+                    })
+                    if ($meaningful.Count -eq 0) {
+                        Write-Host '[WARN] 处于 git worktree：本地技能快照与 DSH_HOME 本就不同步，属预期，跳过该条判定。' -ForegroundColor Yellow
+                        $auditPass = $true
+                    }
                 }
+
+                if (-not $auditPass) { Record-Fail $gate 'kb_pipeline audit 未通过' $raw }
                 else { Record-Ok $gate }
 
                 if ($touchTpl.Count -gt 0 -and ($failures.Count -eq 0 -or $KeepGoing)) {
